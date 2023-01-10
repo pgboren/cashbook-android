@@ -82,10 +82,10 @@
 
     <string name="name">ឈ្មេាះ</string>
     <string name="address">អាស័យដ្ឋាន</string>
-    <string name="houseNo">លេខផ្ទះ</string>
+    <string name="houseno">លេខផ្ទះ</string>
     <string name="floor">ជាន់</string>
-    <string name="roomNumber">លេខបន្ទប់</string>
-    <string name="postalCode">លេខ​កូដ​ប្រៃ​ស​ណី​យ</string>
+    <string name="roomnumber">លេខបន្ទប់</string>
+    <string name="postalcode">លេខកូដប្រៃសណីយ៍</string>
     <string name="street">ផ្លូវ</string>
     <string name="type">ប្រភេទ</string>
     <string name="active">សកម្ម</string>

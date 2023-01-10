@@ -3,6 +3,9 @@ package com.soleap.cashbook.document;
 import com.google.gson.annotations.SerializedName;
 import com.soleap.cashbook.common.document.Document;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Address extends Document {
 
     @SerializedName("houseNo")
@@ -102,5 +105,20 @@ public class Address extends Document {
 
     public void setProvince(String province) {
         this.province = province;
+    }
+
+    @Override
+    public Map<String, Object> toMap() {
+        Map<String, Object> data = new HashMap<>();
+        data.put("houseNo", getHouseNo());
+        data.put("floor", getFloor());
+        data.put("roomNumber", getRoomNumber());
+        data.put("postalCode", getPostalCode());
+        data.put("street", getStreet());
+        data.put("village", getVillage());
+        data.put("commune", getCommune());
+        data.put("district", getDistrict());
+        data.put("province", getProvince());
+        return data;
     }
 }

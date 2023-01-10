@@ -29,7 +29,7 @@
             app:layout_constraintEnd_toStartOf="@+id/inputLayout_floor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:hint="@string/houseNo">
+            android:hint="@string/houseno">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txt_houseNo"
@@ -64,7 +64,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:hint="@string/roomNumber"
+            android:hint="@string/roomnumber"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/inputLayout_floor"
             app:layout_constraintTop_toTopOf="@+id/inputLayout_floor">
@@ -83,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:hint="@string/postalCode"
+        android:hint="@string/postalcode"
         app:errorEnabled="true"
         android:visibility="gone"
         app:helperText="@string/require">

@@ -21,7 +21,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/houseNo"
+        android:hint="@string/houseno"
         app:errorEnabled="true"
         app:helperText="@string/require">
         <com.google.android.material.textfield.TextInputEditText
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:hint="@string/postalCode"
+        android:hint="@string/postalcode"
         app:errorEnabled="true"
         android:visibility="gone"
         app:helperText="@string/require">

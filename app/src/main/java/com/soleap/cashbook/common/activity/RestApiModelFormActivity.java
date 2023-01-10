@@ -131,12 +131,7 @@ public abstract class RestApiModelFormActivity<T extends Document> extends AppCo
                 showLoadingScreen();
                 T model = (T) DocumentInfo.getInstance(this).createDocument(documentName);
                 readInputData(model);
-
-                Map<String, Object> data = new HashMap<>();
-                data.put("name", "test");
-                data.put("enable", "true");
-                RepositoryFactory.create().get(documentName).addNew(documentName, data);
-//                RepositoryFactory.create().get(documentName).add(model);
+                RepositoryFactory.create().get(documentName).addNew(documentName, model.toMap());
             }
         }
         catch (Exception ex) {

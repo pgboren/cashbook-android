@@ -42,7 +42,6 @@ public class BsDocAddNewActivity extends DocAddNewActivity {
 
     @Override
     protected boolean validation() {
-
         if (txtName.getText().toString().isEmpty()) {
             inputLayoutName.setHelperText(getString(R.string.require));
             isValid = false;

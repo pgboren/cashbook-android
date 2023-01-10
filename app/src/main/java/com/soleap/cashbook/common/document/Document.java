@@ -3,6 +3,7 @@ package com.soleap.cashbook.common.document;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Map;
 
 public abstract class Document implements Serializable {
 
@@ -15,5 +16,9 @@ public abstract class Document implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Map<String, Object> toMap() {
+        return  null;
     }
 }
