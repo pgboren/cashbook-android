@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="@string/nav_group_transaction">
+        <menu>
+            <item android:id="@+id/nav_deal"
+                android:icon="@drawable/ic_tags"
+                android:title="@string/nav_menu_deal" />
+
+        </menu>
+    </item>
+
+    <item android:title="@string/nav_group_business_resource">
+        <menu>
+            <item
+                android:id="@+id/nav_item_list"
+                android:icon="@drawable/ic_contact"
+                android:title="@string/nav_menu_item" />
+            <item
+                android:id="@+id/nav_contact_list"
+                android:icon="@drawable/ic_contact"
+                android:title="@string/nav_menu_contacts" />
+        </menu>
+    </item>
+
+    <item android:title="@string/nav_group_reference_data">
+        <menu>
+            <item
+                android:id="@+id/nav_color_list"
+                android:icon="@drawable/ic_category"
+                android:title="@string/nav_menu_color" />
+
+            <item
+                android:id="@+id/nav_branch_list"
+                android:icon="@drawable/ic_category"
+                android:title="@string/nav_menu_branch" />
+
+            <item
+                android:id="@+id/nav_category_list"
+                android:icon="@drawable/ic_category"
+                android:title="@string/nav_menu_category" />
+
+            <item
+                android:id="@+id/nav_loan_institute_list"
+                android:icon="@drawable/ic_category"
+                android:title="@string/nav_menu_institute" />
+
+        </menu>
+    </item>
+
+    <item android:title="@string/nav_group_system">
+        <menu>
+            <item
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/nav_menu_settings" />
+
+            <item
+                android:id="@+id/nav_signOut"
+                android:icon="@drawable/ic_signout"
+                android:title="@string/nav_menu_signout" />
+        </menu>
+    </item>
+
+
+</menu>

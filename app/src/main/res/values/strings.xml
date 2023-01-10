@@ -1,0 +1,143 @@
+<resources>
+    <string name="app_name">សុលាភលក់ម៉ូតូ</string>
+
+    <!-- Currency -->
+    <string name="us_dollar">Dollar</string>
+    <string name="kh_rield">Riel</string>
+
+    <!-- Action -->
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="save">រក្សាទុក</string>
+    <string name="edit">កែរ</string>
+    <string name="cancel">បោះបង់</string>
+    <string name="ok">យល់ព្រម</string>
+    <string name="error">Error</string>
+    <string name="more">more</string>
+    <string name="delete">លុប</string>
+
+    <string name="require">required</string>
+
+    <string name="category_search_hint">Name</string>
+    <string name="duplicate_category_name">Doupliecated category name</string>
+    <string name="category_is_used_as_parent">This category is used by some other objects.</string>
+
+    <!--Form-->
+    <string name="general">ព័តមានទូទៅ</string>
+
+    <string name="delete_alert_dialog_title">លុប%s?</string>
+    <string name="delete_alert_dialog_message">តើអ្នកចង់លុប%sនេះទេ?</string>
+    <string name="search_title">Search</string>
+
+    <string name="camera_access_required">Camera is require</string>
+    <string name="camera_unavailable">Camera is unavailable</string>
+    <string name="camera_permission_granted">Camera permission is granted</string>
+    <string name="camera_permission_denied">Camera permission is denied</string>
+
+    <!--Navigation Bar-->
+    <string name="nav_group_transaction">ប្រតិបត្តការណ៍</string>
+    <string name="nav_menu_loan_request">ដាក់ស្នើរប្រាក់កម្ចី</string>
+    <string name="nav_menu_item_price">តំលៃផលិតផល</string>
+
+    <string name="nav_group_business_resource">បញ្ជីរឈ្មោះ</string>
+    <string name="nav_menu_deal">ប្រតិបត្តិការលក់</string>
+    <string name="nav_menu_item">ផលិតផល</string>
+    <string name="nav_menu_contacts">អតិថិជន</string>
+    <string name="nav_group_reference_data">ទិន្ន័យយោង</string>
+    <string name="nav_menu_color">ពណ៌</string>
+    <string name="nav_menu_branch">សាខា</string>
+    <string name="nav_menu_category">ប្រភេទទំនិញ</string>
+    <string name="nav_menu_institute">ស្ថាប័ណ្ណ</string>
+    <string name="nav_group_system">ប្រព័ន្ធ</string>
+    <string name="nav_menu_settings">ការកំណត់</string>
+
+    <string name="add_new_contact">ចុះឈ្មោះអតិថិជនថ្មី</string>
+    <string name="add_new_deal">ដាក់ពាក្យ</string>
+    <string name="first_name">នាមខ្លួន</string>
+    <string name="last_name">នាមត្រកូល</string>
+    <string name="nick_name">ឈ្មោះហៅក្រៅ</string>
+
+    <string name="contactNumber">លេខទំនាក់ទំនង</string>
+    <string name="primarynumber">លេខទូរស័ព្ទផ្ទាល់ខ្លន</string>
+    <string name="secondarynumber">លេខទូរស័ព្ទមេ</string>
+    <string name="thridnumber">លេខទូរស័ព្ទអ្នកផ្ទះ</string>
+    <string name="facebook">Facebook</string>
+    <string name="telegram">Telegram</string>
+    <string name="village">ភូមិ</string>
+    <string name="commune">ឃុំ/សង្កាត់</string>
+    <string name="district">ស្រុក/ខ័ណ្ឌ</string>
+    <string name="province">ខេត្ត/ក្រុង</string>
+    <string name="phonenumbers">លេខទូរស័ព្ទ</string>
+
+    <string name="price">តំលៃ</string>
+    <string name="fullPayment">បង់ផ្ដាច់</string>
+    <string name="iPP">បង់រំលស់</string>
+    <string name="namekh">ឈ្មោះ (ខ្មែរ)</string>
+    <string name="description">បរិយាយ</string>
+    <string name="installmentpaymentprice">តំលៃបង់រំលស់</string>
+    <string name="cost">ថ្លៃដើម</string>
+    <string name="photo">រូបភាព</string>
+    <string name="status">ស្ថានភាព</string>
+    <string name="upload_photo">ដាក់រូបភាព</string>
+
+    <string name="name">ឈ្មេាះ</string>
+    <string name="address">អាស័យដ្ឋាន</string>
+    <string name="houseNo">លេខផ្ទះ</string>
+    <string name="floor">ជាន់</string>
+    <string name="roomNumber">លេខបន្ទប់</string>
+    <string name="postalCode">លេខ​កូដ​ប្រៃ​ស​ណី​យ</string>
+    <string name="street">ផ្លូវ</string>
+    <string name="type">ប្រភេទ</string>
+    <string name="active">សកម្ម</string>
+
+    <string name="add_new_institute">ចុះឈ្មោះស្ថាប័ណ្ណថ្មី</string>
+    <string name="add_new_branch">ចុះឈ្មោះសាខាថ្មី</string>
+    <string name="add_new_item">ចុះឈ្មោះផលិតផលថ្មី</string>
+    <string name="add_new_category">ចុះឈ្មោះប្រភេទផលិតផលថ្មី</string>
+    <string name="add_new_color">បង្កើតព៌ណផលិតផលថ្មី</string>
+    <string name="contact_number">លេខទំនាក់ទំនង</string>
+
+    <string name="color">ព៌ណផលិតផល</string>
+    <string name="item">ផលិតផល</string>
+    <string name="institute">ស្ថាប័ណ្ណ</string>
+    <string name="branch">សាខា</string>
+    <string name="category">ប្រភេទផលិតផល</string>
+    <string name="contact">អតិថិជន</string>
+    <string name="gender">ភេទ</string>
+    <string name="male">ប្រុស</string>
+    <string name="female">ស្រី</string>
+    <string name="enter_username">ឈ្មោះគណនី</string>
+    <string name="enter_password">លេខសំងាត់</string>
+    <string name="remember_me">ចងចាំលេខសំងាត់</string>
+    <string name="login">LOGIN</string>
+    <string name="nav_menu_signout">ចាកចេញ</string>
+
+    <string name="deal_status_new">ថ្មី</string>
+    <string name="deal_status_loan">បង់រំលស់</string>
+    <string name="number">លេខសំគាល់</string>
+    <string name="coupon_number">លេខប័ណ្ណ</string>
+
+    <string name="vehicleyear">ឆ្នាំផលិត</string>
+    <string name="vehiclechassisno">លេខតូរ</string>
+    <string name="vehicleengineno">លេខម៉ាស៊ីន</string>
+    <string name="paymenttype">របៀបទូទាត់ប្រាក់</string>
+    <string name="date">កាលបរិច្ឆេទ</string>
+    <string name="INSTALLMENT">បង់រំលស់</string>
+    <string name="FULL_PAYMENT">ទិញដាច់</string>
+
+    <string name="NEW">ថ្មី</string>
+    <string name="customer">អតិថិជន</string>
+    <string name="model_year">ឆ្នាំផលិត</string>
+    <string name="logo">ផ្លាកសញ្ញា</string>
+    <string name="DATE">កាលបរិច្ឆេទ</string>
+    <string name="power">កំលាំង</string>
+    <string name="enginepower">កំលាំម៉ាស៊ីន</string>
+    <string name="sale_to">លក់ជូន</string>
+    <string name="choose_a_client">ជ្រើសយកឈ្មោះអតិថិជន</string>
+    <string name="sale_at_branch">ប្រចាំសាខា</string>
+    <string name="choose_a_branch">ជ្រើសយកឈ្មោះសាខា</string>
+    <string name="choose_a_item">ជ្រើសយកឈ្មោះផលិតផល</string>
+    <string name="no_item_added">មិនមានផលិតផល</string>
+    <string name="choose_a_payment_type">ជ្រើសយករបៀបទូទាត់ប្រាក់</string>
+
+</resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primaryColor">#851718</color>
+    <color name="primaryLightColor">#CFA29D</color>
+    <color name="primaryDarkColor">#851718</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#8B000000</color>
+
+    <color name="colorPrimary">#EB292929</color>
+    <color name="colorPrimaryDark">#EB292929</color>
+    <color name="colorAccent">#03DAC5</color>
+
+
+    <color name="gray_light">#4E4D4D</color>
+    <color name="gray_dark">#252424</color>
+
+    <color name="white_dark_tansparent">#BAB1B1B1</color>
+
+    <color name="title">#FFC0C0C0</color>
+    <color name="sub_title">#FFC0C0C0</color>
+
+    <color name="textColorHint">#4E4D4D</color>
+    <color name="item_devider">#252424</color>
+    <color name="devider">#4E4D4D</color>
+    <color name="status">#75a7ff</color>
+
+    <color name="view_comm_field_color">#75a7ff</color>
+    <color name="view_group_field_color">#75a7ff</color>
+    <color name="facebook">#274986</color>
+
+</resources>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:scrollbars="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:hint="@string/name"
+        app:errorEnabled="true"
+        app:helperText="@string/require">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_name"
+            android:inputType="textNoSuggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout_name_kh"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:hint="@string/namekh"
+        app:errorEnabled="true"
+        app:helperText="@string/require">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_name_kh"
+            android:inputType="textNoSuggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout_category"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:hint="@string/nav_menu_category"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_arrow_right"
+        app:errorEnabled="true"
+        app:helperText="@string/require">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_category"
+            android:inputType="textNoSuggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout_color"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_arrow_right"
+        android:hint="@string/nav_menu_color"
+        app:errorEnabled="true"
+        app:helperText="@string/require">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_color"
+            android:inputType="textNoSuggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout_price"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_alignParentTop="true"
+        app:errorEnabled="true"
+        android:hint="@string/price"
+        app:helperText="@string/require"
+        app:helperTextTextColor="#8A8989">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_price"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout_installmentpaymentprice"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_alignParentTop="true"
+        app:errorEnabled="true"
+        android:hint="@string/installmentpaymentprice"
+        app:helperText="@string/require"
+        app:helperTextTextColor="#8A8989">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_installmentpaymentprice"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout_cost"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_alignParentTop="true"
+        app:errorEnabled="true"
+        android:hint="@string/cost"
+        app:helperText="@string/require"
+        app:helperTextTextColor="#8A8989">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_cost"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout_desc"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:hint="@string/description"
+        app:errorEnabled="true"
+
+        app:helperText="@string/require">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_desc"
+            android:gravity="top|start"
+            android:minLines="3"
+            android:lines="3"
+            android:maxLines="3"
+            android:inputType="textMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/sw_enable"
+        android:gravity="top|start"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:checked="true"
+        android:text="@string/active"/>
+
+</LinearLayout>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "189964992665",
+    "firebase_url": "https://cashbook-15577.firebaseio.com",
+    "project_id": "cashbook-15577",
+    "storage_bucket": "cashbook-15577.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189964992665:android:1ddc2067bb85deb2407808",
+        "android_client_info": {
+          "package_name": "com.soleap.cashbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189964992665-thbjpfehqafgg4gul4rihrur5vljkodc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDaSE3zhH-s4gEIndUsGKwOaX6HH-XHHY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189964992665-thbjpfehqafgg4gul4rihrur5vljkodc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
