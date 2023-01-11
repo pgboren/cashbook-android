@@ -12,7 +12,7 @@ import com.soleap.cashbook.R;
 public class PaymentFormFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View v= inflater.inflate(R.layout.form_deal_payment, container, false);
+        View v= inflater.inflate(R.layout.form_deal_institute, container, false);
         return v;
     }
 }

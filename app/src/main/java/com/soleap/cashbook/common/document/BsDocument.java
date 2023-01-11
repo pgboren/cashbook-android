@@ -9,10 +9,10 @@ import java.util.Map;
 public class BsDocument extends Document {
 
     @SerializedName("name")
-    private String name;
+    public String name;
 
     @SerializedName("enable")
-    private boolean enable = false;
+    public boolean enable = false;
 
     public boolean isEnable() {
         return enable;
@@ -37,4 +37,5 @@ public class BsDocument extends Document {
         data.put("enable", enable);
         return data;
     }
+
 }

@@ -40,7 +40,7 @@
     <string name="nav_menu_item_price">តំលៃផលិតផល</string>
 
     <string name="nav_group_business_resource">បញ្ជីរឈ្មោះ</string>
-    <string name="nav_menu_deal">ប្រតិបត្តិការលក់</string>
+    <string name="nav_menu_sale">ប្រតិបត្តិការលក់</string>
     <string name="nav_menu_item">ផលិតផល</string>
     <string name="nav_menu_contacts">អតិថិជន</string>
     <string name="nav_group_reference_data">ទិន្ន័យយោង</string>
@@ -139,5 +139,8 @@
     <string name="choose_a_item">ជ្រើសយកឈ្មោះផលិតផល</string>
     <string name="no_item_added">មិនមានផលិតផល</string>
     <string name="choose_a_payment_type">ជ្រើសយករបៀបទូទាត់ប្រាក់</string>
+    <string name="choose_a_institute">ជ្រើសយកឈ្មោះស្ថាប័ណ្ណ</string>
+    <string name="nav_menu_installment_payment_sale_request">ដាក់ពាក្យបង់រំលស់</string>
+    <string name="nav_menu_full_payment_sale">ទិញដាច់</string>
 
 </resources>

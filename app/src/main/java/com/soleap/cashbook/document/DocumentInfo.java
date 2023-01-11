@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.activity.BsColorDocAddNewActivity;
-import com.soleap.cashbook.activity.DealAddNewActivity;
+import com.soleap.cashbook.activity.SaleInstallmentPaymentRequestAddNewActivity;
 import com.soleap.cashbook.activity.DealViewActivity;
 import com.soleap.cashbook.common.activity.BsColorDocEditActivity;
 import com.soleap.cashbook.common.activity.BsDocAddNewActivity;
@@ -25,7 +25,7 @@ public class DocumentInfo {
     public static final String VEHICLE = "vehicle";
     public static String ORDER = "order";
     public static String CONTACT = "contact";
-    public static String DEAL = "deal";
+    public static String SALE = "sale";
     public static String CATEGORY = "category";
     public static String BRANCH = "branch";
     public static String ITEM = "item";
@@ -103,8 +103,8 @@ public class DocumentInfo {
             return context.getString(R.string.nav_menu_contacts);
         }
 
-        if (key.equals(DEAL)) {
-            return context.getString(R.string.nav_menu_deal);
+        if (key.equals(SALE)) {
+            return context.getString(R.string.nav_menu_sale);
         }
 
         throw new RuntimeException("Stub!");
@@ -164,8 +164,8 @@ public class DocumentInfo {
             return ContactAddNewActivity.class;
         }
 
-        if (key.equals(DEAL)) {
-            return DealAddNewActivity.class;
+        if (key.equals(SALE)) {
+            return SaleInstallmentPaymentRequestAddNewActivity.class;
         }
 
         throw new RuntimeException("Stub!");
@@ -173,7 +173,7 @@ public class DocumentInfo {
 
     public Class getViewActivityClass(String key) {
 
-        if (key.equals(DEAL)) {
+        if (key.equals(SALE)) {
             return DealViewActivity.class;
         }
 
@@ -206,7 +206,7 @@ public class DocumentInfo {
 
     public int getListItemLayout(String key) {
 
-        if (key.equals(DEAL)) {
+        if (key.equals(SALE)) {
             return R.layout.list_item_deal;
         }
 
@@ -258,7 +258,7 @@ public class DocumentInfo {
             return R.layout.activity_list_bsdoc;
         }
 
-        if (key.equals(DEAL)) {
+        if (key.equals(SALE)) {
             return R.layout.activity_list_bsdoc;
         }
 
@@ -274,7 +274,7 @@ public class DocumentInfo {
             return Branch.class;
         }
 
-        if (documentName.equals(DocumentInfo.DEAL)) {
+        if (documentName.equals(DocumentInfo.SALE)) {
             return Deal.class;
         }
 

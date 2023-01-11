@@ -64,7 +64,6 @@ public abstract class RestApiLookupActivity<T extends Document> extends BackPres
                 List<T> models = response.body();
                 adapter.setDataSet(models);
             }
-
             @Override
             public void onFailure(Call<List<T>> call, Throwable t) {
                 Log.e(TAG, t.getMessage());

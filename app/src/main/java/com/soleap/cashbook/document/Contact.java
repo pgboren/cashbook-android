@@ -3,6 +3,9 @@ package com.soleap.cashbook.document;
 import com.google.gson.annotations.SerializedName;
 import com.soleap.cashbook.common.document.Document;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Contact extends Document {
 
     @SerializedName("firstname")
@@ -116,4 +119,20 @@ public class Contact extends Document {
         this.facebook = facebook;
     }
 
+    @Override
+    public Map<String, Object> toMap() {
+        Map<String, Object> data = new HashMap<>();
+        data.put("firstname", getFirstname());
+        data.put("lastname", getLastname());
+        data.put("gender" , getGender());
+        data.put("nickname", getNickname());
+        data.put("phoneNumber1", getPhoneNumber1());
+        data.put("phoneNumber2",  getPhoneNumber2());
+        data.put("phoneNumber3", getPhoneNumber3());
+        data.put("facebook", getFacebook());
+        data.put("telegram", getTelegram());
+        data.put("photo", getPhoto());
+        data.put("address", getAddress().toMap());
+        return data;
+    }
 }

@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="80dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -27,13 +27,21 @@
                 android:id="@+id/radiomale"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/male"
+                android:drawableTop="@drawable/male"
+                android:text="@string/male"
+                android:textColor="#8A8989"
+                android:textAlignment="center"
                 android:checked="true" />
+
             <RadioButton
                 android:id="@+id/radiofemale"
                 android:layout_width="120dp"
+                android:text="@string/female"
+                android:textAlignment="center"
+                android:textColor="#8A8989"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/female"/>
+                android:drawableTop="@drawable/female"/>
+
         </RadioGroup>
 
     </LinearLayout>

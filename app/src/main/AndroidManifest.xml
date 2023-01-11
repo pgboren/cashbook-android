@@ -52,6 +52,18 @@
 
         <activity
             android:theme="@style/NoActionBar"
+            android:name=".common.activity.BsDocLookUpActivity">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:theme="@style/NoActionBar"
             android:name=".common.activity.BsDocListActivity">
             <meta-data
                 android:name="android.app.searchable"
@@ -112,7 +124,7 @@
 
         <!-- Deal  Activities -->
         <activity
-            android:name=".activity.DealAddNewActivity"
+            android:name=".activity.SaleInstallmentPaymentRequestAddNewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="adjustResize" />

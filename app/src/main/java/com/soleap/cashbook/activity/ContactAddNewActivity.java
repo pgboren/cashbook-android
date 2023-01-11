@@ -22,6 +22,11 @@ public class ContactAddNewActivity extends DocAddNewActivity {
     private TextInputEditText txtPhonenumber3;
     private TextInputEditText txtFacebook;
     private TextInputEditText txtTelegram;
+
+    private TextInputEditText txtHouseNo;
+    private TextInputEditText txtFloor;
+    private TextInputEditText txtRoomNumber;
+
     private TextInputEditText txtVillage;
     private TextInputEditText txtCommune;
     private TextInputEditText txtDistrict;
@@ -54,6 +59,10 @@ public class ContactAddNewActivity extends DocAddNewActivity {
         txtPhonenumber3 = findViewById(R.id.txt_phoneNumber3);
         txtFacebook = findViewById(R.id.txt_facebook);
         txtTelegram = findViewById(R.id.txt_telegram);
+
+        txtHouseNo = findViewById(R.id.txt_houseNo);
+        txtFloor = findViewById(R.id.txt_floor);
+        txtRoomNumber = findViewById(R.id.txt_roomNumber);
         txtVillage = findViewById(R.id.txt_village);
         txtCommune = findViewById(R.id.txt_commune);
         txtDistrict = findViewById(R.id.txt_district);
@@ -68,6 +77,11 @@ public class ContactAddNewActivity extends DocAddNewActivity {
         txtPhonenumber3.addTextChangedListener(this);
         txtFacebook.addTextChangedListener(this);
         txtTelegram.addTextChangedListener(this);
+
+
+        txtHouseNo.addTextChangedListener(this);
+        txtFloor.addTextChangedListener(this);
+        txtRoomNumber.addTextChangedListener(this);
         txtVillage.addTextChangedListener(this);
         txtCommune.addTextChangedListener(this);
         txtDistrict.addTextChangedListener(this);
@@ -96,6 +110,9 @@ public class ContactAddNewActivity extends DocAddNewActivity {
         }
 
         Address address = new Address();
+        address.setHouseNo(txtHouseNo.getText().toString());
+        address.setFloor(txtFloor.getText().toString());
+        address.setRoomNumber(txtRoomNumber.getText().toString());
         address.setVillage(txtVillage.getText().toString());
         address.setCommune(txtCommune.getText().toString());
         address.setDistrict(txtDistrict.getText().toString());

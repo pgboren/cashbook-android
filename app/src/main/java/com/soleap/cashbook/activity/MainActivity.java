@@ -75,8 +75,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         String documentName = null;
 
-        if (id == R.id.nav_deal) {
-            documentName = DocumentInfo.DEAL;
+        if (id == R.id.nav_installment_payment_sale_request) {
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            intent = new Intent(this, SaleInstallmentPaymentRequestAddNewActivity.class);
+            intent.putExtra(DocumentInfo.DOCUMENT_NAME, documentName);
+            startActivity(intent);
+            return true;
         }
 
         if (id == R.id.nav_item_list) {

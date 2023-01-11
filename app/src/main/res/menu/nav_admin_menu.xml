@@ -5,10 +5,13 @@
 
     <item android:title="@string/nav_group_transaction">
         <menu>
-            <item android:id="@+id/nav_deal"
-                android:icon="@drawable/ic_tags"
-                android:title="@string/nav_menu_deal" />
+            <item android:id="@+id/nav_installment_payment_sale_request"
+                android:icon="@drawable/ic_loan"
+                android:title="@string/nav_menu_installment_payment_sale_request" />
 
+            <item android:id="@+id/nav_sales"
+                android:icon="@drawable/ic_tags"
+                android:title="@string/nav_menu_sale" />
         </menu>
     </item>
 

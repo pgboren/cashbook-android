@@ -14,10 +14,8 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.activity.ActivityProviderFactory;
-import com.soleap.cashbook.adapter.RestApiRecyclerViewAdapter;
 import com.soleap.cashbook.common.adapter.RecyclerViewAdapter;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
-import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.document.DocumentInfo;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
@@ -61,6 +59,16 @@ public abstract class RecyclerActivity extends BackPressActivity {
         apiInterface = APIClient.getClient().create(APIInterface.class);
     }
 
+    protected void initFabButtonAction() {
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onAddNewButtonClicked();
+            }
+        });
+    }
+
     @Override
     protected void setViewContent() {
         setContentView(DocumentInfo.getInstance(this).getListActivityLayout(documentName));
@@ -71,16 +79,8 @@ public abstract class RecyclerActivity extends BackPressActivity {
         }
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onAddNewButtonClicked();
-            }
-        });
+        initFabButtonAction();
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 

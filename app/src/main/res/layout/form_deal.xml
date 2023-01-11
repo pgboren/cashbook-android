@@ -13,7 +13,7 @@
     <include layout="@layout/form_deal_date"/>
     <include layout="@layout/form_deal_branch" />
     <include layout="@layout/form_deal_customer" />
-    <include layout="@layout/form_deal_payment" />
+    <include layout="@layout/form_deal_institute" />
     <include layout="@layout/form_deal_item" />
 
 </LinearLayout>

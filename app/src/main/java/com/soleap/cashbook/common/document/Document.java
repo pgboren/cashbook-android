@@ -3,6 +3,8 @@ package com.soleap.cashbook.common.document;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Document implements Serializable {
@@ -19,6 +21,11 @@ public abstract class Document implements Serializable {
     }
 
     public Map<String, Object> toMap() {
-        return  null;
+        Map<String, Object> map = new HashMap<>();
+        for (Field field : this.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
+            try { map.put(field.getName(), field.get(this)); } catch (Exception e) { }
+        }
+        return map;
     }
 }

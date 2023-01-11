@@ -50,7 +50,7 @@ public class BsDocViewHolder {
             return;
         }
 
-        if (documentName.equals(DocumentInfo.DEAL)) {
+        if (documentName.equals(DocumentInfo.SALE)) {
             bindDealItem(itemView, position, doc);
             return;
         }

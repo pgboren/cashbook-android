@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.ViewData;
@@ -32,6 +33,8 @@ public class BsDocLookUpActivity extends RecyclerActivity {
     public static final int LOOK_UP_ITEM_REQUEST_CODE = 10002;
     public static final int LOOK_UP_INSTITUTE_REQUEST_CODE = 10003;
     public static final int LOOK_UP_COLOR_REQUEST_CODE = 10004;
+    public static final int LOOK_UP_BRANCH_REQUEST_CODE = 10005;
+    public static final int LOOK_UP_CONTACT_REQUEST_CODE = 10006;
     public static final String LOOK_UP_DOCUMENT = "LOOK_UP_DOCUMENT";
 
     @Override
@@ -48,6 +51,12 @@ public class BsDocLookUpActivity extends RecyclerActivity {
             });
             setSupportActionBar(toolbar);
         }
+    }
+
+    @Override
+    protected void initFabButtonAction() {
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setVisibility(View.GONE);
     }
 
     @Override
