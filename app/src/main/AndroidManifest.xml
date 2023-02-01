@@ -28,6 +28,8 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -48,6 +50,14 @@
             android:name=".activity.BsItemDocAddNewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
+
+
+        <activity
+            android:name=".activity.SaleOrderitemViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:label="@string/item"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
@@ -73,18 +83,6 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:theme="@style/NoActionBar"
-            android:name=".common.activity.BsDocLookUpActivity">
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-        </activity>
-
 
         <activity
             android:name=".activity.BsItemDocEditActivity"
@@ -122,9 +120,9 @@
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Deal  Activities -->
+        <!-- SaleOrder  Activities -->
         <activity
-            android:name=".activity.SaleInstallmentPaymentRequestAddNewActivity"
+            android:name=".activity.SaleOrderAddNewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="adjustResize" />
@@ -169,11 +167,16 @@
         </activity>
 
         <activity
+            android:name=".activity.UserProfileActivity"
+            android:theme="@style/NoActionBar"
+            android:label="@string/user_profile"
+            android:configChanges="uiMode"/>
+
+        <activity
             android:name=".activity.LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/NoActionBar"
-            android:configChanges="uiMode">
-        </activity>
+            android:configChanges="uiMode"/>
 
         <activity
             android:name=".activity.MainActivity"

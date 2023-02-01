@@ -20,7 +20,7 @@ public class ViewPhoneNumberFieldCreator extends ViewCommunicationFieldCreator {
 
     @Override
     protected int getIcon() {
-        return R.drawable.ic_call_24;
+        return R.drawable.ic_call;
     }
 
 }

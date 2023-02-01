@@ -78,5 +78,49 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="DocLookupTextInputVIew">
+        <attr name="dltv_title" format="string" localization="suggested" />
+        <attr name="dltv_title_visible" format="boolean"/>
+        <attr name="dltv_blank_message" format="string" localization="suggested" />
+        <attr format="reference" name="dltv_endIconDrawable"/>
+        <attr name="dltv_doc_name" format="string"/>
+        <attr format="boolean" name="dltv_errorEnabled"/>
+        <attr name="dltv_helperText" format="string"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="DocLookUpInputView">
+        <attr name="title" format="string" localization="suggested" />
+        <attr name="title_visible" format="boolean"/>
+        <attr name="blank_message" format="string" localization="suggested" />
+        <attr format="reference" name="endIconDrawable"/>
+        <attr name="documentPhotoVisible">
+            <!-- Visible on screen; the default value. -->
+            <enum name="visible" value="0" />
+            <!-- Not displayed, but taken into account during layout (space is left for it). -->
+            <enum name="invisible" value="4" />
+            <!-- Completely hidden, as if the view had not been added. -->
+            <enum name="gone" value="8" />
+        </attr>
+        <attr name="documentName" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="DocItemsView">
+        <attr name="div_title" format="string" localization="suggested" />
+    </declare-styleable>
+
+    <declare-styleable name="PriceInputView">
+        <attr name="piv_title" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="DatePickerView">
+        <attr name="dpv_title" format="string"/>
+        <attr name="dpv_blank_message" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="CouponNumberInputView">
+        <attr name="cnv_title" format="string"/>
+        <attr name="cnv_blank_message" format="string"/>
+    </declare-styleable>
 
 </resources>

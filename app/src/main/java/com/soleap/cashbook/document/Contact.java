@@ -8,10 +8,10 @@ import java.util.Map;
 
 public class Contact extends Document {
 
-    @SerializedName("firstname")
-    private String firstname;
-    @SerializedName("lastname")
-    private String lastname;
+    @SerializedName("name")
+    private String name;
+    @SerializedName("latinname")
+    private String latinname;
     @SerializedName("gender")
     private String gender;
     @SerializedName("nickname")
@@ -30,22 +30,6 @@ public class Contact extends Document {
     private Media photo;
     @SerializedName("address")
     private Address address;
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
 
     public String getGender() {
         return gender;
@@ -119,11 +103,27 @@ public class Contact extends Document {
         this.facebook = facebook;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLatinname() {
+        return latinname;
+    }
+
+    public void setLatinname(String latinname) {
+        this.latinname = latinname;
+    }
+
     @Override
     public Map<String, Object> toMap() {
         Map<String, Object> data = new HashMap<>();
-        data.put("firstname", getFirstname());
-        data.put("lastname", getLastname());
+        data.put("name", getName());
+        data.put("latinname", getLatinname());
         data.put("gender" , getGender());
         data.put("nickname", getNickname());
         data.put("phoneNumber1", getPhoneNumber1());

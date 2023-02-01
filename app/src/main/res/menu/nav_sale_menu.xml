@@ -3,15 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item android:title="@string/nav_group_transaction">
+    <item android:title="@string/add_new">
         <menu>
-            <item android:id="@+id/nav_item_price"
-                android:icon="@drawable/ic_tags"
-                android:title="@string/nav_menu_item_price" />
+            <item android:id="@+id/nav_add_new_deal"
+                android:icon="@drawable/ic_invoice"
+                android:title="@string/nav_new_deal" />
 
-            <item android:id="@+id/nav_offer"
-                android:icon="@drawable/ic_loan"
-                android:title="@string/nav_menu_loan_request" />
+            <item
+                android:id="@+id/nav_add_contact"
+                android:icon="@drawable/ic_contact"
+                android:title="@string/add_new_contact" />
+        </menu>
+    </item>
+
+    <item android:title="@string/nav_list">
+        <menu>
+
+            <item
+                android:id="@+id/nav_item_price"
+                android:icon="@drawable/ic_tags"
+                android:title="@string/nav_item_price" />
+
+            <item
+                android:id="@+id/nav_contact_list"
+                android:icon="@drawable/ic_contact"
+                android:title="@string/contact_list" />
         </menu>
     </item>
 

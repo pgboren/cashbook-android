@@ -13,8 +13,8 @@ import org.json.JSONObject;
 
 public class ContactEditActivity extends EditRestApiActivity<Contact> implements TextWatcher {
 
-    private TextInputEditText txtFirstname;
-    private TextInputEditText txtLastname;
+    private TextInputEditText txtName;
+    private TextInputEditText txtLatinName;
     private TextInputEditText txtNickname;
     private TextInputEditText txtPhonenumber1;
     private TextInputEditText txtPhonenumber2;
@@ -28,8 +28,8 @@ public class ContactEditActivity extends EditRestApiActivity<Contact> implements
 
     @Override
     protected void assignValueToForm(Contact contact) {
-        txtFirstname.setText(contact.getFirstname());
-        txtLastname.setText(contact.getLastname());
+        txtName.setText(contact.getName());
+        txtLatinName.setText(contact.getLatinname());
         txtNickname.setText(contact.getNickname());
         txtPhonenumber1.setText(contact.getPhoneNumber1());
         txtPhonenumber2.setText(contact.getPhoneNumber2());
@@ -41,8 +41,8 @@ public class ContactEditActivity extends EditRestApiActivity<Contact> implements
         txtDistrict.setText(contact.getAddress().getDistrict());
         txtProvince.setText(contact.getAddress().getProvince());
 
-        txtFirstname.addTextChangedListener(this);
-        txtLastname.addTextChangedListener(this);
+        txtName.addTextChangedListener(this);
+        txtLatinName.addTextChangedListener(this);
         txtNickname.addTextChangedListener(this);
         txtPhonenumber1.addTextChangedListener(this);
         txtPhonenumber2.addTextChangedListener(this);
@@ -58,8 +58,8 @@ public class ContactEditActivity extends EditRestApiActivity<Contact> implements
     @Override
     protected void setViewContent() {
         this.setContentView(R.layout.activity_form_contact);
-        txtFirstname = findViewById(R.id.txt_first_name);
-        txtLastname = findViewById(R.id.txt_last_name);
+        txtName = findViewById(R.id.txt_first_name);
+        txtLatinName = findViewById(R.id.txt_last_name);
         txtNickname = findViewById(R.id.txt_nick_name);
         txtPhonenumber1 = findViewById(R.id.txt_phoneNumber1);
         txtPhonenumber2 = findViewById(R.id.txt_phoneNumber2);
@@ -84,8 +84,8 @@ public class ContactEditActivity extends EditRestApiActivity<Contact> implements
 
     @Override
     protected void readInputData(Contact document) {
-        document.setFirstname(txtFirstname.getText().toString());
-        document.setLastname(txtLastname.getText().toString());
+        document.setName(txtName.getText().toString());
+        document.setLatinname(txtLatinName.getText().toString());
         document.setNickname(txtNickname.getText().toString());
         document.setPhoneNumber1(txtPhonenumber1.getText().toString());
         document.setPhoneNumber2(txtPhonenumber2.getText().toString());

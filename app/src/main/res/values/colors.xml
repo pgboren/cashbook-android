@@ -7,6 +7,8 @@
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#8B000000</color>
 
+    <color name="windowsBackground">#D6D4D4</color>
+
     <color name="colorPrimary">#EB292929</color>
     <color name="colorPrimaryDark">#EB292929</color>
     <color name="colorAccent">#03DAC5</color>
@@ -14,10 +16,14 @@
 
     <color name="gray_light">#4E4D4D</color>
     <color name="gray_dark">#252424</color>
-
     <color name="white_dark_tansparent">#BAB1B1B1</color>
 
+    <color name="icon_tint">#C8C8C8</color>
+
+
+    <color name="label">#4E4D4D</color>
     <color name="title">#FFC0C0C0</color>
+    <color name="blank_msg">#BAB1B1B1</color>
     <color name="sub_title">#FFC0C0C0</color>
 
     <color name="textColorHint">#4E4D4D</color>
@@ -26,7 +32,9 @@
     <color name="status">#75a7ff</color>
 
     <color name="view_comm_field_color">#75a7ff</color>
-    <color name="view_group_field_color">#75a7ff</color>
-    <color name="facebook">#274986</color>
+    <color name="blue_light">#75a7ff</color>
+    <color name="blue_dark">#274986</color>
+
+
 
 </resources>

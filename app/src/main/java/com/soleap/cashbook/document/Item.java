@@ -2,6 +2,9 @@ package com.soleap.cashbook.document;
 
 import com.soleap.cashbook.common.document.BsDocument;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Item extends BsDocument {
 
     public static String NEW = "NEW";
@@ -18,6 +21,24 @@ public class Item extends BsDocument {
     private Category category;
     private Color color;
     private Media photo;
+    private String year;
+    private String power;
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getPower() {
+        return power;
+    }
+
+    public void setPower(String power) {
+        this.power = power;
+    }
 
     public Color getColor() {
         return color;
@@ -97,5 +118,27 @@ public class Item extends BsDocument {
 
     public void setPhoto(Media photo) {
         this.photo = photo;
+    }
+
+    @Override
+    public Map<String, Object> toMap() {
+        Map<String, Object> data = new HashMap<>();
+        data.put("name", getName());
+        data.put("nameKh", getNameKh());
+        data.put("status", getStatus());
+        data.put("description", getDescription());
+        data.put("price",getPrice());
+        data.put("installmentPaymentPrice",getInstallmentPaymentPrice());
+        data.put("cost", getCost());
+        data.put("year", getYear());
+        data.put("power", getPower());
+        data.put("branch", getBranch());
+        data.put("category", getCategory().getId());
+        data.put("color", getColor().getId());
+        data.put("enable", enable);
+        if (getPhoto() != null) {
+            data.put("photo", getPhoto().getId());
+        }
+        return data;
     }
 }

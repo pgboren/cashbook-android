@@ -32,6 +32,8 @@ public class BsItemDocAddNewActivity extends BsDocAddNewActivity {
         item.setCategory(category);
         Color color = new Color();
         color.setId(textColor.getTag().toString());
+        item.setYear(((TextInputEditText)findViewById(R.id.txt_year)).getText().toString());
+        item.setPower(((TextInputEditText)findViewById(R.id.txt_power)).getText().toString());
         item.setPrice(Double.parseDouble(((TextInputEditText)findViewById(R.id.txt_price)).getText().toString()));
         item.setInstallmentPaymentPrice(Double.parseDouble(((TextInputEditText)findViewById(R.id.txt_installmentpaymentprice)).getText().toString()));
         item.setCost(Double.parseDouble(((TextInputEditText)findViewById(R.id.txt_cost)).getText().toString()));

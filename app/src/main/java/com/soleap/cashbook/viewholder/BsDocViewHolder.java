@@ -78,7 +78,7 @@ public class BsDocViewHolder {
     }
 
     private void bindInsitituteItem(View itemView, int position, DocumentSnapshot doc) {
-        ViewData data = doc.getDataValue("institute");
+        ViewData data = doc.getDataValue("root").getDataValue("general");
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
         String name = data.getDataValue("name").getValue().toString();
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_name).setString((name));
@@ -89,7 +89,7 @@ public class BsDocViewHolder {
         if (data.getDataValue("photo").getValue() != null) {
             imageView.setVisibility(View.VISIBLE);
             circleBox.setVisibility(View.GONE);
-            loadImage(APIClient.STATIC_URL + data.getDataValue("photo").getValue().toString(), imageView);
+            MedialUtils.loadImage(activity, data.getDataValue("photo").getValue().toString(), imageView);
         }
         else {
             imageView.setVisibility(View.GONE);
@@ -101,9 +101,9 @@ public class BsDocViewHolder {
     }
 
     private void bindContact(View itemView, int position, DocumentSnapshot doc) {
-        ViewData data = doc.getDataValue("general");
+        ViewData data = doc.getDataValue("root").getDataValue("general");
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
-        String name = data.getDataValue("lastname").getValue().toString() + " " + data.getDataValue("firstname").getValue().toString();
+        String name = data.getDataValue("name").getValue().toString();
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_name).setString((name));
         TextView shortcut = itemView.findViewById(R.id.shortcut);
         TextView circleBox = itemView.findViewById(R.id.circle_box);
@@ -112,7 +112,7 @@ public class BsDocViewHolder {
         if (data.getDataValue("photo").getValue() != null) {
             imageView.setVisibility(View.VISIBLE);
             circleBox.setVisibility(View.GONE);
-            loadImage(APIClient.STATIC_URL + data.getDataValue("photo").getValue().toString(), imageView);
+            MedialUtils.loadImage(activity, data.getDataValue("photo").getValue().toString(), imageView);
         }
         else {
             imageView.setVisibility(View.GONE);
@@ -124,7 +124,7 @@ public class BsDocViewHolder {
     }
 
     private void bindBsDocu(View itemView, int position, DocumentSnapshot doc) {
-        ViewData data = doc.getDataValue(documentName);
+        ViewData data = doc.getDataValue("root").getDataValue("general");
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
 
         String name = data.getDataValue("name").getValue().toString();
@@ -146,7 +146,7 @@ public class BsDocViewHolder {
     }
 
     void bindItem(View itemView, final int position, final DocumentSnapshot doc) {
-        ViewData data = doc.getDataValue(documentName);
+        ViewData data = doc.getDataValue("root").getDataValue("general");
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_name).setString((data.getDataValue("name").getValue().toString()));
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_name_kh).setString((data.getDataValue("nameKh").getValue().toString()));
@@ -160,7 +160,7 @@ public class BsDocViewHolder {
         if (data.getDataValue("photo").getValue() != null) {
             imageView.setVisibility(View.VISIBLE);
             circleBox.setVisibility(View.GONE);
-            loadImage(APIClient.STATIC_URL + data.getDataValue("photo").getValue().toString(), imageView);
+            MedialUtils.loadImage(activity, data.getDataValue("photo").getValue().toString(), imageView);
         }
         else {
             imageView.setVisibility(View.GONE);
@@ -168,18 +168,4 @@ public class BsDocViewHolder {
         }
         shortcut.setText(String.valueOf(position + 1));
     }
-
-    void loadImage(String path, ImageView imageView) {
-        if (path != null) {
-            Uri uri = Uri.parse(path);
-            Glide.with(this.activity)
-                    .load(uri)
-                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                    .skipMemoryCache(true)
-                    .into(imageView);
-        }
-    }
-
-
-
 }

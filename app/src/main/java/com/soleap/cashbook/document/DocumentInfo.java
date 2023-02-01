@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.activity.BsColorDocAddNewActivity;
-import com.soleap.cashbook.activity.SaleInstallmentPaymentRequestAddNewActivity;
+import com.soleap.cashbook.activity.SaleOrderAddNewActivity;
 import com.soleap.cashbook.activity.DealViewActivity;
 import com.soleap.cashbook.common.activity.BsColorDocEditActivity;
 import com.soleap.cashbook.common.activity.BsDocAddNewActivity;
@@ -31,7 +31,7 @@ public class DocumentInfo {
     public static String ITEM = "item";
     public static String COLOR = "color";
     public static String INSTITUE = "institute";
-    public static String CUSTOMER = "customer";
+    public static String SALE_ORDER = "sale_order";
 
     public static DocumentInfo instance;
 
@@ -165,7 +165,7 @@ public class DocumentInfo {
         }
 
         if (key.equals(SALE)) {
-            return SaleInstallmentPaymentRequestAddNewActivity.class;
+            return SaleOrderAddNewActivity.class;
         }
 
         throw new RuntimeException("Stub!");
@@ -275,7 +275,7 @@ public class DocumentInfo {
         }
 
         if (documentName.equals(DocumentInfo.SALE)) {
-            return Deal.class;
+            return SaleOrder.class;
         }
 
         if (documentName.equals(DocumentInfo.CATEGORY)) {

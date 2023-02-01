@@ -39,6 +39,7 @@
     <string name="nav_menu_loan_request">ដាក់ស្នើរប្រាក់កម្ចី</string>
     <string name="nav_menu_item_price">តំលៃផលិតផល</string>
 
+    <string name="nav_list">បញ្ជីរ</string>
     <string name="nav_group_business_resource">បញ្ជីរឈ្មោះ</string>
     <string name="nav_menu_sale">ប្រតិបត្តិការលក់</string>
     <string name="nav_menu_item">ផលិតផល</string>
@@ -51,7 +52,7 @@
     <string name="nav_group_system">ប្រព័ន្ធ</string>
     <string name="nav_menu_settings">ការកំណត់</string>
 
-    <string name="add_new_contact">ចុះឈ្មោះអតិថិជនថ្មី</string>
+    <string name="add_new_contact">កត់ត្រាឈ្មោះអតិថិជន</string>
     <string name="add_new_deal">ដាក់ពាក្យ</string>
     <string name="first_name">នាមខ្លួន</string>
     <string name="last_name">នាមត្រកូល</string>
@@ -97,12 +98,12 @@
     <string name="add_new_color">បង្កើតព៌ណផលិតផលថ្មី</string>
     <string name="contact_number">លេខទំនាក់ទំនង</string>
 
-    <string name="color">ព៌ណផលិតផល</string>
+    <string name="color">ព៌ណ</string>
     <string name="item">ផលិតផល</string>
     <string name="institute">ស្ថាប័ណ្ណ</string>
     <string name="branch">សាខា</string>
     <string name="category">ប្រភេទផលិតផល</string>
-    <string name="contact">អតិថិជន</string>
+    <string name="contact">លេខទំនាក់ទំនង</string>
     <string name="gender">ភេទ</string>
     <string name="male">ប្រុស</string>
     <string name="female">ស្រី</string>
@@ -127,13 +128,14 @@
 
     <string name="NEW">ថ្មី</string>
     <string name="customer">អតិថិជន</string>
+    <string name="sellto">លក់ជូន</string>
     <string name="model_year">ឆ្នាំផលិត</string>
     <string name="logo">ផ្លាកសញ្ញា</string>
     <string name="DATE">កាលបរិច្ឆេទ</string>
     <string name="power">កំលាំង</string>
     <string name="enginepower">កំលាំម៉ាស៊ីន</string>
     <string name="sale_to">លក់ជូន</string>
-    <string name="choose_a_client">ជ្រើសយកឈ្មោះអតិថិជន</string>
+    <string name="choose_a_customer">ជ្រើសយកឈ្មោះអតិថិជន</string>
     <string name="sale_at_branch">ប្រចាំសាខា</string>
     <string name="choose_a_branch">ជ្រើសយកឈ្មោះសាខា</string>
     <string name="choose_a_item">ជ្រើសយកឈ្មោះផលិតផល</string>
@@ -142,5 +144,20 @@
     <string name="choose_a_institute">ជ្រើសយកឈ្មោះស្ថាប័ណ្ណ</string>
     <string name="nav_menu_installment_payment_sale_request">ដាក់ពាក្យបង់រំលស់</string>
     <string name="nav_menu_full_payment_sale">ទិញដាច់</string>
+    <string name="offer_request_number">លេខសំគាល់ #</string>
+    <string name="add_new">បង្កើតថ្មី</string>
 
+    <string name="add_more">បន្ថែម</string>
+    <string name="fab_deal">ទទួលពាក្យអតិថិជន</string>
+    <string name="contact_list">បញ្ជីរឈ្មោះអតិថិជន</string>
+
+    <string name="nav_new_deal">ដាក់ពាក្យបង់រំលស់</string>
+    <string name="nav_item_price">តារាងតំលៃម៉ូតូ</string>
+    <string name="user_profile">ព័ត៌មានអ្នកប្រើប្រាស់</string>
+
+    <string name="input_label_color">ព៌ណ :</string>
+    <string name="input_label_production_year">ឆ្នាំផលិត :</string>
+    <string name="input_label_property">លក្ខណះ: </string>
+    <string name="input_label_status">ស្ថានភាព: </string>
+    <string name="add_sale_order_item">ជ្រើសយកឈ្មោះផលិតផល</string>
 </resources>

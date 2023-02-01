@@ -50,7 +50,7 @@ public class ViewGroupFieldCreator extends FieldCreator {
         TextView label = new TextView(activity);
         label.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f ));
         label.setText(ResourceUtil.getStringResourceByName(activity, groupData.getLabel()));
-        label.setTextColor(activity.getColor(R.color.view_group_field_color));
+        label.setTextColor(activity.getColor(R.color.blue_light));
         groupLabelContainer.addView(label);
         if (groupData.getActions() != null) {
             groupLabelContainer.addView(createActionButtons(groupData.getActions()));
@@ -59,7 +59,7 @@ public class ViewGroupFieldCreator extends FieldCreator {
 
         View view = new View(activity);
         view.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 3));
-        view.setBackgroundColor(activity.getColor(R.color.view_group_field_color));
+        view.setBackgroundColor(activity.getColor(R.color.blue_light));
         groupContainer.addView(view);
 
         return groupContainer;

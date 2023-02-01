@@ -14,8 +14,8 @@ import com.soleap.cashbook.document.Gender;
 
 public class ContactAddNewActivity extends DocAddNewActivity {
 
-    private TextInputEditText txtFirstname;
-    private TextInputEditText txtLastname;
+    private TextInputEditText txtName;
+    private TextInputEditText txtLatinName;
     private TextInputEditText txtNickname;
     private TextInputEditText txtPhonenumber1;
     private TextInputEditText txtPhonenumber2;
@@ -51,8 +51,8 @@ public class ContactAddNewActivity extends DocAddNewActivity {
         inputLayoutLastName = findViewById(R.id.inputLayout_last_name);
         inputLayoutPhonenumber1 = findViewById(R.id.inputLayout_phoneNumber1);
 
-        txtFirstname = findViewById(R.id.txt_first_name);
-        txtLastname = findViewById(R.id.txt_last_name);
+        txtName = findViewById(R.id.txt_first_name);
+        txtLatinName = findViewById(R.id.txt_last_name);
         txtNickname = findViewById(R.id.txt_nick_name);
         txtPhonenumber1 = findViewById(R.id.txt_phoneNumber1);
         txtPhonenumber2 = findViewById(R.id.txt_phoneNumber2);
@@ -69,8 +69,8 @@ public class ContactAddNewActivity extends DocAddNewActivity {
         txtProvince = findViewById(R.id.txt_province);
         rdGender = findViewById(R.id.rdGender);
 
-        txtFirstname.addTextChangedListener(this);
-        txtLastname.addTextChangedListener(this);
+        txtName.addTextChangedListener(this);
+        txtLatinName.addTextChangedListener(this);
         txtNickname.addTextChangedListener(this);
         txtPhonenumber1.addTextChangedListener(this);
         txtPhonenumber2.addTextChangedListener(this);
@@ -92,8 +92,8 @@ public class ContactAddNewActivity extends DocAddNewActivity {
     @Override
     protected void readInputData(Document document) {
         Contact contact = (Contact) document;
-        contact.setFirstname(txtFirstname.getText().toString());
-        contact.setLastname(txtLastname.getText().toString());
+        contact.setName(txtName.getText().toString());
+        contact.setLatinname(txtLatinName.getText().toString());
         contact.setNickname(txtNickname.getText().toString());
         contact.setPhoneNumber1(txtPhonenumber1.getText().toString());
         contact.setPhoneNumber2(txtPhonenumber2.getText().toString());
@@ -124,7 +124,7 @@ public class ContactAddNewActivity extends DocAddNewActivity {
     protected boolean validation() {
         isValid = true;
 
-        if (txtFirstname.getText().toString().isEmpty()) {
+        if (txtName.getText().toString().isEmpty()) {
             inputLayoutFirstName.setHelperText(getString(R.string.require));
             isValid = false;
         } else {
@@ -132,7 +132,7 @@ public class ContactAddNewActivity extends DocAddNewActivity {
             isValid = true;
         }
 
-        if (txtLastname.getText().toString().isEmpty()) {
+        if (txtLatinName.getText().toString().isEmpty()) {
             inputLayoutLastName.setHelperText(getString(R.string.require));
             isValid = false;
         } else {

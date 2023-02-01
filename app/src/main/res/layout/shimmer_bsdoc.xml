@@ -40,7 +40,7 @@
         android:textColor="@color/title"
         android:ellipsize="end"
         android:maxLines="1"
-        android:background="@drawable/rectangle_shape"
+        android:background="@drawable/bg_rectangle_shape"
         android:textSize="@dimen/title"/>
 
   </LinearLayout>

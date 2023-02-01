@@ -98,8 +98,6 @@ public abstract class RecyclerActivity extends BackPressActivity {
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-
-
         adapter.setAddNewActivityClass(DocumentInfo.getInstance(this).getAddNewActivityClass(documentName));
         adapter.setViewActivityClass(DocumentInfo.getInstance(this).getViewActivityClass(documentName));
         recyclerView.setHasFixedSize(true);

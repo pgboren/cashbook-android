@@ -227,7 +227,7 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     protected void renderViewData(DocumentSnapshot doc) {
         LinearLayout rootView = findViewById(R.id.content_container);
         rootView.removeAllViews();
-        for (ViewData data: doc.getData().values()) {
+        for (ViewData data: doc.getDataValue("root").getChildrent().values()) {
             if (data.getVisible() == View.VISIBLE) {
                 rootView.addView(ViewFieldCreatorFactory.getInstance(this).create(this, data).createView());
             }

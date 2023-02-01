@@ -1,14 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="24dp"
-    android:height="24dp"
-    android:viewportWidth="60"
-    android:viewportHeight="60">
-
-    <path
-        android:fillColor="@color/view_comm_field_color"
-        android:pathData="M30 8C17.887 8 8 17.387 8 29c0 5.153 2.025 10.092 5.594 13.926l-1.574 7.879a1 1 0 0 0 1.365 1.119l8.383-3.492C24.387 49.442 27.173 50 30 50c12.113 0 22-9.387 22-21S42.113 8 30 8zm0 2c11.083 0 20 8.522 20 19s-8.917 19-20 19c-2.723 0-5.417-0.53-7.916-1.553a1 1 0 0 0-0.764 0.002 l-6.972 2.905 1.298-6.493a1 1 0 0 0-0.267-0.896C11.916 38.44 9.999 33.809 9.999 29c0-10.478 8.918-19 20-19z" />
-    <path
-        android:fillColor="@color/view_comm_field_color"
-        android:pathData="M28.029 22a1 1 0 0 0-0.736 0.293 l-10 10a1 1 0 0 0 1.023 1.656l8.414-2.805 4.563 4.563a1 1 0 0 0 1.414 0l10-10a1 1 0 0 0-1.024-1.656l-8.414 2.804-4.562-4.562a1 1 0 0 0-0.678-0.293zm-0.03 2.414 4.294 4.293a1 1 0 0 0 1.023 0.242 l4.98-1.66L32 33.586l-4.293-4.293a1 1 0 0 0-1.024-0.242l-4.98 1.66z" />
-</vector>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24" android:tint="?attr/colorControlNormal"></vector>
