@@ -38,21 +38,6 @@ public abstract class RecyclerActivity extends BackPressActivity {
 
     protected abstract void bindListItemViewHolder(View itemView, int position, DocumentSnapshot doc);
 
-    protected int getStringResourceByName(String aString, String defType) {
-        String packageName = getPackageName();
-        int resId = getResources().getIdentifier(aString, defType, packageName);
-       return resId;
-    }
-
-    protected String getStringResourceByName(String aString) {
-        String packageName = getPackageName();
-        int resId = getResources().getIdentifier(aString, "string", packageName);
-        if (resId == 0) {
-            return aString;
-        }
-        return getString(resId);
-    }
-
     @Override
     protected void onCreatingBegin() {
         this.documentName = getIntent().getExtras().getString(DocumentInfo.DOCUMENT_NAME);
@@ -78,11 +63,9 @@ public abstract class RecyclerActivity extends BackPressActivity {
             setSupportActionBar(toolbar);
         }
 
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
+
         initFabButtonAction();
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        final ShimmerFrameLayout container = (ShimmerFrameLayout) findViewById(R.id.shimmerLayout);
 
         adapter = new RecyclerViewAdapter(this, documentName, DocumentInfo.getInstance(this).getListItemLayout(documentName)) {
             @Override
@@ -96,15 +79,15 @@ public abstract class RecyclerActivity extends BackPressActivity {
             }
         };
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
-        recyclerView.addItemDecoration(dividerItemDecoration);
-        adapter.setAddNewActivityClass(DocumentInfo.getInstance(this).getAddNewActivityClass(documentName));
-        adapter.setViewActivityClass(DocumentInfo.getInstance(this).getViewActivityClass(documentName));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        if (DocumentInfo.getInstance(this).getAddNewActivityClass(documentName) != null) {
+            adapter.setAddNewActivityClass(DocumentInfo.getInstance(this).getAddNewActivityClass(documentName));
+        }
 
-        final ShimmerFrameLayout container = (ShimmerFrameLayout) findViewById(R.id.shimmerLayout);
+
+        if (DocumentInfo.getInstance(this).getViewActivityClass(documentName) != null) {
+            adapter.setViewActivityClass(DocumentInfo.getInstance(this).getViewActivityClass(documentName));
+        }
+
         adapter.setListner(new RecyclerViewAdapter.EventListner() {
             @Override
             public void onItemSelected(DocumentSnapshot documentSnapshot) {
@@ -128,6 +111,7 @@ public abstract class RecyclerActivity extends BackPressActivity {
                 container.setVisibility(View.GONE);
             }
         });
+        initRecyclerView();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -135,6 +119,17 @@ public abstract class RecyclerActivity extends BackPressActivity {
             }
         }, 500);
         setTitle(DocumentInfo.getInstance(this).getListTitle(documentName));
+    }
+
+    protected void initRecyclerView() {
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
     }
 
     protected void onAddNewButtonClicked() {

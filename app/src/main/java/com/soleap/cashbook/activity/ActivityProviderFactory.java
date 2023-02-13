@@ -7,10 +7,6 @@ public class ActivityProviderFactory {
 
     public static Class getViewActivity(String entityName) {
 
-        if (entityName.equals(DocumentInfo.SALE)) {
-            return BsDocViewActivity.class;
-        }
-
         if (entityName.equals(DocumentInfo.CONTACT)) {
             return BsDocViewActivity.class;
         }

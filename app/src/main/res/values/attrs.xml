@@ -107,6 +107,14 @@
 
     <declare-styleable name="DocItemsView">
         <attr name="div_title" format="string" localization="suggested" />
+        <attr name="div_allow_many_items" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="AgileStageSummaryView">
+        <attr name="stage_name" format="string" localization="suggested" />
+        <attr name="stage_id" format="string" localization="suggested" />
+        <attr name="stage_icon" format="string" localization="suggested" />
+        <attr format="reference" name="stage_summary_iconDrawable"/>
     </declare-styleable>
 
     <declare-styleable name="PriceInputView">
@@ -115,7 +123,7 @@
 
     <declare-styleable name="DatePickerView">
         <attr name="dpv_title" format="string"/>
-        <attr name="dpv_blank_message" format="string"/>
+        <attr name="dpv_require" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="CouponNumberInputView">

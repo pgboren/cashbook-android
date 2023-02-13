@@ -5,7 +5,6 @@ import android.content.Context;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.activity.BsColorDocAddNewActivity;
 import com.soleap.cashbook.activity.SaleOrderAddNewActivity;
-import com.soleap.cashbook.activity.DealViewActivity;
 import com.soleap.cashbook.common.activity.BsColorDocEditActivity;
 import com.soleap.cashbook.common.activity.BsDocAddNewActivity;
 import com.soleap.cashbook.common.activity.BsDocEditActivity;
@@ -21,17 +20,19 @@ import com.soleap.cashbook.common.document.Document;
 public class DocumentInfo {
 
     public static final String DOCUMENT_NAME = "DOCUMENT_NAME";
+    public static final String DOCUMENT_ID = "DOCUMENT_ID";
 
     public static final String VEHICLE = "vehicle";
     public static String ORDER = "order";
     public static String CONTACT = "contact";
-    public static String SALE = "sale";
     public static String CATEGORY = "category";
     public static String BRANCH = "branch";
     public static String ITEM = "item";
     public static String COLOR = "color";
     public static String INSTITUE = "institute";
-    public static String SALE_ORDER = "sale_order";
+    public static String SALE_ORDER = "saleorder";
+    public static String AGILE_STAGE = "agilestage";
+    public static String AGILE_TASK = "agiletask";
 
     public static DocumentInfo instance;
 
@@ -49,6 +50,10 @@ public class DocumentInfo {
     }
 
     public Document createDocument(String documentName) {
+
+        if (documentName.equals(DocumentInfo.SALE_ORDER)) {
+            return new SaleOrder();
+        }
 
         if (documentName.equals(DocumentInfo.ITEM)) {
             return new Item();
@@ -79,8 +84,16 @@ public class DocumentInfo {
 
     public String getListTitle(String key) {
 
+        if (key.equals(AGILE_TASK)) {
+            return context.getString(R.string.agile_task);
+        }
+
         if (key.equals(INSTITUE)) {
             return context.getString(R.string.nav_menu_institute);
+        }
+
+        if (key.equals(SALE_ORDER)) {
+            return context.getString(R.string.sale_order);
         }
 
         if (key.equals(COLOR)) {
@@ -101,10 +114,6 @@ public class DocumentInfo {
 
         if (key.equals(CONTACT)) {
             return context.getString(R.string.nav_menu_contacts);
-        }
-
-        if (key.equals(SALE)) {
-            return context.getString(R.string.nav_menu_sale);
         }
 
         throw new RuntimeException("Stub!");
@@ -140,6 +149,11 @@ public class DocumentInfo {
     }
 
     public Class getAddNewActivityClass(String key) {
+
+        if (key.equals(SALE_ORDER)) {
+            return SaleOrderAddNewActivity.class;
+        }
+
         if (key.equals(BRANCH)) {
             return BsDocAddNewActivity.class;
         }
@@ -164,18 +178,10 @@ public class DocumentInfo {
             return ContactAddNewActivity.class;
         }
 
-        if (key.equals(SALE)) {
-            return SaleOrderAddNewActivity.class;
-        }
-
-        throw new RuntimeException("Stub!");
+        return null;
     }
 
     public Class getViewActivityClass(String key) {
-
-        if (key.equals(SALE)) {
-            return DealViewActivity.class;
-        }
 
         if (key.equals(BRANCH)) {
             return BsDocViewActivity.class;
@@ -201,13 +207,13 @@ public class DocumentInfo {
             return BsDocViewActivity.class;
         }
 
-        throw new RuntimeException("Stub!");
+        return null;
     }
 
     public int getListItemLayout(String key) {
 
-        if (key.equals(SALE)) {
-            return R.layout.list_item_deal;
+        if (key.equals(AGILE_TASK)) {
+            return R.layout.list_item_task;
         }
 
         if (key.equals(CONTACT)) {
@@ -238,6 +244,11 @@ public class DocumentInfo {
     }
 
     public int getListActivityLayout(String key) {
+
+        if (key.equals(AGILE_TASK)) {
+            return R.layout.activity_list_agile_task;
+        }
+
         if (key.equals(BRANCH)) {
             return R.layout.activity_list_bsdoc;
         }
@@ -258,10 +269,6 @@ public class DocumentInfo {
             return R.layout.activity_list_bsdoc;
         }
 
-        if (key.equals(SALE)) {
-            return R.layout.activity_list_bsdoc;
-        }
-
         if (key.equals(CONTACT)) {
             return R.layout.activity_list_bsdoc;
         }
@@ -272,10 +279,6 @@ public class DocumentInfo {
     public Class getDocumentClass(String documentName) {
         if (documentName.equals(DocumentInfo.BRANCH)) {
             return Branch.class;
-        }
-
-        if (documentName.equals(DocumentInfo.SALE)) {
-            return SaleOrder.class;
         }
 
         if (documentName.equals(DocumentInfo.CATEGORY)) {

@@ -135,7 +135,7 @@ public abstract class RestApiModelFormActivity<T extends Document> extends AppCo
             }
         }
         catch (Exception ex) {
-            Log.e("Error", ex.getMessage(), ex);
+            Log.e("RestApiModelFormActivity", ex.getMessage(), ex);
         }
     }
 

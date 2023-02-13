@@ -25,11 +25,11 @@ import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.ViewData;
 import com.soleap.cashbook.common.repository.DocumentSnapshotRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
-import com.soleap.cashbook.common.view.ActivityEventListner;
+import com.soleap.cashbook.common.widget.view.ActivityEventListner;
 import com.soleap.cashbook.document.DocumentInfo;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
-import com.soleap.cashbook.common.view.ViewFieldCreatorFactory;
+import com.soleap.cashbook.common.widget.view.ViewFieldCreatorFactory;
 import com.soleap.cashbook.widget.bottomsheetmenu.BottomSheetMenu;
 
 import java.util.ArrayList;

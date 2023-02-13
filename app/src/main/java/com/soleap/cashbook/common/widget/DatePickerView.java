@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.soleap.cashbook.R;
 
 import java.text.SimpleDateFormat;
@@ -22,13 +23,18 @@ import java.util.Locale;
 public class DatePickerView extends LinearLayout {
 
     private Calendar value = Calendar.getInstance();
+    private OnValueChanged onValueChangedListner = null;
+
+    public void setOnValueChangedListner(OnValueChanged onValueChangedListner) {
+        this.onValueChangedListner = onValueChangedListner;
+    }
 
     public DatePickerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DatePickerView, 0, 0);
         String title = a.getString(R.styleable.DatePickerView_dpv_title);
-        String blankMessage = a.getString(R.styleable.DatePickerView_dpv_blank_message);
+        boolean isRequire = a.getBoolean(R.styleable.DatePickerView_dpv_require, false);
         a.recycle();
 
         setOrientation(LinearLayout.HORIZONTAL);
@@ -36,16 +42,15 @@ public class DatePickerView extends LinearLayout {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.date_picker, this, true);
-        TextView textTitle = findViewById(R.id.title);
-        textTitle.setText(title);
 
-        TextView txtDate = findViewById(R.id.txt_value);
-        View btnEndIcon = findViewById(R.id.btn_end_icon);
-        btnEndIcon.setOnClickListener(new View.OnClickListener() {
+        TextInputLayout textInputLayout = findViewById(R.id.textInputLayout);
+        textInputLayout.setHint(title);
+        textInputLayout.setErrorEnabled(isRequire);
+        textInputLayout.setHelperText(context.getText(R.string.require));
+        textInputLayout.setEndIconOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Calendar cal = Calendar.getInstance();
-
                 DatePickerDialog.OnDateSetListener date =new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -59,6 +64,7 @@ public class DatePickerView extends LinearLayout {
                 new DatePickerDialog(DatePickerView.this.getContext(), date, cal.get(Calendar.YEAR),
                         cal.get(Calendar.MONTH),
                         cal.get(Calendar.DAY_OF_MONTH)).show();
+
             }
         });
 
@@ -71,6 +77,9 @@ public class DatePickerView extends LinearLayout {
         SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
         txtDate.setText(dateFormat.format(cal.getTime()));
         value = cal;
+        if (onValueChangedListner != null) {
+            onValueChangedListner.onChanged(cal);
+        }
     }
 
     public Calendar getValue() {

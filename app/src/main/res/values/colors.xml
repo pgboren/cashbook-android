@@ -20,8 +20,7 @@
 
     <color name="icon_tint">#C8C8C8</color>
 
-
-    <color name="label">#4E4D4D</color>
+    <color name="label">#7d7d7d</color>
     <color name="title">#FFC0C0C0</color>
     <color name="blank_msg">#BAB1B1B1</color>
     <color name="sub_title">#FFC0C0C0</color>
@@ -34,7 +33,5 @@
     <color name="view_comm_field_color">#75a7ff</color>
     <color name="blue_light">#75a7ff</color>
     <color name="blue_dark">#274986</color>
-
-
 
 </resources>

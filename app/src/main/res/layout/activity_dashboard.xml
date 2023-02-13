@@ -23,5 +23,5 @@
         app:itemIconSize="20dp"
         app:itemTextAppearance="@style/MenuItemTextFont"
         app:headerLayout="@layout/nav_header_main"/>
-    <include layout="@layout/fab_floating_menu" />
+<!--    <include layout="@layout/fab_floating_menu" />-->
 </androidx.drawerlayout.widget.DrawerLayout>

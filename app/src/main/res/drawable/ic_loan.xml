@@ -4,7 +4,6 @@
     android:height="512.000000dp"
     android:viewportWidth="512.000000"
     android:viewportHeight="512.000000">
-
     <group
         android:translateY="512.000000"
         android:scaleX="0.100000"

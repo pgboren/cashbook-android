@@ -2,23 +2,31 @@ package com.soleap.cashbook.widget.saleorder;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.soleap.cashbook.R;
+import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.util.NumberUtils;
 import com.soleap.cashbook.common.widget.docitems.DocItemsViewAdapter;
 import com.soleap.cashbook.common.widget.docitems.DocItemsViewHolder;
+import com.soleap.cashbook.common.widget.recyclerview.SwipeToDeleteRecyclerViewAdapter;
+import com.soleap.cashbook.common.widget.recyclerview.SwipeToDeleteRecyclerViewHolder;
 import com.soleap.cashbook.document.CurrencyFactory;
 import com.soleap.cashbook.document.SaleOrderItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class SaleOrderItemViewAdapter extends DocItemsViewAdapter<SaleOrderItem, SaleOrderItemViewAdapter.SaleOrderItemViewAHolder> {
+public class SaleOrderItemViewAdapter extends SwipeToDeleteRecyclerViewAdapter<SaleOrderItemViewAdapter.SaleOrderItemViewAHolder> {
 
-    public SaleOrderItemViewAdapter(List<SaleOrderItem> items, Context context) {
-        super(items, context);
+    private Context context;
+
+    public SaleOrderItemViewAdapter(List<Document> data, Context context) {
+        super(data);
+        this.context = context;
     }
 
     @Override
@@ -27,18 +35,19 @@ public class SaleOrderItemViewAdapter extends DocItemsViewAdapter<SaleOrderItem,
     }
 
     @Override
-    protected SaleOrderItemViewAHolder createViewHolder(View itemView) {
+    protected SaleOrderItemViewAHolder createViewHolderView(View itemView) {
         return new SaleOrderItemViewAHolder(itemView);
     }
 
-    public class SaleOrderItemViewAHolder extends DocItemsViewHolder<SaleOrderItem> {
+    public class SaleOrderItemViewAHolder extends SwipeToDeleteRecyclerViewHolder {
 
         public SaleOrderItemViewAHolder(@NonNull View itemView) {
             super(itemView);
         }
 
         @Override
-        protected void bind(SaleOrderItem item) {
+        protected void bind(Document doc) {
+            SaleOrderItem item = (SaleOrderItem) doc;
             TextView tvItemName = itemView.findViewById(R.id.tv_item_name);
             TextView tvItemPrice = itemView.findViewById(R.id.tv_item_price);
             TextView tvItemPower = itemView.findViewById(R.id.tv_item_power);
@@ -53,6 +62,7 @@ public class SaleOrderItemViewAdapter extends DocItemsViewAdapter<SaleOrderItem,
             tvItemStatus.setText(item.getItemStatus());
             tvItemPrice.setText(NumberUtils.formatDouble(CurrencyFactory.getCurrency(itemView.getContext(), CurrencyFactory.US_DOLLAR).getFormat(), item.getPrice()));
         }
+
     }
 
 }

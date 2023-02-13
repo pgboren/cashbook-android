@@ -146,13 +146,12 @@
     <string name="nav_menu_full_payment_sale">ទិញដាច់</string>
     <string name="offer_request_number">លេខសំគាល់ #</string>
     <string name="add_new">បង្កើតថ្មី</string>
-
     <string name="add_more">បន្ថែម</string>
     <string name="fab_deal">ទទួលពាក្យអតិថិជន</string>
     <string name="contact_list">បញ្ជីរឈ្មោះអតិថិជន</string>
 
     <string name="nav_new_deal">ដាក់ពាក្យបង់រំលស់</string>
-    <string name="nav_item_price">តារាងតំលៃម៉ូតូ</string>
+    <string name="nav_item_price">តារាងតំលៃ</string>
     <string name="user_profile">ព័ត៌មានអ្នកប្រើប្រាស់</string>
 
     <string name="input_label_color">ព៌ណ :</string>
@@ -160,4 +159,30 @@
     <string name="input_label_property">លក្ខណះ: </string>
     <string name="input_label_status">ស្ថានភាព: </string>
     <string name="add_sale_order_item">ជ្រើសយកឈ្មោះផលិតផល</string>
+    <string name="quantity">ចំនួន</string>
+
+    <string name="item_was_remmoved_fromList">ផលិតផលត្រូវបានលុបចេញ</string>
+    <string name="yes">យល់ព្រម</string>
+    <string name="no">បដិសេធ</string>
+    <string name="booking_amount">ប្រាក់កក់</string>
+    <string name="sale_order">សំណើរ</string>
+    <string name="vehicle_status">ប្រភេទយានយន្ដ</string>
+    <string name="NEW_VEHICLE">ថ្មី</string>
+    <string name="USED_VEHICLE">ក្រដាស់ពន្ធ</string>
+    <string name="vehicle_condition">ស្ថានភាពយានយន្ដ</string>
+    <string name="SECOND_HAND">មួយទឹក</string>
+
+    <string name="ORDER_PAYMENT_VEHICLE_STATUS_NEW">ថ្នី</string>
+    <string name="ORDER_PAYMENT_VEHICLE_STATUS_USED">ក្រដាស់ពន្ធ</string>
+    <string name="ORDER_PAYMENT_VEHICLE_STATUS_SECONDHAND">មួយទឹក</string>
+
+    <string name="ORDER_PAYMENT_TYPE_LOAN">បង់រំលស់</string>
+    <string name="ORDER_PAYMENT_TYPE_FULL_PAY">ទិញដាច់</string>
+    <string name="agile_stage">ដំណាក់កាល</string>
+    <string name="agile_task">សំណើរ</string>
+
+    <string-array name="payment_options">
+        <item>LOAN</item>
+        <item>FULL_PAY</item>
+    </string-array>
 </resources>

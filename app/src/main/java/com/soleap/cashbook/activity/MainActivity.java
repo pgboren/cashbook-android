@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.bringToFront();
         requestCameraPermission();
         Global.context = getApplicationContext();
-        initFabView();
+//        initFabView();
         initUserProfileView();
     }
 
@@ -112,12 +112,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fabExpanded = false;
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
+//    @Override
+//    public boolean onSupportNavigateUp() {
+//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+//        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+//                || super.onSupportNavigateUp();
+//    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

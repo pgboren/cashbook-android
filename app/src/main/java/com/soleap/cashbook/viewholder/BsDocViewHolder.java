@@ -26,7 +26,7 @@ import java.util.Random;
 public class BsDocViewHolder {
 
     private String documentName;
-    private Activity activity;
+    protected Activity activity;
 
     public BsDocViewHolder(Activity activity, String documentName) {
         this.documentName = documentName;
@@ -50,7 +50,7 @@ public class BsDocViewHolder {
             return;
         }
 
-        if (documentName.equals(DocumentInfo.SALE)) {
+        if (documentName.equals(DocumentInfo.SALE_ORDER)) {
             bindDealItem(itemView, position, doc);
             return;
         }
@@ -126,7 +126,6 @@ public class BsDocViewHolder {
     private void bindBsDocu(View itemView, int position, DocumentSnapshot doc) {
         ViewData data = doc.getDataValue("root").getDataValue("general");
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
-
         String name = data.getDataValue("name").getValue().toString();
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_name).setString((name));
         TextView shortcut = itemView.findViewById(R.id.shortcut);
@@ -168,4 +167,5 @@ public class BsDocViewHolder {
         }
         shortcut.setText(String.valueOf(position + 1));
     }
+
 }

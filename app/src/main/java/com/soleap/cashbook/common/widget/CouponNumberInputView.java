@@ -25,7 +25,6 @@ public class CouponNumberInputView extends LinearLayout {
 
     public CouponNumberInputView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CouponNumberInputView, 0, 0);
         String title = a.getString(R.styleable.CouponNumberInputView_cnv_title);
         String blankMessage = a.getString(R.styleable.CouponNumberInputView_cnv_blank_message);

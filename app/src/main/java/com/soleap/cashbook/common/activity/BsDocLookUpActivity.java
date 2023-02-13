@@ -38,6 +38,7 @@ public class BsDocLookUpActivity extends RecyclerActivity {
     public static final int LOOK_UP_CONTACT_REQUEST_CODE = 10006;
     public static final String LOOK_UP_DOCUMENT = "LOOK_UP_DOCUMENT";
 
+    public static final String DOC = "DOC";
     public static final String DOC_ID = "DOC_ID";
     public static final String DOC_TEXT = "DOC_TEXT";
     public static final String DOC_PHOTO = "DOC_PHOTO";
@@ -68,11 +69,11 @@ public class BsDocLookUpActivity extends RecyclerActivity {
         }
     }
 
-    @Override
-    protected void initFabButtonAction() {
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setVisibility(View.GONE);
-    }
+//    @Override
+//    protected void initFabButtonAction() {
+//        FloatingActionButton fab = findViewById(R.id.fab);
+//        fab.setVisibility(View.GONE);
+//    }
 
     @Override
     protected void bindListItemViewHolder(View itemView, int position, DocumentSnapshot doc) {
@@ -86,9 +87,10 @@ public class BsDocLookUpActivity extends RecyclerActivity {
         Intent returnIntent = new Intent();
         returnIntent.putExtra(DOC_ID, doc.getId());
         returnIntent.putExtra(DOC_TEXT, doc.getTitle());
+        returnIntent.putExtra(DOC, doc);
         returnIntent.putExtra(DOC_CLASS, documentName);
         if  (showPhoto) {
-            if (data.getDataValue("photo").getValue() != null) {
+            if (data.getDataValue("photo") !=null && data.getDataValue("photo").getValue() != null) {
                 returnIntent.putExtra(DOC_PHOTO, data.getDataValue("photo").getValue().toString());
             }
         }

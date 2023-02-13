@@ -67,7 +67,9 @@ public abstract class RecyclerViewAdapter<TV extends RecyclerViewAdapter.ViewHol
 
     public void startListening() {
         this.repository.list();
-        this.listner.onStartListening();
+        if (listner != null) {
+            this.listner.onStartListening();
+        }
     }
 
     public void stopListening() {
@@ -114,7 +116,9 @@ public abstract class RecyclerViewAdapter<TV extends RecyclerViewAdapter.ViewHol
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listner.onItemSelected(documentSnapshot);
+                if (listner != null) {
+                    listner.onItemSelected(documentSnapshot);
+                }
             }
         });
 
@@ -135,7 +139,9 @@ public abstract class RecyclerViewAdapter<TV extends RecyclerViewAdapter.ViewHol
     @Override
     public void onListed(List<DocumentSnapshot> documentSnapshots) {
         this.dataSet = documentSnapshots;
-        this.listner.onStopListening();
+        if (listner != null) {
+            this.listner.onStopListening();
+        }
         notifyDataSetChanged();
     }
 
@@ -155,7 +161,9 @@ public abstract class RecyclerViewAdapter<TV extends RecyclerViewAdapter.ViewHol
 
     @Override
     public void onError(Throwable t) {
-        this.listner.onError(t);
+        if (this.listner != null) {
+            this.listner.onError(t);
+        }
     }
 
     public void notifyActivityFinish() {
