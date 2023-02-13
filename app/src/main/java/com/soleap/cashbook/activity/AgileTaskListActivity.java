@@ -14,7 +14,7 @@ import com.soleap.cashbook.viewholder.BsDocViewHolder;
 
 public class AgileTaskListActivity extends RecyclerActivity {
 
-    private static final String TAG = "BsDocListActivity";
+    private static final String TAG = "AgileTaskListActivity";
 
     @Override
     protected void bindListItemViewHolder(View itemView, int position, DocumentSnapshot doc) {

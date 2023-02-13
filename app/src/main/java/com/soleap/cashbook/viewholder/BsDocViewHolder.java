@@ -55,8 +55,19 @@ public class BsDocViewHolder {
             return;
         }
 
+        if (documentName.equals(DocumentInfo.AGILE_TASK)) {
+            bindTask(itemView, position, doc);
+            return;
+        }
+
         bindBsDocu(itemView, position, doc);
 
+    }
+
+    protected void bindTask(View itemView, int position, DocumentSnapshot doc) {
+        ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
+        String name = doc.getDataValue("name").getValue().toString();
+        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_name).setString((name));
     }
 
     protected void bindDealItem(View itemView, int position, DocumentSnapshot doc) {
