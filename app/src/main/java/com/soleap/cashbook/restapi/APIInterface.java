@@ -126,5 +126,8 @@ public interface APIInterface {
     @POST("auth/signin")
     Call<User> login(@Body Map<String, Object> usernameAndPassword);
 
+    @GET("agile/{entity}")
+    Call<List<DocumentSnapshot>> getTasks(@Path("entity") String entity, @Query("stages") String[] stages);
+
 }
 

@@ -4,7 +4,7 @@
     <dimen name="sub_title">12sp</dimen>
     <dimen name="status">12sp</dimen>
     <dimen name="content">16sp</dimen>
-    <dimen name="menu_item_margin">20dp</dimen>
+    <dimen name="menu_item_margin">12dp</dimen>
     <dimen name="bottom_sheet_menu_item_icon_size">24dp</dimen>
     <dimen name="item_photo_size">200dp</dimen>
     <dimen name="view_photo_field_size">70dp</dimen>

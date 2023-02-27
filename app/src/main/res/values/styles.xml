@@ -15,6 +15,7 @@
 <!--        <item name="colorControlHighlight">@color/white</item>-->
 <!--        <item name="colorControlNormal">@color/white</item>-->
         <item name="android:fontFamily">@font/battambang</item>
+        <item name="CustomChipChoiceStyle">@style/ChipCustomStyle</item>
     </style>
 
     <style name="hintTExtAppearance" parent="android:TextAppearance">
@@ -87,6 +88,28 @@
     <style name="SelectableItemBackground">
         <item name="android:theme">@style/SelectableItemTheme</item>
         <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+
+    <style name="MyChoice" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.MyApp.Chip.Choice</item>
+    </style>
+
+    <style name="ThemeOverlay.MyApp.Chip.Choice" parent="">
+        <item name="elevationOverlayEnabled">false</item>
+    </style>
+
+    <style name="ChipCustomStyle" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="android:textColor">@color/chip_text_color</item>
     </style>
 
 </resources>

@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.zxing.common.StringUtils;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
@@ -21,7 +20,7 @@ import com.soleap.cashbook.common.widget.OnValueChanged;
 import com.soleap.cashbook.common.widget.lookup.DocLookupTextInputView;
 import com.soleap.cashbook.document.DocumentInfo;
 import com.soleap.cashbook.document.SaleOrder;
-import com.soleap.cashbook.widget.bottomsheetmenu.BottomSheetMenu;
+import com.soleap.cashbook.common.widget.bottomsheetmenu.BottomSheetMenu;
 
 import java.util.Calendar;
 
@@ -187,7 +186,7 @@ public class SaleOrderAddNewActivity extends DocAddNewActivity implements OnValu
     }
 
     protected void showOptionsMenu(int menuId) {
-        buttomActionsMenu = new BottomSheetMenu.Builder(this, this, "", menuId, R.layout.text_menu_item).create();
+//        buttomActionsMenu = new BottomSheetMenu.Builder(this, this, "", menuId, R.layout.text_menu_item).create();
         buttomActionsMenu.show();
     }
 

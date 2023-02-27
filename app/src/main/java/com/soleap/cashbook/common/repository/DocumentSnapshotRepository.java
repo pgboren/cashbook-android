@@ -33,9 +33,9 @@ public class DocumentSnapshotRepository {
     private String entity;
     protected APIInterface apiInterface;
 
-    private OnListedDocumentListner listDocumentListner = null;
-    private OnViewedDocumentListner viewDocumentListner = null;
-    private OnGetDocumentListner getDocumentListner = null;
+    protected OnListedDocumentListner listDocumentListner = null;
+    protected OnViewedDocumentListner viewDocumentListner = null;
+    protected OnGetDocumentListner getDocumentListner = null;
 
     private Map<String, List<OnCreatedDocumentListner>> addedDocumentListners = new HashMap<>();
     private Map<String, List<OnDocumentChangedListner>> changedDocumentListners = new HashMap<>();

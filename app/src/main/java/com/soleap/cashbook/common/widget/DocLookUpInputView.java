@@ -40,8 +40,7 @@ public class DocLookUpInputView extends LinearLayout {
     public DocLookUpInputView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        TypedArray a = context.obtainStyledAttributes(attrs,
-                R.styleable.DocLookUpInputView, 0, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DocLookUpInputView, 0, 0);
         String title = a.getString(R.styleable.DocLookUpInputView_title);
         String blankMessage = a.getString(R.styleable.DocLookUpInputView_blank_message);
         docName = a.getString(R.styleable.DocLookUpInputView_documentName);

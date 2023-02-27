@@ -27,7 +27,8 @@
 
     <string name="delete_alert_dialog_title">លុប%s?</string>
     <string name="delete_alert_dialog_message">តើអ្នកចង់លុប%sនេះទេ?</string>
-    <string name="search_title">Search</string>
+    <string name="search_title">ស្វែងរក</string>
+    <string name="all_records">ទាំងអស់</string>
 
     <string name="camera_access_required">Camera is require</string>
     <string name="camera_unavailable">Camera is unavailable</string>

@@ -28,12 +28,10 @@ public abstract class RecyclerActivity extends BackPressActivity {
 
     private static final String TAG = "RestApiRecyclerActivity";
 
+    protected FloatingActionButton addFabButton;
     protected String documentName;
-
     protected APIInterface apiInterface;
-
     protected RecyclerView recyclerView;
-
     protected RecyclerViewAdapter adapter;
 
     protected abstract void bindListItemViewHolder(View itemView, int position, DocumentSnapshot doc);
@@ -45,8 +43,8 @@ public abstract class RecyclerActivity extends BackPressActivity {
     }
 
     protected void initFabButtonAction() {
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        addFabButton = findViewById(R.id.fab);
+        addFabButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onAddNewButtonClicked();
@@ -63,10 +61,24 @@ public abstract class RecyclerActivity extends BackPressActivity {
             setSupportActionBar(toolbar);
         }
 
-
         initFabButtonAction();
-        final ShimmerFrameLayout container = (ShimmerFrameLayout) findViewById(R.id.shimmerLayout);
+        initRecyclerViewAdapter();
+        initRecyclerView();
+        setTitle(DocumentInfo.getInstance(this).getListTitle(documentName));
+        startDataListening();
+    }
 
+    protected void startDataListening() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                adapter.startListening();
+            }
+        }, 500);
+    }
+
+    protected void initRecyclerViewAdapter() {
+        final ShimmerFrameLayout container = (ShimmerFrameLayout) findViewById(R.id.shimmerLayout);
         adapter = new RecyclerViewAdapter(this, documentName, DocumentInfo.getInstance(this).getListItemLayout(documentName)) {
             @Override
             protected ViewHolder createItemViewHolder(View itemView) {
@@ -88,37 +100,6 @@ public abstract class RecyclerActivity extends BackPressActivity {
             adapter.setViewActivityClass(DocumentInfo.getInstance(this).getViewActivityClass(documentName));
         }
 
-        adapter.setListner(new RecyclerViewAdapter.EventListner() {
-            @Override
-            public void onItemSelected(DocumentSnapshot documentSnapshot) {
-                onDocItemSelected(documentSnapshot);
-            }
-
-            @Override
-            public void onStartListening() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                container.stopShimmer();
-                container.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onStopListening() {
-                container.stopShimmer();
-                container.setVisibility(View.GONE);
-            }
-        });
-        initRecyclerView();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                adapter.startListening();
-            }
-        }, 500);
-        setTitle(DocumentInfo.getInstance(this).getListTitle(documentName));
     }
 
     protected void initRecyclerView() {

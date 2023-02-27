@@ -13,8 +13,7 @@
     <color name="colorPrimaryDark">#EB292929</color>
     <color name="colorAccent">#03DAC5</color>
 
-
-    <color name="gray_light">#4E4D4D</color>
+    <color name="gray_light">#cfd8dc</color>
     <color name="gray_dark">#252424</color>
     <color name="white_dark_tansparent">#BAB1B1B1</color>
 

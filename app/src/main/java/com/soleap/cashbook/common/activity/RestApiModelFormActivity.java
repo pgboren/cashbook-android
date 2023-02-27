@@ -120,6 +120,12 @@ public abstract class RestApiModelFormActivity<T extends Document> extends AppCo
         this.finish();
     }
 
+    @Override
+    public void finish() {
+        RepositoryFactory.create().get(documentName).removeOnCreatedDocumentListner(documentName, this);
+        super.finish();
+    }
+
     protected void finishAndSendData()  {
     }
 

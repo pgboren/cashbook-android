@@ -4,19 +4,8 @@ import com.soleap.cashbook.common.document.BsDocument;
 
 public class AgileStage extends BsDocument {
 
-    public String name;
-    public String color;
-    public String order;
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
+    private String color;
+    private String order;
 
     public String getColor() {
         return color;

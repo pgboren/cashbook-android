@@ -1,4 +1,4 @@
-package com.soleap.cashbook.common.widget.agile;
+package com.soleap.cashbook.widget.agile;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.soleap.cashbook.R;
-import com.soleap.cashbook.activity.AgileTaskListActivity;
+import com.soleap.cashbook.activity.task.AgileTaskListActivity;
 import com.soleap.cashbook.common.adapter.RecyclerViewAdapter;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.document.DocumentInfo;

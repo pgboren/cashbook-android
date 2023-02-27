@@ -35,7 +35,7 @@ import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 import com.soleap.cashbook.common.value.ViewSetterFactory;
 import com.soleap.cashbook.common.value.ViewType;
-import com.soleap.cashbook.widget.bottomsheetmenu.BottomSheetMenu;
+import com.soleap.cashbook.common.widget.bottomsheetmenu.BottomSheetMenu;
 
 import java.util.List;
 import java.util.Locale;
@@ -254,7 +254,8 @@ public abstract class ModelViewActivity<T extends Document> extends AppCompatAct
         ViewDataModel viewModel = (ViewDataModel)model;
         this.renderDataTextView();
         int menuId = this.getResources().getIdentifier(viewModel.getMenu(), "menu", getPackageName());
-        buttomActionsMenu = new BottomSheetMenu.Builder(this, this, "", menuId, R.layout.text_menu_item).create();
+//TODO
+//        buttomActionsMenu = new BottomSheetMenu.Builder(this, this, "", menuId, R.layout.text_menu_item).create();
     }
 
     protected void renderDataTextView() {

@@ -29,21 +29,19 @@ public abstract class RecyclerViewAdapter<TV extends RecyclerViewAdapter.ViewHol
     public final static int ADD_NEW_ENTITY_REQUEST_CODE = 2001;
     public final static int VIEW_ENTITY_REQUEST_CODE = 2002;
 
-    private final Context context;
-    private String documentName;
-    private TV viewHolder;
+    protected final Context context;
+    protected String documentName;
+    protected TV viewHolder;
 
     protected List<DocumentSnapshot> dataSet;
-    private Class viewActivityClass;
-    private Class addNewActivityClass;
-    private int viewResource;
-    private DocumentSnapshotRepository repository;
-
+    protected Class viewActivityClass;
+    protected Class addNewActivityClass;
+    protected int viewResource;
+    protected DocumentSnapshotRepository repository;
+    protected EventListner listner;
     public void setListner(EventListner listner) {
         this.listner = listner;
     }
-
-    private EventListner listner;
 
     public void setAddNewActivityClass(Class addNewActivityClass) {
         this.addNewActivityClass = addNewActivityClass;
@@ -57,6 +55,10 @@ public abstract class RecyclerViewAdapter<TV extends RecyclerViewAdapter.ViewHol
         this.documentName = documentName;
         this.context = context;
         this.viewResource = viewResource;
+        initRepository();
+    }
+
+    protected void initRepository() {
         this.repository = RepositoryFactory.create().get(documentName);
         this.repository.setListDocumentListner(this);
         this.repository.addOnCreatedDocumentListner(documentName, this);

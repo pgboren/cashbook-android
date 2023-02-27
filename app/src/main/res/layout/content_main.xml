@@ -10,7 +10,7 @@
     tools:showIn="@layout/app_bar_main">
 
 
-    <com.soleap.cashbook.common.widget.agile.AgileStageSummaryView
+    <com.soleap.cashbook.widget.agile.AgileStageSummaryView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints" />

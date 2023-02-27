@@ -53,11 +53,18 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".activity.AgileTaskListActivity"
+            android:name=".activity.task.AgileTaskListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:label="@string/item"
             android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".activity.task.AgileTaskAddNewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
+
 
         <activity
             android:name=".activity.SaleOrderitemInputActivity"

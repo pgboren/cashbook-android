@@ -1,4 +1,4 @@
-package com.soleap.cashbook.common.widget.agile;
+package com.soleap.cashbook.widget.agile;
 
 import android.app.Activity;
 import android.graphics.Color;

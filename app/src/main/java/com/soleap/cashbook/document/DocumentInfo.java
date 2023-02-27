@@ -5,6 +5,7 @@ import android.content.Context;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.activity.BsColorDocAddNewActivity;
 import com.soleap.cashbook.activity.SaleOrderAddNewActivity;
+import com.soleap.cashbook.activity.task.AgileTaskAddNewActivity;
 import com.soleap.cashbook.common.activity.BsColorDocEditActivity;
 import com.soleap.cashbook.common.activity.BsDocAddNewActivity;
 import com.soleap.cashbook.common.activity.BsDocEditActivity;
@@ -79,6 +80,11 @@ public class DocumentInfo {
             return new Contact();
         }
 
+        if (documentName.equals(DocumentInfo.AGILE_TASK)) {
+            return new AgileTask();
+        }
+
+
         throw new RuntimeException("Stub!");
     }
 
@@ -149,6 +155,10 @@ public class DocumentInfo {
     }
 
     public Class getAddNewActivityClass(String key) {
+
+        if (key.equals(AGILE_TASK)) {
+            return AgileTaskAddNewActivity.class;
+        }
 
         if (key.equals(SALE_ORDER)) {
             return SaleOrderAddNewActivity.class;

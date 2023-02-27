@@ -30,7 +30,7 @@ import com.soleap.cashbook.document.DocumentInfo;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 import com.soleap.cashbook.common.widget.view.ViewFieldCreatorFactory;
-import com.soleap.cashbook.widget.bottomsheetmenu.BottomSheetMenu;
+import com.soleap.cashbook.common.widget.bottomsheetmenu.BottomSheetMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -221,7 +221,8 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     protected void renderOptionButtonActionMenu(DocumentSnapshot doc) {
         String menu = doc.getContextMenu();
         int menuId = this.getResources().getIdentifier(menu, "menu", getPackageName());
-        buttomActionsMenu = new BottomSheetMenu.Builder(this, this, "", menuId, R.layout.text_menu_item).create();
+//TODO
+//        buttomActionsMenu = new BottomSheetMenu.Builder(this, this, "", menuId, R.layout.text_menu_item).create();
     }
 
     protected void renderViewData(DocumentSnapshot doc) {

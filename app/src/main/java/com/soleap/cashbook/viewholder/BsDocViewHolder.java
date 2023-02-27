@@ -1,6 +1,7 @@
 package com.soleap.cashbook.viewholder;
 
 import android.app.Activity;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
@@ -67,7 +68,12 @@ public class BsDocViewHolder {
     protected void bindTask(View itemView, int position, DocumentSnapshot doc) {
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
         String name = doc.getDataValue("name").getValue().toString();
+        String stage = doc.getDataValue("stage").getDataValue("name").getValue().toString();
+        String colorCode = doc.getDataValue("stage").getDataValue("color").getValue().toString();
+        TextView txtColor = itemView.findViewById(R.id.txt_stage);
+        txtColor.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCode)));
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_name).setString((name));
+        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_stage).setString((stage));
     }
 
     protected void bindDealItem(View itemView, int position, DocumentSnapshot doc) {
