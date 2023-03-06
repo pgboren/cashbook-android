@@ -33,7 +33,7 @@ public class ViewItemLooupFieldCreator extends ViewDocumentLooupFieldCreator {
     }
 
     public ViewItemLooupFieldCreator(ViewDataActivity activity, ViewData fieldData) {
-        super(activity, DocumentInfo.ITEM, BsDocLookUpActivity.LOOK_UP_ITEM_REQUEST_CODE, fieldData, R.layout.lookup_item_item);
+        super(activity, DocumentInfo.ITEM, BsDocLookUpActivity.LOOK_UP_ITEM_REQUEST_CODE, fieldData, R.layout.list_item_item);
     }
 
     @Override

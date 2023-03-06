@@ -36,6 +36,13 @@ public class TaskRecyclerViewAdapter extends RecyclerViewAdapter {
     }
 
     @Override
+    public void onAdded(DocumentSnapshot documentSnapshot) {
+        this.dataSet.add(0, documentSnapshot);
+        notifyDataSetChanged();
+    }
+
+
+    @Override
     protected void initRepository() {
         this.repository = RepositoryFactory.create().get(documentName);
         this.repository.setListDocumentListner(this);

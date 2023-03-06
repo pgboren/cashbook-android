@@ -129,6 +129,11 @@
         <attr name="dpv_require" format="boolean"/>
     </declare-styleable>
 
+    <declare-styleable name="PaymentOptionView">
+        <attr name="potv_title" format="string"/>
+        <attr name="potv_require" format="boolean"/>
+    </declare-styleable>
+
     <declare-styleable name="CouponNumberInputView">
         <attr name="cnv_title" format="string"/>
         <attr name="cnv_blank_message" format="string"/>

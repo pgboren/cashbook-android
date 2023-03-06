@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.soleap.cashbook.R;
+import com.soleap.cashbook.common.adapter.RecyclerViewAdapter;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.ViewData;
 import com.soleap.cashbook.document.DocumentInfo;
@@ -27,7 +29,7 @@ import com.soleap.cashbook.viewholder.BsDocViewHolder;
 import java.util.Locale;
 import java.util.Random;
 
-public class BsDocLookUpActivity extends RecyclerActivity {
+public class BsDocLookUpActivity extends RecyclerActivity implements RecyclerViewAdapter.EventListner {
 
     private static final String TAG = "BsDocLookUpActivity";
     public static final int LOOK_UP_CATEGORY_REQUEST_CODE = 10001;
@@ -69,11 +71,11 @@ public class BsDocLookUpActivity extends RecyclerActivity {
         }
     }
 
-//    @Override
-//    protected void initFabButtonAction() {
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setVisibility(View.GONE);
-//    }
+    @Override
+    protected void initRecyclerViewAdapter() {
+        super.initRecyclerViewAdapter();
+        this.adapter.setListner(this);
+    }
 
     @Override
     protected void bindListItemViewHolder(View itemView, int position, DocumentSnapshot doc) {
@@ -96,5 +98,25 @@ public class BsDocLookUpActivity extends RecyclerActivity {
         }
         setResult(Activity.RESULT_OK,returnIntent);
         finish();
+    }
+
+    @Override
+    public void onItemSelected(DocumentSnapshot documentSnapshot) {
+        onDocItemSelected(documentSnapshot);
+    }
+
+    @Override
+    public void onStartListening() {
+
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
+    }
+
+    @Override
+    public void onStopListening() {
+
     }
 }

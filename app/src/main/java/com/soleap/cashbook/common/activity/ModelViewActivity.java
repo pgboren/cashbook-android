@@ -395,14 +395,6 @@ public abstract class ModelViewActivity<T extends Document> extends AppCompatAct
 
         int id = item.getItemId();
 
-        if (id == R.id.action_view_edit) {
-            startEditActivity();
-        }
-
-        if (id == R.id.action_view_delete) {
-            onDeleteOptionMenuClick();
-        }
-
         if (id == R.id.view_option_action_more_menuitem) {
             buttomActionsMenu.show();
         }

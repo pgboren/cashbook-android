@@ -15,13 +15,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <com.soleap.cashbook.common.widget.DatePickerView
+            android:id="@+id/task_datepicker"
+            app:dpv_title="@string/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayout_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:hint="@string/name"
+            android:hint="@string/customer"
             app:errorEnabled="true"
             app:helperText="@string/require"
             app:helperTextTextColor="#8A8989">
@@ -31,6 +38,23 @@
                 android:layout_height="wrap_content"
                 android:inputType="textNoSuggestions" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.soleap.cashbook.common.widget.lookup.DocLookupTextInputView
+            android:id="@+id/task_item"
+            app:dltv_title="@string/item"
+            app:dltv_doc_name="item"
+            app:dltv_helperText="@string/require"
+            android:layout_width="match_parent"
+            app:dltv_endIconDrawable="@drawable/ic_arrow_right"
+            android:layout_height="wrap_content"/>
+
+        <com.soleap.cashbook.widget.PaymentOptionBottomSheetView
+            android:id="@+id/task_paymentOption"
+            app:potv_title = "@string/paymenttype"
+            app:potv_require = "true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayout_desc"

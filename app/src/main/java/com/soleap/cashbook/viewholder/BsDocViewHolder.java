@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -16,6 +17,7 @@ import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.ViewData;
 import com.soleap.cashbook.common.util.ColorUtils;
 import com.soleap.cashbook.common.util.MedialUtils;
+import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.common.value.ViewSetterFactory;
 import com.soleap.cashbook.common.value.ViewType;
 import com.soleap.cashbook.document.DocumentInfo;
@@ -68,30 +70,38 @@ public class BsDocViewHolder {
     protected void bindTask(View itemView, int position, DocumentSnapshot doc) {
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
         String name = doc.getDataValue("name").getValue().toString();
+        String date = doc.getDataValue("date").getValue().toString();
+        String desc = doc.getDataValue("description").getValue().toString();
+        String paymentOption = doc.getDataValue("paymentOption").getValue().toString();
+        ViewData itemData = doc.getDataValue("item");
         String stage = doc.getDataValue("stage").getDataValue("name").getValue().toString();
         String colorCode = doc.getDataValue("stage").getDataValue("color").getValue().toString();
         TextView txtColor = itemView.findViewById(R.id.txt_stage);
         txtColor.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCode)));
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_name).setString((name));
+        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_date).setString((date));
+        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_item).setString((itemData.getDataValue("name").getValue().toString()));
+        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_description).setString((desc));
+        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_payment_option).setString(ResourceUtil.getStringResourceByName(itemView.getContext(), paymentOption));
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_stage).setString((stage));
     }
 
     protected void bindDealItem(View itemView, int position, DocumentSnapshot doc) {
         ViewData data = doc.getDataValue("deal");
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
-        TextView txtCustomer = itemView.findViewById(R.id.txt_deal_customer);
-        TextView txtDealNumber = itemView.findViewById(R.id.txt_deal_number);
-        TextView txtDate = itemView.findViewById(R.id.txt_deal_date);
-        TextView txtPrice = itemView.findViewById(R.id.txt_deal_price);
-        ViewData customer = data.getDataValue("customer");
-        txtCustomer.setText(customer.getDataValue("lastname").getValue().toString() + " " + customer.getDataValue("firstname").getValue().toString());
-        txtDealNumber.setText(data.getDataValue("number").getValue().toString());
-        txtDate.setText(data.getDataValue("date").getValue().toString());
-        double price = (double)data.getDataValue("price").getValue();
-        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_deal_price).setCurrency(price, Locale.US);
-
-        ImageView imgView = itemView.findViewById(R.id.img_deal_customer_photo);
-        MedialUtils.loadImage(this.activity, data.getDataValue("customer").getDataValue("photo").getValue().toString(), imgView);
+//        TextView txtCustomer = itemView.findViewById(R.id.txt_deal_customer);
+//        TextView txtDealNumber = itemView.findViewById(R.id.txt_deal_number);
+//        TextView txtDate = itemView.findViewById(R.id.txt_deal_date);
+//        TextView txtPrice = itemView.findViewById(R.id.txt_deal_price);
+//        ViewData customer = data.getDataValue("customer");
+//        txtCustomer.setText(customer.getDataValue("lastname").getValue().toString() + " " + customer.getDataValue("firstname").getValue().toString());
+//        txtDealNumber.setText(data.getDataValue("number").getValue().toString());
+//        txtDate.setText(data.getDataValue("date").getValue().toString());
+//        double price = (double)data.getDataValue("price").getValue();
+//        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_deal_price).setCurrency(price, Locale.US);
+//
+//        ImageView imgView = itemView.findViewById(R.id.img_deal_customer_photo);
+//        MedialUtils.loadImage(this.activity, data.getDataValue("customer").getDataValue("photo").getValue().toString(), imgView);
     }
 
     private void bindInsitituteItem(View itemView, int position, DocumentSnapshot doc) {
@@ -171,7 +181,6 @@ public class BsDocViewHolder {
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_isntallment_price).setCurrency(Double.parseDouble(data.getDataValue("installmentPaymentPrice").getValue().toString()), Locale.US);
         TextView circleBox = itemView.findViewById(R.id.circle_box);
         TextView shortcut = itemView.findViewById(R.id.shortcut);
-
         ImageView imageView = (ImageView)itemView.findViewById(R.id.imv_item_photo);
         if (data.getDataValue("photo").getValue() != null) {
             imageView.setVisibility(View.VISIBLE);

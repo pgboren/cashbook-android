@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_de"
+        android:textSize="18sp"
+        android:text="@string/paymenttype"/>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_de"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="1.បង់ផ្ដាច់"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="អតិថិជនបង់ប្រាក់ផ្ទាល់នៅហាងម៉ូតូភ្លាមៗ បន្ទាប់ពីចេញវិក័បត្រលក។"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_de"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="2. បង់រំលស់"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="អតិថិជនបង់ប្រាក់ផ្ទាល់នៅហាងម៉ូតូភ្លាមៗ បន្ទាប់ពីចេញវិក័បត្រលក។"/>
+    </LinearLayout>
+
+</LinearLayout>

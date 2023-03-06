@@ -75,20 +75,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initFabView() {
-        fabSettings = (FloatingActionButton) this.findViewById(R.id.fabSetting);
-        layoutFabContact = (LinearLayout) this.findViewById(R.id.layoutFabContact);
-        layoutFabDeal = (LinearLayout) this.findViewById(R.id.layoutFabDeal);
-
-        fabSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (fabExpanded == true){
-                    closeSubMenusFab();
-                } else {
-                    openSubMenusFab();
-                }
-            }
-        });
+//        fabSettings = (FloatingActionButton) this.findViewById(R.id.fabSetting);
+//        layoutFabContact = (LinearLayout) this.findViewById(R.id.layoutFabContact);
+//        layoutFabDeal = (LinearLayout) this.findViewById(R.id.layoutFabDeal);
+//
+//        fabSettings.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (fabExpanded == true){
+//                    closeSubMenusFab();
+//                } else {
+//                    openSubMenusFab();
+//                }
+//            }
+//        });
 
         //Only main FAB is visible in the beginning
         closeSubMenusFab();
@@ -148,26 +148,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             intent.putExtra(DocumentInfo.DOCUMENT_NAME, documentName);
             startActivity(intent);
             return true;
-        }
-
-        if (id == R.id.nav_item_list) {
-            documentName = DocumentInfo.ITEM;
-        }
-
-        if (id == R.id.nav_color_list) {
-            documentName = DocumentInfo.COLOR;
-        }
-
-        if (id == R.id.nav_branch_list) {
-            documentName = DocumentInfo.BRANCH;
-        }
-
-        if (id == R.id.nav_category_list) {
-            documentName = DocumentInfo.CATEGORY;
-        }
-
-        if (id == R.id.nav_loan_institute_list) {
-            documentName = DocumentInfo.INSTITUE;
         }
 
         if (id == R.id.nav_contact_list) {

@@ -30,6 +30,7 @@ public class DocLookupTextInputView extends LinearLayout {
     private DocumentSnapshot value;
     private String docName;
 
+    private AppCompatActivity activity;
     private TextInputLayout textInputLayout;
     private TextInputEditText editText;
     private ActivityResultLauncher<Intent> activityResultLauncher;
@@ -76,8 +77,11 @@ public class DocLookupTextInputView extends LinearLayout {
             }
         });
 
-        AppCompatActivity activity = (AppCompatActivity) context;
-        activityResultLauncher = activity.registerForActivityResult(
+    }
+
+    public void registerForActivityResult(AppCompatActivity activity) {
+        this.activity = activity;
+        activityResultLauncher = this.activity.registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
@@ -92,7 +96,6 @@ public class DocLookupTextInputView extends LinearLayout {
                 }
         );
     }
-
 
     private void lookupDocument() {
         Intent intent = new Intent(this.getContext(), BsDocLookUpActivity.class);

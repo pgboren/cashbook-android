@@ -1,7 +1,5 @@
 package com.soleap.cashbook.activity.task;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Handler;
 import android.view.View;
 
@@ -19,13 +17,9 @@ import com.soleap.cashbook.common.widget.bottomsheetmenu.MenuItem;
 import com.soleap.cashbook.document.DocumentInfo;
 import com.soleap.cashbook.viewholder.BsDocViewHolder;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.BottomSheetMenu;
-import com.soleap.cashbook.widget.agile.AgileStageChip;
 import com.soleap.cashbook.widget.agile.StageChipGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class AgileTaskListActivity extends RecyclerActivity implements BottomSheetMenu.ButtomSheetMenuItemClickListner {
+public class AgileTaskListActivity extends RecyclerActivity implements BottomSheetMenu.BottomSheetMenuItemClickListener {
 
     private static final String TAG = "AgileTaskListActivity";
     private StageChipGroup chipStage;

@@ -99,7 +99,6 @@ public abstract class RecyclerActivity extends BackPressActivity {
         if (DocumentInfo.getInstance(this).getViewActivityClass(documentName) != null) {
             adapter.setViewActivityClass(DocumentInfo.getInstance(this).getViewActivityClass(documentName));
         }
-
     }
 
     protected void initRecyclerView() {

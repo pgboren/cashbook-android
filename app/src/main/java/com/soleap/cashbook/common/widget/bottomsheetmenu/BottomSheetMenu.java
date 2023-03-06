@@ -1,6 +1,5 @@
 package com.soleap.cashbook.common.widget.bottomsheetmenu;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
@@ -23,9 +22,9 @@ public class BottomSheetMenu extends BottomSheetDialog {
     private String title;
     private int menuResource;
     private MenuItemViewHolder viewHolder;
-    private ButtomSheetMenuItemClickListner itemClickListner;
+    private BottomSheetMenuItemClickListener itemClickListner;
 
-    public BottomSheetMenu(@NonNull Context context, ButtomSheetMenuItemClickListner listener, Menu menu, int resource) {
+    public BottomSheetMenu(@NonNull Context context, BottomSheetMenuItemClickListener listener, Menu menu, int resource) {
         super(context);
         mIconSize = context.getResources().getDimensionPixelSize(R.dimen.bottom_sheet_menu_item_icon_size);
         this.menu = menu;
@@ -86,7 +85,7 @@ public class BottomSheetMenu extends BottomSheetDialog {
         void bindView(View itemView, MenuItem menuItem);
     }
 
-    public interface ButtomSheetMenuItemClickListner {
+    public interface BottomSheetMenuItemClickListener {
         void onItemClick(MenuItem item);
     }
 

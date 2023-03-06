@@ -18,17 +18,6 @@
         <item name="CustomChipChoiceStyle">@style/ChipCustomStyle</item>
     </style>
 
-    <style name="hintTExtAppearance" parent="android:TextAppearance">
-        <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:textColorHint">?android:textColorHint</item>
-        <item name="android:textColorHighlight">?android:textColorHighlight</item>
-        <item name="android:textColorLink">?android:textColorLink</item>
-        <item name="android:textSize">@dimen/abc_text_size_body_1_material</item>
-    </style>
-
-    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-    </style>
-
     <style name="NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -80,32 +69,6 @@
         <item name="android:textColorPrimary">@color/white</item>
     </style>
 
-
-    <style name="SelectableItemTheme">
-        <item name="colorControlHighlight">@color/primaryLightColor</item>
-    </style>
-
-    <style name="SelectableItemBackground">
-        <item name="android:theme">@style/SelectableItemTheme</item>
-        <item name="android:background">?attr/selectableItemBackground</item>
-    </style>
-
-    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
-    </style>
-
-    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@android:color/transparent</item>
-    </style>
-
-
-    <style name="MyChoice" parent="Widget.MaterialComponents.Chip.Choice">
-        <item name="materialThemeOverlay">@style/ThemeOverlay.MyApp.Chip.Choice</item>
-    </style>
-
-    <style name="ThemeOverlay.MyApp.Chip.Choice" parent="">
-        <item name="elevationOverlayEnabled">false</item>
-    </style>
 
     <style name="ChipCustomStyle" parent="@style/Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/chip_background_color</item>

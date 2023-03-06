@@ -22,10 +22,4 @@ public class ResourceUtil {
         int resId = context.getResources().getIdentifier(aString, "drawable", packageName);
         return context.getDrawable(resId);
     }
-
-
-
-
-
-
 }

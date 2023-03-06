@@ -265,17 +265,17 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
-
-        if (id == R.id.action_upload_photo) {
-        }
-
-        if (id == R.id.action_view_edit) {
-            startEditActivity();
-        }
-
-        if (id == R.id.action_view_delete) {
-            onDeleteOptionMenuClick();
-        }
+//
+//        if (id == R.id.action_upload_photo) {
+//        }
+//
+//        if (id == R.id.action_view_edit) {
+//            startEditActivity();
+//        }
+//
+//        if (id == R.id.action_view_delete) {
+//            onDeleteOptionMenuClick();
+//        }
 
         if (id == R.id.view_option_action_more_menuitem) {
             if (buttomActionsMenu != null) {

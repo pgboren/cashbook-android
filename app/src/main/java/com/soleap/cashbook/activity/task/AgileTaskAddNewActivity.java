@@ -12,31 +12,36 @@ import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.repository.DocumentSnapshotRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
+import com.soleap.cashbook.common.widget.DatePickerView;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.BottomSheetMenu;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.Menu;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.MenuItem;
+import com.soleap.cashbook.common.widget.lookup.DocLookupTextInputView;
 import com.soleap.cashbook.document.AgileTask;
 import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.widget.PaymentOptionBottomSheetView;
 
 import java.util.List;
 
-public class AgileTaskAddNewActivity extends DocAddNewActivity implements BottomSheetMenu.ButtomSheetMenuItemClickListner {
+public class AgileTaskAddNewActivity extends DocAddNewActivity implements BottomSheetMenu.BottomSheetMenuItemClickListener {
 
     public static final String KEY_MODEL_ID = "key_stage_id";
     private TextInputLayout inputLayoutName;
     private TextInputEditText txtName;
     private TextInputLayout inputLayoutDesc;
     private TextInputEditText txtDesc;
+    private DocLookupTextInputView luItem;
     private BottomSheetMenu stageMenu;
+    private PaymentOptionBottomSheetView paymentOptionButtomSheetView;
     private String boardId = "63e33a686706e92dd049204c";
     private String stageId = "63e9dcec0759ba3dc06bfff4";
+    private DatePickerView dtView;
 
     @Override
     protected void setViewContent() {
         this.documentName = getIntent().getExtras().getString(DocumentInfo.DOCUMENT_NAME);
         setContentView(R.layout.activity_form_task);
         initInputView();
-        buildStageButtomMenu();
     }
 
     @Override
@@ -45,7 +50,12 @@ public class AgileTaskAddNewActivity extends DocAddNewActivity implements Bottom
         txtName = findViewById(R.id.txt_name);
         txtName.addTextChangedListener(this);
         inputLayoutDesc = findViewById(R.id.inputLayout_desc);
+        luItem = findViewById(R.id.task_item);
         txtDesc = findViewById(R.id.txt_desc);
+        dtView = findViewById(R.id.task_datepicker);
+        paymentOptionButtomSheetView = findViewById(R.id.task_paymentOption);
+        paymentOptionButtomSheetView.setFragmentManager(getSupportFragmentManager());
+        luItem.registerForActivityResult(this);
     }
 
     @Override
@@ -54,6 +64,9 @@ public class AgileTaskAddNewActivity extends DocAddNewActivity implements Bottom
         task.setName(txtName.getText().toString());
         task.setBoard(boardId);
         task.setStage(stageId);
+        task.setItem(luItem.getValue().getId());
+        task.setDate(dtView.getValue().getTimeInMillis());
+        task.setPaymentOption("FULL_PAYMENT");
         task.setDescription(txtDesc.getText().toString());
     }
 

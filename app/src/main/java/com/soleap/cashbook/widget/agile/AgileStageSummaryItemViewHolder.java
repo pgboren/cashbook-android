@@ -1,7 +1,9 @@
 package com.soleap.cashbook.widget.agile;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,11 +20,19 @@ public class AgileStageSummaryItemViewHolder extends BsDocViewHolder {
         super(activity, documentName);
     }
 
+    @SuppressLint("LongLogTag")
     public void bind(View itemView, final int position, final DocumentSnapshot doc) {
-        TextView txtStageName = itemView.findViewById(R.id.txt_stage_name);
-        ImageView imvStageIcon = itemView.findViewById(R.id.imv_stage_icon);
-        imvStageIcon.setImageDrawable(ResourceUtil.getDrawableResourceByName(this.activity, doc.getDataValue("icon").getValue().toString()));
-        txtStageName.setText(doc.getDataValue("name").getValue().toString());
-        itemView.setBackgroundColor(Color.parseColor(doc.getDataValue("color").getValue().toString()));
+        try
+        {
+            TextView txtStageName = itemView.findViewById(R.id.txt_stage_name);
+            ImageView imvStageIcon = itemView.findViewById(R.id.imv_stage_icon);
+            imvStageIcon.setImageDrawable(ResourceUtil.getDrawableResourceByName(this.activity, doc.getDataValue("icon").getValue().toString()));
+            txtStageName.setText(doc.getDataValue("name").getValue().toString());
+            itemView.setBackgroundColor(Color.parseColor(doc.getDataValue("color").getValue().toString()));
+        }
+        catch (Exception ex) {
+            Log.e("AgileStageSummaryItemViewHolder", doc.getId());
+        }
+
     }
 }
