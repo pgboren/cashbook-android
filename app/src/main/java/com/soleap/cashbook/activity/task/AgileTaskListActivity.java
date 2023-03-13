@@ -73,7 +73,7 @@ public class AgileTaskListActivity extends RecyclerActivity implements BottomShe
         TaskRecyclerViewAdapter taskRecyclerViewAdapter = (TaskRecyclerViewAdapter)adapter;
         String[] stages = new String[1];
         stages[0] = stageId;
-        taskRecyclerViewAdapter.startListening(stages);
+        taskRecyclerViewAdapter.loadMore(stages, 1);
     }
 
     @Override

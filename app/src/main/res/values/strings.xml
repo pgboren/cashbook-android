@@ -131,6 +131,6 @@
     <string name="payment_option_installment">2. ទិញបង់រំលស់</string>
     <string name="full_payment_desc">អតិថិជនបង់ប្រាក់ផ្ទាល់នៅហាងម៉ូតូភ្លាមៗ បន្ទាប់ពីចេញវិក័បត្រលក់។</string>
     <string name="installment_payment_desc">អតិថិជនស្នើរសុំឥណទានពីធនាគាបង់រំលស់ប្រចាំខែ។</string>
-    <string name="add_new_agiletask">សំណើរទិញម៉ូតូ - ថ្មី</string>
+    <string name="add_new_agiletask">សំណើរទិញម៉ូតូ - អតិថិជនថ្មី</string>
 
 </resources>

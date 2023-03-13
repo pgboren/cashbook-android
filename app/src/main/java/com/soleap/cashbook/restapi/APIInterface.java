@@ -1,6 +1,7 @@
 package com.soleap.cashbook.restapi;
 
 import com.soleap.cashbook.common.document.DocumentSnapshot;
+import com.soleap.cashbook.common.document.PagingRecyclerViewData;
 import com.soleap.cashbook.document.Branch;
 import com.soleap.cashbook.document.Category;
 import com.soleap.cashbook.document.Color;
@@ -126,8 +127,8 @@ public interface APIInterface {
     @POST("auth/signin")
     Call<User> login(@Body Map<String, Object> usernameAndPassword);
 
-    @GET("agile/{entity}")
-    Call<List<DocumentSnapshot>> getTasks(@Path("entity") String entity, @Query("stages") String[] stages);
+    @GET("agile/tasks")
+    Call<PagingRecyclerViewData> getTasks(@Query("page") int page, @Query("stages") String[] stages);
 
 }
 

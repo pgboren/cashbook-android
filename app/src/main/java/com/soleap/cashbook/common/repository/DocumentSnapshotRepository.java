@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
-import com.soleap.cashbook.common.document.ViewData;
+import com.soleap.cashbook.common.document.PagingRecyclerViewData;
 import com.soleap.cashbook.document.Branch;
 import com.soleap.cashbook.document.Category;
 import com.soleap.cashbook.document.Color;
@@ -23,8 +23,6 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Body;
-import retrofit2.http.Path;
 
 public class DocumentSnapshotRepository {
 
@@ -33,6 +31,11 @@ public class DocumentSnapshotRepository {
     private String entity;
     protected APIInterface apiInterface;
 
+    public void setPagingDocsRequestListner(OnGetPagingDocsRequestListner pagingDocsRequestListner) {
+        this.pagingDocsRequestListner = pagingDocsRequestListner;
+    }
+
+    protected OnGetPagingDocsRequestListner pagingDocsRequestListner = null;
     protected OnListedDocumentListner listDocumentListner = null;
     protected OnViewedDocumentListner viewDocumentListner = null;
     protected OnGetDocumentListner getDocumentListner = null;
@@ -404,6 +407,10 @@ public class DocumentSnapshotRepository {
 
     public interface OnGetDocumentListner extends DocumentEventListner {
         void onGet(Document document);
+    }
+
+    public interface OnGetPagingDocsRequestListner extends DocumentEventListner {
+        void onGet(PagingRecyclerViewData data);
     }
 
 }

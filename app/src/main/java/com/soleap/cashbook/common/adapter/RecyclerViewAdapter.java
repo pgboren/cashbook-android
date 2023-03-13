@@ -17,6 +17,7 @@ import com.soleap.cashbook.common.repository.DocumentSnapshotRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
 import com.soleap.cashbook.document.DocumentInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class RecyclerViewAdapter<TV extends RecyclerViewAdapter.ViewHolder> extends RecyclerView.Adapter<TV>
@@ -33,7 +34,7 @@ public abstract class RecyclerViewAdapter<TV extends RecyclerViewAdapter.ViewHol
     protected String documentName;
     protected TV viewHolder;
 
-    protected List<DocumentSnapshot> dataSet;
+    protected List<DocumentSnapshot> dataSet = new ArrayList<DocumentSnapshot>();
     protected Class viewActivityClass;
     protected Class addNewActivityClass;
     protected int viewResource;
@@ -173,7 +174,7 @@ public abstract class RecyclerViewAdapter<TV extends RecyclerViewAdapter.ViewHol
         this.repository.removeOnCreatedDocumentListner(documentName, this);
     }
 
-    public abstract class ViewHolder extends RecyclerView.ViewHolder {
+    public abstract static class ViewHolder extends RecyclerView.ViewHolder {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
