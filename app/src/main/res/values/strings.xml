@@ -59,7 +59,7 @@
     <string name="district">ស្រុក/ខ័ណ្ឌ</string>
     <string name="province">ខេត្ត/ក្រុង</string>
 
-    <string name="price">តំលៃ</string>
+    <string name="price">តំលៃ ($)</string>
     <string name="fullPayment">បង់ផ្ដាច់</string>
     <string name="iPP">បង់រំលស់</string>
     <string name="namekh">ឈ្មោះ (ខ្មែរ)</string>
@@ -91,8 +91,6 @@
 
     <string name="paymenttype">របៀបទូទាត់ប្រាក់</string>
     <string name="date">កាលបរិច្ឆេទ</string>
-    <string name="INSTALLMENT">បង់រំលស់</string>
-    <string name="FULL_PAYMENT">ទិញដាច់</string>
 
     <string name="NEW">ថ្មី</string>
     <string name="customer">អតិថិជន</string>
@@ -125,6 +123,14 @@
     <string name="ORDER_PAYMENT_VEHICLE_STATUS_USED">ក្រដាស់ពន្ធ</string>
     <string name="ORDER_PAYMENT_VEHICLE_STATUS_SECONDHAND">មួយទឹក</string>
 
-    <string name="agile_task">សំណើរ</string>
+    <string name="agile_task">សំណើរទិញម៉ូតូ</string>
+    <string name="INSTALLMENT">ទិញបង់រំលស់</string>
+    <string name="FULL_PAYMENT">ទិញបង់ផ្ដាច់</string>
+    <string name="task_phonenumber">លេខទូរស័ព្ទ</string>
+    <string name="payment_option_full_payment">1. ទិញបង់ផ្ដាច់</string>
+    <string name="payment_option_installment">2. ទិញបង់រំលស់</string>
+    <string name="full_payment_desc">អតិថិជនបង់ប្រាក់ផ្ទាល់នៅហាងម៉ូតូភ្លាមៗ បន្ទាប់ពីចេញវិក័បត្រលក់។</string>
+    <string name="installment_payment_desc">អតិថិជនស្នើរសុំឥណទានពីធនាគាបង់រំលស់ប្រចាំខែ។</string>
+    <string name="add_new_agiletask">សំណើរទិញម៉ូតូ - ថ្មី</string>
 
 </resources>

@@ -4,14 +4,10 @@ import android.app.Activity;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.ViewData;
@@ -21,7 +17,6 @@ import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.common.value.ViewSetterFactory;
 import com.soleap.cashbook.common.value.ViewType;
 import com.soleap.cashbook.document.DocumentInfo;
-import com.soleap.cashbook.restapi.APIClient;
 
 import java.util.Locale;
 import java.util.Random;
@@ -78,7 +73,7 @@ public class BsDocViewHolder {
         String colorCode = doc.getDataValue("stage").getDataValue("color").getValue().toString();
         TextView txtColor = itemView.findViewById(R.id.txt_stage);
         txtColor.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(colorCode)));
-        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_name).setString((name));
+        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_customer_name).setString((name));
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_date).setString((date));
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_item).setString((itemData.getDataValue("name").getValue().toString()));
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_description).setString((desc));
@@ -108,7 +103,7 @@ public class BsDocViewHolder {
         ViewData data = doc.getDataValue("root").getDataValue("general");
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
         String name = data.getDataValue("name").getValue().toString();
-        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_name).setString((name));
+        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_customer_name).setString((name));
         TextView shortcut = itemView.findViewById(R.id.shortcut);
         TextView circleBox = itemView.findViewById(R.id.circle_box);
 
@@ -131,7 +126,7 @@ public class BsDocViewHolder {
         ViewData data = doc.getDataValue("root").getDataValue("general");
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
         String name = data.getDataValue("name").getValue().toString();
-        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_name).setString((name));
+        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_customer_name).setString((name));
         TextView shortcut = itemView.findViewById(R.id.shortcut);
         TextView circleBox = itemView.findViewById(R.id.circle_box);
 
@@ -154,7 +149,7 @@ public class BsDocViewHolder {
         ViewData data = doc.getDataValue("root").getDataValue("general");
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
         String name = data.getDataValue("name").getValue().toString();
-        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_name).setString((name));
+        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_customer_name).setString((name));
         TextView shortcut = itemView.findViewById(R.id.shortcut);
         TextView circleBox = itemView.findViewById(R.id.circle_box);
         GradientDrawable shape = new GradientDrawable();
@@ -174,7 +169,7 @@ public class BsDocViewHolder {
     void bindItem(View itemView, final int position, final DocumentSnapshot doc) {
         ViewData data = doc.getDataValue("root").getDataValue("general");
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
-        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_name).setString((data.getDataValue("name").getValue().toString()));
+        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_customer_name).setString((data.getDataValue("name").getValue().toString()));
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_name_kh).setString((data.getDataValue("nameKh").getValue().toString()));
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_category).setString((data.getDataValue("category").getValue().toString()));
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_full_price).setCurrency(Double.parseDouble(data.getDataValue("price").getValue().toString()), Locale.US);

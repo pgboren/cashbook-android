@@ -28,8 +28,8 @@ import org.json.JSONObject;
      }
 
      protected void initInputView() {
-         txtName = findViewById(R.id.txt_name);
-         inputLayoutName = (TextInputLayout)findViewById(R.id.inputLayout_name);
+         txtName = findViewById(R.id.txt_customer_name);
+         inputLayoutName = (TextInputLayout)findViewById(R.id.inputLayout_customer_name);
          txtName.addTextChangedListener(this);
          swEnable = (SwitchMaterial) findViewById(R.id.sw_enable);
      }
@@ -69,7 +69,7 @@ import org.json.JSONObject;
 
      @Override
      protected void assignValueToForm(BsDocument document) {
-         TextInputEditText txtName = (TextInputEditText)this.findViewById(R.id.txt_name);
+         TextInputEditText txtName = (TextInputEditText)this.findViewById(R.id.txt_customer_name);
          txtName.setText(document.getName());
          swEnable.setChecked(document.isEnable());
      }

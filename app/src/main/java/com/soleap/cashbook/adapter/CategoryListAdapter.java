@@ -33,7 +33,7 @@ public class CategoryListAdapter extends RestApiRecyclerViewAdapter<Category, Ca
 
         void onBind(final int position, final Category data) {
             TextView textPrefix = itemView.findViewById(R.id.circle_box);
-            TextView txtName = itemView.findViewById(R.id.txt_name);
+            TextView txtName = itemView.findViewById(R.id.txt_customer_name);
             txtName.setText(data.getName());
             textPrefix.setText(data.getName().substring(0, 1).toUpperCase());
             itemView.setOnClickListener(new View.OnClickListener() {

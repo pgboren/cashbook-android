@@ -34,9 +34,9 @@ public class DocLookupTextInputView extends LinearLayout {
     private TextInputLayout textInputLayout;
     private TextInputEditText editText;
     private ActivityResultLauncher<Intent> activityResultLauncher;
-    private OnValueChanged onValueChangedListner = null;
+    private OnDocLookupValueChangedListner onValueChangedListner = null;
 
-    public void setOnValueChangedListner(OnValueChanged onValueChangedListner) {
+    public void setOnValueChangedListner(OnDocLookupValueChangedListner onValueChangedListner) {
         this.onValueChangedListner = onValueChangedListner;
     }
 
@@ -63,13 +63,6 @@ public class DocLookupTextInputView extends LinearLayout {
         editText.setTextIsSelectable(false);
         editText.setFocusable(false);
         editText.setFocusableInTouchMode(false);
-        editText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                lookupDocument();
-            }
-        });
-
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,7 +100,7 @@ public class DocLookupTextInputView extends LinearLayout {
     public void setValue(DocumentSnapshot value) {
         this.value = value;
         if (onValueChangedListner != null) {
-            onValueChangedListner.onChanged(value);
+            onValueChangedListner.onChanged(DocLookupTextInputView.this.getId(), value);
         }
     }
 

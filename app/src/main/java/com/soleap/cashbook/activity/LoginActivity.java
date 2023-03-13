@@ -27,6 +27,7 @@ import com.soleap.cashbook.document.User;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 
+import java.io.IOException;
 import java.util.Map;
 
 import retrofit2.Call;

@@ -33,10 +33,10 @@ public class BsDocAddNewActivity extends DocAddNewActivity {
     }
 
     protected void initInputView() {
-        inputLayoutName = (TextInputLayout)findViewById(R.id.inputLayout_name);
+        inputLayoutName = (TextInputLayout)findViewById(R.id.inputLayout_customer_name);
         swEnable = (SwitchMaterial) findViewById(R.id.sw_enable);
         swEnable.setSelected(true);
-        txtName = findViewById(R.id.txt_name);
+        txtName = findViewById(R.id.txt_customer_name);
         txtName.addTextChangedListener(this);
     }
 

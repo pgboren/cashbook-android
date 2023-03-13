@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayout_name"
+            android:id="@+id/inputLayout_customer_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,10 +33,27 @@
             app:helperText="@string/require"
             app:helperTextTextColor="#8A8989">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txt_name"
+                android:id="@+id/txt_customer_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textNoSuggestions" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayout_phonenumber"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:hint="@string/task_phonenumber"
+            app:errorEnabled="true"
+            app:helperText="@string/require"
+            app:helperTextTextColor="#8A8989">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_phonenumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.soleap.cashbook.common.widget.lookup.DocLookupTextInputView
@@ -48,7 +65,24 @@
             app:dltv_endIconDrawable="@drawable/ic_arrow_right"
             android:layout_height="wrap_content"/>
 
-        <com.soleap.cashbook.widget.PaymentOptionBottomSheetView
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayout_price"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:layout_alignParentTop="true"
+            app:errorEnabled="true"
+            app:helperText="@string/require"
+            android:hint="@string/price">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/task_price"
+                android:inputType="numberDecimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.soleap.cashbook.widget.paymentoption.PaymentOptionBottomSheetView
             android:id="@+id/task_paymentOption"
             app:potv_title = "@string/paymenttype"
             app:potv_require = "true"

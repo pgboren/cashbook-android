@@ -35,8 +35,8 @@
      }
 
      protected void initInputView() {
-         txtName = findViewById(R.id.txt_name);
-         inputLayoutName = (TextInputLayout)findViewById(R.id.inputLayout_name);
+         txtName = findViewById(R.id.txt_customer_name);
+         inputLayoutName = (TextInputLayout)findViewById(R.id.inputLayout_customer_name);
          txtName.addTextChangedListener(this);
          swEnable = (SwitchMaterial) findViewById(R.id.sw_enable);
      }
@@ -52,7 +52,7 @@
      @Override
      protected void assignValueToForm(Item model) {
          Item item = (Item) model;
-         TextInputEditText textName = findViewById(R.id.txt_name);
+         TextInputEditText textName = findViewById(R.id.txt_customer_name);
          TextInputEditText textNameKh = findViewById(R.id.txt_name_kh);
          TextInputEditText textCategory = findViewById(R.id.txt_category);
          TextInputEditText textColor = findViewById(R.id.txt_color);

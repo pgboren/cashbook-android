@@ -18,6 +18,7 @@ import com.soleap.cashbook.common.widget.CouponNumberInputView;
 import com.soleap.cashbook.common.widget.DatePickerView;
 import com.soleap.cashbook.common.widget.OnValueChanged;
 import com.soleap.cashbook.common.widget.lookup.DocLookupTextInputView;
+import com.soleap.cashbook.common.widget.lookup.OnDocLookupValueChangedListner;
 import com.soleap.cashbook.document.DocumentInfo;
 import com.soleap.cashbook.document.SaleOrder;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.BottomSheetMenu;
@@ -68,13 +69,9 @@ public class SaleOrderAddNewActivity extends DocAddNewActivity implements OnValu
         datePickerInputView = findViewById(R.id.so_datepicker);
         datePickerInputView.setOnValueChangedListner(this);
         branchInputView = findViewById(R.id.so_branch);
-        branchInputView.setOnValueChangedListner(this);
         customerInputView = findViewById(R.id.so_customer);
-        customerInputView.setOnValueChangedListner(this);
         instituteInputView = findViewById(R.id.so_institute);
-        instituteInputView.setOnValueChangedListner(this);
         itemInputView = findViewById(R.id.so_item);
-        itemInputView.setOnValueChangedListner(this);
         txtQuantity = findViewById(R.id.so_quantity);
         txtQuantity.addTextChangedListener(this);
         txtPrice = findViewById(R.id.so_price);
@@ -100,16 +97,16 @@ public class SaleOrderAddNewActivity extends DocAddNewActivity implements OnValu
             }
         });
 
-
-        itemInputView.setOnValueChangedListner(new OnValueChanged() {
+        itemInputView.setOnValueChangedListner(new OnDocLookupValueChangedListner() {
             @Override
-            public void onChanged(Object value) {
+            public void onChanged(int lookupId, DocumentSnapshot value) {
                 DocumentSnapshot doc = (DocumentSnapshot) value;
                 ViewData data = doc.getDataValue("root").getDataValue("general");
                 double price = (Double) data.getDataValue("price").getValue();
                 txtPrice.setText(String.valueOf(price));
             }
         });
+
 
     }
 

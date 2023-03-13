@@ -89,7 +89,7 @@ public abstract class ViewDocumentLooupFieldCreator extends FieldCreator {
     protected void inflateLookupView(ViewGroup valueContainer) {
         LinearLayout.LayoutParams valueParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
         View valueView = activity.getLayoutInflater().inflate(value_layout, null);
-        textName = valueView.findViewById(R.id.txt_name);
+        textName = valueView.findViewById(R.id.txt_customer_name);
         valueView.setLayoutParams(valueParams);
         valueContainer.addView(valueView);
     }

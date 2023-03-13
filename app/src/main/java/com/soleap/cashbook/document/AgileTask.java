@@ -12,8 +12,26 @@ public class AgileTask extends BsDocument {
     private String stage;
     private String board;
     private String item;
+    private double price;
     private String paymentOption;
+    private String phoneNumber;
     private long date;
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public String getPaymentOption() {
         return paymentOption;
@@ -72,6 +90,8 @@ public class AgileTask extends BsDocument {
         data.put("board", board);
         data.put("date", date);
         data.put("item", item);
+        data.put("price", price);
+        data.put("phoneNumber", phoneNumber);
         data.put("paymentOption", paymentOption);
         return data;
     }

@@ -35,7 +35,6 @@ public class SaleOrderitemInputActivity extends DocItemsViewActivity implements 
         }
         setTitle(getString(R.string.add_sale_order_item));
         dlItem = findViewById(R.id.dl_item);
-        dlItem.setOnValueChangedListner(this);
         txtPrice = findViewById(R.id.txt_price);
         txtQty = findViewById(R.id.txt_qty);
         txtQty.setFocusable(false);
@@ -43,14 +42,14 @@ public class SaleOrderitemInputActivity extends DocItemsViewActivity implements 
         txtQty.addTextChangedListener(this);
         txtPrice.addTextChangedListener(this);
 
-        dlItem.setOnValueChangedListner(new OnValueChanged() {
-            @Override
-            public void onChanged(Object value) {
-                ViewData data = ((DocumentSnapshot)value).getDataValue("root").getDataValue("general");
-                double price = (Double) data.getDataValue("price").getValue();
-                 txtPrice.setText(String.valueOf(price));
-            }
-        });
+//        dlItem.setOnValueChangedListner(new OnValueChanged() {
+//            @Override
+//            public void onChanged(Object value) {
+//                ViewData data = ((DocumentSnapshot)value).getDataValue("root").getDataValue("general");
+//                double price = (Double) data.getDataValue("price").getValue();
+//                 txtPrice.setText(String.valueOf(price));
+//            }
+//        });
 
         btnAdd = findViewById(R.id.btn_add_more);
         btnAdd.setOnClickListener(new View.OnClickListener() {

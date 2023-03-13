@@ -1,4 +1,4 @@
-package com.soleap.cashbook.widget;
+package com.soleap.cashbook.widget.paymentoption;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -18,11 +18,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.soleap.cashbook.R;
+import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.common.widget.OnValueChanged;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.BottomSheetMenu;
-import com.soleap.cashbook.common.widget.bottomsheetmenu.MenuItem;
 
-public class PaymentOptionBottomSheetView extends LinearLayout implements BottomSheetMenu.BottomSheetMenuItemClickListener {
+public class PaymentOptionBottomSheetView extends LinearLayout implements PaymentOptionBottomSheetItemClickListener {
 
     private static final String TAG = "PaymentOptionBottomSheetView";
     private String value = null;
@@ -62,10 +62,21 @@ public class PaymentOptionBottomSheetView extends LinearLayout implements Bottom
         textInputLayout.setEndIconOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                PaymentOptionBottomSheet bottomSheet = new PaymentOptionBottomSheet();
-                bottomSheet.show(fragmentManager, TAG);
+                showPaymentOptionsMenu();
             }
         });
+
+        textInputLayout.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPaymentOptionsMenu();
+            }
+        });
+    }
+
+    private void showPaymentOptionsMenu() {
+        PaymentOptionBottomSheet bottomSheet = new PaymentOptionBottomSheet(PaymentOptionBottomSheetView.this);
+        bottomSheet.show(fragmentManager, TAG);
     }
 
     public void setValue(String value) {
@@ -77,18 +88,9 @@ public class PaymentOptionBottomSheetView extends LinearLayout implements Bottom
     }
 
     @Override
-    public void onItemClick(MenuItem item) {
-        txtValue.setText(item.getTitle());
-        value = item.getTitle().toString();
+    public void onItemClick(String option) {
+        txtValue.setText(ResourceUtil.getStringResourceByName(getContext(), option));
+        value = option;
     }
 
-    public static class PaymentOptionBottomSheet extends BottomSheetDialogFragment {
-
-        @Nullable
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.paymentoption_bottom_sheet_menu, container, false);
-            return view;
-        }
-    }
 }

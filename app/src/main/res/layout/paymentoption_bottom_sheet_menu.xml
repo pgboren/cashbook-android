@@ -1,53 +1,67 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="15dp"
     android:orientation="vertical">
 
     <TextView
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black_de"
-        android:textSize="18sp"
+        android:textColor="@color/label"
+        android:textSize="15sp"
         android:text="@string/paymenttype"/>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:id="@+id/option_full_payment"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
+        android:tag="FULL_PAYMENT"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black_de"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:text="1.បង់ផ្ដាច់"/>
+            android:textColor="@color/primaryColor"
+            android:textSize="15sp"
+            android:text="@string/payment_option_full_payment"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
-            android:text="អតិថិជនបង់ប្រាក់ផ្ទាល់នៅហាងម៉ូតូភ្លាមៗ បន្ទាប់ពីចេញវិក័បត្រលក។"/>
+            android:textColor="#BA7C7A7A"
+            android:textSize="13sp"
+            android:text="@string/full_payment_desc"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:id="@+id/option_installment_payment"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
+        android:tag="INSTALLMENT"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black_de"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:text="2. បង់រំលស់"/>
+            android:textColor="@color/primaryColor"
+            android:textSize="15sp"
+            android:text="@string/payment_option_installment"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
-            android:text="អតិថិជនបង់ប្រាក់ផ្ទាល់នៅហាងម៉ូតូភ្លាមៗ បន្ទាប់ពីចេញវិក័បត្រលក។"/>
+            android:textColor="#BA7C7A7A"
+            android:textSize="13sp"
+            android:text="@string/installment_payment_desc"/>
     </LinearLayout>
 
 </LinearLayout>
