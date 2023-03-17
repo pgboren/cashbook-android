@@ -52,6 +52,13 @@
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="adjustResize" />
 
+
+        <activity
+            android:name=".activity.task.AgileTaskViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
+
         <activity
             android:name=".activity.task.AgileTaskListActivity"
             android:screenOrientation="portrait"

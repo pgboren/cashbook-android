@@ -40,7 +40,7 @@ public class AgileTaskAddNewActivity extends DocAddNewActivity implements Bottom
     private BottomSheetMenu stageMenu;
     private PaymentOptionBottomSheetView paymentOptionButtomSheetView;
     private String boardId = "63e33a686706e92dd049204c";
-    private String stageId = "63e9dcec0759ba3dc06bfff4";
+    private String stageId = "641065cb7a8514141033c121";
     private DatePickerView dtView;
 
     @Override

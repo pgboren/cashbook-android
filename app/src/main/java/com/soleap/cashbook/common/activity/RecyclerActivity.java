@@ -20,7 +20,7 @@ import com.soleap.cashbook.document.DocumentInfo;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 
-public abstract class RecyclerActivity extends BackPressActivity {
+public abstract class RecyclerActivity extends BackPressActivity implements RecyclerViewAdapter.EventListner {
 
     public final static int ADD_NEW_ENTITY_REQUEST_CODE = 2001;
     public final static int VIEW_ENTITY_REQUEST_CODE = 2002;
@@ -91,6 +91,7 @@ public abstract class RecyclerActivity extends BackPressActivity {
             }
         };
 
+        adapter.setListner(this);
         if (DocumentInfo.getInstance(this).getAddNewActivityClass(documentName) != null) {
             adapter.setAddNewActivityClass(DocumentInfo.getInstance(this).getAddNewActivityClass(documentName));
         }
@@ -138,5 +139,24 @@ public abstract class RecyclerActivity extends BackPressActivity {
     public void finish() {
         this.adapter.notifyActivityFinish();
         super.finish();
+    }
+
+    @Override
+    public void onItemSelected(DocumentSnapshot documentSnapshot) {
+    }
+
+    @Override
+    public void onStartListening() {
+
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
+    }
+
+    @Override
+    public void onStopListening() {
+
     }
 }

@@ -1,17 +1,24 @@
 package com.soleap.cashbook.activity.task;
 
+import android.content.Intent;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.chip.ChipGroup;
+import com.soleap.cashbook.Global;
 import com.soleap.cashbook.R;
+import com.soleap.cashbook.activity.ActivityProviderFactory;
 import com.soleap.cashbook.adapter.TaskRecyclerViewAdapter;
+import com.soleap.cashbook.common.activity.ModelViewActivity;
 import com.soleap.cashbook.common.activity.RecyclerActivity;
+import com.soleap.cashbook.common.adapter.PagingRecyclerViewAdapter;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.MenuItem;
 import com.soleap.cashbook.document.DocumentInfo;
@@ -23,7 +30,11 @@ public class AgileTaskListActivity extends RecyclerActivity implements BottomShe
 
     private static final String TAG = "AgileTaskListActivity";
     private StageChipGroup chipStage;
-    private String newStage = "63e9dcec0759ba3dc06bfff4";
+    private String newStage = Global.agile_stage;
+    private String board = Global.agile_board;
+    private String seletingStage = null;
+
+
 
     @Override
     protected void bindListItemViewHolder(View itemView, int position, DocumentSnapshot doc) {
@@ -34,6 +45,8 @@ public class AgileTaskListActivity extends RecyclerActivity implements BottomShe
     @Override
     protected void setViewContent() {
         super.setViewContent();
+        this.seletingStage = getIntent().getStringExtra(DocumentInfo.DOCUMENT_ID);
+        Log.d(TAG, this.seletingStage);
     }
 
     @Override
@@ -45,11 +58,29 @@ public class AgileTaskListActivity extends RecyclerActivity implements BottomShe
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         chipStage = findViewById(R.id.stageChip);
-        chipStage.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
+        chipStage.setStageValueChangedListner(new StageChipGroup.OnStageValueChangedListner() {
             @Override
-            public void onCheckedChanged(ChipGroup group, int checkedId) {
-                loadTasks(chipStage.getSelectedStage());
+            public void OnChange(String value) {
+                loadTasks(value);
             }
+        });
+        initScrollListener();
+    }
+
+    private void initScrollListener() {
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                    if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == adapter.getItemCount() - 1) {
+                        ((PagingRecyclerViewAdapter)adapter).moveNextPage();
+                    }
+                }
         });
     }
 
@@ -58,7 +89,7 @@ public class AgileTaskListActivity extends RecyclerActivity implements BottomShe
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                loadTasks(chipStage.getSelectedStage());
+//                loadTasks(chipStage.getSelectedStage());
             }
         }, 500);
     }
@@ -73,18 +104,19 @@ public class AgileTaskListActivity extends RecyclerActivity implements BottomShe
         TaskRecyclerViewAdapter taskRecyclerViewAdapter = (TaskRecyclerViewAdapter)adapter;
         String[] stages = new String[1];
         stages[0] = stageId;
-        taskRecyclerViewAdapter.loadMore(stages, 1);
+        taskRecyclerViewAdapter.loadPage(Global.agile_board, stages, 1);
+
     }
 
     @Override
     public void onItemClick(MenuItem item) {
-
     }
 
     @Override
     protected void initRecyclerViewAdapter() {
         final ShimmerFrameLayout container = (ShimmerFrameLayout) findViewById(R.id.shimmerLayout);
         adapter = new TaskRecyclerViewAdapter(this, documentName, DocumentInfo.getInstance(this).getListItemLayout(documentName));
+        adapter.setListner(this);
         if (DocumentInfo.getInstance(this).getAddNewActivityClass(documentName) != null) {
             adapter.setAddNewActivityClass(DocumentInfo.getInstance(this).getAddNewActivityClass(documentName));
         }
@@ -92,5 +124,27 @@ public class AgileTaskListActivity extends RecyclerActivity implements BottomShe
         if (DocumentInfo.getInstance(this).getViewActivityClass(documentName) != null) {
             adapter.setViewActivityClass(DocumentInfo.getInstance(this).getViewActivityClass(documentName));
         }
+        adapter.setListner(this);
+    }
+
+    @Override
+    public void onStartListening() {
+        super.onStartListening();
+        this.chipStage.setChipEnable(false);
+    }
+
+    @Override
+    public void onStopListening() {
+        super.onStopListening();
+        this.chipStage.setChipEnable(true);
+    }
+
+    @Override
+    public void onItemSelected(DocumentSnapshot doc) {
+        Intent intent = new Intent(this, ActivityProviderFactory.getViewActivity(documentName));
+        intent.putExtra(DocumentInfo.DOCUMENT_NAME, documentName);
+        intent.putExtra(ModelViewActivity.KEY_DOC, doc);
+        intent.putExtra(ModelViewActivity.KEY_MODEL_ID, doc.getId());
+        startActivity(intent);
     }
 }

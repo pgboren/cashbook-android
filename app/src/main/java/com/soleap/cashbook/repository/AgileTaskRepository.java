@@ -16,8 +16,8 @@ public class AgileTaskRepository extends DocumentSnapshotRepository {
         super(DocumentInfo.AGILE_TASK);
     }
 
-    public void getTasks(String[] stageIds, int page) {
-        Call<PagingRecyclerViewData> call = apiInterface.getTasks(page, stageIds);
+    public void getTasks(String board, String[] stageIds, int page) {
+        Call<PagingRecyclerViewData> call = apiInterface.getTasks(page, stageIds, board);
         call.enqueue(new Callback<PagingRecyclerViewData>() {
             @Override
             public void onResponse(Call<PagingRecyclerViewData> call, Response<PagingRecyclerViewData> response) {

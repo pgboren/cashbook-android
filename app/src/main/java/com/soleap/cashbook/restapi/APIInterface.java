@@ -128,7 +128,7 @@ public interface APIInterface {
     Call<User> login(@Body Map<String, Object> usernameAndPassword);
 
     @GET("agile/tasks")
-    Call<PagingRecyclerViewData> getTasks(@Query("page") int page, @Query("stages") String[] stages);
+    Call<PagingRecyclerViewData> getTasks(@Query("page") int page, @Query("stages") String[] stages, @Query("board") String board);
 
 }
 

@@ -23,6 +23,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:paddingRight="10dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
@@ -31,14 +32,15 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black_de"
                 android:textStyle="bold"
+                android:layout_marginBottom="4dp"
                 android:text="Hoan Soleap - Hongda Dream 2023"/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="25dp"
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/txt_date"
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:textColor="#F4511E"
                     android:textSize="12sp"
@@ -64,30 +66,32 @@
             <TextView
                 android:id="@+id/txt_item"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="25dp"
                 android:textColor="#01579B"
                 android:textSize="12sp"
                 android:text="ហុងដាឌ្រីម (អាសង់) 2023"/>
             <TextView
                 android:id="@+id/txt_description"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:textColor="#212121"
                 android:textSize="12sp"
                 android:text="070433123, 0969798928, ធ្វើការរោងចក្រ, អត់មានអត្តសញ្ញាប័ណ្ណ បង់យឺតនៅ KK"/>
         </LinearLayout>
+
         <TextView
             android:id="@+id/txt_stage"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:textAlignment="center"
             android:background="@drawable/bg_round_corner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:paddingTop="2dp"
+            android:paddingRight="10dp"
             android:paddingBottom="2dp"
-            android:textColor="@color/white"
-            android:textSize="12dp"
-            android:text="អតិថិជនថ្នី"/>
+            android:text="អតិថិជនថ្នី"
+            android:textColor="@color/black_de"
+            android:textSize="12dp" />
     </LinearLayout>
 
 

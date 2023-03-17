@@ -1,11 +1,16 @@
 package com.soleap.cashbook.activity;
 
+import com.soleap.cashbook.activity.task.AgileTaskViewActivity;
 import com.soleap.cashbook.common.activity.BsDocViewActivity;
 import com.soleap.cashbook.document.DocumentInfo;
 
 public class ActivityProviderFactory {
 
     public static Class getViewActivity(String entityName) {
+
+        if (entityName.equals(DocumentInfo.AGILE_TASK)) {
+            return AgileTaskViewActivity.class;
+        }
 
         if (entityName.equals(DocumentInfo.CONTACT)) {
             return BsDocViewActivity.class;

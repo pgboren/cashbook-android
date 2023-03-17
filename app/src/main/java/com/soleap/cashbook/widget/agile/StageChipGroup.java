@@ -1,11 +1,13 @@
 package com.soleap.cashbook.widget.agile;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -21,22 +23,32 @@ import java.util.List;
 
 public class StageChipGroup extends ChipGroup {
 
+    private OnStageValueChangedListner stageValueChangedListner;
+
     private List<DocumentSnapshot> stages;
     private Chip allChip;
-    private String selectedStage = null;
 
-    public String getSelectedStage() {
-        return selectedStage;
+    public void setStageValueChangedListner(OnStageValueChangedListner stageValueChangedListner) {
+        this.stageValueChangedListner = stageValueChangedListner;
     }
 
-    public void setSelectedStage(String selectedStage) {
-        this.selectedStage = selectedStage;
+    public void checkChipByStage(String stage, boolean check) {
+        for (int i = 0; i < StageChipGroup.this.getChildCount(); i++) {
+            Chip chip = (Chip)this.getChildAt(i);
+            if (chip.getTag().toString().equals(stage)) {
+                chip.setChecked(check);
+            }
+        }
+    }
+
+    public void checkChip(int position) {
+        Chip chip = (Chip) getChildAt(position);
+        chip.setChecked(true);
     }
 
     public StageChipGroup(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.StageChipGroup, 0, 0);
-        selectedStage = a.getString(R.styleable.StageChipGroup_selectedStage);
+        setSingleSelection(true);
         builStageChips();
     }
 
@@ -63,6 +75,12 @@ public class StageChipGroup extends ChipGroup {
         }
     };
 
+    public void setChipEnable(boolean enabled) {
+        for (int i = 0; i < getChildCount(); i++) {
+            getChildAt(i).setEnabled(enabled);
+        }
+    }
+
     protected void builStageChips() {
         DocumentSnapshotRepository repository = RepositoryFactory.create().get(DocumentInfo.AGILE_STAGE);
         repository.setListDocumentListner(new DocumentSnapshotRepository.OnListedDocumentListner() {
@@ -71,19 +89,16 @@ public class StageChipGroup extends ChipGroup {
                 stages = stageDocs;
                 for (DocumentSnapshot stageDoc : stageDocs) {
                     Chip chip = new Chip(getContext(), null, R.attr.CustomChipChoiceStyle);
-                    if (selectedStage.equals(stageDoc.getId())) {
-                        chip.setChecked(true);
-                    }
                     chip.setTag(stageDoc.getId());
+
+                    chip.setChipBackgroundColor(ColorStateList.valueOf(Color.parseColor(stageDoc.getDataValue("color").getValue().toString())));
                     chip.setText(stageDoc.getDataValue("name").getValue().toString());
                     chip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                            Log.i("test", chip.getTag().toString());
                             if (isChecked) {
-                                selectedStage = chip.getTag().toString();
-//                                Toast toast=Toast.makeText(getContext(),selectedStage,Toast.LENGTH_SHORT);
-//                                toast.setMargin(50,50);
-//                                toast.show();
+                                stageValueChangedListner.OnChange(chip.getTag().toString());
                             }
                         }
                     });
@@ -95,5 +110,9 @@ public class StageChipGroup extends ChipGroup {
             }
         });
         repository.list();
+    }
+
+    public interface OnStageValueChangedListner {
+        void OnChange(String value);
     }
 }

@@ -6,6 +6,7 @@ import com.soleap.cashbook.R;
 import com.soleap.cashbook.activity.BsColorDocAddNewActivity;
 import com.soleap.cashbook.activity.SaleOrderAddNewActivity;
 import com.soleap.cashbook.activity.task.AgileTaskAddNewActivity;
+import com.soleap.cashbook.activity.task.AgileTaskViewActivity;
 import com.soleap.cashbook.common.activity.BsColorDocEditActivity;
 import com.soleap.cashbook.common.activity.BsDocAddNewActivity;
 import com.soleap.cashbook.common.activity.BsDocEditActivity;
@@ -192,6 +193,10 @@ public class DocumentInfo {
     }
 
     public Class getViewActivityClass(String key) {
+
+        if (key.equals(AGILE_TASK)) {
+            return AgileTaskViewActivity.class;
+        }
 
         if (key.equals(BRANCH)) {
             return BsDocViewActivity.class;
