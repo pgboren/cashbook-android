@@ -53,17 +53,17 @@
 
         <!--Name-->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayout_last_name"
+            android:id="@+id/inputLayout_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:hint="@string/last_name"
+            android:hint="@string/namekh"
             app:errorEnabled="true"
             app:helperText="@string/require"
             app:helperTextTextColor="#8A8989">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txt_last_name"
+                android:id="@+id/txt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textNoSuggestions" />
@@ -77,17 +77,17 @@
         android:orientation="horizontal">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayout_first_name"
+            android:id="@+id/inputLayout_latin_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:hint="@string/first_name"
+            android:hint="@string/latinname"
             app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:helperText="@string/require"
             app:helperTextTextColor="#8A8989">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txt_first_name"
+                android:id="@+id/txt_latin_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textNoSuggestions" />

@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:gravity="bottom"
-            android:textSize="@dimen/title"
+            android:textSize="@dimen/list_item_content"
             android:textColor="@color/secondaryTextColor"
             android:text="#ffaacc"/>
 

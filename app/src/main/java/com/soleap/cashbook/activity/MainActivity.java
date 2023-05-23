@@ -14,7 +14,7 @@ import com.soleap.cashbook.Global;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.activity.BsDocListActivity;
 import com.soleap.cashbook.content.AppPrefrences;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -22,10 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ActivityCompat.OnRequestPermissionsResultCallback {
@@ -128,37 +125,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_signOut) {
             AppPrefrences.signOut(this);
             intent = new Intent(this, LoginActivity.class);
-            intent.putExtra(DocumentInfo.DOCUMENT_NAME, DocumentInfo.CONTACT);
+            intent.putExtra(DocumentName.DOCUMENT_NAME, DocumentName.CONTACT);
             startActivity(intent);
             finish();
         }
 
         if (id == R.id.nav_add_contact) {
             intent = new Intent(this, ContactAddNewActivity.class);
-            intent.putExtra(DocumentInfo.DOCUMENT_NAME, DocumentInfo.CONTACT);
+            intent.putExtra(DocumentName.DOCUMENT_NAME, DocumentName.CONTACT);
             startActivity(intent);
             return true;
         }
 
         if (id == R.id.nav_add_new_deal) {
-            documentName = DocumentInfo.SALE_ORDER;
+            documentName = DocumentName.SALE_ORDER;
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);
             drawer.closeDrawer(GravityCompat.START);
             intent = new Intent(this, SaleOrderAddNewActivity.class);
-            intent.putExtra(DocumentInfo.DOCUMENT_NAME, documentName);
+            intent.putExtra(DocumentName.DOCUMENT_NAME, documentName);
             startActivity(intent);
             return true;
         }
 
         if (id == R.id.nav_contact_list) {
-            documentName = DocumentInfo.CONTACT;
+            documentName = DocumentName.CONTACT;
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);
         drawer.closeDrawer(GravityCompat.START);
         intent = new Intent(this, BsDocListActivity.class);
-        intent.putExtra(DocumentInfo.DOCUMENT_NAME, documentName);
+        intent.putExtra(DocumentName.DOCUMENT_NAME, documentName);
         startActivity(intent);
         return true;
     }

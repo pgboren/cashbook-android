@@ -19,7 +19,7 @@ import com.soleap.cashbook.activity.ContactAddNewActivity;
 import com.soleap.cashbook.activity.ContactEditActivity;
 import com.soleap.cashbook.common.document.Document;
 
-public class DocumentInfo {
+public class DocumentName {
 
     public static final String DOCUMENT_NAME = "DOCUMENT_NAME";
     public static final String DOCUMENT_ID = "DOCUMENT_ID";
@@ -36,52 +36,52 @@ public class DocumentInfo {
     public static String AGILE_STAGE = "agilestage";
     public static String AGILE_TASK = "agiletask";
 
-    public static DocumentInfo instance;
+    public static DocumentName instance;
 
     private Context context;
 
-    public DocumentInfo(Context context) {
+    public DocumentName(Context context) {
         this.context = context;
     }
 
-    public static DocumentInfo getInstance(Context context) {
+    public static DocumentName getInstance(Context context) {
         if (instance == null) {
-            instance = new DocumentInfo(context);
+            instance = new DocumentName(context);
         }
         return instance;
     }
 
     public Document createDocument(String documentName) {
 
-        if (documentName.equals(DocumentInfo.SALE_ORDER)) {
+        if (documentName.equals(DocumentName.SALE_ORDER)) {
             return new SaleOrder();
         }
 
-        if (documentName.equals(DocumentInfo.ITEM)) {
+        if (documentName.equals(DocumentName.ITEM)) {
             return new Item();
         }
 
-        if (documentName.equals(DocumentInfo.INSTITUE)) {
+        if (documentName.equals(DocumentName.INSTITUE)) {
             return new Institute();
         }
 
-        if (documentName.equals(DocumentInfo.COLOR)) {
+        if (documentName.equals(DocumentName.COLOR)) {
             return new Color();
         }
 
-        if (documentName.equals(DocumentInfo.BRANCH)) {
+        if (documentName.equals(DocumentName.BRANCH)) {
             return new Branch();
         }
 
-        if (documentName.equals(DocumentInfo.CATEGORY)) {
+        if (documentName.equals(DocumentName.CATEGORY)) {
             return new Category();
         }
 
-        if (documentName.equals(DocumentInfo.CONTACT)) {
+        if (documentName.equals(DocumentName.CONTACT)) {
             return new Contact();
         }
 
-        if (documentName.equals(DocumentInfo.AGILE_TASK)) {
+        if (documentName.equals(DocumentName.AGILE_TASK)) {
             return new AgileTask();
         }
 
@@ -225,37 +225,37 @@ public class DocumentInfo {
         return null;
     }
 
-    public int getListItemLayout(String key) {
+    public int getListItemLayoutView(String key) {
 
-        if (key.equals(AGILE_TASK)) {
-            return R.layout.list_item_task;
-        }
+//        if (key.equals(AGILE_TASK)) {
+//            return R.layout.list_item_task;
+//        }
+//
+//        if (key.equals(CONTACT)) {
+//            return R.layout.list_item_contact;
+//        }
+//
+//        if (key.equals(ITEM)) {
+//            return R.layout.list_item_item;
+//        }
+//
+//        if (key.equals(INSTITUE)) {
+//            return R.layout.list_item_institute;
+//        }
+//
+//        if (key.equals(COLOR)) {
+//            return R.layout.list_item_view;
+//        }
+//
+//        if (key.equals(BRANCH)) {
+//            return R.layout.list_item_view;
+//        }
+//
+//        if (key.equals(CATEGORY)) {
+//            return R.layout.list_item_view;
+//        }
 
-        if (key.equals(CONTACT)) {
-            return R.layout.list_item_contact;
-        }
-
-        if (key.equals(ITEM)) {
-            return R.layout.list_item_item;
-        }
-
-        if (key.equals(INSTITUE)) {
-            return R.layout.list_item_institute;
-        }
-
-        if (key.equals(COLOR)) {
-            return R.layout.list_item_bsdoc;
-        }
-
-        if (key.equals(BRANCH)) {
-            return R.layout.list_item_bsdoc;
-        }
-
-        if (key.equals(CATEGORY)) {
-            return R.layout.list_item_bsdoc;
-        }
-
-        throw new RuntimeException("Stub!");
+        return R.layout.list_item_name_view;
     }
 
     public int getListActivityLayout(String key) {
@@ -292,11 +292,11 @@ public class DocumentInfo {
     }
 
     public Class getDocumentClass(String documentName) {
-        if (documentName.equals(DocumentInfo.BRANCH)) {
+        if (documentName.equals(DocumentName.BRANCH)) {
             return Branch.class;
         }
 
-        if (documentName.equals(DocumentInfo.CATEGORY)) {
+        if (documentName.equals(DocumentName.CATEGORY)) {
             return Category.class;
         }
 

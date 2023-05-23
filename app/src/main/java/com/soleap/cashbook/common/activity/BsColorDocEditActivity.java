@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.document.BsDocument;
 import com.soleap.cashbook.document.Color;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 
 import java.util.ArrayList;
 
@@ -130,7 +130,7 @@ public class BsColorDocEditActivity extends BsDocEditActivity  {
 
     @Override
     protected void setViewContent() {
-        this.documentName = getIntent().getExtras().getString(DocumentInfo.DOCUMENT_NAME);
+        this.documentName = getIntent().getExtras().getString(DocumentName.DOCUMENT_NAME);
         setContentView(R.layout.activity_form_color);
         initInputView();
         createColorCode();

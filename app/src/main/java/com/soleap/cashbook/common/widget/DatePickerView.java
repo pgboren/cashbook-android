@@ -33,7 +33,10 @@ public class DatePickerView extends LinearLayout {
         super(context, attrs);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DatePickerView, 0, 0);
-        String title = a.getString(R.styleable.DatePickerView_dpv_title);
+        String label = a.getString(R.styleable.DatePickerView_dpv_label);
+
+        int colorCode = a.getColor(R.styleable.DatePickerView_dpv_text_color, context.getColor(R.color.label));
+
         boolean isRequire = a.getBoolean(R.styleable.DatePickerView_dpv_require, false);
         a.recycle();
 
@@ -41,15 +44,19 @@ public class DatePickerView extends LinearLayout {
         setGravity(Gravity.CENTER_VERTICAL);
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.date_picker, this, true);
+        inflater.inflate(R.layout.date_picker_view, this, true);
 
-        TextInputLayout textInputLayout = findViewById(R.id.textInputLayout);
-        textInputLayout.setHint(title);
-        textInputLayout.setErrorEnabled(isRequire);
-        textInputLayout.setHelperText(context.getText(R.string.require));
-        textInputLayout.setEndIconOnClickListener(new OnClickListener() {
+        View rootView = findViewById(R.id.root_view);
+
+        TextView tvLabel = findViewById(R.id.label);
+        TextView tvValue = findViewById(R.id.text_value);
+        tvValue.setTextColor(colorCode);
+        tvLabel.setText(label);
+
+        rootView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 final Calendar cal = Calendar.getInstance();
                 DatePickerDialog.OnDateSetListener date =new DatePickerDialog.OnDateSetListener() {
                     @Override
@@ -73,7 +80,7 @@ public class DatePickerView extends LinearLayout {
 
     public void setValue(Calendar cal) {
         String myFormat="dd/MM/yyyy";
-        TextView txtDate = findViewById(R.id.txt_value);
+        TextView txtDate = findViewById(R.id.text_value);
         SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
         txtDate.setText(dateFormat.format(cal.getTime()));
         value = cal;

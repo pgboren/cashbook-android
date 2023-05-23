@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:textColor="@color/label"
         android:maxLines="1"
-        android:textSize="@dimen/title"/>
+        android:textSize="@dimen/list_item_content"/>
 
     <LinearLayout
             android:visibility="visible"
@@ -68,7 +68,7 @@
                             app:shapeAppearanceOverlay="@style/circleImageView"
                             android:src="@drawable/logo" />
 
-                        <TextView android:id="@+id/circle_box"
+                        <TextView android:id="@+id/txt_short_name"
                             android:background="@drawable/bg_circle"
                             android:layout_gravity="center"
                             android:layout_width="40dp"

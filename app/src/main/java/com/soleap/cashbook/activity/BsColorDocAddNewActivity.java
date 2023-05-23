@@ -7,7 +7,7 @@ import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.activity.BsDocAddNewActivity;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.document.Color;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 
 import java.util.ArrayList;
 
@@ -128,7 +128,7 @@ public class BsColorDocAddNewActivity extends BsDocAddNewActivity {
 
     @Override
     protected void setViewContent() {
-        this.documentName = getIntent().getExtras().getString(DocumentInfo.DOCUMENT_NAME);
+        this.documentName = getIntent().getExtras().getString(DocumentName.DOCUMENT_NAME);
         setContentView(R.layout.activity_form_color);
         initInputView();
         createColorCode();

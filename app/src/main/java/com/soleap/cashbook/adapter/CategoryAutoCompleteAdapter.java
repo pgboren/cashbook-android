@@ -45,7 +45,7 @@ public class CategoryAutoCompleteAdapter extends ListAdapter<Category, CategoryA
     @NonNull
     @Override
     public ListItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_bsdoc, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_name_view, parent, false);
         return new ListItemViewHolder(v);
     }
 

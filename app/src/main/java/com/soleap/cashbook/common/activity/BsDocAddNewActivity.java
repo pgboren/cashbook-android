@@ -6,7 +6,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.activity.DocAddNewActivity;
 import com.soleap.cashbook.common.document.Document;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.common.document.BsDocument;
 
 public class BsDocAddNewActivity extends DocAddNewActivity {
@@ -20,7 +20,7 @@ public class BsDocAddNewActivity extends DocAddNewActivity {
 
     @Override
     protected void setViewContent() {
-        this.documentName = getIntent().getExtras().getString(DocumentInfo.DOCUMENT_NAME);
+        this.documentName = getIntent().getExtras().getString(DocumentName.DOCUMENT_NAME);
         setContentView(R.layout.activity_form_bsdoc);
         initInputView();
     }

@@ -16,7 +16,7 @@ public class CategoryListAdapter extends RestApiRecyclerViewAdapter<Category, Ca
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_bsdoc, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_name_view, parent, false);
         return new ViewHolder(view);
     }
 
@@ -32,7 +32,7 @@ public class CategoryListAdapter extends RestApiRecyclerViewAdapter<Category, Ca
         }
 
         void onBind(final int position, final Category data) {
-            TextView textPrefix = itemView.findViewById(R.id.circle_box);
+            TextView textPrefix = itemView.findViewById(R.id.txt_short_name);
             TextView txtName = itemView.findViewById(R.id.txt_customer_name);
             txtName.setText(data.getName());
             textPrefix.setText(data.getName().substring(0, 1).toUpperCase());

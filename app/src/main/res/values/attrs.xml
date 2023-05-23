@@ -125,12 +125,14 @@
     </declare-styleable>
 
     <declare-styleable name="DatePickerView">
-        <attr name="dpv_title" format="string"/>
+        <attr name="dpv_label" format="string"/>
+        <attr name="dpv_text_color" format="color"/>
         <attr name="dpv_require" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="PaymentOptionView">
-        <attr name="potv_title" format="string"/>
+        <attr name="potv_label" format="string"/>
+        <attr name="potv_text_color" format="color"/>
         <attr name="potv_require" format="boolean"/>
     </declare-styleable>
 

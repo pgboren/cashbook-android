@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.google.android.material.chip.ChipGroup;
 import com.soleap.cashbook.Global;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.activity.ActivityProviderFactory;
@@ -21,8 +20,8 @@ import com.soleap.cashbook.common.activity.RecyclerActivity;
 import com.soleap.cashbook.common.adapter.PagingRecyclerViewAdapter;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.MenuItem;
-import com.soleap.cashbook.document.DocumentInfo;
-import com.soleap.cashbook.viewholder.BsDocViewHolder;
+import com.soleap.cashbook.document.DocumentName;
+import com.soleap.cashbook.viewholder.DocListItemViewHolder;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.BottomSheetMenu;
 import com.soleap.cashbook.widget.agile.StageChipGroup;
 
@@ -34,18 +33,10 @@ public class AgileTaskListActivity extends RecyclerActivity implements BottomShe
     private String board = Global.agile_board;
     private String seletingStage = null;
 
-
-
-    @Override
-    protected void bindListItemViewHolder(View itemView, int position, DocumentSnapshot doc) {
-        BsDocViewHolder viewHolder = new BsDocViewHolder(this, documentName);
-        viewHolder.bind(itemView, position, doc);
-    }
-
     @Override
     protected void setViewContent() {
         super.setViewContent();
-        this.seletingStage = getIntent().getStringExtra(DocumentInfo.DOCUMENT_ID);
+        this.seletingStage = getIntent().getStringExtra(DocumentName.DOCUMENT_ID);
         Log.d(TAG, this.seletingStage);
     }
 
@@ -104,7 +95,7 @@ public class AgileTaskListActivity extends RecyclerActivity implements BottomShe
         TaskRecyclerViewAdapter taskRecyclerViewAdapter = (TaskRecyclerViewAdapter)adapter;
         String[] stages = new String[1];
         stages[0] = stageId;
-        taskRecyclerViewAdapter.loadPage(Global.agile_board, stages, 1);
+        taskRecyclerViewAdapter.loadPage(1);
 
     }
 
@@ -115,14 +106,14 @@ public class AgileTaskListActivity extends RecyclerActivity implements BottomShe
     @Override
     protected void initRecyclerViewAdapter() {
         final ShimmerFrameLayout container = (ShimmerFrameLayout) findViewById(R.id.shimmerLayout);
-        adapter = new TaskRecyclerViewAdapter(this, documentName, DocumentInfo.getInstance(this).getListItemLayout(documentName));
+        adapter = new TaskRecyclerViewAdapter(this, documentName, DocumentName.getInstance(this).getListItemLayoutView(documentName));
         adapter.setListner(this);
-        if (DocumentInfo.getInstance(this).getAddNewActivityClass(documentName) != null) {
-            adapter.setAddNewActivityClass(DocumentInfo.getInstance(this).getAddNewActivityClass(documentName));
+        if (DocumentName.getInstance(this).getAddNewActivityClass(documentName) != null) {
+            adapter.setAddNewActivityClass(DocumentName.getInstance(this).getAddNewActivityClass(documentName));
         }
 
-        if (DocumentInfo.getInstance(this).getViewActivityClass(documentName) != null) {
-            adapter.setViewActivityClass(DocumentInfo.getInstance(this).getViewActivityClass(documentName));
+        if (DocumentName.getInstance(this).getViewActivityClass(documentName) != null) {
+            adapter.setViewActivityClass(DocumentName.getInstance(this).getViewActivityClass(documentName));
         }
         adapter.setListner(this);
     }
@@ -142,7 +133,7 @@ public class AgileTaskListActivity extends RecyclerActivity implements BottomShe
     @Override
     public void onItemSelected(DocumentSnapshot doc) {
         Intent intent = new Intent(this, ActivityProviderFactory.getViewActivity(documentName));
-        intent.putExtra(DocumentInfo.DOCUMENT_NAME, documentName);
+        intent.putExtra(DocumentName.DOCUMENT_NAME, documentName);
         intent.putExtra(ModelViewActivity.KEY_DOC, doc);
         intent.putExtra(ModelViewActivity.KEY_MODEL_ID, doc.getId());
         startActivity(intent);

@@ -8,12 +8,8 @@
         <item name="android:textColorPrimary">@color/primaryTextColor</item>
         <item name="android:textColorSecondary">@android:color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
-3        <item name="android:windowFullscreen">false</item>
-<!--        <item name="colorControlHighlight">@color/primaryLightColor</item>-->
+        <item name="android:windowFullscreen">false</item>
         <item name="android:textColorHint">@color/white</item>
-<!--        <item name="colorControlActivated">@color/white</item>-->
-<!--        <item name="colorControlHighlight">@color/white</item>-->
-<!--        <item name="colorControlNormal">@color/white</item>-->
         <item name="android:fontFamily">@font/battambang</item>
         <item name="CustomChipChoiceStyle">@style/ChipCustomStyle</item>
     </style>
@@ -37,7 +33,7 @@
     <style name="OutlinedCircleButton" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:minHeight">60dip</item>
         <item name="android:textColor">@color/white</item>
-        <item name="iconTint">@color/white</item>
+        <item name="iconTint">@color/red_light</item>
         <item name="strokeColor">@color/color_state_materialbutton</item>
         <item name="iconStartPadding">0dp</item>
         <item name="iconGravity">textStart</item>
@@ -73,6 +69,11 @@
     <style name="ChipCustomStyle" parent="@style/Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/chip_background_color</item>
         <item name="android:textColor">@color/chip_text_color</item>
+    </style>
+
+    <style name="FullscreenDialogTheme" parent="Theme.AppCompat.Light.DialogWhenLarge">
+        <item name="android:statusBarColor">@color/primaryColor</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>

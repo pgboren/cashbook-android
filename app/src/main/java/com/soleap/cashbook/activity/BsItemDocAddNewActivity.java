@@ -13,7 +13,7 @@ import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.document.Category;
 import com.soleap.cashbook.document.Color;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.document.Item;
 
 public class BsItemDocAddNewActivity extends BsDocAddNewActivity {
@@ -43,7 +43,7 @@ public class BsItemDocAddNewActivity extends BsDocAddNewActivity {
 
     @Override
     protected void setViewContent() {
-        this.documentName = getIntent().getExtras().getString(DocumentInfo.DOCUMENT_NAME);
+        this.documentName = getIntent().getExtras().getString(DocumentName.DOCUMENT_NAME);
         setContentView(R.layout.activity_form_item);
         initInputView();
         textCategory = findViewById(R.id.txt_category);
@@ -53,7 +53,7 @@ public class BsItemDocAddNewActivity extends BsDocAddNewActivity {
         textCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lookupDocument(DocumentInfo.CATEGORY, BsDocLookUpActivity.LOOK_UP_CATEGORY_REQUEST_CODE);
+                lookupDocument(DocumentName.CATEGORY, BsDocLookUpActivity.LOOK_UP_CATEGORY_REQUEST_CODE);
             }
         });
 
@@ -64,7 +64,7 @@ public class BsItemDocAddNewActivity extends BsDocAddNewActivity {
         textColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lookupDocument(DocumentInfo.COLOR, BsDocLookUpActivity.LOOK_UP_COLOR_REQUEST_CODE);
+                lookupDocument(DocumentName.COLOR, BsDocLookUpActivity.LOOK_UP_COLOR_REQUEST_CODE);
             }
         });
 
@@ -72,7 +72,7 @@ public class BsItemDocAddNewActivity extends BsDocAddNewActivity {
 
     private void lookupDocument(String documentName,  int requestCode) {
         Intent intent = new Intent(this, BsDocLookUpActivity.class);
-        intent.putExtra(DocumentInfo.DOCUMENT_NAME, documentName);
+        intent.putExtra(DocumentName.DOCUMENT_NAME, documentName);
         startActivityForResult(intent, requestCode);
     }
 

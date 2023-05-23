@@ -18,7 +18,7 @@
         android:textColor="@color/gray_light"
         android:maxLines="1"
         android:textStyle="bold"
-        android:textSize="@dimen/title"/>
+        android:textSize="@dimen/list_item_content"/>
 
     <LinearLayout
         android:id="@+id/value_view_container"

@@ -44,7 +44,7 @@ public class PaymentOptionBottomSheetView extends LinearLayout implements Paymen
         super(context, attrs);
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PaymentOptionView, 0, 0);
-        this.title = a.getString(R.styleable.PaymentOptionView_potv_title);
+        this.title = a.getString(R.styleable.PaymentOptionView_potv_label);
         boolean isRequired = a.getBoolean(R.styleable.PaymentOptionView_potv_require, false);
         a.recycle();
 
@@ -87,8 +87,12 @@ public class PaymentOptionBottomSheetView extends LinearLayout implements Paymen
         return value;
     }
 
-    @Override
+    @
+
+
+            Override
     public void onItemClick(String option) {
+
         txtValue.setText(ResourceUtil.getStringResourceByName(getContext(), option));
         value = option;
     }

@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.soleap.cashbook.common.document.PagingRecyclerViewData;
 import com.soleap.cashbook.common.repository.DocumentSnapshotRepository;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -13,7 +13,7 @@ import retrofit2.Response;
 public class AgileTaskRepository extends DocumentSnapshotRepository {
 
     public AgileTaskRepository() {
-        super(DocumentInfo.AGILE_TASK);
+        super(DocumentName.AGILE_TASK);
     }
 
     public void getTasks(String board, String[] stageIds, int page) {

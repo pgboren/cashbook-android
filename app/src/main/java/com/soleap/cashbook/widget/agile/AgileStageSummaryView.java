@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,8 +18,8 @@ import com.soleap.cashbook.R;
 import com.soleap.cashbook.activity.task.AgileTaskListActivity;
 import com.soleap.cashbook.common.adapter.RecyclerViewAdapter;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
-import com.soleap.cashbook.document.DocumentInfo;
-import com.soleap.cashbook.viewholder.BsDocViewHolder;
+import com.soleap.cashbook.document.DocumentName;
+import com.soleap.cashbook.viewholder.DocListItemViewHolder;
 
 public class AgileStageSummaryView extends LinearLayout implements RecyclerViewAdapter.EventListner {
 
@@ -31,33 +32,34 @@ public class AgileStageSummaryView extends LinearLayout implements RecyclerViewA
         inflater.inflate(R.layout.view_dashboard_task_summary, this, true);
         RecyclerView rvStageView = findViewById(R.id.rv_stage_summary);
         rvStageView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), DocumentInfo.AGILE_STAGE, R.layout.agile_stage_summary_view_item) {
-            @Override
-            protected ViewHolder createItemViewHolder(View itemView) {
-                return new ViewHolder(itemView) {
-                    @Override
-                    protected void bind( int position, DocumentSnapshot data) {
-                        bindListItemViewHolder(this.itemView, position, data);
-                    }
-                };
-            }
-        };
-        adapter.setListner(this);
+//        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), DocumentName.AGILE_STAGE, R.layout.agile_stage_summary_view_item) {
+//            @Override
+//            public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+//
+//            }
+//
+//            @Override
+//            protected DocListItemViewHolder createItemViewHolder(View view) {
+//
+//            }
+//
+//        };
+//        adapter.setListner(this);
         rvStageView.setHasFixedSize(true);
-        rvStageView.setAdapter(adapter);
-        adapter.startListening();
+//        rvStageView.setAdapter(adapter);
+//        adapter.startListening();
     }
 
     protected void bindListItemViewHolder(View itemView, int position, DocumentSnapshot doc) {
-        BsDocViewHolder viewHolder = new AgileStageSummaryItemViewHolder((Activity) getContext(), DocumentInfo.AGILE_STAGE);
-        viewHolder.bind(itemView, position, doc);
+//        DocListItemViewHolder viewHolder = new AgileStageSummaryItemViewHolder((Activity) getContext(), DocumentName.AGILE_STAGE);
+//        viewHolder.bind(itemView, position, doc);
     }
 
     @Override
     public void onItemSelected(DocumentSnapshot documentSnapshot) {
         Intent intent = new Intent(getContext(), AgileTaskListActivity.class);
-        intent.putExtra(DocumentInfo.DOCUMENT_NAME, DocumentInfo.AGILE_TASK);
-        intent.putExtra(DocumentInfo.DOCUMENT_ID, documentSnapshot.getId());
+        intent.putExtra(DocumentName.DOCUMENT_NAME, DocumentName.AGILE_TASK);
+        intent.putExtra(DocumentName.DOCUMENT_ID, documentSnapshot.getId());
         getContext().startActivity(intent);
     }
 

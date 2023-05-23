@@ -17,7 +17,7 @@ import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.repository.DocumentSnapshotRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 
@@ -25,9 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 
@@ -60,7 +58,7 @@ public abstract class RestApiModelFormActivity<T extends Document> extends AppCo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        documentName = getIntent().getStringExtra(DocumentInfo.DOCUMENT_NAME);
+        documentName = getIntent().getStringExtra(DocumentName.DOCUMENT_NAME);
         apiInterface = APIClient.getClient().create(APIInterface.class);
         setViewContent();
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -135,7 +133,7 @@ public abstract class RestApiModelFormActivity<T extends Document> extends AppCo
         try {
             if (validation()) {
                 showLoadingScreen();
-                T model = (T) DocumentInfo.getInstance(this).createDocument(documentName);
+                T model = (T) DocumentName.getInstance(this).createDocument(documentName);
                 readInputData(model);
                 RepositoryFactory.create().get(documentName).addNew(documentName, model.toMap());
             }
@@ -151,7 +149,7 @@ public abstract class RestApiModelFormActivity<T extends Document> extends AppCo
     }
 
     @Override
-    public void onAdded(DocumentSnapshot documentSnapshot) {
+    public void onAdded(Document doc) {
         RepositoryFactory.create().get(documentName).removeOnCreatedDocumentListner(documentName,this);
         finish();
     }

@@ -8,7 +8,7 @@ import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.document.Address;
 import com.soleap.cashbook.document.Contact;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.document.Gender;
 
 
@@ -37,22 +37,21 @@ public class ContactAddNewActivity extends DocAddNewActivity {
     private TextInputLayout inputLayoutLastName;
     private TextInputLayout inputLayoutPhonenumber1;
 
-
     @Override
     protected void setViewContent() {
-        this.documentName = getIntent().getExtras().getString(DocumentInfo.DOCUMENT_NAME);
+        this.documentName = getIntent().getExtras().getString(DocumentName.DOCUMENT_NAME);
         setContentView(R.layout.activity_form_contact);
         initInputView();
     }
 
     @Override
     protected void initInputView() {
-        inputLayoutFirstName = findViewById(R.id.inputLayout_first_name);
-        inputLayoutLastName = findViewById(R.id.inputLayout_last_name);
+        inputLayoutFirstName = findViewById(R.id.inputLayout_latin_name);
+        inputLayoutLastName = findViewById(R.id.inputLayout_name);
         inputLayoutPhonenumber1 = findViewById(R.id.inputLayout_phoneNumber1);
 
-        txtName = findViewById(R.id.txt_first_name);
-        txtLatinName = findViewById(R.id.txt_last_name);
+        txtName = findViewById(R.id.txt_latin_name);
+        txtLatinName = findViewById(R.id.txt_name);
         txtNickname = findViewById(R.id.txt_nick_name);
         txtPhonenumber1 = findViewById(R.id.txt_phoneNumber1);
         txtPhonenumber2 = findViewById(R.id.txt_phoneNumber2);

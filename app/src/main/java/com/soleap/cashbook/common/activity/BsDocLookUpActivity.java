@@ -2,32 +2,15 @@ package com.soleap.cashbook.common.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
-import android.net.Uri;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.adapter.RecyclerViewAdapter;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.ViewData;
-import com.soleap.cashbook.document.DocumentInfo;
-import com.soleap.cashbook.restapi.APIClient;
-import com.soleap.cashbook.common.util.ColorUtils;
-import com.soleap.cashbook.common.value.ViewSetterFactory;
-import com.soleap.cashbook.common.value.ViewType;
-import com.soleap.cashbook.viewholder.BsDocViewHolder;
-
-import java.util.Locale;
-import java.util.Random;
+import com.soleap.cashbook.viewholder.DocListItemViewHolder;
 
 public class BsDocLookUpActivity extends RecyclerActivity implements RecyclerViewAdapter.EventListner {
 
@@ -75,12 +58,6 @@ public class BsDocLookUpActivity extends RecyclerActivity implements RecyclerVie
     protected void initRecyclerViewAdapter() {
         super.initRecyclerViewAdapter();
         this.adapter.setListner(this);
-    }
-
-    @Override
-    protected void bindListItemViewHolder(View itemView, int position, DocumentSnapshot doc) {
-        BsDocViewHolder viewHolder = new BsDocViewHolder(this, documentName);
-        viewHolder.bind(itemView, position, doc);
     }
 
     @Override

@@ -5,15 +5,13 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.Map;
 
-public class DocumentSnapshot implements Serializable {
+public class DocumentSnapshot extends Document {
 
     private String className;
     private Map<String, ViewData> data;
     private String contextMenu;
-    public String title;
 
-    @SerializedName("_id")
-    public String id;
+    public String title;
 
     private Document document;
 
@@ -24,10 +22,6 @@ public class DocumentSnapshot implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
-
-    public String getId() { return id; }
-
-    public void setId(String id) { this.id = id; }
 
     public Document getDocument() {
         return document;

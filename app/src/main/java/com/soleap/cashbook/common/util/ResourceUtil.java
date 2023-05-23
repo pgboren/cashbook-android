@@ -8,6 +8,7 @@ import com.soleap.cashbook.R;
 
 public class ResourceUtil {
 
+
     public static String getStringResourceByName(Context context, String aString) {
         String packageName = context.getPackageName();
         int resId = context.getResources().getIdentifier(aString, "string", packageName);

@@ -9,7 +9,7 @@ import com.soleap.cashbook.document.Branch;
 import com.soleap.cashbook.document.Category;
 import com.soleap.cashbook.document.Color;
 import com.soleap.cashbook.document.Contact;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.document.Institute;
 import com.soleap.cashbook.document.Item;
 import com.soleap.cashbook.restapi.APIClient;
@@ -28,7 +28,7 @@ public class DocumentSnapshotRepository {
 
     public static String TAG = "DocumentSnapshotRepository";
 
-    private String entity;
+    private String documentName;
     protected APIInterface apiInterface;
 
     public void setPagingDocsRequestListner(OnGetPagingDocsRequestListner pagingDocsRequestListner) {
@@ -109,85 +109,59 @@ public class DocumentSnapshotRepository {
     }
 
     public DocumentSnapshotRepository(String entity) {
-        this.entity = entity;
+        this.documentName = entity;
         apiInterface = APIClient.getClient().create(APIInterface.class);
     }
 
-    public void list() {
-        Call<List<DocumentSnapshot>> call = apiInterface.listViewModel(this.entity);
-        call.enqueue(new Callback<List<DocumentSnapshot>>() {
-            @Override
-            public void onResponse(Call<List<DocumentSnapshot>> call, Response<List<DocumentSnapshot>> response) {
-                listDocumentListner.onListed(response.body());
-            }
+    public void view(String id) {
 
+    }
+
+    public void list(int page) {
+        Map<String, Object> body = new HashMap<>();
+        Map<String, Object> order = new HashMap<>();
+        order.put("name", "asc");
+//        body.put("orders", order);
+
+        Call<PagingRecyclerViewData> call = apiInterface.listViewData("LIST_VIEW", documentName,page, 10, body);
+        call.enqueue(new Callback<PagingRecyclerViewData>() {
             @Override
-            public void onFailure(Call<List<DocumentSnapshot>> call, Throwable t) {
-                listDocumentListner.onError(t);
+            public void onResponse(Call<PagingRecyclerViewData> call, Response<PagingRecyclerViewData> response) {
+                pagingDocsRequestListner.onGet(response.body());
+            }
+            @Override
+            public void onFailure(Call<PagingRecyclerViewData> call, Throwable t) {
+                pagingDocsRequestListner.onError(t);
                 Log.e("ERROR", t.getMessage(), t );
                 call.cancel();
             }
         });
     }
 
-    public void view() {
-
-    }
-
     private Call<DocumentSnapshot> createRestUpdateCall(String entity, Document document) {
 
-        if (entity.equals(DocumentInfo.ITEM)) {
+        if (entity.equals(DocumentName.ITEM)) {
             return apiInterface.updateItem(document.getId(), (Item) document);
         }
 
-        if (entity.equals(DocumentInfo.CATEGORY)) {
+        if (entity.equals(DocumentName.CATEGORY)) {
             return apiInterface.updateCategory(document.getId(), (Category) document);
         }
 
-        if (entity.equals(DocumentInfo.INSTITUE)) {
+        if (entity.equals(DocumentName.INSTITUE)) {
             return apiInterface.updateInstitute(document.getId(), (Institute) document);
         }
 
-        if (entity.equals(DocumentInfo.COLOR)) {
+        if (entity.equals(DocumentName.COLOR)) {
             return apiInterface.updateColor(document.getId(), (Color) document);
         }
 
-        if (entity.equals(DocumentInfo.BRANCH)) {
+        if (entity.equals(DocumentName.BRANCH)) {
             return apiInterface.updateBranch(document.getId(), (Branch) document);
         }
 
-        if (entity.equals(DocumentInfo.CONTACT)) {
+        if (entity.equals(DocumentName.CONTACT)) {
             return apiInterface.updateContact(document.getId(), (Contact) document);
-        }
-
-        throw new RuntimeException("Stub!");
-    }
-
-    private Call<DocumentSnapshot> createRestCreateCall(String entity, Document document) {
-
-        if (entity.equals(DocumentInfo.ITEM)) {
-            return apiInterface.createItem((Item) document);
-        }
-
-
-        if (entity.equals(DocumentInfo.INSTITUE)) {
-            return apiInterface.createInstitute((Institute) document);
-        }
-
-        if (entity.equals(DocumentInfo.COLOR)) {
-            return apiInterface.creatColor((Color) document);
-        }
-
-        if (entity.equals(DocumentInfo.CATEGORY)) {
-            return apiInterface.createCategory((Category) document);
-        }
-
-        if (entity.equals(DocumentInfo.CONTACT)) {
-            return apiInterface.createContact((Contact) document);
-        }
-
-        if (entity.equals(DocumentInfo.BRANCH)) {
-            return apiInterface.createBranch((Branch)document);
         }
 
         throw new RuntimeException("Stub!");
@@ -195,27 +169,27 @@ public class DocumentSnapshotRepository {
 
     private Call createRestGetCall(String document, String id) {
 
-        if (entity.equals(DocumentInfo.BRANCH)) {
+        if (documentName.equals(DocumentName.BRANCH)) {
             return apiInterface.getBranch(id);
         }
 
-        if (entity.equals(DocumentInfo.COLOR)) {
+        if (documentName.equals(DocumentName.COLOR)) {
             return apiInterface.getColor(id);
         }
 
-        if (entity.equals(DocumentInfo.ITEM)) {
+        if (documentName.equals(DocumentName.ITEM)) {
             return apiInterface.getItem(id);
         }
 
-        if (entity.equals(DocumentInfo.INSTITUE)) {
+        if (documentName.equals(DocumentName.INSTITUE)) {
             return apiInterface.getInstitute(id);
         }
 
-        if (entity.equals(DocumentInfo.CATEGORY)) {
+        if (documentName.equals(DocumentName.CATEGORY)) {
             return apiInterface.getCategory(id);
         }
 
-        if (entity.equals(DocumentInfo.CONTACT)) {
+        if (documentName.equals(DocumentName.CONTACT)) {
             return apiInterface.getContact(id);
         }
         throw new RuntimeException("Stub!");
@@ -268,16 +242,15 @@ public class DocumentSnapshotRepository {
     }
 
     public void addNew(String documentName, Map<String, Object> data) {
-
-        Call<DocumentSnapshot> call = apiInterface.post(documentName, data);
-        call.enqueue(new Callback<DocumentSnapshot>() {
+        Call<Document> call = apiInterface.post(documentName, data);
+        call.enqueue(new Callback<Document>() {
             @Override
-            public void onResponse(Call<DocumentSnapshot> call, Response<DocumentSnapshot> response) {
+            public void onResponse(Call<Document> call, Response<Document> response) {
                 if (response.code() == 200) {
-                    DocumentSnapshot documentSnapshot = response.body();
-                    List<OnCreatedDocumentListner> listners = addedDocumentListners.get(entity);
+                    Document doc = response.body();
+                    List<OnCreatedDocumentListner> listners = addedDocumentListners.get(DocumentSnapshotRepository.this.documentName);
                     for (OnCreatedDocumentListner listner: listners) {
-                        listner.onAdded(documentSnapshot);
+                        listner.onAdded(doc);
                     }
                 }
                 else {
@@ -291,7 +264,7 @@ public class DocumentSnapshotRepository {
             }
 
             @Override
-            public void onFailure(Call<DocumentSnapshot> call, Throwable t) {
+            public void onFailure(Call<Document> call, Throwable t) {
                 Log.e(TAG, t.getMessage());
                 call.cancel();
             }
@@ -299,15 +272,15 @@ public class DocumentSnapshotRepository {
     }
 
     public void add(Document document) {
-        Call<DocumentSnapshot> call = createRestCreateCall(entity, document);
-        call.enqueue(new Callback<DocumentSnapshot>() {
+        Call<Document> call = apiInterface.post(documentName, document.toMap());
+        call.enqueue(new Callback<Document>() {
             @Override
-            public void onResponse(Call<DocumentSnapshot> call, Response<DocumentSnapshot> response) {
+            public void onResponse(Call<Document> call, Response<Document> response) {
                 if (response.code() == 200) {
-                    DocumentSnapshot documentSnapshot = response.body();
-                    List<OnCreatedDocumentListner> listners = addedDocumentListners.get(entity);
+                    Document doc = response.body();
+                    List<OnCreatedDocumentListner> listners = addedDocumentListners.get(documentName);
                     for (OnCreatedDocumentListner listner: listners) {
-                        listner.onAdded(documentSnapshot);
+                        listner.onAdded(doc);
                     }
                 }
                 else {
@@ -321,7 +294,7 @@ public class DocumentSnapshotRepository {
             }
 
             @Override
-            public void onFailure(Call<DocumentSnapshot> call, Throwable t) {
+            public void onFailure(Call<Document> call, Throwable t) {
                 Log.e(TAG, t.getMessage());
                 call.cancel();
             }
@@ -329,7 +302,7 @@ public class DocumentSnapshotRepository {
     }
 
     public void update(Document document) {
-        Call<DocumentSnapshot> call = createRestUpdateCall(entity, document);
+        Call<DocumentSnapshot> call = createRestUpdateCall(documentName, document);
         call.enqueue(new Callback<DocumentSnapshot>() {
             @Override
             public void onResponse(Call<DocumentSnapshot> call, Response<DocumentSnapshot> response) {
@@ -355,7 +328,7 @@ public class DocumentSnapshotRepository {
     }
 
     private void onDocumentChanged(DocumentSnapshot doc) {
-        List<OnDocumentChangedListner> listners = changedDocumentListners.get(entity);
+        List<OnDocumentChangedListner> listners = changedDocumentListners.get(documentName);
         for (OnDocumentChangedListner listner: listners) {
             listner.onChanged(doc);
         }
@@ -386,7 +359,7 @@ public class DocumentSnapshotRepository {
     }
 
     public interface OnListedDocumentListner extends DocumentEventListner {
-        void onListed(List<DocumentSnapshot> documentSnapshots);
+        void onListed(List<Document> documentSnapshots);
     }
 
     public interface OnViewedDocumentListner extends DocumentEventListner {
@@ -394,7 +367,7 @@ public class DocumentSnapshotRepository {
     }
 
     public interface OnCreatedDocumentListner extends DocumentEventListner {
-        void onAdded(DocumentSnapshot documentSnapshot);
+        void onAdded(Document docId);
     }
 
     public interface OnDocumentChangedListner extends DocumentEventListner {

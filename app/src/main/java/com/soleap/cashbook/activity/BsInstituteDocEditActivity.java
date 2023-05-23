@@ -5,7 +5,7 @@ import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.activity.BsDocEditActivity;
 import com.soleap.cashbook.document.Address;
 import com.soleap.cashbook.common.document.BsDocument;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.document.Institute;
 
 public class BsInstituteDocEditActivity extends BsDocEditActivity {
@@ -29,7 +29,7 @@ public class BsInstituteDocEditActivity extends BsDocEditActivity {
 
     @Override
     protected void setViewContent() {
-        this.documentName = getIntent().getExtras().getString(DocumentInfo.DOCUMENT_NAME);
+        this.documentName = getIntent().getExtras().getString(DocumentName.DOCUMENT_NAME);
         setContentView(R.layout.activity_form_institute);
         initInputView();
     }

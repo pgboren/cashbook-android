@@ -18,7 +18,7 @@
 
         <com.soleap.cashbook.common.widget.DatePickerView
             android:id="@+id/task_datepicker"
-            app:dpv_title="@string/date"
+            app:dpv_label="@string/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -84,7 +84,7 @@
 
         <com.soleap.cashbook.widget.paymentoption.PaymentOptionBottomSheetView
             android:id="@+id/task_paymentOption"
-            app:potv_title = "@string/paymenttype"
+            app:potv_label = "@string/paymentoption"
             app:potv_require = "true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

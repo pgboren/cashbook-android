@@ -18,7 +18,7 @@ import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.ViewData;
 import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.common.value.ViewSetterFactory;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 
 import java.util.Locale;
 
@@ -96,7 +96,7 @@ public abstract class ViewDocumentLooupFieldCreator extends FieldCreator {
 
     private void lookupDocument(String documentName,  int requestCode) {
         Intent intent = new Intent(this.activity, BsDocLookUpActivity.class);
-        intent.putExtra(DocumentInfo.DOCUMENT_NAME, documentName);
+        intent.putExtra(DocumentName.DOCUMENT_NAME, documentName);
         activity.startActivityForResult(intent, requestCode);
     }
 

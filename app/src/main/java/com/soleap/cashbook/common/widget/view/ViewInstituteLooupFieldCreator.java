@@ -8,7 +8,7 @@ import com.soleap.cashbook.common.activity.BsDocLookUpActivity;
 import com.soleap.cashbook.common.activity.ViewDataActivity;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.ViewData;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 
 public class ViewInstituteLooupFieldCreator extends ViewDocumentLooupFieldCreator {
 
@@ -25,13 +25,13 @@ public class ViewInstituteLooupFieldCreator extends ViewDocumentLooupFieldCreato
     }
 
     public ViewInstituteLooupFieldCreator(ViewDataActivity activity, ViewData fieldData) {
-        super(activity, DocumentInfo.INSTITUE, BsDocLookUpActivity.LOOK_UP_INSTITUTE_REQUEST_CODE, fieldData, R.layout.lookup_item_bsdoc);
+        super(activity, DocumentName.INSTITUE, BsDocLookUpActivity.LOOK_UP_INSTITUTE_REQUEST_CODE, fieldData, R.layout.lookup_item_bsdoc);
     }
 
     @Override
     protected void inflateLookupView(ViewGroup valueContainer) {
         super.inflateLookupView(valueContainer);
-        circleBox = valueContainer.findViewById(R.id.circle_box);
+        circleBox = valueContainer.findViewById(R.id.txt_short_name);
     }
 
 }

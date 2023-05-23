@@ -12,7 +12,7 @@ import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.activity.BsDocLookUpActivity;
 import com.soleap.cashbook.common.activity.ViewDataActivity;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.common.document.ViewData;
 import com.soleap.cashbook.restapi.APIClient;
 
@@ -33,7 +33,7 @@ public class ViewItemLooupFieldCreator extends ViewDocumentLooupFieldCreator {
     }
 
     public ViewItemLooupFieldCreator(ViewDataActivity activity, ViewData fieldData) {
-        super(activity, DocumentInfo.ITEM, BsDocLookUpActivity.LOOK_UP_ITEM_REQUEST_CODE, fieldData, R.layout.list_item_item);
+        super(activity, DocumentName.ITEM, BsDocLookUpActivity.LOOK_UP_ITEM_REQUEST_CODE, fieldData, R.layout.list_item_item);
     }
 
     @Override
@@ -41,14 +41,14 @@ public class ViewItemLooupFieldCreator extends ViewDocumentLooupFieldCreator {
         super.inflateLookupView(valueContainer);
         imgPhoto = valueContainer.findViewById(R.id.imv_item_photo);
         textNameKh = valueContainer.findViewById(R.id.txt_name_kh);
-        circleBox = valueContainer.findViewById(R.id.circle_box);
+        circleBox = valueContainer.findViewById(R.id.txt_short_name);
     }
 
     @Override
     public void setLookupValue(DocumentSnapshot doc) {
         super.setLookupValue(doc);
-        if (!doc.getDataValue(DocumentInfo.ITEM).isNullValue("photo")) {
-            String path = doc.getDataValue(DocumentInfo.ITEM).getDataValue("photo").getValue().toString();
+        if (!doc.getDataValue(DocumentName.ITEM).isNullValue("photo")) {
+            String path = doc.getDataValue(DocumentName.ITEM).getDataValue("photo").getValue().toString();
             loadImage(path, imgPhoto);
             circleBox.setVisibility(View.GONE);
             imgPhoto.setVisibility(View.VISIBLE);
@@ -57,8 +57,8 @@ public class ViewItemLooupFieldCreator extends ViewDocumentLooupFieldCreator {
             circleBox.setVisibility(View.VISIBLE);
             imgPhoto.setVisibility(View.GONE);
         }
-        textNameKh.setText(doc.getDataValue(DocumentInfo.ITEM).getDataValue("nameKh").getValue().toString());
-        textName.setText(doc.getDataValue(DocumentInfo.ITEM).getDataValue("name").getValue().toString());
+        textNameKh.setText(doc.getDataValue(DocumentName.ITEM).getDataValue("nameKh").getValue().toString());
+        textName.setText(doc.getDataValue(DocumentName.ITEM).getDataValue("name").getValue().toString());
     }
 
     private void loadImage(String path, ImageView imageView) {

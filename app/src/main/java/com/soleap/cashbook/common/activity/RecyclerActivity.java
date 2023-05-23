@@ -2,6 +2,8 @@ package com.soleap.cashbook.common.activity;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
@@ -14,11 +16,13 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.activity.ActivityProviderFactory;
+import com.soleap.cashbook.common.adapter.PagingRecyclerViewAdapter;
 import com.soleap.cashbook.common.adapter.RecyclerViewAdapter;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
+import com.soleap.cashbook.view.Views;
 
 public abstract class RecyclerActivity extends BackPressActivity implements RecyclerViewAdapter.EventListner {
 
@@ -32,18 +36,17 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
     protected String documentName;
     protected APIInterface apiInterface;
     protected RecyclerView recyclerView;
-    protected RecyclerViewAdapter adapter;
-
-    protected abstract void bindListItemViewHolder(View itemView, int position, DocumentSnapshot doc);
+    protected PagingRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreatingBegin() {
-        this.documentName = getIntent().getExtras().getString(DocumentInfo.DOCUMENT_NAME);
+        this.documentName = getIntent().getExtras().getString(DocumentName.DOCUMENT_NAME);
         apiInterface = APIClient.getClient().create(APIInterface.class);
     }
 
     protected void initFabButtonAction() {
         addFabButton = findViewById(R.id.fab);
+        addFabButton.setVisibility(View.GONE);
         addFabButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,18 +57,28 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
 
     @Override
     protected void setViewContent() {
-        setContentView(DocumentInfo.getInstance(this).getListActivityLayout(documentName));
+        setContentView(DocumentName.getInstance(this).getListActivityLayout(documentName));
+        initActionBar();
+        initFabButtonAction();
+        initRecyclerViewAdapter();
+        initRecyclerView();
+        setTitle(DocumentName.getInstance(this).getListTitle(documentName));
+        startDataListening();
+    }
+
+    protected void initActionBar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             toolbar.setNavigationIcon(R.drawable.ic_back);
             setSupportActionBar(toolbar);
         }
+    }
 
-        initFabButtonAction();
-        initRecyclerViewAdapter();
-        initRecyclerView();
-        setTitle(DocumentInfo.getInstance(this).getListTitle(documentName));
-        startDataListening();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.list_item_action_toolbar_menu, menu);
+        return true;
     }
 
     protected void startDataListening() {
@@ -79,27 +92,17 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
 
     protected void initRecyclerViewAdapter() {
         final ShimmerFrameLayout container = (ShimmerFrameLayout) findViewById(R.id.shimmerLayout);
-        adapter = new RecyclerViewAdapter(this, documentName, DocumentInfo.getInstance(this).getListItemLayout(documentName)) {
-            @Override
-            protected ViewHolder createItemViewHolder(View itemView) {
-                return new ViewHolder(itemView) {
-                    @Override
-                    protected void bind( int position, DocumentSnapshot data) {
-                        bindListItemViewHolder(this.itemView, position, data);
-                    }
-                };
-            }
-        };
-
+        adapter = new PagingRecyclerViewAdapter(this, documentName, DocumentName.getInstance(this).getListItemLayoutView(documentName));
+        adapter.setItemView(Views.CONTACT_LIST_ITEM_VIEW);
         adapter.setListner(this);
-        if (DocumentInfo.getInstance(this).getAddNewActivityClass(documentName) != null) {
-            adapter.setAddNewActivityClass(DocumentInfo.getInstance(this).getAddNewActivityClass(documentName));
+        if (DocumentName.getInstance(this).getAddNewActivityClass(documentName) != null) {
+            adapter.setAddNewActivityClass(DocumentName.getInstance(this).getAddNewActivityClass(documentName));
         }
 
-
-        if (DocumentInfo.getInstance(this).getViewActivityClass(documentName) != null) {
-            adapter.setViewActivityClass(DocumentInfo.getInstance(this).getViewActivityClass(documentName));
+        if (DocumentName.getInstance(this).getViewActivityClass(documentName) != null) {
+            adapter.setViewActivityClass(DocumentName.getInstance(this).getViewActivityClass(documentName));
         }
+        adapter.setListner(this);
     }
 
     protected void initRecyclerView() {
@@ -119,7 +122,7 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
 
     protected void onDocItemSelected(DocumentSnapshot doc) {
         Intent intent = new Intent(RecyclerActivity.this, ActivityProviderFactory.getViewActivity(documentName));
-        intent.putExtra(DocumentInfo.DOCUMENT_NAME, documentName);
+        intent.putExtra(DocumentName.DOCUMENT_NAME, documentName);
         intent.putExtra(ModelViewActivity.KEY_DOC, doc);
         intent.putExtra(ModelViewActivity.KEY_MODEL_ID, doc.getId());
         startActivity(intent);

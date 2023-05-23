@@ -23,7 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.activity.BsDocLookUpActivity;
 import com.soleap.cashbook.common.util.MedialUtils;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 
 public class DocLookUpInputView extends LinearLayout {
 
@@ -65,7 +65,7 @@ public class DocLookUpInputView extends LinearLayout {
 
         imgPhotoViewContainer = findViewById(R.id.img_photo_container);
         imageView = findViewById(R.id.img_photo);
-        txtAbriviationText = findViewById(R.id.circle_box);
+        txtAbriviationText = findViewById(R.id.txt_short_name);
 
         textValue = findViewById(R.id.txt_text);
 
@@ -83,7 +83,7 @@ public class DocLookUpInputView extends LinearLayout {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, BsDocLookUpActivity.class);
-                intent.putExtra(DocumentInfo.DOCUMENT_NAME, docName);
+                intent.putExtra(DocumentName.DOCUMENT_NAME, docName);
                 intent.putExtra(BsDocLookUpActivity.SHOW_PHOTO, documentPhotoVisible != 8);
                 activityResultLauncher.launch(intent);
             }

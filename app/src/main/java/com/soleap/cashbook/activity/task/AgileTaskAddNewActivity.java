@@ -1,9 +1,5 @@
 package com.soleap.cashbook.activity.task;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.view.View;
-
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.soleap.cashbook.R;
@@ -11,19 +7,14 @@ import com.soleap.cashbook.activity.DocAddNewActivity;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.ViewData;
-import com.soleap.cashbook.common.repository.DocumentSnapshotRepository;
-import com.soleap.cashbook.common.repository.RepositoryFactory;
 import com.soleap.cashbook.common.widget.DatePickerView;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.BottomSheetMenu;
-import com.soleap.cashbook.common.widget.bottomsheetmenu.Menu;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.MenuItem;
 import com.soleap.cashbook.common.widget.lookup.DocLookupTextInputView;
 import com.soleap.cashbook.common.widget.lookup.OnDocLookupValueChangedListner;
 import com.soleap.cashbook.document.AgileTask;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.widget.paymentoption.PaymentOptionBottomSheetView;
-
-import java.util.List;
 
 public class AgileTaskAddNewActivity extends DocAddNewActivity implements BottomSheetMenu.BottomSheetMenuItemClickListener, OnDocLookupValueChangedListner {
 
@@ -45,7 +36,7 @@ public class AgileTaskAddNewActivity extends DocAddNewActivity implements Bottom
 
     @Override
     protected void setViewContent() {
-        this.documentName = getIntent().getExtras().getString(DocumentInfo.DOCUMENT_NAME);
+        this.documentName = getIntent().getExtras().getString(DocumentName.DOCUMENT_NAME);
         setContentView(R.layout.activity_form_task);
         initInputView();
     }

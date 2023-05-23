@@ -14,7 +14,7 @@
         android:textColor="@color/label"
         android:maxLines="1"
         android:text="@string/DATE"
-        android:textSize="@dimen/title"/>
+        android:textSize="@dimen/list_item_content"/>
 
     <LinearLayout
         android:id="@+id/btn_deal_form_date"

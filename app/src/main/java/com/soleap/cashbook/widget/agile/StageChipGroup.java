@@ -1,9 +1,6 @@
 package com.soleap.cashbook.widget.agile;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -14,10 +11,11 @@ import androidx.annotation.Nullable;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.soleap.cashbook.R;
+import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.repository.DocumentSnapshotRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 
 import java.util.List;
 
@@ -82,28 +80,27 @@ public class StageChipGroup extends ChipGroup {
     }
 
     protected void builStageChips() {
-        DocumentSnapshotRepository repository = RepositoryFactory.create().get(DocumentInfo.AGILE_STAGE);
+        DocumentSnapshotRepository repository = RepositoryFactory.create().get(DocumentName.AGILE_STAGE);
         repository.setListDocumentListner(new DocumentSnapshotRepository.OnListedDocumentListner() {
             @Override
-            public void onListed(List<DocumentSnapshot> stageDocs) {
-                stages = stageDocs;
-                for (DocumentSnapshot stageDoc : stageDocs) {
-                    Chip chip = new Chip(getContext(), null, R.attr.CustomChipChoiceStyle);
-                    chip.setTag(stageDoc.getId());
-
-                    chip.setChipBackgroundColor(ColorStateList.valueOf(Color.parseColor(stageDoc.getDataValue("color").getValue().toString())));
-                    chip.setText(stageDoc.getDataValue("name").getValue().toString());
-                    chip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                            Log.i("test", chip.getTag().toString());
-                            if (isChecked) {
-                                stageValueChangedListner.OnChange(chip.getTag().toString());
-                            }
-                        }
-                    });
-                    addView(chip);
-                }
+            public void onListed(List<Document> stageDocs) {
+//                stages = stageDocs;
+//                for (DocumentSnapshot stageDoc : stageDocs) {
+//                    Chip chip = new Chip(getContext(), null, R.attr.CustomChipChoiceStyle);
+//                    chip.setTag(stageDoc.getId());
+////                    chip.setChipBackgroundColor(ColorStateList.valueOf(Color.parseColor(stageDoc.getDataValue("color").getValue().toString())));
+//                    chip.setText(stageDoc.getDataValue("name").getValue().toString());
+//                    chip.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                        @Override
+//                        public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+//                            Log.i("test", chip.getTag().toString());
+//                            if (isChecked) {
+//                                stageValueChangedListner.OnChange(chip.getTag().toString());
+//                            }
+//                        }
+//                    });
+//                    addView(chip);
+//                }
             }
             @Override
             public void onError(Throwable t) {

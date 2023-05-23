@@ -19,7 +19,7 @@ import com.soleap.cashbook.common.widget.DatePickerView;
 import com.soleap.cashbook.common.widget.OnValueChanged;
 import com.soleap.cashbook.common.widget.lookup.DocLookupTextInputView;
 import com.soleap.cashbook.common.widget.lookup.OnDocLookupValueChangedListner;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.document.SaleOrder;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.BottomSheetMenu;
 
@@ -58,7 +58,7 @@ public class SaleOrderAddNewActivity extends DocAddNewActivity implements OnValu
 
     @Override
     protected void setViewContent() {
-        this.documentName = getIntent().getExtras().getString(DocumentInfo.DOCUMENT_NAME);
+        this.documentName = getIntent().getExtras().getString(DocumentName.DOCUMENT_NAME);
         setContentView(R.layout.activity_form_sale_order);
         initInputView();
         setTitle(getString(R.string.nav_menu_installment_payment_sale_request));

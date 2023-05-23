@@ -7,11 +7,11 @@ public class PagingRecyclerViewData {
     private int totalPages;
     private int totalItems;
 
-    public void setData(List<DocumentSnapshot> data) {
+    public void setData(List<ViewDocumentSnapshot> data) {
         this.data = data;
     }
 
-    private List<DocumentSnapshot> data;
+    private List<ViewDocumentSnapshot> data;
 
     public int getCurrentPage() {
         return currentPage;
@@ -37,7 +37,7 @@ public class PagingRecyclerViewData {
         this.totalItems = totalItems;
     }
 
-    public List<DocumentSnapshot> getData() {
+    public List<ViewDocumentSnapshot> getData() {
         return data;
     }
 }

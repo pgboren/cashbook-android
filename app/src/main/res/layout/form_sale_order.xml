@@ -17,7 +17,7 @@
 
             <com.soleap.cashbook.common.widget.DatePickerView
                 android:id="@+id/so_datepicker"
-                app:dpv_title="@string/date"
+                app:dpv_label="@string/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -40,7 +40,7 @@
                 app:errorEnabled="true"
                 app:endIconDrawable="@drawable/ic_arrow_right"
                 app:endIconMode="custom"
-                android:hint="@string/paymenttype">
+                android:hint="@string/paymentoption">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/so_paymentOptions"
                     android:inputType="none"

@@ -1,5 +1,6 @@
 package com.soleap.cashbook.restapi;
 
+import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.PagingRecyclerViewData;
 import com.soleap.cashbook.document.Branch;
@@ -79,9 +80,6 @@ public interface APIInterface {
     @POST("crud/category")
     Call<DocumentSnapshot> createCategory(@Body Category model);
 
-    @GET("view/{entity}/{id}")
-    Call<DocumentSnapshot> viewModel(@Path("entity") String entity, @Path("id") String id);
-
     @GET("view/{entity}")
     Call<List<DocumentSnapshot>> listViewModel(@Path("entity") String entity);
 
@@ -122,13 +120,23 @@ public interface APIInterface {
     Call<DocumentSnapshot> patch(@Path("doc") String doc, @Path("id") String id, @Body Map<String, Object> itemAttributes);
 
     @POST("crud/{doc}")
-    Call<DocumentSnapshot> post(@Path("doc") String doc, @Body Map<String, Object> data);
+    Call<Document> post(@Path("doc") String doc, @Body Map<String, Object> data);
+
+    @GET("view/{entity}/{id}")
+    Call<DocumentSnapshot> get(@Path("entity") String entity, @Path("id") String id);
 
     @POST("auth/signin")
     Call<User> login(@Body Map<String, Object> usernameAndPassword);
 
     @GET("agile/tasks")
     Call<PagingRecyclerViewData> getTasks(@Query("page") int page, @Query("stages") String[] stages, @Query("board") String board);
+
+    @GET("view/{docname}")
+    Call<Document> list(@Query("page") int page, @Query("limit") String limit);
+
+    @POST("view/{view_name}/{docname}")
+    Call<PagingRecyclerViewData> listViewData(@Path("view_name") String viewName, @Path("docname") String document, @Query("page") int page, @Query("limit") int limit, @Body Map<String, Object> data);
+
 
 }
 

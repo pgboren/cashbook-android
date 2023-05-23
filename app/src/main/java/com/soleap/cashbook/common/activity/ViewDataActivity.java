@@ -26,7 +26,7 @@ import com.soleap.cashbook.common.document.ViewData;
 import com.soleap.cashbook.common.repository.DocumentSnapshotRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
 import com.soleap.cashbook.common.widget.view.ActivityEventListner;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 import com.soleap.cashbook.common.widget.view.ViewFieldCreatorFactory;
@@ -67,7 +67,7 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     private List<ActivityEventListner> listners = new ArrayList<>();
 
     protected Call<DocumentSnapshot> createGetApi() {
-        return apiInterface.viewModel(documentName.toLowerCase(), modelId);
+        return apiInterface.get(documentName.toLowerCase(), modelId);
     }
 
     protected String getViewTitle() {
@@ -119,16 +119,16 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     }
 
     protected void startEditActivity() {
-        Intent intent = new Intent(this, DocumentInfo.getInstance(this).getEditActivityClass(documentName));
+        Intent intent = new Intent(this, DocumentName.getInstance(this).getEditActivityClass(documentName));
         intent.putExtra(EditRestApiActivity.KEY_MODEL_ID, this.model.getId());
-        intent.putExtra(DocumentInfo.DOCUMENT_NAME, documentName);
+        intent.putExtra(DocumentName.DOCUMENT_NAME, documentName);
         this.startActivityForResult(intent, EDIT_ACTIVITY_REQUEST_CODE);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.documentName = getIntent().getExtras().getString(DocumentInfo.DOCUMENT_NAME);
+        this.documentName = getIntent().getExtras().getString(DocumentName.DOCUMENT_NAME);
         apiInterface = APIClient.getClient().create(APIInterface.class);
         setViewContent();
         modelId = getIntent().getExtras().getString(KEY_MODEL_ID);
@@ -219,8 +219,8 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     }
 
     protected void renderOptionButtonActionMenu(DocumentSnapshot doc) {
-        String menu = doc.getContextMenu();
-        int menuId = this.getResources().getIdentifier(menu, "menu", getPackageName());
+//        String menu = doc.getContextMenu();
+//        int menuId = this.getResources().getIdentifier(menu, "menu", getPackageName());
 //TODO
 //        buttomActionsMenu = new BottomSheetMenu.Builder(this, this, "", menuId, R.layout.text_menu_item).create();
     }
@@ -228,7 +228,7 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     protected void renderViewData(DocumentSnapshot doc) {
         LinearLayout rootView = findViewById(R.id.content_container);
         rootView.removeAllViews();
-        for (ViewData data: doc.getDataValue("root").getChildrent().values()) {
+        for (ViewData data: doc.getDataValue("data").getChildrent().values()) {
             if (data.getVisible() == View.VISIBLE) {
                 rootView.addView(ViewFieldCreatorFactory.getInstance(this).create(this, data).createView());
             }

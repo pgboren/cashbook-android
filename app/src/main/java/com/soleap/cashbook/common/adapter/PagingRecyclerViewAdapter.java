@@ -12,15 +12,15 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.soleap.cashbook.Global;
 import com.soleap.cashbook.R;
+import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.PagingRecyclerViewData;
 import com.soleap.cashbook.common.repository.DocumentSnapshotRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
-import com.soleap.cashbook.document.DocumentInfo;
-import com.soleap.cashbook.repository.AgileTaskRepository;
-import com.soleap.cashbook.viewholder.BsDocViewHolder;
+import com.soleap.cashbook.viewholder.DocListItemViewHolder;
+import com.soleap.cashbook.viewholder.ListItemViewHolder;
+import com.soleap.cashbook.viewholder.ListItemViewHolderFactory;
 
 public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements DocumentSnapshotRepository.OnGetPagingDocsRequestListner {
 
@@ -29,8 +29,6 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
 
     private int currentPage = 1;
     private int maxPage = -1;
-    private String[] stages;
-    private String board = Global.agile_board;
 
     private boolean isFirstBind = true;
 
@@ -46,22 +44,24 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DocListItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
-            return super.onCreateViewHolder(parent, viewType);
+            View view = LayoutInflater.from(parent.getContext()).inflate(itemView.getLayout(), parent, false);
+            this.viewHolder = ListItemViewHolderFactory.create(context, view, itemView.getDocName());
+            return this.viewHolder;
         } else {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.agile_task_list_item_shimmer_loading, parent, false);
-            return new PagingListItemLoadingViewHolder(view);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_name_shimmer_view, parent, false);
+            this.viewHolder = new PagingListItemLoadingViewHolder(parent.getContext(), view);
         }
+        return  this.viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (viewHolder instanceof PagingListItemLoadingViewHolder) {
-            showLoadingView((PagingListItemLoadingViewHolder) viewHolder, position);
-        }
-        else {
-            super.onBindViewHolder((ViewHolder) holder, position);
+        final Document documentSnapshot = (Document) dataSet.get(position);
+        if (documentSnapshot != null) {
+            DocListItemViewHolder viewHolder = (DocListItemViewHolder) holder;
+            viewHolder.bind(position, documentSnapshot);
         }
     }
 
@@ -75,22 +75,7 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
     }
 
     @Override
-    protected ViewHolder createItemViewHolder(View itemView) {
-        return new ViewHolder(itemView) {
-            @Override
-            protected void bind( int position, DocumentSnapshot data) {
-                bindListItemViewHolder(this.itemView, position, data);
-            }
-        };
-    }
-
-    protected void bindListItemViewHolder(View itemView, int position, DocumentSnapshot doc) {
-        BsDocViewHolder viewHolder = new BsDocViewHolder((Activity) context, DocumentInfo.AGILE_TASK);
-        viewHolder.bind(itemView, position, doc);
-    }
-
-    @Override
-    public void onAdded(DocumentSnapshot documentSnapshot) {
+    public void onAdded(Document documentSnapshot) {
         this.dataSet.add(0, documentSnapshot);
         notifyDataSetChanged();
     }
@@ -111,7 +96,7 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
             isLoading = true;
             dataSet.add(null);
             notifyItemInserted(dataSet.size() - 1);
-            loadPage(board, this.stages, this.currentPage);
+            loadPage(this.currentPage);
         }
     }
 
@@ -120,7 +105,7 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
     private Runnable runnable;
 
 
-    public void loadPage(String board, String[] stages, int page) {
+    public void loadPage(int page) {
 
         if (runnable != null) {
             handler.removeCallbacks(runnable);
@@ -138,9 +123,7 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
         runnable = new Runnable() {
             @Override
             public void run() {
-                PagingRecyclerViewAdapter.this.stages = stages;
-                AgileTaskRepository taskRepository = (AgileTaskRepository)repository;
-                taskRepository.getTasks(board ,stages, page);
+                repository.list(page);
             }
         };
 
@@ -152,6 +135,11 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
     }
 
     @Override
+    protected DocListItemViewHolder createItemViewHolder(View view) {
+        return null;
+    }
+
+    @Override
     public void onGet(PagingRecyclerViewData pagingData) {
 
         try
@@ -160,6 +148,7 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
                 dataSet.remove(dataSet.size()-1);
                 notifyItemRemoved(dataSet.size());
             }
+
             this.dataSet.addAll(pagingData.getData());
             maxPage = pagingData.getTotalPages();
             this.notifyDataSetChanged();
@@ -174,17 +163,15 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
         }
     }
 
-    private class PagingListItemLoadingViewHolder extends ViewHolder {
+    private class PagingListItemLoadingViewHolder extends DocListItemViewHolder {
 
         private ProgressBar progressBar;
 
-        public PagingListItemLoadingViewHolder(@NonNull View itemView) {
-            super(itemView);
+        public PagingListItemLoadingViewHolder(Context context, @NonNull View itemView) {
+            super(context, itemView, null, null, 0);
         }
 
-        @Override
-        protected void bind(int position, DocumentSnapshot data) {
-        }
+
     }
 
     public interface PagingRecyclerViewAdapterDataListner {

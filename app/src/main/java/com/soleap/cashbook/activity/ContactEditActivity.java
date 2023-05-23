@@ -58,8 +58,8 @@ public class ContactEditActivity extends EditRestApiActivity<Contact> implements
     @Override
     protected void setViewContent() {
         this.setContentView(R.layout.activity_form_contact);
-        txtName = findViewById(R.id.txt_first_name);
-        txtLatinName = findViewById(R.id.txt_last_name);
+        txtName = findViewById(R.id.txt_latin_name);
+        txtLatinName = findViewById(R.id.txt_name);
         txtNickname = findViewById(R.id.txt_nick_name);
         txtPhonenumber1 = findViewById(R.id.txt_phoneNumber1);
         txtPhonenumber2 = findViewById(R.id.txt_phoneNumber2);

@@ -22,8 +22,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.activity.BsDocLookUpActivity;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
-import com.soleap.cashbook.common.widget.OnValueChanged;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 
 public class DocLookupTextInputView extends LinearLayout {
 
@@ -92,7 +91,7 @@ public class DocLookupTextInputView extends LinearLayout {
 
     private void lookupDocument() {
         Intent intent = new Intent(this.getContext(), BsDocLookUpActivity.class);
-        intent.putExtra(DocumentInfo.DOCUMENT_NAME, docName);
+        intent.putExtra(DocumentName.DOCUMENT_NAME, docName);
         intent.putExtra(BsDocLookUpActivity.SHOW_PHOTO, true);
         activityResultLauncher.launch(intent);
     }

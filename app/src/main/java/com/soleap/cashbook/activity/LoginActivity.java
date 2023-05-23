@@ -3,31 +3,24 @@ package com.soleap.cashbook.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.soleap.cashbook.R;
-import com.soleap.cashbook.common.activity.BsDocListActivity;
 import com.soleap.cashbook.content.AppPrefrences;
-import com.soleap.cashbook.document.DocumentInfo;
+import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.document.User;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 
-import java.io.IOException;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -74,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                    AppPrefrences.signIn(LoginActivity.this, user);
                 }
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra(DocumentInfo.DOCUMENT_NAME, DocumentInfo.ITEM);
+                intent.putExtra(DocumentName.DOCUMENT_NAME, DocumentName.ITEM);
                 startActivity(intent);
                 finish();
             }
