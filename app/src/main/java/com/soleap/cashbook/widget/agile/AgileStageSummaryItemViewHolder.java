@@ -14,16 +14,18 @@ import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.viewholder.DocListItemViewHolder;
 
+import java.util.Map;
+
 public class AgileStageSummaryItemViewHolder extends DocListItemViewHolder {
+    @Override
+    protected void bindViewContent(DocumentSnapshot doc) {
+
+    }
+
     public AgileStageSummaryItemViewHolder(Context activity, View itemView, String viewName, String docName, int resourceFileLayout) {
         super(activity, itemView, viewName, docName, resourceFileLayout);
     }
 
-
-//    public AgileStageSummaryItemViewHolder(Activity activity, String documentName) {
-//        super(activity, "", documentName);
-//
-//    }
 
     @SuppressLint("LongLogTag")
     public void bind(View itemView, final int position, final DocumentSnapshot doc) {

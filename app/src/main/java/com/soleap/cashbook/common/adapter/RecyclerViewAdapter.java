@@ -78,7 +78,6 @@ public abstract class RecyclerViewAdapter<TV extends DocListItemViewHolder> exte
     }
 
     public void startListening() {
-        this.repository.list();
         if (listner != null) {
             this.listner.onStartListening();
         }

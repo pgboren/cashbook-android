@@ -25,6 +25,7 @@ public class DocumentName {
     public static final String DOCUMENT_ID = "DOCUMENT_ID";
 
     public static final String VEHICLE = "vehicle";
+    public static final String ACCOUNT_TYPE = "accounttype" ;
     public static String ORDER = "order";
     public static String CONTACT = "contact";
     public static String CATEGORY = "category";
@@ -123,7 +124,11 @@ public class DocumentName {
             return context.getString(R.string.nav_menu_contacts);
         }
 
-        throw new RuntimeException("Stub!");
+        if (key.equals(ACCOUNT_TYPE)) {
+            return context.getString(R.string.account_type);
+        }
+
+        return key;
     }
 
     public Class getEditActivityClass(String key) {
@@ -288,7 +293,8 @@ public class DocumentName {
             return R.layout.activity_list_bsdoc;
         }
 
-        throw new RuntimeException("Stub!");
+        return R.layout.activity_list_bsdoc;
+//        throw new RuntimeException("Stub!");
     }
 
     public Class getDocumentClass(String documentName) {

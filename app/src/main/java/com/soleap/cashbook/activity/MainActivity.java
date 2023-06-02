@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.soleap.cashbook.BuildConfig;
 import com.soleap.cashbook.Global;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.activity.BsDocListActivity;
@@ -72,31 +73,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initFabView() {
-//        fabSettings = (FloatingActionButton) this.findViewById(R.id.fabSetting);
-//        layoutFabContact = (LinearLayout) this.findViewById(R.id.layoutFabContact);
-//        layoutFabDeal = (LinearLayout) this.findViewById(R.id.layoutFabDeal);
-//
-//        fabSettings.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (fabExpanded == true){
-//                    closeSubMenusFab();
-//                } else {
-//                    openSubMenusFab();
-//                }
-//            }
-//        });
-
-        //Only main FAB is visible in the beginning
         closeSubMenusFab();
-
     }
 
     private void openSubMenusFab(){
         layoutFabContact.setVisibility(View.VISIBLE);
         layoutFabDeal.setVisibility(View.VISIBLE);
-        //Change settings icon to 'X' icon
-//        fabSettings.setImageResource(R.drawable.ic_close_black_24dp);
         fabExpanded = true;
     }
 
@@ -105,16 +87,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void closeSubMenusFab(){
         layoutFabContact.setVisibility(View.INVISIBLE);
         layoutFabDeal.setVisibility(View.INVISIBLE);
-//        fabSettings.setImageResource(R.drawable.ic_settings_black_24dp);
         fabExpanded = false;
     }
 
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -147,16 +123,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return true;
         }
 
-        if (id == R.id.nav_contact_list) {
-            documentName = DocumentName.CONTACT;
 
+
+        intent = new Intent(this, BsDocListActivity.class);
+
+        if (id == R.id.nav_contact_list) {
+            intent.putExtra(DocumentName.DOCUMENT_NAME, DocumentName.CONTACT);
         }
+
+        if (id == R.id.nav_account_type) {
+            intent.putExtra(DocumentName.DOCUMENT_NAME, DocumentName.ACCOUNT_TYPE);
+            intent.putExtra(BsDocListActivity.READ_ONLY, true);
+        }
+
+        startActivity(intent);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);
         drawer.closeDrawer(GravityCompat.START);
-        intent = new Intent(this, BsDocListActivity.class);
-        intent.putExtra(DocumentName.DOCUMENT_NAME, documentName);
-        startActivity(intent);
         return true;
     }
 

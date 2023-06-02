@@ -3,6 +3,7 @@ package com.soleap.cashbook.restapi;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.PagingRecyclerViewData;
+import com.soleap.cashbook.common.document.ViewData;
 import com.soleap.cashbook.document.Branch;
 import com.soleap.cashbook.document.Category;
 import com.soleap.cashbook.document.Color;
@@ -136,6 +137,9 @@ public interface APIInterface {
 
     @POST("view/{view_name}/{docname}")
     Call<PagingRecyclerViewData> listViewData(@Path("view_name") String viewName, @Path("docname") String document, @Query("page") int page, @Query("limit") int limit, @Body Map<String, Object> data);
+
+    @POST("view/LIST_ITEM_VIEW/{docname}")
+    Call<Map<String, Object>> getViewData(@Path("docname") String document, @Query("id") String id);
 
 
 }

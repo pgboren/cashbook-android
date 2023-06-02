@@ -11,7 +11,16 @@ import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.viewholder.DocListItemViewHolder;
 
+import java.util.Map;
+
 public class AgileStageButtomSheetViewHolder extends DocListItemViewHolder {
+
+
+    @Override
+    protected void bindViewContent(DocumentSnapshot doc) {
+
+    }
+
     public AgileStageButtomSheetViewHolder(Context activity, View itemView, String viewName, String docName, int resourceFileLayout) {
         super(activity, itemView, viewName, docName, resourceFileLayout);
     }

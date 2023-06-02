@@ -1,5 +1,7 @@
 package com.soleap.cashbook.common.document;
 
+import java.util.Map;
+
 public class ViewDocumentSnapshot extends DocumentSnapshot {
 
     private String docClassName;

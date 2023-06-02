@@ -1,9 +1,11 @@
 package com.soleap.cashbook.common.activity;
 
 import android.os.Handler;
+import android.view.Menu;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +20,8 @@ import com.soleap.cashbook.viewholder.DocListItemViewHolder;
 public class BsDocListActivity extends RecyclerActivity {
 
     private static final String TAG = "BsDocListActivity";
+
+    public static final String READ_ONLY = "READ_ONLY";
 
     protected void startDataListening() {
         new Handler().postDelayed(new Runnable() {
@@ -38,6 +42,15 @@ public class BsDocListActivity extends RecyclerActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         initScrollListener();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        boolean isReadOnly = getIntent().getExtras().getBoolean(READ_ONLY);
+        if (!isReadOnly) {
+            return super.onCreateOptionsMenu(menu);
+        }
+        return true;
     }
 
     private void initScrollListener() {

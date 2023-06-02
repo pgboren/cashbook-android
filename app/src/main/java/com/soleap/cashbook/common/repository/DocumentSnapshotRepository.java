@@ -5,6 +5,7 @@ import android.util.Log;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.PagingRecyclerViewData;
+import com.soleap.cashbook.common.document.ViewData;
 import com.soleap.cashbook.document.Branch;
 import com.soleap.cashbook.document.Category;
 import com.soleap.cashbook.document.Color;
@@ -36,6 +37,7 @@ public class DocumentSnapshotRepository {
     }
 
     protected OnGetPagingDocsRequestListner pagingDocsRequestListner = null;
+
     protected OnListedDocumentListner listDocumentListner = null;
     protected OnViewedDocumentListner viewDocumentListner = null;
     protected OnGetDocumentListner getDocumentListner = null;
@@ -113,8 +115,20 @@ public class DocumentSnapshotRepository {
         apiInterface = APIClient.getClient().create(APIInterface.class);
     }
 
-    public void view(String id) {
+    public void getViewData(String id, OnGetViewDataRequestListner listner) {
+        Call<Map<String, Object>> call = apiInterface.getViewData("contact", id);
+        call.enqueue(new Callback<Map<String, Object>>() {
+            @Override
+            public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
+                Map<String, Object> data = response.body();
+                listner.onGet(data);
+            }
 
+            @Override
+            public void onFailure(Call<Map<String, Object>> call, Throwable t) {
+                listner.onError(t);
+            }
+        });
     }
 
     public void list(int page) {
@@ -384,6 +398,10 @@ public class DocumentSnapshotRepository {
 
     public interface OnGetPagingDocsRequestListner extends DocumentEventListner {
         void onGet(PagingRecyclerViewData data);
+    }
+
+    public interface OnGetViewDataRequestListner extends DocumentEventListner {
+        void onGet(Map<String, Object> data);
     }
 
 }

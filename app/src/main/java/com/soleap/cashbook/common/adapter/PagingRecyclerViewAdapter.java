@@ -22,6 +22,8 @@ import com.soleap.cashbook.viewholder.DocListItemViewHolder;
 import com.soleap.cashbook.viewholder.ListItemViewHolder;
 import com.soleap.cashbook.viewholder.ListItemViewHolderFactory;
 
+import java.util.Map;
+
 public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements DocumentSnapshotRepository.OnGetPagingDocsRequestListner {
 
     private final int VIEW_TYPE_ITEM = 0;
@@ -58,7 +60,7 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        final Document documentSnapshot = (Document) dataSet.get(position);
+        final DocumentSnapshot documentSnapshot = (DocumentSnapshot) dataSet.get(position);
         if (documentSnapshot != null) {
             DocListItemViewHolder viewHolder = (DocListItemViewHolder) holder;
             viewHolder.bind(position, documentSnapshot);
@@ -172,6 +174,10 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
         }
 
 
+        @Override
+        protected void bindViewContent(DocumentSnapshot doc) {
+
+        }
     }
 
     public interface PagingRecyclerViewAdapterDataListner {

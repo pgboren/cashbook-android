@@ -32,7 +32,7 @@
         <TextView android:id="@+id/txt_index"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:background="@drawable/bg_round_corner"
             android:gravity="center"
             android:textSize="@dimen/list_item_content"

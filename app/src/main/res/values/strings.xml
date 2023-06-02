@@ -137,5 +137,6 @@
     <string name="document">ឯកសារ</string>
     <string name="latinname">ឈ្មោះ (ឡាតាំង)</string>
     <string name="id">លេខសំគាល់</string>
+    <string name="account_type">ប្រភេទគណនី</string>
 
 </resources>

@@ -91,7 +91,7 @@ public class AgileStageBottomSheetDialog extends BottomSheetDialogFragment {
             public void onError(Throwable t) {
             }
         });
-        repository.list();
+//        repository.list();
     }
 
     @NonNull

@@ -33,6 +33,13 @@
 
     <item android:title="@string/nav_group_system">
         <menu>
+
+            <item
+                android:id="@+id/nav_account_type"
+                android:icon="@drawable/ic_add"
+                android:title="@string/account_type" />
+
+
             <item
                 android:id="@+id/nav_setting"
                 android:icon="@drawable/ic_settings"

@@ -6,11 +6,16 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.soleap.cashbook.Global;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
+import com.soleap.cashbook.common.repository.DocumentSnapshotRepository;
+import com.soleap.cashbook.common.repository.RepositoryFactory;
 import com.soleap.cashbook.common.value.ViewSetterFactory;
-import com.soleap.cashbook.common.value.ViewType;
+import com.soleap.cashbook.document.DocumentName;
+
+import java.util.Map;
 
 public abstract class DocListItemViewHolder extends RecyclerView.ViewHolder  implements ListItemViewHolder {
 
@@ -19,6 +24,8 @@ public abstract class DocListItemViewHolder extends RecyclerView.ViewHolder  imp
     private String viewName;
     private int resourceFileLayout;
 
+    protected abstract void bindViewContent(DocumentSnapshot doc);
+
     public DocListItemViewHolder(Context activity, View itemView, String viewName, String docName, int resourceFileLayout) {
         super(itemView);
         this.context = activity;
@@ -26,7 +33,6 @@ public abstract class DocListItemViewHolder extends RecyclerView.ViewHolder  imp
         this.viewName = viewName;
         this.resourceFileLayout = resourceFileLayout;
     }
-
 
     @Override
     public String getViewName() {
@@ -43,27 +49,17 @@ public abstract class DocListItemViewHolder extends RecyclerView.ViewHolder  imp
         return resourceFileLayout;
     }
 
-    public void bind(int position, Document doc) {
+    public void bind(int position, DocumentSnapshot doc) {
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
         String id = doc.getId();
+        if (Global.build_type.equals("debug")) {
+            itemView.findViewById(R.id.txt_id).setVisibility(View.VISIBLE);
+            viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_id).setString((id));
+        }
         TextView txtIndex = itemView.findViewById(R.id.txt_index);
         txtIndex.setText(String.valueOf(position + 1));
-        viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_id).setString((id));
-
-        TextView circleBox = itemView.findViewById(R.id.txt_short_name);
-        circleBox.setVisibility(View.VISIBLE);
-        circleBox.setText(id.substring(0, 1).toUpperCase());
+        bindViewContent(doc);
     }
-
-    private void getDocument(String id) {
-
-    }
-
-
-
-
-
-
 
     //    protected void bindTask(View itemView, int position, DocumentSnapshot doc) {
 //        ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);

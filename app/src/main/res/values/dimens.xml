@@ -12,5 +12,5 @@
     <dimen name="value_size">13sp</dimen>
 
     <dimen name="list_item_content">14sp</dimen>
-    <dimen name="list_item_index">10sp</dimen>
+    <dimen name="list_item_index">12sp</dimen>
 </resources>

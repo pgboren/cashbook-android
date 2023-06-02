@@ -106,7 +106,7 @@ public class StageChipGroup extends ChipGroup {
             public void onError(Throwable t) {
             }
         });
-        repository.list();
+//        repository.list();
     }
 
     public interface OnStageValueChangedListner {
