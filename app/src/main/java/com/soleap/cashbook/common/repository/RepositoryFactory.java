@@ -1,7 +1,6 @@
 package com.soleap.cashbook.common.repository;
 
 import com.soleap.cashbook.document.DocumentName;
-import com.soleap.cashbook.repository.AgileTaskRepository;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,9 +27,6 @@ public class RepositoryFactory {
     }
 
     private DocumentSnapshotRepository getRepository(String entity) {
-        if (entity.equals(DocumentName.AGILE_TASK)) {
-            return new AgileTaskRepository();
-        }
         return new DocumentSnapshotRepository(entity);
     }
 }

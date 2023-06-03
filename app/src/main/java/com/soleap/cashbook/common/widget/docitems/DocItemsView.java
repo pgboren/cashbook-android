@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,17 +23,13 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.soleap.cashbook.R;
-import com.soleap.cashbook.activity.SaleOrderitemInputActivity;
 import com.soleap.cashbook.common.activity.DocItemsViewActivity;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.util.DialogUtils;
-import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.common.widget.OnValueChanged;
 import com.soleap.cashbook.common.widget.recyclerview.SwipeToDeleteCallback;
 import com.soleap.cashbook.common.widget.recyclerview.SwipeToDeleteRecyclerViewAdapter;
-import com.soleap.cashbook.widget.saleorder.SaleOrderItemViewAdapter;
 
 import java.util.List;
 
@@ -73,8 +68,8 @@ public abstract class DocItemsView extends LinearLayout {
         btnAddItem.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, SaleOrderitemInputActivity.class);
-                activityResultLauncher.launch(intent);
+                //Intent intent = new Intent(context, SaleOrderitemInputActivity.class);
+                //activityResultLauncher.launch(intent);
             }
         });
 

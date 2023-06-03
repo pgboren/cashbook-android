@@ -8,9 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.soleap.cashbook.common.document.Document;
-import com.soleap.cashbook.widget.saleorder.SaleOrderItemViewAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class SwipeToDeleteRecyclerViewAdapter<VH extends SwipeToDeleteRecyclerViewHolder> extends RecyclerView.Adapter<VH> {

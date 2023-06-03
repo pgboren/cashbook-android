@@ -46,12 +46,6 @@
                 android:resource="@xml/fileprovider" />
         </provider>
 
-        <activity
-            android:name=".activity.BsItemDocAddNewActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="adjustResize" />
-
 
         <activity
             android:name=".activity.task.AgileTaskViewActivity"
@@ -72,13 +66,6 @@
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="adjustResize" />
 
-
-        <activity
-            android:name=".activity.SaleOrderitemInputActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:label="@string/item"
-            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:theme="@style/NoActionBar"
@@ -105,12 +92,6 @@
         </activity>
 
         <activity
-            android:name=".activity.BsItemDocEditActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
             android:name=".common.activity.BsDocEditActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
@@ -128,52 +109,11 @@
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="adjustResize" />
 
-        <activity
-            android:name=".common.activity.BsColorDocEditActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name=".activity.BsColorDocAddNewActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="adjustResize" />
-
         <!-- SaleOrder  Activities -->
-        <activity
-            android:name=".activity.SaleOrderAddNewActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="adjustResize" />
 
         <!-- Loan Institute Activities -->
-        <activity
-            android:name=".activity.BsInstituteDocEditActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name=".activity.BsInstituteDocAddNewActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="adjustResize" />
 
         <!-- Contact Activities -->
-
-        <activity
-            android:name=".activity.ContactAddNewActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name=".activity.ContactEditActivity"
-            android:label="@string/edit"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".activity.SplashScreenActivity"

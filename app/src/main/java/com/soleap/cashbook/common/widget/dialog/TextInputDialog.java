@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.soleap.cashbook.R;
-import com.soleap.cashbook.document.Contact;
 
 public class TextInputDialog extends FullscreenDialog<String> {
 

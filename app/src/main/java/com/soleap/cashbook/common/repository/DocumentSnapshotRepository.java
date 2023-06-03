@@ -5,14 +5,8 @@ import android.util.Log;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.PagingRecyclerViewData;
-import com.soleap.cashbook.common.document.ViewData;
-import com.soleap.cashbook.document.Branch;
 import com.soleap.cashbook.document.Category;
-import com.soleap.cashbook.document.Color;
-import com.soleap.cashbook.document.Contact;
 import com.soleap.cashbook.document.DocumentName;
-import com.soleap.cashbook.document.Institute;
-import com.soleap.cashbook.document.Item;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 
@@ -154,58 +148,17 @@ public class DocumentSnapshotRepository {
 
     private Call<DocumentSnapshot> createRestUpdateCall(String entity, Document document) {
 
-        if (entity.equals(DocumentName.ITEM)) {
-            return apiInterface.updateItem(document.getId(), (Item) document);
-        }
 
-        if (entity.equals(DocumentName.CATEGORY)) {
-            return apiInterface.updateCategory(document.getId(), (Category) document);
-        }
-
-        if (entity.equals(DocumentName.INSTITUE)) {
-            return apiInterface.updateInstitute(document.getId(), (Institute) document);
-        }
-
-        if (entity.equals(DocumentName.COLOR)) {
-            return apiInterface.updateColor(document.getId(), (Color) document);
-        }
-
-        if (entity.equals(DocumentName.BRANCH)) {
-            return apiInterface.updateBranch(document.getId(), (Branch) document);
-        }
-
-        if (entity.equals(DocumentName.CONTACT)) {
-            return apiInterface.updateContact(document.getId(), (Contact) document);
-        }
 
         throw new RuntimeException("Stub!");
     }
 
     private Call createRestGetCall(String document, String id) {
 
-        if (documentName.equals(DocumentName.BRANCH)) {
-            return apiInterface.getBranch(id);
-        }
-
-        if (documentName.equals(DocumentName.COLOR)) {
-            return apiInterface.getColor(id);
-        }
-
-        if (documentName.equals(DocumentName.ITEM)) {
-            return apiInterface.getItem(id);
-        }
-
-        if (documentName.equals(DocumentName.INSTITUE)) {
-            return apiInterface.getInstitute(id);
-        }
-
         if (documentName.equals(DocumentName.CATEGORY)) {
             return apiInterface.getCategory(id);
         }
 
-        if (documentName.equals(DocumentName.CONTACT)) {
-            return apiInterface.getContact(id);
-        }
         throw new RuntimeException("Stub!");
     }
 

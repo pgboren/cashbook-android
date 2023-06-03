@@ -106,25 +106,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         }
 
-        if (id == R.id.nav_add_contact) {
-            intent = new Intent(this, ContactAddNewActivity.class);
-            intent.putExtra(DocumentName.DOCUMENT_NAME, DocumentName.CONTACT);
-            startActivity(intent);
-            return true;
-        }
-
-        if (id == R.id.nav_add_new_deal) {
-            documentName = DocumentName.SALE_ORDER;
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);
-            drawer.closeDrawer(GravityCompat.START);
-            intent = new Intent(this, SaleOrderAddNewActivity.class);
-            intent.putExtra(DocumentName.DOCUMENT_NAME, documentName);
-            startActivity(intent);
-            return true;
-        }
-
-
-
         intent = new Intent(this, BsDocListActivity.class);
 
         if (id == R.id.nav_contact_list) {

@@ -3,20 +3,9 @@ package com.soleap.cashbook.document;
 import android.content.Context;
 
 import com.soleap.cashbook.R;
-import com.soleap.cashbook.activity.BsColorDocAddNewActivity;
-import com.soleap.cashbook.activity.SaleOrderAddNewActivity;
-import com.soleap.cashbook.activity.task.AgileTaskAddNewActivity;
-import com.soleap.cashbook.activity.task.AgileTaskViewActivity;
-import com.soleap.cashbook.common.activity.BsColorDocEditActivity;
 import com.soleap.cashbook.common.activity.BsDocAddNewActivity;
 import com.soleap.cashbook.common.activity.BsDocEditActivity;
 import com.soleap.cashbook.common.activity.BsDocViewActivity;
-import com.soleap.cashbook.activity.BsInstituteDocAddNewActivity;
-import com.soleap.cashbook.activity.BsInstituteDocEditActivity;
-import com.soleap.cashbook.activity.BsItemDocAddNewActivity;
-import com.soleap.cashbook.activity.BsItemDocEditActivity;
-import com.soleap.cashbook.activity.ContactAddNewActivity;
-import com.soleap.cashbook.activity.ContactEditActivity;
 import com.soleap.cashbook.common.document.Document;
 
 public class DocumentName {
@@ -54,38 +43,9 @@ public class DocumentName {
 
     public Document createDocument(String documentName) {
 
-        if (documentName.equals(DocumentName.SALE_ORDER)) {
-            return new SaleOrder();
-        }
-
-        if (documentName.equals(DocumentName.ITEM)) {
-            return new Item();
-        }
-
-        if (documentName.equals(DocumentName.INSTITUE)) {
-            return new Institute();
-        }
-
-        if (documentName.equals(DocumentName.COLOR)) {
-            return new Color();
-        }
-
-        if (documentName.equals(DocumentName.BRANCH)) {
-            return new Branch();
-        }
-
         if (documentName.equals(DocumentName.CATEGORY)) {
             return new Category();
         }
-
-        if (documentName.equals(DocumentName.CONTACT)) {
-            return new Contact();
-        }
-
-        if (documentName.equals(DocumentName.AGILE_TASK)) {
-            return new AgileTask();
-        }
-
 
         throw new RuntimeException("Stub!");
     }
@@ -137,24 +97,8 @@ public class DocumentName {
             return BsDocEditActivity.class;
         }
 
-        if (key.equals(ITEM)) {
-            return BsItemDocEditActivity.class;
-        }
-
-        if (key.equals(COLOR)) {
-            return BsColorDocEditActivity.class;
-        }
-
-        if (key.equals(INSTITUE)) {
-            return BsInstituteDocEditActivity.class;
-        }
-
         if (key.equals(CATEGORY)) {
             return BsDocEditActivity.class;
-        }
-
-        if (key.equals(CONTACT)) {
-            return ContactEditActivity.class;
         }
 
         throw new RuntimeException("Stub!");
@@ -162,46 +106,18 @@ public class DocumentName {
 
     public Class getAddNewActivityClass(String key) {
 
-        if (key.equals(AGILE_TASK)) {
-            return AgileTaskAddNewActivity.class;
-        }
-
-        if (key.equals(SALE_ORDER)) {
-            return SaleOrderAddNewActivity.class;
-        }
-
         if (key.equals(BRANCH)) {
             return BsDocAddNewActivity.class;
-        }
-
-        if (key.equals(COLOR)) {
-            return BsColorDocAddNewActivity.class;
-        }
-
-        if (key.equals(ITEM)) {
-            return BsItemDocAddNewActivity.class;
         }
 
         if (key.equals(CATEGORY)) {
             return BsDocAddNewActivity.class;
         }
 
-        if (key.equals(INSTITUE)) {
-            return BsInstituteDocAddNewActivity.class;
-        }
-
-        if (key.equals(CONTACT)) {
-            return ContactAddNewActivity.class;
-        }
-
         return null;
     }
 
     public Class getViewActivityClass(String key) {
-
-        if (key.equals(AGILE_TASK)) {
-            return AgileTaskViewActivity.class;
-        }
 
         if (key.equals(BRANCH)) {
             return BsDocViewActivity.class;
@@ -265,10 +181,6 @@ public class DocumentName {
 
     public int getListActivityLayout(String key) {
 
-        if (key.equals(AGILE_TASK)) {
-            return R.layout.activity_list_agile_task;
-        }
-
         if (key.equals(BRANCH)) {
             return R.layout.activity_list_bsdoc;
         }
@@ -298,9 +210,6 @@ public class DocumentName {
     }
 
     public Class getDocumentClass(String documentName) {
-        if (documentName.equals(DocumentName.BRANCH)) {
-            return Branch.class;
-        }
 
         if (documentName.equals(DocumentName.CATEGORY)) {
             return Category.class;

@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.soleap.cashbook.R;
-import com.soleap.cashbook.document.Contact;
 
 public abstract class FullscreenDialog<V> extends DialogFragment implements View.OnClickListener {
 
@@ -57,8 +56,8 @@ public abstract class FullscreenDialog<V> extends DialogFragment implements View
         viewHolder.onBind(value);
         close.setOnClickListener(this);
         action.setOnClickListener(this);
-        TextView txtTitle = this.rootView.findViewById(R.id.txtTitle);
-        txtTitle.setText(title);
+//        TextView txtTitle = this.rootView.findViewById(R.id.txtTitle);
+//        txtTitle.setText(title);
         return rootView;
     }
 

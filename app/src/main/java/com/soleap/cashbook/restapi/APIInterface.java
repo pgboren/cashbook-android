@@ -3,13 +3,7 @@ package com.soleap.cashbook.restapi;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.PagingRecyclerViewData;
-import com.soleap.cashbook.common.document.ViewData;
-import com.soleap.cashbook.document.Branch;
 import com.soleap.cashbook.document.Category;
-import com.soleap.cashbook.document.Color;
-import com.soleap.cashbook.document.Contact;
-import com.soleap.cashbook.document.Institute;
-import com.soleap.cashbook.document.Item;
 import com.soleap.cashbook.document.Media;
 import com.soleap.cashbook.document.User;
 
@@ -33,26 +27,8 @@ import retrofit2.http.Query;
 
 public interface APIInterface {
 
-    @DELETE("crud/{entity}/{id}")
-    Call<Void> delete(@Path("entity") String entity, @Path("id") String id);
-
-    @PUT("crud/category/{id}")
-    Call<DocumentSnapshot> updateCategory(@Path("id") String id, @Body Category category);
-
-    @GET("crud/category/{id}")
-    Call<Category> getCategory(@Path("id") String id);
-
-    @GET("crud/institute/{id}")
-    Call<Institute> getInstitute(@Path("id") String id);
-
-    @GET("crud/branch/{id}")
-    Call<Branch> getBranch(@Path("id") String id);
-
-    @GET("crud/category/")
-    Call<List<Category>> getCategories();
-
-    @GET("categories/")
-    Call<List<Category>> getSubCategories(@Query("parent") String parent);
+    @POST("auth/signin")
+    Call<User> login(@Body Map<String, Object> usernameAndPassword);
 
     @Multipart
     @POST("media/upload")
@@ -66,56 +42,9 @@ public interface APIInterface {
                                   @Part MultipartBody.Part image,
                                   @Part("upload") RequestBody name);
 
-    @PUT("crud/contact/{id}")
-    Call<DocumentSnapshot> updateContact(@Path("id") String id, @Body Contact contact);
 
-    @PATCH("crud/contact/{id}")
-    Call<Contact> patchContact(@Path("id") String id, @Body Contact contact);
-
-    @GET("crud/contact/{id}")
-    Call<Contact> getContact(@Path("id") String id);
-
-    @POST("crud/contact")
-    Call<DocumentSnapshot> createContact(@Body Contact model);
-
-    @POST("crud/category")
-    Call<DocumentSnapshot> createCategory(@Body Category model);
-
-    @GET("view/{entity}")
-    Call<List<DocumentSnapshot>> listViewModel(@Path("entity") String entity);
-
-    @POST("crud/branch")
-    Call<DocumentSnapshot> createBranch(@Body Branch document);
-
-    @PUT("crud/branch/{id}")
-    Call<DocumentSnapshot> updateBranch(@Path("id") String id, @Body Branch branch);
-
-    @POST("crud/institute")
-    Call<DocumentSnapshot> createInstitute(@Body Institute body);
-
-    @PUT("crud/institute/{id}")
-    Call<DocumentSnapshot> updateInstitute(@Path("id") String id, @Body Institute institute);
-
-    @POST("crud/color")
-    Call<DocumentSnapshot> creatColor(@Body Color color);
-
-    @PUT("crud/color/{id}")
-    Call<DocumentSnapshot> updateColor(@Path("id") String id, @Body Color color);
-
-    @GET("crud/color/{id}")
-    Call<Color> getColor(@Path("id") String id);
-
-    @POST("crud/item")
-    Call<DocumentSnapshot> createItem(@Body Item document);
-
-    @GET("crud/item/{id}")
-    Call<Item> getItem(@Path("id") String id);
-
-    @PUT("crud/item/{id}")
-    Call<DocumentSnapshot> updateItem(@Path("id") String id, @Body Item item);
-
-    @PATCH("crud/item/{id}")
-    Call<DocumentSnapshot> patchItem(@Path("id") String id, @Body Map<String, Object> itemAttributes);
+    @DELETE("crud/{entity}/{id}")
+    Call<Void> delete(@Path("entity") String entity, @Path("id") String id);
 
     @PATCH("crud/{doc}/{id}")
     Call<DocumentSnapshot> patch(@Path("doc") String doc, @Path("id") String id, @Body Map<String, Object> itemAttributes);
@@ -123,14 +52,23 @@ public interface APIInterface {
     @POST("crud/{doc}")
     Call<Document> post(@Path("doc") String doc, @Body Map<String, Object> data);
 
+    @PUT("crud/category/{id}")
+    Call<DocumentSnapshot> updateCategory(@Path("id") String id, @Body Category category);
+
+    @GET("crud/category/{id}")
+    Call<Category> getCategory(@Path("id") String id);
+
+    @GET("crud/category/")
+    Call<List<Category>> getCategories();
+
+    @GET("categories/")
+    Call<List<Category>> getSubCategories(@Query("parent") String parent);
+
+    @POST("crud/category")
+    Call<DocumentSnapshot> createCategory(@Body Category model);
+
     @GET("view/{entity}/{id}")
     Call<DocumentSnapshot> get(@Path("entity") String entity, @Path("id") String id);
-
-    @POST("auth/signin")
-    Call<User> login(@Body Map<String, Object> usernameAndPassword);
-
-    @GET("agile/tasks")
-    Call<PagingRecyclerViewData> getTasks(@Query("page") int page, @Query("stages") String[] stages, @Query("board") String board);
 
     @GET("view/{docname}")
     Call<Document> list(@Query("page") int page, @Query("limit") String limit);
