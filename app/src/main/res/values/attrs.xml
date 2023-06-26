@@ -81,68 +81,31 @@
         </attr>
     </declare-styleable>
 
-    <declare-styleable name="DocLookupTextInputVIew">
-        <attr name="dltv_title" format="string" localization="suggested" />
-        <attr name="dltv_title_visible" format="boolean"/>
-        <attr name="dltv_blank_message" format="string" localization="suggested" />
-        <attr format="reference" name="dltv_endIconDrawable"/>
-        <attr name="dltv_doc_name" format="string"/>
-        <attr format="boolean" name="dltv_errorEnabled"/>
-        <attr name="dltv_helperText" format="string"/>
-
-    </declare-styleable>
-
-    <declare-styleable name="DocLookUpInputView">
-        <attr name="title" format="string" localization="suggested" />
-        <attr name="title_visible" format="boolean"/>
-        <attr name="blank_message" format="string" localization="suggested" />
-        <attr format="reference" name="endIconDrawable"/>
-        <attr name="documentPhotoVisible">
-            <!-- Visible on screen; the default value. -->
-            <enum name="visible" value="0" />
-            <!-- Not displayed, but taken into account during layout (space is left for it). -->
-            <enum name="invisible" value="4" />
-            <!-- Completely hidden, as if the view had not been added. -->
-            <enum name="gone" value="8" />
-        </attr>
-        <attr name="documentName" format="string"/>
-    </declare-styleable>
-
-    <declare-styleable name="DocItemsView">
-        <attr name="div_title" format="string" localization="suggested" />
-        <attr name="div_allow_many_items" format="boolean"/>
-    </declare-styleable>
-
-    <declare-styleable name="AgileStageSummaryView">
-        <attr name="stage_name" format="string" localization="suggested" />
-        <attr name="stage_id" format="string" localization="suggested" />
-        <attr name="stage_icon" format="string" localization="suggested" />
-        <attr format="reference" name="stage_summary_iconDrawable"/>
-    </declare-styleable>
-
-    <declare-styleable name="PriceInputView">
-        <attr name="piv_title" format="string"/>
-    </declare-styleable>
-
     <declare-styleable name="DatePickerView">
         <attr name="dpv_label" format="string"/>
         <attr name="dpv_text_color" format="color"/>
         <attr name="dpv_require" format="boolean"/>
     </declare-styleable>
 
-    <declare-styleable name="PaymentOptionView">
-        <attr name="potv_label" format="string"/>
-        <attr name="potv_text_color" format="color"/>
-        <attr name="potv_require" format="boolean"/>
+    <declare-styleable name="CurrencyEditText">
+        <attr format="string" name="cet_hint"/>
+        <attr format="float" name="cet_default"/>
+        <attr format="string" name="cet_helperText"/>
+        <attr format="boolean" name="cet_errorEnabled"/>
+        <attr format="string" name="cet_local"/>
     </declare-styleable>
 
-    <declare-styleable name="CouponNumberInputView">
-        <attr name="cnv_title" format="string"/>
-        <attr name="cnv_blank_message" format="string"/>
-    </declare-styleable>
-
-    <declare-styleable name="StageChipGroup">
-        <attr name="selectedStage" format="string"/>
+    <declare-styleable name="EditTextInputView">
+        <attr format="string" name="ev_hint"/>
+        <attr format="string" name="ev_helperText"/>
+        <attr format="boolean" name="ev_errorEnabled"/>
+        <attr name="ev_minLines" format="integer" min="0" />
+        <attr name="ev_lines" format="integer" min="0" />
+        <attr name="ev_maxLines" format="integer" min="0" />
+        <attr name="ev_default" format="float"/>
+        <attr format="reference" name="ev_endIconDrawable"/>
+        <attr name="ev_doc_field_name" format="string"/>
+        <attr name="ev_doc_name" format="string"/>
     </declare-styleable>
 
 </resources>

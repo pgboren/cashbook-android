@@ -8,7 +8,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.soleap.cashbook.restapi.APIClient;
 
+import java.io.File;
+
 public class MedialUtils {
+
 
     public static void loadImage(Context context, String path, ImageView imageView) {
         if (path != null) {
@@ -21,5 +24,5 @@ public class MedialUtils {
         }
     }
 
-    }
+}
 

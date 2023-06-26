@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/list_item_toolbar_view" />
+    <include layout="@layout/toolbar_doc_list_view" />
 
     <include layout="@layout/layout_loading_screen" />
 

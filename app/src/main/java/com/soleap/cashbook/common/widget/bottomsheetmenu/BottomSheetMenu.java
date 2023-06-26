@@ -19,17 +19,17 @@ public class BottomSheetMenu extends BottomSheetDialog {
 
     private int mIconSize;
     private Menu menu;
-    private String title;
-    private int menuResource;
+
+    private int menu_item_layout;
     private MenuItemViewHolder viewHolder;
     private BottomSheetMenuItemClickListener itemClickListner;
 
-    public BottomSheetMenu(@NonNull Context context, BottomSheetMenuItemClickListener listener, Menu menu, int resource) {
+    public BottomSheetMenu(@NonNull Context context, BottomSheetMenuItemClickListener listener, Menu menu, int menu_item_layout) {
         super(context);
         mIconSize = context.getResources().getDimensionPixelSize(R.dimen.bottom_sheet_menu_item_icon_size);
         this.menu = menu;
         this.itemClickListner = listener;
-        this.menuResource = resource;
+        this.menu_item_layout = menu_item_layout;
         this.setTitle(menu.getTitle());
         setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
@@ -41,6 +41,7 @@ public class BottomSheetMenu extends BottomSheetDialog {
                 }
             }
         });
+        build(menu, null);
     }
 
     public void build(Menu menu, MenuItemViewHolder viewHolder) {
@@ -53,10 +54,8 @@ public class BottomSheetMenu extends BottomSheetDialog {
         }
     }
 
-
-
     private View createMenuItemView(final LayoutInflater inflater, ViewGroup rootView, final MenuItem item) {
-        View itemView = inflater.inflate(this.menuResource, rootView, false);
+        View itemView = inflater.inflate(this.menu_item_layout, rootView, false);
         final TextView menuItemView = (TextView) itemView.findViewById(R.id.text);
 
         if (item.getIcon() != null) {

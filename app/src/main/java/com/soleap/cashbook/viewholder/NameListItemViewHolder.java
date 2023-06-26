@@ -12,7 +12,7 @@ import com.soleap.cashbook.view.ViewType;
 public class NameListItemViewHolder extends DocListItemViewHolder {
 
     public NameListItemViewHolder(Context context, View itemView) {
-        super(context, itemView, ViewType.LIST_ITEM_VIEW, DocumentName.CONTACT, R.layout.name_list_item_view);
+        super(context, itemView, ViewType.LIST_ITEM_VIEW, DocumentName.CONTACT, R.layout.list_item_name_view);
     }
 
     @Override

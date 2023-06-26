@@ -25,7 +25,6 @@ public abstract class FieldCreator implements ActivityEventListner {
 
     public FieldCreator(ViewDataActivity activity, ViewData fieldData) {
         this.activity = activity;
-        activity.addActivityEventListner(this);
         this.fieldData = fieldData;
         viewSetterFactory = ViewSetterFactory.getInstance(activity.findViewById(R.id.content_container));
         apiInterface = APIClient.getClient().create(APIInterface.class);

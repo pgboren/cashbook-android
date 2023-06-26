@@ -4,14 +4,10 @@ import android.content.Context;
 
 import com.soleap.cashbook.common.activity.ViewDataActivity;
 import com.soleap.cashbook.common.document.ViewData;
-
 public class ViewFieldCreatorFactory {
-
     private static ViewFieldCreatorFactory instance;
-
     public ViewFieldCreatorFactory() {
     }
-
     public static ViewFieldCreatorFactory getInstance(Context context) {
         if (instance == null) {
             instance = new ViewFieldCreatorFactory();
@@ -20,6 +16,10 @@ public class ViewFieldCreatorFactory {
     }
 
     public FieldCreator create(ViewDataActivity viewActivity, ViewData fieldData) {
+
+        if (fieldData.getDataType().equals(FieldType.TEXT)) {
+            return new ViewResourceStringTextFieldCreator(viewActivity, fieldData);
+        }
 
         if (fieldData.getDataType().equals(FieldType.RESOURCE_STRING)) {
             return new ViewResourceStringTextFieldCreator(viewActivity, fieldData);

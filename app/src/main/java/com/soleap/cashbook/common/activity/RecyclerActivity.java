@@ -2,67 +2,90 @@ package com.soleap.cashbook.common.activity;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.soleap.cashbook.R;
-import com.soleap.cashbook.activity.ActivityProviderFactory;
 import com.soleap.cashbook.common.adapter.PagingRecyclerViewAdapter;
 import com.soleap.cashbook.common.adapter.RecyclerViewAdapter;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
-import com.soleap.cashbook.document.DocumentName;
+import com.soleap.cashbook.common.global.DocChangedEventListner;
+import com.soleap.cashbook.common.global.EventHandler;
+import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
-import com.soleap.cashbook.view.Views;
+import com.soleap.cashbook.common.global.DocCreatedEventListner;
+import com.soleap.cashbook.view.DocumentInfo;
 
 public abstract class RecyclerActivity extends BackPressActivity implements RecyclerViewAdapter.EventListner {
 
     public final static int ADD_NEW_ENTITY_REQUEST_CODE = 2001;
     public final static int VIEW_ENTITY_REQUEST_CODE = 2002;
 
-
     private static final String TAG = "RestApiRecyclerActivity";
-
     protected FloatingActionButton addFabButton;
-    protected String documentName;
     protected APIInterface apiInterface;
     protected RecyclerView recyclerView;
     protected PagingRecyclerViewAdapter adapter;
 
+    private DocumentInfo documentInfo;
+
+    private DocChangedEventListner docChangedEventListner = new DocChangedEventListner() {
+        @Override
+        public void onChanged(String docId) {
+            adapter.onDocChanged(docId);
+        }
+
+        @Override
+        public void onError(Throwable t) {
+
+        }
+    };
+
+    private DocCreatedEventListner docCreatedEventListner = new DocCreatedEventListner() {
+        @Override
+        public void onAdded(String docId) {
+            adapter.onDocCreated(docId);
+        }
+
+        @Override
+        public void onError(Throwable t) {
+            Log.e(TAG, t.getMessage(), t);
+        }
+    };
+
     @Override
     protected void onCreatingBegin() {
-        this.documentName = getIntent().getExtras().getString(DocumentName.DOCUMENT_NAME);
+        documentInfo = (DocumentInfo) getIntent().getSerializableExtra(DocumentInfo.DOCUMENT_INFO_KEY);
+        EventHandler.getInstance().addDocCreatedEventListner(documentInfo.getName(), docCreatedEventListner);
+        EventHandler.getInstance().addDocChangedEventListner(documentInfo.getName(), docChangedEventListner);
         apiInterface = APIClient.getClient().create(APIInterface.class);
     }
 
     protected void initFabButtonAction() {
         addFabButton = findViewById(R.id.fab);
         addFabButton.setVisibility(View.GONE);
-        addFabButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onAddNewButtonClicked();
-            }
-        });
     }
 
     @Override
     protected void setViewContent() {
-        setContentView(DocumentName.getInstance(this).getListActivityLayout(documentName));
+        setContentView(documentInfo.getDocListViewDef().getView_layout());
         initActionBar();
         initFabButtonAction();
         initRecyclerViewAdapter();
         initRecyclerView();
-        setTitle(DocumentName.getInstance(this).getListTitle(documentName));
+        setTitle(ResourceUtil.getStringResourceByName(this, documentInfo.getDocListViewDef().getTitle()));
         startDataListening();
     }
 
@@ -90,25 +113,37 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
         }, 500);
     }
 
-    protected void initRecyclerViewAdapter() {
-        final ShimmerFrameLayout container = (ShimmerFrameLayout) findViewById(R.id.shimmerLayout);
-        adapter = new PagingRecyclerViewAdapter(this, documentName, DocumentName.getInstance(this).getListItemLayoutView(documentName));
-        adapter.setItemView(Views.CONTACT_LIST_ITEM_VIEW);
-        adapter.setListner(this);
-        if (DocumentName.getInstance(this).getAddNewActivityClass(documentName) != null) {
-            adapter.setAddNewActivityClass(DocumentName.getInstance(this).getAddNewActivityClass(documentName));
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.btn_add_menu) {
+            onAddNewButtonClicked();
         }
+        return super.onOptionsItemSelected(item);
+    }
 
-        if (DocumentName.getInstance(this).getViewActivityClass(documentName) != null) {
-            adapter.setViewActivityClass(DocumentName.getInstance(this).getViewActivityClass(documentName));
-        }
-        adapter.setListner(this);
+    protected void initRecyclerViewAdapter() {
+        adapter = new PagingRecyclerViewAdapter(this,  documentInfo.getName() , documentInfo.getDocListViewDef().getList_item_layout());
+        adapter.setListner(new PagingRecyclerViewAdapter.PagingRecyclerViewAdaptaerEventListner() {
+            @Override
+            public void onItemClick(DocumentSnapshot doc, int position) {
+                onItemClicked(doc, position);
+            }
+        });
+        adapter.setDocumentInfo(documentInfo);
+    }
+
+    protected void onItemClicked(DocumentSnapshot doc, int position) {
+        Intent intent = new Intent(RecyclerActivity.this, documentInfo.getDocViewViewDef().getActivityClass());
+        intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, documentInfo);
+        intent.putExtra(ModelViewActivity.KEY_MODEL_ID, doc.getId());
+        startActivity(intent);
     }
 
     protected void initRecyclerView() {
         recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
@@ -117,14 +152,8 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
     }
 
     protected void onAddNewButtonClicked() {
-        adapter.addNew();
-    }
-
-    protected void onDocItemSelected(DocumentSnapshot doc) {
-        Intent intent = new Intent(RecyclerActivity.this, ActivityProviderFactory.getViewActivity(documentName));
-        intent.putExtra(DocumentName.DOCUMENT_NAME, documentName);
-        intent.putExtra(ModelViewActivity.KEY_DOC, doc);
-        intent.putExtra(ModelViewActivity.KEY_MODEL_ID, doc.getId());
+        Intent intent = new Intent(RecyclerActivity.this, documentInfo.getDocAddNewDef().getActivityClass());
+        intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, documentInfo);
         startActivity(intent);
     }
 
@@ -141,6 +170,7 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
     @Override
     public void finish() {
         this.adapter.notifyActivityFinish();
+        EventHandler.getInstance().removeDocCreatedEventListner(documentInfo.getName(), docCreatedEventListner);
         super.finish();
     }
 
@@ -150,16 +180,13 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
 
     @Override
     public void onStartListening() {
-
     }
 
     @Override
     public void onError(Throwable e) {
-
     }
 
     @Override
     public void onStopListening() {
-
     }
 }

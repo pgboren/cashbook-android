@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.login_activity);
+        setContentView(R.layout.activity_login);
         textInputUserName = findViewById(R.id.textuserName);
         textInputPassword = findViewById(R.id.textPassword);
         ckbRememberMe = findViewById(R.id.chbRememberMe);

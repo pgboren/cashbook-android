@@ -22,15 +22,19 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
-import com.soleap.cashbook.common.document.ViewData;
-import com.soleap.cashbook.common.repository.DocumentSnapshotRepository;
+import com.soleap.cashbook.common.document.ViewDocumentSnapshot;
+import com.soleap.cashbook.common.global.DocChangedEventListner;
+import com.soleap.cashbook.common.global.EventHandler;
+import com.soleap.cashbook.common.repository.DocumentRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
+import com.soleap.cashbook.common.util.PDFUtil;
+import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.common.widget.view.ActivityEventListner;
-import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 import com.soleap.cashbook.common.widget.view.ViewFieldCreatorFactory;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.BottomSheetMenu;
+import com.soleap.cashbook.view.DocumentInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,35 +43,48 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCompatActivity implements DocumentSnapshotRepository.OnDocumentChangedListner {
+public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCompatActivity {
 
     public final static int PICK_IMAGE_REQUEST_CODE = 104;
-
     private static final String TAG = "ModelViewActivity";
     public static final String KEY_MODEL = "key_model";
     public static final String KEY_MODEL_ID = "key_model_id";
+
     public static final String KEY_SELECTED_POSITION = "key_selected_position";
     public static final String KEY_MODIFIED_FLAG = "key_modofied_flag";
     public static final String KEY_DELETED_FLAG = "key_deleted_flag";
+
     public final static int EDIT_ACTIVITY_REQUEST_CODE = 103;
+
     private String photoFileName = "new_capture_product_image.jpg";
 
     public String documentName;
-    private  Toolbar toolbar;
+    private Toolbar toolbar;
     protected boolean isModelEdited = false;
     protected boolean isModelDeleted = false;
     protected View loadingScreen;
     public String modelId = null;
-    protected DocumentSnapshot model;
+
+    protected DocumentInfo documentInfo;
+    protected ViewDocumentSnapshot viewDoc;
+
     protected APIInterface apiInterface;
-    protected BottomSheetMenu buttomActionsMenu;
-    protected Button btnDelete;
-    protected ImageView imageView;
 
-    private List<ActivityEventListner> listners = new ArrayList<>();
+    private DocChangedEventListner docChangedEventListner = new DocChangedEventListner() {
+        @Override
+        public void onChanged(String docId) {
+            if (docId.equals(docId)) {
+                refresh();
+            }
+        }
 
-    protected Call<DocumentSnapshot> createGetApi() {
-        return apiInterface.get(documentName.toLowerCase(), modelId);
+        @Override
+        public void onError(Throwable t) {
+
+        }
+    };
+    protected Call<ViewDocumentSnapshot> createGetApi() {
+        return apiInterface.viewData(documentInfo.getName().toString().toLowerCase(), modelId);
     }
 
     protected String getViewTitle() {
@@ -79,8 +96,7 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     }
 
     protected String getStringResourceByName(String aString) {
-        String packageName = getPackageName();
-        int resId = getResources().getIdentifier(aString, "string", packageName);
+        int resId = getResources().getIdentifier(aString, "string", getPackageName());
         if (resId == 0) {
             return aString;
         }
@@ -91,7 +107,7 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
         String deleteMessageFormat = getString(R.string.delete_alert_dialog_title);
         return String.format(deleteMessageFormat, getStringResourceByName(this.documentName));
     }
-    
+
     protected String getDeleteAlertDialogMessage() {
         String deleteMessageFormat = getString(R.string.delete_alert_dialog_message);
         return String.format(deleteMessageFormat, getStringResourceByName(this.documentName));
@@ -99,18 +115,19 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
 
     protected void loadDataFromServer() {
         showLoadingScreen();
-        Call<DocumentSnapshot> call = createGetApi();
-        call.enqueue(new Callback<DocumentSnapshot>() {
+        Call<ViewDocumentSnapshot> call = createGetApi();
+        call.enqueue(new Callback<ViewDocumentSnapshot>() {
             @Override
-            public void onResponse(Call<DocumentSnapshot> call, Response<DocumentSnapshot> response) {
+            public void onResponse(Call<ViewDocumentSnapshot> call, Response<ViewDocumentSnapshot> response) {
                 if (response.isSuccessful()) {
-                    model = response.body();
-                    assignValueToControls(model);
+                    viewDoc = response.body();
+                    assignValueToControls(viewDoc);
                     hideLoadingScreen();
                 }
             }
+
             @Override
-            public void onFailure(Call<DocumentSnapshot> call, Throwable t) {
+            public void onFailure(Call<ViewDocumentSnapshot> call, Throwable t) {
                 Log.e(TAG, t.getMessage());
                 call.cancel();
                 hideLoadingScreen();
@@ -118,17 +135,10 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
         });
     }
 
-    protected void startEditActivity() {
-        Intent intent = new Intent(this, DocumentName.getInstance(this).getEditActivityClass(documentName));
-        intent.putExtra(EditRestApiActivity.KEY_MODEL_ID, this.model.getId());
-        intent.putExtra(DocumentName.DOCUMENT_NAME, documentName);
-        this.startActivityForResult(intent, EDIT_ACTIVITY_REQUEST_CODE);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.documentName = getIntent().getExtras().getString(DocumentName.DOCUMENT_NAME);
+        this.documentInfo = (DocumentInfo) getIntent().getExtras().getSerializable(DocumentInfo.DOCUMENT_INFO_KEY);
         apiInterface = APIClient.getClient().create(APIInterface.class);
         setViewContent();
         modelId = getIntent().getExtras().getString(KEY_MODEL_ID);
@@ -136,7 +146,7 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
             Log.e(TAG, "Must pass extra " + KEY_MODEL);
             throw new IllegalArgumentException("Must pass extra " + KEY_MODEL);
         }
-        this.toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_close);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,9 +155,9 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
             }
         });
         setSupportActionBar(toolbar);
-        loadingScreen = this.findViewById(R.id.loadingScreen);
+        loadingScreen = findViewById(R.id.loadingScreen);
+        EventHandler.getInstance().addDocChangedEventListner(documentInfo.getName(), docChangedEventListner);
         loadDataFromServer();
-        RepositoryFactory.create().get(documentName).addOnChangedDocumentListner(documentName, this);
     }
 
     protected void refresh() {
@@ -186,8 +196,17 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     }
 
     protected void delete() {
-        RepositoryFactory.create().get(documentName).remove(documentName, model.getId());
-        finish();
+        RepositoryFactory.create().get(documentName).remove(documentName, viewDoc.getId(), new DocumentRepository.DocumentEventListner() {
+            @Override
+            public void onError(Throwable t) {
+                finish();
+            }
+
+            @Override
+            public void onResponse(Response response) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -195,12 +214,10 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
         Intent returnIntent = new Intent();
         returnIntent.putExtra(KEY_MODIFIED_FLAG, isModelEdited);
         returnIntent.putExtra(KEY_DELETED_FLAG, isModelDeleted);
-
         if (!isModelDeleted) {
-            returnIntent.putExtra(KEY_MODEL, model);
+            returnIntent.putExtra(KEY_MODEL, viewDoc);
         }
         setResult(Activity.RESULT_OK, returnIntent);
-        RepositoryFactory.create().get(documentName).removeOnChangedDocumentListner(documentName, this);
         super.finish();
     }
 
@@ -212,81 +229,44 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
         loadingScreen.setVisibility(View.VISIBLE);
     }
 
-    protected void assignValueToControls(DocumentSnapshot doc) {
-        setTitle(getStringResourceByName(documentName) + " - " +  doc.getTitle());
+    protected void assignValueToControls(ViewDocumentSnapshot doc) {
+        setTitle(ResourceUtil.getStringResourceByName(this, documentInfo.getDocViewViewDef().getTitle()));
         renderViewData(doc);
-        renderOptionButtonActionMenu(doc);
     }
 
-    protected void renderOptionButtonActionMenu(DocumentSnapshot doc) {
-//        String menu = doc.getContextMenu();
-//        int menuId = this.getResources().getIdentifier(menu, "menu", getPackageName());
-//TODO
-//        buttomActionsMenu = new BottomSheetMenu.Builder(this, this, "", menuId, R.layout.text_menu_item).create();
-    }
-
-    protected void renderViewData(DocumentSnapshot doc) {
+    protected void renderViewData(ViewDocumentSnapshot doc) {
         LinearLayout rootView = findViewById(R.id.content_container);
         rootView.removeAllViews();
-        for (ViewData data: doc.getDataValue("data").getChildrent().values()) {
-            if (data.getVisible() == View.VISIBLE) {
-                rootView.addView(ViewFieldCreatorFactory.getInstance(this).create(this, data).createView());
-            }
+        for (String key : doc.getData().keySet()) {
+            rootView.addView(ViewFieldCreatorFactory.getInstance(this).create(this, doc.getDataValue(key)).createView());
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-
-        for (ActivityEventListner listner:listners) {
-            listner.onActivityResult(requestCode, resultCode, intent);
-        }
-    }
-
-
-    @Override
-    public void onError(Throwable t) {
-    }
-
-    @Override
-    public void onChanged(DocumentSnapshot documentSnapshot) {
-        renderViewData((T) documentSnapshot);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.view_option_menu, menu);
+        inflater.inflate(documentInfo.getDocViewViewDef().getViewOptionMenu(), menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         int id = item.getItemId();
-//
-//        if (id == R.id.action_upload_photo) {
-//        }
-//
-//        if (id == R.id.action_view_edit) {
-//            startEditActivity();
-//        }
-//
-//        if (id == R.id.action_view_delete) {
-//            onDeleteOptionMenuClick();
-//        }
-
-        if (id == R.id.view_option_action_more_menuitem) {
-            if (buttomActionsMenu != null) {
-                buttomActionsMenu.show();
-            }
+        if (id == R.id.menu_view_pdf) {
+            String url  = APIClient.API_URL + "view/pdfInvoice/" + viewDoc.getId();
+            PDFUtil.downloadAndOpenPDF(this, url, viewDoc.getId() + ".pdf");
         }
 
+        if (id == R.id.menu_edit) {
+            onEditMenuClick();
+        }
         return super.onOptionsItemSelected(item);
     }
 
-    public void  addActivityEventListner(ActivityEventListner listner) {
-        listners.add(listner);
+    private void onEditMenuClick() {
+        Intent intent = new Intent(this, documentInfo.getDocEditViewDef().getActivityClass());
+        intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, documentInfo);
+        intent.putExtra(EditRestApiActivity.KEY_DOC_ID, viewDoc.getId());
+        startActivity(intent);
     }
+
 }

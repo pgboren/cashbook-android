@@ -1,5 +1,6 @@
 package com.soleap.cashbook.document;
 
+import com.google.gson.JsonElement;
 import com.google.gson.annotations.SerializedName;
 import com.soleap.cashbook.common.document.Document;
 
@@ -58,5 +59,10 @@ public class User extends Document {
 
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
+    }
+
+    @Override
+    public void fromJsonObject(JsonElement jsonElement) {
+        super.fromJsonObject(jsonElement);
     }
 }

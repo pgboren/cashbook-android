@@ -13,84 +13,70 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.soleap.cashbook.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class DatePickerView extends LinearLayout {
-
-    private Calendar value = Calendar.getInstance();
-    private OnValueChanged onValueChangedListner = null;
-
-    public void setOnValueChangedListner(OnValueChanged onValueChangedListner) {
-        this.onValueChangedListner = onValueChangedListner;
-    }
+public class DatePickerView extends BaseEditTextInputView<Calendar> {
 
     public DatePickerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        this.value = Calendar.getInstance();
+        editText.setTextIsSelectable(false);
+        editText.setFocusable(false);
+        editText.setFocusableInTouchMode(false);
+    }
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DatePickerView, 0, 0);
-        String label = a.getString(R.styleable.DatePickerView_dpv_label);
+    private void showDatePickerDialog() {
+        final Calendar cal = Calendar.getInstance();
+        DatePickerDialog.OnDateSetListener date =new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                cal.set(Calendar.YEAR, year);
+                cal.set(Calendar.MONTH,month);
+                cal.set(Calendar.DAY_OF_MONTH,day);
+                setValue(cal);
+            }
+        };
 
-        int colorCode = a.getColor(R.styleable.DatePickerView_dpv_text_color, context.getColor(R.color.label));
+        new DatePickerDialog(DatePickerView.this.getContext(), date, cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)).show();
+    }
 
-        boolean isRequire = a.getBoolean(R.styleable.DatePickerView_dpv_require, false);
-        a.recycle();
-
-        setOrientation(LinearLayout.HORIZONTAL);
-        setGravity(Gravity.CENTER_VERTICAL);
-
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.date_picker_view, this, true);
-
-        View rootView = findViewById(R.id.root_view);
-
-        TextView tvLabel = findViewById(R.id.label);
-        TextView tvValue = findViewById(R.id.text_value);
-        tvValue.setTextColor(colorCode);
-        tvLabel.setText(label);
-
-        rootView.setOnClickListener(new OnClickListener() {
+    @Override
+    protected void processAttributeSet(Context context, @Nullable AttributeSet attrs, TypedArray a) {
+        super.processAttributeSet(context, attrs, a);
+        textInputLayout.setEndIconDrawable(R.drawable.ic_circle_calendar);
+        textInputLayout.setEndIconOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                final Calendar cal = Calendar.getInstance();
-                DatePickerDialog.OnDateSetListener date =new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        cal.set(Calendar.YEAR, year);
-                        cal.set(Calendar.MONTH,month);
-                        cal.set(Calendar.DAY_OF_MONTH,day);
-                        setValue(cal);
-                    }
-                };
-
-                new DatePickerDialog(DatePickerView.this.getContext(), date, cal.get(Calendar.YEAR),
-                        cal.get(Calendar.MONTH),
-                        cal.get(Calendar.DAY_OF_MONTH)).show();
-
+                showDatePickerDialog();
             }
         });
-
-        setValue(value);
     }
 
-    public void setValue(Calendar cal) {
+    @Override
+    protected void onTextChange(String text) {
+
+    }
+
+    @Override
+    public boolean validate() {
+        return false;
+    }
+
+    @Override
+    public void setValue(Calendar value) {
+        this.value = value;
         String myFormat="dd/MM/yyyy";
-        TextView txtDate = findViewById(R.id.text_value);
         SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
-        txtDate.setText(dateFormat.format(cal.getTime()));
-        value = cal;
-        if (onValueChangedListner != null) {
-            onValueChangedListner.onChanged(cal);
+        editText.setText(dateFormat.format(value.getTime()));
+        if (valueChangedListner != null) {
+            valueChangedListner.onChanged(value, DatePickerView.this.getId());
         }
-    }
-
-    public Calendar getValue() {
-        return value;
     }
 
 }

@@ -15,6 +15,10 @@ public class ViewInstituteLooupFieldCreator extends ViewDocumentLooupFieldCreato
     private View circleBox;
     private DocumentSnapshot selectedDoc = null;
 
+    public ViewInstituteLooupFieldCreator(ViewDataActivity activity, String documentName, int requestCode, ViewData fieldData, int value_layout) {
+        super(activity, documentName, requestCode, fieldData, value_layout);
+    }
+
     public void setSelectedDoc(DocumentSnapshot doc) {
         this.selectedDoc = doc;
         setSelectedDoc(this.selectedDoc);
@@ -24,9 +28,7 @@ public class ViewInstituteLooupFieldCreator extends ViewDocumentLooupFieldCreato
         return this.selectedDoc;
     }
 
-    public ViewInstituteLooupFieldCreator(ViewDataActivity activity, ViewData fieldData) {
-        super(activity, DocumentName.INSTITUE, BsDocLookUpActivity.LOOK_UP_INSTITUTE_REQUEST_CODE, fieldData, R.layout.lookup_item_bsdoc);
-    }
+
 
     @Override
     protected void inflateLookupView(ViewGroup valueContainer) {

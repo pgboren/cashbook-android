@@ -5,39 +5,96 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.soleap.cashbook.R;
+import com.soleap.cashbook.common.document.BsDocument;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
-import com.soleap.cashbook.common.repository.DocumentSnapshotRepository;
+import com.soleap.cashbook.common.fragment.DocFormFragment;
+import com.soleap.cashbook.common.global.EventHandler;
+import com.soleap.cashbook.common.repository.DocumentRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
+import com.soleap.cashbook.common.util.ResourceUtil;
+import com.soleap.cashbook.document.Category;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public abstract class EditRestApiActivity<T extends Document> extends RestApiModelFormActivity<T> implements DocumentSnapshotRepository.OnDocumentChangedListner {
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class EditRestApiActivity<T extends Document> extends RestApiModelFormActivity<T> {
 
     private static final String TAG = "EditRestApiActivity";
-    public static final String KEY_MODEL_ID = "key_model_id";
-    public static final String KEY_MODEL = "key_model";
+    public static final String KEY_DOC_ID = "key_doc_id";
+    private DocFormFragment formFragment;
+
+    protected T model;
+
+    protected String modelId = null;
 
     @Override
     protected String getViewTitle() {
-        return "edit" + documentName;
+        return ResourceUtil.getStringResourceByName(this, documentInfo.getDocEditViewDef().getTitle());
     }
-
-    protected T model;
-    protected String modelId = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RepositoryFactory.create().get(documentName).addOnChangedDocumentListner(documentName, this);
-        modelId = getIntent().getExtras().getString(KEY_MODEL_ID);
+        modelId = getIntent().getExtras().getString(KEY_DOC_ID);
         if (modelId == null) {
-            throw new IllegalArgumentException("Must pass extra " + KEY_MODEL_ID);
+            throw new IllegalArgumentException("Must pass extra " + KEY_DOC_ID);
         }
         loadModel(modelId);
+    }
 
+    @Override
+    protected boolean validation() {
+        isValid = formFragment.validation();
+        return super.validation();
+    }
 
+    @Override
+    protected void readInputData(T document) {
+        formFragment.readInputData(document);
+    }
+
+    @Override
+    protected void setViewContent() {
+        setContentView(R.layout.activity_form_bsdoc);
+        initInputView();
+    }
+
+    @Override
+    protected void onError(JSONObject errorObject) throws JSONException {
+    }
+
+    @Override
+    protected void resetFields() {
+    }
+
+    protected void initInputView() {
+        try {
+            Class fragmentClass = documentInfo.getDocAddNewDef().getFormFragmentViewClass();
+            formFragment = (DocFormFragment) fragmentClass.newInstance();
+            formFragment.setValueChangeListner(new DocFormFragment.ValueChangeListner() {
+                @Override
+                public void onValueChanged() {
+                    validation();
+                }
+            });
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.form_container,formFragment);
+            fragmentTransaction.commit();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
     }
 
     @Override
@@ -54,45 +111,46 @@ public abstract class EditRestApiActivity<T extends Document> extends RestApiMod
             if (validation()) {
                 showLoadingScreen();
                 readInputData(model);
-                RepositoryFactory.create().get(documentName).update(model);
+                Call<Map<String, Object>> call = apiInterface.patch(documentInfo.getName(), model.getId(), model.toMap());
+                call.enqueue(new Callback<Map<String, Object>>() {
+                    @Override
+                    public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
+                        hideLoadingScreen();
+                        Map<String, Object> result = (Map<String, Object>) response.body();
+                        EventHandler.getInstance().notifyDocumentChanged(documentInfo.getName(), result.get("id").toString());
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Map<String, Object>> call, Throwable t) {
+                        hideLoadingScreen();
+                        EventHandler.getInstance().notifyDocumentChangedError(documentInfo.getName(), t);
+                        Log.e(TAG, t.getMessage());
+                        finish();
+                    }
+                });
             }
         }
         catch (Exception ex) {
-            Log.e("Error", ex.getMessage(), ex);
+            hideLoadingScreen();
+            Log.e(TAG, ex.getMessage(), ex);
         }
     }
 
-    @Override
-    public void onChanged(DocumentSnapshot documentSnapshot) {
-        RepositoryFactory.create().get(documentName).removeOnChangedDocumentListner(documentName, this);
-        finish();
-    }
-
-    @Override
-    protected void onError(JSONObject errorObject) throws JSONException {
-
-    }
-
-    private void loadModel(String modelId) {
-        showLoadingScreen();
-        RepositoryFactory.create().get(documentName).get(documentName, modelId, new DocumentSnapshotRepository.OnGetDocumentListner() {
+    private void loadModel(String docId) {
+        Call<Document> call = apiInterface.get(documentInfo.getName().toLowerCase(), docId);
+        call.enqueue(new Callback<Document>() {
             @Override
-            public void onGet(Document document) {
-                model = (T)document;
-                assignValueToForm(model);
+            public void onResponse(Call<Document> call, Response<Document> response) {
+                model = (T) response.body();
+                formFragment.assignValueToForm(model);
                 validation();
-                hideLoadingScreen();
             }
 
             @Override
-            public void onError(Throwable t) {
-                Log.e(TAG, t.getMessage());
-                hideLoadingScreen();
+            public void onFailure(Call<Document> call, Throwable t) {
+                String msg = t.getMessage();
             }
         });
-
     }
-
-    protected abstract void assignValueToForm(T model);
-
 }

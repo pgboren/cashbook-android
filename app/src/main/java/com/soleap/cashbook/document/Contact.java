@@ -1,5 +1,7 @@
 package com.soleap.cashbook.document;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 import com.soleap.cashbook.common.document.Document;
 
@@ -16,12 +18,8 @@ public class Contact extends Document {
     private String gender;
     @SerializedName("nickname")
     private String nickname;
-    @SerializedName("phoneNumber1")
-    private String phoneNumber1;
-    @SerializedName("phoneNumber2")
-    private String phoneNumber2;
-    @SerializedName("phoneNumber3")
-    private String phoneNumber3;
+    @SerializedName("phoneNumber")
+    private String phoneNumber;
     @SerializedName("facebook")
     private String facebook;
     @SerializedName("telegram")
@@ -29,7 +27,7 @@ public class Contact extends Document {
     @SerializedName("photo")
     private Media photo;
     @SerializedName("address")
-    private Address address;
+    private String address;
 
     public String getGender() {
         return gender;
@@ -47,11 +45,11 @@ public class Contact extends Document {
         this.nickname = nickname;
     }
 
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
@@ -71,28 +69,12 @@ public class Contact extends Document {
         this.photo = photo;
     }
 
-    public String getPhoneNumber1() {
-        return phoneNumber1;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhoneNumber1(String phoneNumber1) {
-        this.phoneNumber1 = phoneNumber1;
-    }
-
-    public String getPhoneNumber2() {
-        return phoneNumber2;
-    }
-
-    public void setPhoneNumber2(String phoneNumber2) {
-        this.phoneNumber2 = phoneNumber2;
-    }
-
-    public String getPhoneNumber3() {
-        return phoneNumber3;
-    }
-
-    public void setPhoneNumber3(String phoneNumber3) {
-        this.phoneNumber3 = phoneNumber3;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getFacebook() {
@@ -126,13 +108,26 @@ public class Contact extends Document {
         data.put("latinname", getLatinname());
         data.put("gender" , getGender());
         data.put("nickname", getNickname());
-        data.put("phoneNumber1", getPhoneNumber1());
-        data.put("phoneNumber2",  getPhoneNumber2());
-        data.put("phoneNumber3", getPhoneNumber3());
+        data.put("phoneNumber", getPhoneNumber());
         data.put("facebook", getFacebook());
         data.put("telegram", getTelegram());
         data.put("photo", getPhoto());
-        data.put("address", getAddress().toMap());
+        data.put("address", getAddress());
         return data;
+    }
+
+    @Override
+    public void fromJsonObject(JsonElement jsonElement) {
+        JsonObject jsonObject = (JsonObject) jsonElement;
+        setId(jsonObject.get("_id").getAsString());
+        setName(jsonObject.get("name").getAsString());
+        setLatinname(jsonObject.get("latinname").getAsString());
+        setGender(jsonObject.get("gender").getAsString());
+        setNickname(jsonObject.get("nickname").getAsString());
+        setPhoneNumber(jsonObject.get("phoneNumber").getAsString());
+        setFacebook(jsonObject.get("facebook").getAsString());
+        setTelegram(jsonObject.get("telegram").getAsString());
+//        setId(jsonObject.get("photo").getAsString());
+        setAddress(jsonObject.get("address").getAsString());
     }
 }

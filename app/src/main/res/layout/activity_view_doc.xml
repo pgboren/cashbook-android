@@ -8,7 +8,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/list_item_toolbar_view" />
+    <include layout="@layout/toolbar_doc_list_view" />
+
     <ScrollView
         android:id="@+id/scrollable_container"
         android:layout_width="match_parent"
@@ -22,8 +23,7 @@
             android:paddingRight="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </LinearLayout>
+            android:layout_height="wrap_content"/>
     </ScrollView>
     <include layout="@layout/layout_loading_screen" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -38,7 +38,7 @@
                 android:layout_toEndOf="@id/fullscreen_dialog_close"
                 android:text="Page Title"
                 android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <ImageButton
                 android:id="@+id/fullscreen_dialog_check_action"

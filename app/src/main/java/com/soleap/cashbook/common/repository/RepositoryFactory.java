@@ -1,7 +1,5 @@
 package com.soleap.cashbook.common.repository;
 
-import com.soleap.cashbook.document.DocumentName;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,9 +14,9 @@ public class RepositoryFactory {
         return factory;
     }
 
-    private Map<String, DocumentSnapshotRepository> repositoryMap = new HashMap<>();
+    private Map<String, DocumentRepository> repositoryMap = new HashMap<>();
 
-    public DocumentSnapshotRepository get(String entity) {
+    public DocumentRepository get(String entity) {
 
         if (!repositoryMap.containsKey(entity)) {
             repositoryMap.put(entity, getRepository(entity));
@@ -26,7 +24,7 @@ public class RepositoryFactory {
         return repositoryMap.get(entity);
     }
 
-    private DocumentSnapshotRepository getRepository(String entity) {
-        return new DocumentSnapshotRepository(entity);
+    private DocumentRepository getRepository(String entity) {
+        return new DocumentRepository(entity);
     }
 }

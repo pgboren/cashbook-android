@@ -119,7 +119,7 @@ public abstract class ModelViewActivity<T extends Document> extends AppCompatAct
 
     protected void startEditActivity() {
         Intent intent = new Intent(this, editActivityClass());
-        intent.putExtra(EditRestApiActivity.KEY_MODEL_ID, this.model.getId());
+        intent.putExtra(EditRestApiActivity.KEY_DOC_ID, this.model.getId());
         this.startActivityForResult(intent, EDIT_ACTIVITY_REQUEST_CODE);
     }
 
@@ -386,7 +386,7 @@ public abstract class ModelViewActivity<T extends Document> extends AppCompatAct
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.view_option_menu, menu);
+        inflater.inflate(R.menu.invoice_view_activity_option_menu, menu);
         return true;
     }
 
@@ -395,9 +395,9 @@ public abstract class ModelViewActivity<T extends Document> extends AppCompatAct
 
         int id = item.getItemId();
 
-        if (id == R.id.view_option_action_more_menuitem) {
-            buttomActionsMenu.show();
-        }
+//        if (id == R.id.view_option_action_more_menuitem) {
+//            buttomActionsMenu.show();
+//        }
 
         return super.onOptionsItemSelected(item);
     }

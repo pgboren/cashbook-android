@@ -1,7 +1,12 @@
 package com.soleap.cashbook.document;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+
 import com.soleap.cashbook.common.document.BsDocument;
+import com.soleap.cashbook.common.document.Document;
 
 import java.util.Map;
 
@@ -34,4 +39,14 @@ public class Category extends BsDocument {
         data.put("color", getColor());
         return data;
     }
+
+    @Override
+    public void fromJsonObject(JsonElement jsonElement) {
+        super.fromJsonObject(jsonElement);
+        JsonObject jsonObject = (JsonObject) jsonElement;
+        if (jsonObject.get("color") != null) {
+            setColor(jsonObject.get("color").getAsString());
+        }
+    }
+
 }

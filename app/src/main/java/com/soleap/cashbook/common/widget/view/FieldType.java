@@ -7,6 +7,8 @@ public class FieldType {
     public static final String CONTACT = "CONTACT";
     public static String GROUP = "GROUP";
     public static String TEXT = "TEXT";
+
+    public static String NUMBER = "NUMBER";
     public static String RESOURCE_STRING = "RESOURCE_STRING";
     public static String PHONENUMBER = "PHONENUMBER";
     public static String PHOTO = "PHOTO";

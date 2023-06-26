@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+  <androidx.cardview.widget.CardView
+      app:cardCornerRadius="5dp"
+      android:foreground="?attr/selectableItemBackground"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="4sp"
+        android:paddingBottom="4sp">
+
+      <TextView
+          android:id="@+id/txt_index"
+          android:layout_width="50dp"
+          android:layout_height="50dp"
+          android:gravity="center"
+          android:text="C"
+          android:textSize="@dimen/list_item_index"
+          android:layout_gravity="center_horizontal|center_vertical"
+          android:textColor="@color/primaryColor" />
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="left"
+          android:layout_marginLeft="10dp"
+          android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="4sp"
+            android:paddingBottom="4sp">
+
+          <TextView
+              android:id="@+id/txt_number"
+              android:layout_width="wrap_content"
+              android:layout_height="20dp"
+              android:text="00001"
+              android:maxLines="1"
+              android:textColor="@color/blue_light"
+              android:textSize="12dp"/>
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="20dp"
+              android:textColor="@color/blue_light"
+              android:text="-"
+              android:paddingLeft="5dp"
+              android:paddingRight="5dp"
+              android:maxLines="1"
+              android:textSize="12dp"/>
+
+          <TextView
+              android:id="@+id/txt_paymentoption"
+              android:layout_width="wrap_content"
+              android:layout_height="20dp"
+              android:textColor="@color/blue_light"
+              android:maxLines="1"
+              android:text="@string/CASH_PAY"
+              android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+          <TextView
+              android:id="@+id/txt_customer"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@color/label"
+              android:maxLines="1"
+              android:text="ដូង វិរះសិទ្ធ"
+              android:textSize="14dp"/>
+
+          <LinearLayout
+              android:id="@+id/institute_view_container"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:visibility="gone"
+              android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue_light"
+                android:text="-"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:maxLines="1"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/txt_institute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/label"
+                android:maxLines="1"
+                android:text="ឆាយលីស រ៉ូយ៉ាល់ លីស៊ីង ម.ក"
+                android:textSize="14dp"/>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_dark"
+            android:maxLines="1"
+            android:text="Honda Dream 125cc - 2023 - Black"
+            android:textSize="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:orientation="horizontal">
+
+          <TextView
+              android:id="@+id/txt_price"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@color/red_light"
+              android:maxLines="1"
+              android:text="$2500.00"
+              android:textSize="12dp" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@color/blue_light"
+              android:text="-"
+              android:paddingLeft="5dp"
+              android:paddingRight="5dp"
+              android:maxLines="1"
+              android:textSize="12dp"/>
+
+          <TextView
+              android:id="@+id/txt_date"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@color/blue_light"
+              android:text="12/06/2022"
+              android:maxLines="1"
+              android:textSize="12dp"/>
+
+        </LinearLayout>
+
+      </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray_light"
+        android:visibility="gone"
+        android:textAlignment="textEnd"
+        android:textSize="9sp"/>
+
+  </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

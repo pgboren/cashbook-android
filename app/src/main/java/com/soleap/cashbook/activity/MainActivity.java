@@ -2,6 +2,7 @@ package com.soleap.cashbook.activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,11 +17,13 @@ import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.activity.BsDocListActivity;
 import com.soleap.cashbook.content.AppPrefrences;
 import com.soleap.cashbook.document.DocumentName;
+import com.soleap.cashbook.view.DocumentInfo;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -109,51 +112,66 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         intent = new Intent(this, BsDocListActivity.class);
 
         if (id == R.id.nav_contact_list) {
-            intent.putExtra(DocumentName.DOCUMENT_NAME, DocumentName.CONTACT);
+            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.CONTACT);
         }
 
-        if (id == R.id.nav_account_type) {
-            intent.putExtra(DocumentName.DOCUMENT_NAME, DocumentName.ACCOUNT_TYPE);
-            intent.putExtra(BsDocListActivity.READ_ONLY, true);
+//        if (id == R.id.nav_account_type) {
+//            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.ACCOUNTTYPE);
+//            intent.putExtra(BsDocListActivity.READ_ONLY, true);
+//        }
+
+//        if (id == R.id.nav_chart_of_account) {
+//            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.ACCOUNT);
+//        }
+
+        if (id == R.id.nav_item_list) {
+            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.ITEM);
         }
+
+//        if (id == R.id.nav_category) {
+//            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.CATEGORY);
+//        }
+
+        if (id == R.id.nav_invoice) {
+            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.INVOICE);
+        }
+
+//        if (id == R.id.nav_color) {
+//            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.COLOR);
+//        }
 
         startActivity(intent);
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    private static final int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 1;
 
-    /**
-     * Requests the {@link android.Manifest.permission#CAMERA} permission.
-     * If an additional rationale should be displayed, the user has to launch the request from
-     * a SnackBar that includes additional information.
-     */
     private void requestCameraPermission() {
+
         // Permission has not been granted and must be requested.
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                 Manifest.permission.CAMERA)) {
-            // Provide an additional rationale to the user if the permission was not granted
-            // and the user would benefit from additional context for the use of the permission.
-            // Display a SnackBar with cda button to request the missing permission.
-            Snackbar.make(mLayout, R.string.camera_access_required,
-                    Snackbar.LENGTH_INDEFINITE).setAction(R.string.ok, new View.OnClickListener() {
+            Snackbar.make(mLayout, R.string.camera_access_required, Snackbar.LENGTH_INDEFINITE).setAction(R.string.ok, new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // Request the permission
-                    ActivityCompat.requestPermissions(MainActivity.this,
-                            new String[]{Manifest.permission.CAMERA},
-                            PERMISSION_REQUEST_CAMERA);
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE , Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CAMERA);
                 }
             }).show();
 
         } else {
             Snackbar.make(mLayout, R.string.camera_unavailable, Snackbar.LENGTH_SHORT).show();
-            // Request the permission. The result will be received in onRequestPermissionResult().
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CAMERA);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CAMERA);
         }
+
+
+    }
+
+
+
+    private void writeToFile() {
+        // Perform your file writing operations here
     }
 
     @Override
@@ -170,6 +188,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                        Snackbar.LENGTH_SHORT)
 //                        .show();
 //            }
+        }
+
+        if (requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission is granted, you can proceed with writing to external storage
+                writeToFile();
+            } else {
+                // Permission is denied, handle accordingly (e.g., show a message or disable functionality)
+            }
         }
     }
 

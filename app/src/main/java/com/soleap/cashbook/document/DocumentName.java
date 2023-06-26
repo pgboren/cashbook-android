@@ -3,10 +3,6 @@ package com.soleap.cashbook.document;
 import android.content.Context;
 
 import com.soleap.cashbook.R;
-import com.soleap.cashbook.common.activity.BsDocAddNewActivity;
-import com.soleap.cashbook.common.activity.BsDocEditActivity;
-import com.soleap.cashbook.common.activity.BsDocViewActivity;
-import com.soleap.cashbook.common.document.Document;
 
 public class DocumentName {
 
@@ -15,7 +11,9 @@ public class DocumentName {
 
     public static final String VEHICLE = "vehicle";
     public static final String ACCOUNT_TYPE = "accounttype" ;
-    public static String ORDER = "order";
+    public static final String ACCOUNT = "account";
+    public static final String INVOICE = "invoice";
+
     public static String CONTACT = "contact";
     public static String CATEGORY = "category";
     public static String BRANCH = "branch";
@@ -23,6 +21,7 @@ public class DocumentName {
     public static String COLOR = "color";
     public static String INSTITUE = "institute";
     public static String SALE_ORDER = "saleorder";
+
     public static String AGILE_STAGE = "agilestage";
     public static String AGILE_TASK = "agiletask";
 
@@ -39,15 +38,6 @@ public class DocumentName {
             instance = new DocumentName(context);
         }
         return instance;
-    }
-
-    public Document createDocument(String documentName) {
-
-        if (documentName.equals(DocumentName.CATEGORY)) {
-            return new Category();
-        }
-
-        throw new RuntimeException("Stub!");
     }
 
     public String getListTitle(String key) {
@@ -88,64 +78,13 @@ public class DocumentName {
             return context.getString(R.string.account_type);
         }
 
+        if (key.equals(ACCOUNT)) {
+            return context.getString(R.string.chart_of_accounts);
+        }
+
         return key;
     }
-
-    public Class getEditActivityClass(String key) {
-
-        if (key.equals(BRANCH)) {
-            return BsDocEditActivity.class;
-        }
-
-        if (key.equals(CATEGORY)) {
-            return BsDocEditActivity.class;
-        }
-
-        throw new RuntimeException("Stub!");
-    }
-
-    public Class getAddNewActivityClass(String key) {
-
-        if (key.equals(BRANCH)) {
-            return BsDocAddNewActivity.class;
-        }
-
-        if (key.equals(CATEGORY)) {
-            return BsDocAddNewActivity.class;
-        }
-
-        return null;
-    }
-
-    public Class getViewActivityClass(String key) {
-
-        if (key.equals(BRANCH)) {
-            return BsDocViewActivity.class;
-        }
-
-        if (key.equals(COLOR)) {
-            return BsDocViewActivity.class;
-        }
-
-        if (key.equals(ITEM)) {
-            return BsDocViewActivity.class;
-        }
-
-        if (key.equals(CATEGORY)) {
-            return BsDocViewActivity.class;
-        }
-
-        if (key.equals(INSTITUE)) {
-            return BsDocViewActivity.class;
-        }
-
-        if (key.equals(CONTACT)) {
-            return BsDocViewActivity.class;
-        }
-
-        return null;
-    }
-
+    
     public int getListItemLayoutView(String key) {
 
 //        if (key.equals(AGILE_TASK)) {

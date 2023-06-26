@@ -3,7 +3,6 @@ package com.soleap.cashbook.common.widget.dialog;
 import android.view.View;
 
 import com.soleap.cashbook.common.document.Document;
-import com.soleap.cashbook.common.repository.DocumentSnapshotRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
 
 public abstract class AddNewDocumentInputDialog<T extends Document> extends FullscreenDialog<T> {
@@ -13,18 +12,6 @@ public abstract class AddNewDocumentInputDialog<T extends Document> extends Full
     public AddNewDocumentInputDialog(int viewLayout, String documentName) {
         super(viewLayout);
         this.documentName = documentName;
-        RepositoryFactory.create().get(documentName).addOnCreatedDocumentListner(documentName,new DocumentSnapshotRepository.OnCreatedDocumentListner() {
-            @Override
-            public void onAdded(Document doc) {
-                callback.onActionClick(doc);
-                dismiss();
-            }
-
-            @Override
-            public void onError(Throwable t) {
-
-            }
-        });
     }
 
     protected abstract T  readValueFromForm(View view);
@@ -34,7 +21,7 @@ public abstract class AddNewDocumentInputDialog<T extends Document> extends Full
     @Override
     protected void onCheckButtonClick() {
         T doc = viewHolder.readValue();
-        RepositoryFactory.create().get(documentName).addNew(documentName, doc.toMap());
+//        RepositoryFactory.create().get(documentName).addNew(documentName, doc.toMap());
     }
 
     @Override

@@ -5,6 +5,17 @@ import java.util.List;
 public class ViewDataGroup extends Document {
 
     private String label;
+
+    private boolean visible;
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
     private List<ViewData> values;
     private Action[] actions;
 

@@ -26,6 +26,7 @@ import com.google.android.material.shape.ShapeAppearanceModel;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.activity.ViewDataActivity;
 import com.soleap.cashbook.common.document.ViewData;
+import com.soleap.cashbook.common.repository.DocumentRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
 import com.soleap.cashbook.common.util.FileUploader;
 import com.soleap.cashbook.common.util.FileUploaderCallback;
@@ -39,6 +40,8 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
+
+import retrofit2.Response;
 
 public class ViewPhotoFieldCreator extends FieldCreator {
 
@@ -195,7 +198,17 @@ public class ViewPhotoFieldCreator extends FieldCreator {
                 public void onSucess(Media media) {
                     Map<String, Object> attributeVaules = new ArrayMap<>();
                     attributeVaules.put("photo", media.getId());
-                    RepositoryFactory.create().get(activity.documentName).patch(activity.documentName, activity.modelId, attributeVaules);
+                    RepositoryFactory.create().get(activity.documentName).patch(activity.documentName, activity.modelId, attributeVaules, new DocumentRepository.DocumentEventListner() {
+                        @Override
+                        public void onError(Throwable t) {
+
+                        }
+
+                        @Override
+                        public void onResponse(Response response) {
+
+                        }
+                    });
                     loadImage(media.getPath(), imageView);
                     activity.hideLoadingScreen();
                 }

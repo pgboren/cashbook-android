@@ -5,12 +5,12 @@ xmlns:tools="http://schemas.android.com/tools"
 tools:context="your activity context here">
     <item
         android:id="@+id/menu_item_payment_option_loan"
-        android:title="@string/INSTALLMENT"
+        android:title="@string/LOAN"
         android:icon="@drawable/ic_more"
         app:showAsAction="collapseActionView|ifRoom" />
     <item
         android:id="@+id/menu_item_payment_option_full_pay"
-        android:title="@string/FULL_PAYMENT"
+        android:title="@string/CASH_PAY"
         android:icon="@drawable/ic_more"
         app:showAsAction="collapseActionView|ifRoom" />
 

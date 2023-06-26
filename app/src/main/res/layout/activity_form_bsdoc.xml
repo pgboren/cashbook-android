@@ -7,20 +7,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/list_item_toolbar_view" />
+    <include layout="@layout/toolbar_doc_list_view" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:fillViewport="true"
         android:isScrollContainer="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_height="match_parent">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <include layout="@layout/form_bs_doc"/>
-            <include layout="@layout/layout_save_add_new_button"/>
+            <FrameLayout android:id="@+id/form_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <include layout="@layout/layout_save_add_new_button" />
         </LinearLayout>
     </ScrollView>
 

@@ -1,6 +1,5 @@
 package com.soleap.cashbook.common.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
@@ -12,19 +11,16 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.soleap.cashbook.R;
-import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.PagingRecyclerViewData;
-import com.soleap.cashbook.common.repository.DocumentSnapshotRepository;
+import com.soleap.cashbook.common.repository.DocumentRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
 import com.soleap.cashbook.viewholder.DocListItemViewHolder;
-import com.soleap.cashbook.viewholder.ListItemViewHolder;
 import com.soleap.cashbook.viewholder.ListItemViewHolderFactory;
 
-import java.util.Map;
+import retrofit2.Response;
 
-public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements DocumentSnapshotRepository.OnGetPagingDocsRequestListner {
+public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
 
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
@@ -34,10 +30,10 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
 
     private boolean isFirstBind = true;
 
-    private PagingRecyclerViewAdapterDataListner dataListner;
+    private PagingRecyclerViewAdaptaerEventListner listner;
 
-    public void setDataListner(PagingRecyclerViewAdapterDataListner dataListner) {
-        this.dataListner = dataListner;
+    public void setListner(PagingRecyclerViewAdaptaerEventListner listner) {
+        this.listner = listner;
     }
 
     public PagingRecyclerViewAdapter(Context context, String documentName, int viewResource) {
@@ -48,12 +44,20 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
     @Override
     public DocListItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(itemView.getLayout(), parent, false);
-            this.viewHolder = ListItemViewHolderFactory.create(context, view, itemView.getDocName());
+            View view = LayoutInflater.from(parent.getContext()).inflate(documentInfo.getDocListViewDef().getList_item_layout(), parent, false);
+            this.viewHolder = ListItemViewHolderFactory.create(context, view, documentInfo.getName());
+            this.viewHolder.setListener(new DocListItemViewHolder.OnViewClickListner() {
+                @Override
+                public void onClick(DocumentSnapshot doc, int position) {
+                    if (listner != null) {
+                        listner.onItemClick(doc, position);
+                    }
+                }
+            });
             return this.viewHolder;
         } else {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_name_shimmer_view, parent, false);
-            this.viewHolder = new PagingListItemLoadingViewHolder(parent.getContext(), view);
+            View view = LayoutInflater.from(parent.getContext()).inflate(documentInfo.getDocListViewDef().getList_item_shimmer_layout(), parent, false);
+            this.viewHolder = new ShimmerListItemLoadingViewHolder(parent.getContext(), view);
         }
         return  this.viewHolder;
     }
@@ -72,21 +76,9 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
         return dataSet.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
     }
 
-    private void showLoadingView(PagingListItemLoadingViewHolder viewHolder, int position) {
-
-    }
-
-    @Override
-    public void onAdded(Document documentSnapshot) {
-        this.dataSet.add(0, documentSnapshot);
-        notifyDataSetChanged();
-    }
-
-
     @Override
     protected void initRepository() {
         this.repository = RepositoryFactory.create().get(documentName);
-        this.repository.setPagingDocsRequestListner(this);
     }
 
     boolean isLoading = false;
@@ -113,9 +105,7 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
             handler.removeCallbacks(runnable);
             isLoading = true;
         }
-        if (listner != null) {
-            PagingRecyclerViewAdapter.this.listner.onStartListening();
-        }
+
         if (page == 1) {
             dataSet.clear();
             notifyDataSetChanged();
@@ -125,7 +115,25 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
         runnable = new Runnable() {
             @Override
             public void run() {
-                repository.list(page);
+                repository.list(page, new DocumentRepository.DocumentEventListner() {
+                            @Override
+                            public void onError(Throwable t) {
+                                Log.e("ERROR", t.getMessage(), t);
+                            }
+
+                            @Override
+                            public void onResponse(Response response) {
+                                PagingRecyclerViewData pagingData = (PagingRecyclerViewData) response.body();
+                                if (dataSet.size() > 0) {
+                                    dataSet.remove(dataSet.size()-1);
+                                    notifyItemRemoved(dataSet.size());
+                                }
+                                dataSet.addAll(pagingData.getData());
+                                maxPage = pagingData.getTotalPages();
+                                notifyDataSetChanged();
+                                isLoading = false;
+                            }
+                        });
             }
         };
 
@@ -133,57 +141,25 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter implements Do
     }
 
     @Override
-    public void startListening() {
-    }
-
-    @Override
     protected DocListItemViewHolder createItemViewHolder(View view) {
         return null;
     }
 
-    @Override
-    public void onGet(PagingRecyclerViewData pagingData) {
-
-        try
-        {
-            if (dataSet.size() > 0) {
-                dataSet.remove(dataSet.size()-1);
-                notifyItemRemoved(dataSet.size());
-            }
-
-            this.dataSet.addAll(pagingData.getData());
-            maxPage = pagingData.getTotalPages();
-            this.notifyDataSetChanged();
-            isLoading = false;
-            if (this.listner != null) {
-                this.listner.onStopListening();
-            }
-
-        }
-        catch (Exception ex) {
-            Log.e("ERROR", ex.getMessage(), ex);
-        }
-    }
-
-    private class PagingListItemLoadingViewHolder extends DocListItemViewHolder {
+    private class ShimmerListItemLoadingViewHolder extends DocListItemViewHolder {
 
         private ProgressBar progressBar;
 
-        public PagingListItemLoadingViewHolder(Context context, @NonNull View itemView) {
+        public ShimmerListItemLoadingViewHolder(Context context, @NonNull View itemView) {
             super(context, itemView, null, null, 0);
         }
 
-
         @Override
         protected void bindViewContent(DocumentSnapshot doc) {
-
         }
     }
 
-    public interface PagingRecyclerViewAdapterDataListner {
-        void onRequest();
-        void onResponse();
-
-        void onError();
+    public interface PagingRecyclerViewAdaptaerEventListner {
+        void onItemClick(DocumentSnapshot doc, int position);
     }
+
 }

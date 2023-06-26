@@ -11,7 +11,7 @@
 
             <item
                 android:id="@+id/nav_add_contact"
-                android:icon="@drawable/ic_contact"
+                android:icon="@drawable/ic_contact_add"
                 android:title="@string/add_new_contact" />
         </menu>
     </item>
@@ -20,10 +20,14 @@
         <menu>
 
             <item
-                android:id="@+id/nav_item_price"
-                android:icon="@drawable/ic_tags"
-                android:title="@string/nav_item_price" />
+                android:id="@+id/nav_invoice"
+                android:icon="@drawable/ic_invoice"
+                android:title="@string/invoice" />
 
+            <item
+                android:id="@+id/nav_item_list"
+                android:icon="@drawable/ic_item"
+                android:title="@string/item_list" />
             <item
                 android:id="@+id/nav_contact_list"
                 android:icon="@drawable/ic_contact"
@@ -34,11 +38,24 @@
     <item android:title="@string/nav_group_system">
         <menu>
 
-            <item
-                android:id="@+id/nav_account_type"
-                android:icon="@drawable/ic_add"
-                android:title="@string/account_type" />
+<!--            <item-->
+<!--                android:id="@+id/nav_chart_of_account"-->
+<!--                android:icon="@drawable/ic_add"-->
+<!--                android:title="@string/chart_of_account" />-->
 
+<!--            <item-->
+<!--                android:id="@+id/nav_account_type"-->
+<!--                android:icon="@drawable/ic_add"-->
+<!--                android:title="@string/account_type" />-->
+
+<!--            <item-->
+<!--                android:id="@+id/nav_category"-->
+<!--                android:icon="@drawable/ic_add"-->
+<!--                android:title="@string/category" />-->
+<!--            <item-->
+<!--                android:id="@+id/nav_color"-->
+<!--                android:icon="@drawable/ic_add"-->
+<!--                android:title="@string/color" />-->
 
             <item
                 android:id="@+id/nav_setting"
