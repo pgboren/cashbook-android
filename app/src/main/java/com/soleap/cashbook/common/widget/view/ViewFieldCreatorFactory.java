@@ -18,7 +18,7 @@ public class ViewFieldCreatorFactory {
     public FieldCreator create(ViewDataActivity viewActivity, ViewData fieldData) {
 
         if (fieldData.getDataType().equals(FieldType.TEXT)) {
-            return new ViewResourceStringTextFieldCreator(viewActivity, fieldData);
+            return new ViewTextFieldCreator(viewActivity, fieldData);
         }
 
         if (fieldData.getDataType().equals(FieldType.RESOURCE_STRING)) {

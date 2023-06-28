@@ -17,14 +17,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
-    public static final String BASE_URL = "http://192.168.0.101:8080";
+    public static final String BASE_URL = "http://192.168.0.106:8080";
     public static final String API_URL = BASE_URL + "/api/";
     public static final String STATIC_URL = BASE_URL + "/";
     private static Retrofit instance = null;
 
     public static Retrofit getClient() {
         if (instance == null) {
-
             OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
                 @NonNull
                 @Override

@@ -18,6 +18,11 @@ import com.soleap.cashbook.common.repository.RepositoryFactory;
 import com.soleap.cashbook.viewholder.DocListItemViewHolder;
 import com.soleap.cashbook.viewholder.ListItemViewHolderFactory;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
@@ -76,11 +81,6 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
         return dataSet.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
     }
 
-    @Override
-    protected void initRepository() {
-        this.repository = RepositoryFactory.create().get(documentName);
-    }
-
     boolean isLoading = false;
 
     public void moveNextPage() {
@@ -115,25 +115,30 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
         runnable = new Runnable() {
             @Override
             public void run() {
-                repository.list(page, new DocumentRepository.DocumentEventListner() {
-                            @Override
-                            public void onError(Throwable t) {
-                                Log.e("ERROR", t.getMessage(), t);
-                            }
+                Map<String, Object> body = new HashMap<>();
+                Map<String, Object> order = new HashMap<>();
+                order.put("name", "asc");
+                Call<PagingRecyclerViewData> call = apiInterface.listViewData("LIST_VIEW", documentName,page, 10, body);
+                call.enqueue(new Callback<PagingRecyclerViewData>() {
+                    @Override
+                    public void onResponse(Call<PagingRecyclerViewData> call, Response<PagingRecyclerViewData> response) {
+                        PagingRecyclerViewData pagingData = (PagingRecyclerViewData) response.body();
+                        if (dataSet.size() > 0) {
+                            dataSet.remove(dataSet.size()-1);
+                            notifyItemRemoved(dataSet.size());
+                        }
+                        dataSet.addAll(pagingData.getData());
+                        maxPage = pagingData.getTotalPages();
+                        notifyDataSetChanged();
+                        isLoading = false;
+                    }
+                    @Override
+                    public void onFailure(Call<PagingRecyclerViewData> call, Throwable t) {
+                        Log.e("ERROR", t.getMessage(), t);
+                        call.cancel();
+                    }
+                });
 
-                            @Override
-                            public void onResponse(Response response) {
-                                PagingRecyclerViewData pagingData = (PagingRecyclerViewData) response.body();
-                                if (dataSet.size() > 0) {
-                                    dataSet.remove(dataSet.size()-1);
-                                    notifyItemRemoved(dataSet.size());
-                                }
-                                dataSet.addAll(pagingData.getData());
-                                maxPage = pagingData.getTotalPages();
-                                notifyDataSetChanged();
-                                isLoading = false;
-                            }
-                        });
             }
         };
 

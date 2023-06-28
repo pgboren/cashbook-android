@@ -47,21 +47,7 @@ public class DocumentRepository {
     }
 
     public void list(int page, DocumentEventListner callback) {
-        Map<String, Object> body = new HashMap<>();
-        Map<String, Object> order = new HashMap<>();
-        order.put("name", "asc");
-        Call<PagingRecyclerViewData> call = apiInterface.listViewData("LIST_VIEW", documentName,page, 10, body);
-        call.enqueue(new Callback<PagingRecyclerViewData>() {
-            @Override
-            public void onResponse(Call<PagingRecyclerViewData> call, Response<PagingRecyclerViewData> response) {
-                callback.onResponse(response);
-            }
-            @Override
-            public void onFailure(Call<PagingRecyclerViewData> call, Throwable t) {
-                callback.onError(t);
-                call.cancel();
-            }
-        });
+
     }
 
     public void patch(String documentName, String id, Map<String, Object> attributeVaules, DocumentEventListner callback) {

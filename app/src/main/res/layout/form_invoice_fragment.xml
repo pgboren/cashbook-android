@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         app:ev_errorEnabled="true"
         app:ev_helperText="@string/require"
-        app:ev_hint="@string/chassisNumber" />
+        app:ev_hint="@string/chassisnumber" />
 
     <com.soleap.cashbook.common.widget.StringEditText
         android:id="@+id/txt_machineNumber"
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         app:ev_errorEnabled="true"
         app:ev_helperText="@string/require"
-        app:ev_hint="@string/machineNumber" />
+        app:ev_hint="@string/machinenumber" />
 
     <com.soleap.cashbook.common.widget.IntegerEditText
         android:id="@+id/txt_year"

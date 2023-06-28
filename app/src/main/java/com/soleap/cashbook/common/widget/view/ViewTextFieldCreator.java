@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.activity.ViewDataActivity;
 import com.soleap.cashbook.common.document.ViewData;
+import com.soleap.cashbook.common.util.DimensionUtils;
 import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.common.value.ViewType;
 
@@ -22,9 +23,7 @@ public class ViewTextFieldCreator extends FieldCreator {
         ViewData data = fieldData;
         LinearLayout valueContainer = new LinearLayout(activity);
         valueContainer.setGravity(Gravity.CENTER);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(5, 10,0,10);
-        valueContainer.setLayoutParams(params);
+        valueContainer.setPadding(DimensionUtils.dpToPx(activity, 5),DimensionUtils.dpToPx(activity, 7),DimensionUtils.dpToPx(activity, 5),DimensionUtils.dpToPx(activity, 7));
         valueContainer.setOrientation(LinearLayout.HORIZONTAL);
         TextView textLabel = new TextView(activity);
         textLabel.setTextSize(12);

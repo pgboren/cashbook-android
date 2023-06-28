@@ -2,7 +2,6 @@
 <resources>
 
     <color name="primaryColor">#851718</color>
-    <color name="primaryLightColor">#CFA29D</color>
     <color name="primaryDarkColor">#851718</color>
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#8B000000</color>
@@ -13,22 +12,15 @@
 
     <color name="gray_light">#BDBDBD</color>
     <color name="gray_dark">#616161</color>
-    <color name="white_dark_tansparent">#BAB1B1B1</color>
 
     <color name="label">#6C6C6C</color>
-    <color name="view_property_value">#212121</color>
-    <color name="prompt_text">#9A9A9A</color>
     <color name="title">#FFC0C0C0</color>
-    <color name="blank_msg">#BAB1B1B1</color>
 
     <color name="item_devider">#252424</color>
     <color name="devider">#BAB1B1B1</color>
-    <color name="status">#75a7ff</color>
 
     <color name="view_comm_field_color">#75a7ff</color>
     <color name="blue_light">#75a7ff</color>
     <color name="red_light">#E57373</color>
-    <color name="blue_dark">#4B73BB</color>
-    <color name="green_dark">#8BC34A</color>
 
 </resources>

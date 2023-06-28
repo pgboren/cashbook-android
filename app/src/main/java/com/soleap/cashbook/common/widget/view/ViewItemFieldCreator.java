@@ -26,7 +26,7 @@ public class ViewItemFieldCreator extends FieldCreator {
         LinearLayout valueContainer = new LinearLayout(activity);
         valueContainer.setGravity(Gravity.CENTER);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(5, 20,0,20);
+        params.setMargins(5, 15,0,15);
         valueContainer.setLayoutParams(params);
         valueContainer.setOrientation(LinearLayout.HORIZONTAL);
         TextView textLabel = new TextView(activity);

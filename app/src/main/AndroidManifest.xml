@@ -74,25 +74,20 @@
 
         <activity
             android:name=".common.activity.BsDocEditActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".common.activity.BsDocViewActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar"
-            android:windowSoftInputMode="adjustResize" />
+            android:theme="@style/NoActionBar"/>
 
         <activity
             android:name=".common.activity.BsDocAddNewActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".common.activity.PDFViewActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/NoActionBar"
             android:windowSoftInputMode="adjustResize" />
 

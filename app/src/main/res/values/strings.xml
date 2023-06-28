@@ -9,7 +9,6 @@
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="save">រក្សាទុក</string>
-    <string name="edit">កែរ</string>
     <string name="cancel">បោះបង់</string>
     <string name="ok">យល់ព្រម</string>
     <string name="error">Error</string>
@@ -18,7 +17,6 @@
     <string name="require">required</string>
 
     <string name="category_search_hint">Name</string>
-    <string name="duplicate_category_name">Doupliecated category name</string>
     <string name="category_is_used_as_parent">This category is used by some other objects.</string>
 
     <!--Form-->
@@ -26,7 +24,6 @@
     <string name="delete_alert_dialog_title">លុប%s?</string>
     <string name="delete_alert_dialog_message">តើអ្នកចង់លុប%sនេះទេ?</string>
     <string name="search_title">ស្វែងរក</string>
-    <string name="all_records">ទាំងអស់</string>
 
     <string name="camera_access_required">Camera is require</string>
     <string name="camera_unavailable">Camera is unavailable</string>
@@ -44,41 +41,25 @@
     <string name="nav_group_system">ប្រព័ន្ធ</string>
     <string name="nav_menu_settings">ការកំណត់</string>
 
-    <string name="first_name">នាមខ្លួន</string>
-    <string name="last_name">នាមត្រកូល</string>
     <string name="nick_name">ឈ្មោះហៅក្រៅ</string>
 
     <string name="primarynumber">លេខទូរស័ព្ទផ្ទាល់ខ្លន</string>
-    <string name="secondarynumber">លេខទូរស័ព្ទមេ</string>
-    <string name="thridnumber">លេខទូរស័ព្ទអ្នកផ្ទះ</string>
     <string name="facebook">Facebook</string>
     <string name="telegram">Telegram</string>
-    <string name="village">ភូមិ</string>
-    <string name="commune">ឃុំ/សង្កាត់</string>
-    <string name="district">ស្រុក/ខ័ណ្ឌ</string>
-    <string name="province">ខេត្ត/ក្រុង</string>
 
     <string name="price">តំលៃ ($)</string>
 
     <string name="namekh">ឈ្មោះ (ខ្មែរ)</string>
     <string name="description">បរិយាយ</string>
-    <string name="installmentpaymentprice">តំលៃបង់រំលស់</string>
     <string name="cost">ថ្លៃដើម</string>
 
     <string name="name">ឈ្មេាះ</string>
     <string name="address">អាស័យដ្ឋាន</string>
-    <string name="houseno">លេខផ្ទះ</string>
-    <string name="floor">ជាន់</string>
-    <string name="roomnumber">លេខបន្ទប់</string>
-    <string name="postalcode">លេខកូដប្រៃសណីយ៍</string>
-    <string name="street">ផ្លូវ</string>
     <string name="active">សកម្ម</string>
 
     <string name="contact_number">លេខទំនាក់ទំនង</string>
 
-    <string name="item">ផលិតផល</string>
     <string name="institute">ស្ថាប័ណ្ណ</string>
-    <string name="branch">សាខា</string>
     <string name="enter_username">ឈ្មោះគណនី</string>
     <string name="enter_password">លេខសំងាត់</string>
     <string name="remember_me">ចងចាំលេខសំងាត់</string>
@@ -87,94 +68,39 @@
 
     <string name="date">កាលបរិច្ឆេទ</string>
 
-    <string name="NEW">ថ្មី</string>
-    <string name="SECONDHAND">មួយទឹក</string>
-
-    <string name="customer">អតិថិជន</string>
     <string name="model_year">ឆ្នាំផលិត</string>
-    <string name="DATE">កាលបរិច្ឆេទ</string>
-    <string name="enginepower">កំលាំម៉ាស៊ីន</string>
-    <string name="choose_a_item">ជ្រើសយកឈ្មោះផលិតផល</string>
-    <string name="choose_a_institute">ជ្រើសយកឈ្មោះស្ថាប័ណ្ណ</string>
-    <string name="nav_menu_installment_payment_sale_request">ដាក់ពាក្យបង់រំលស់</string>
     <string name="add_new">បង្កើតថ្មី</string>
-    <string name="add_more">បន្ថែម</string>
 
     <string name="nav_new_deal">ដាក់ពាក្យបង់រំលស់</string>
     <string name="nav_item_price">តារាងតំលៃ</string>
     <string name="user_profile">ព័ត៌មានអ្នកប្រើប្រាស់</string>
 
-    <string name="input_label_property">លក្ខណះ: </string>
-    <string name="input_label_status">ស្ថានភាព: </string>
-    <string name="add_sale_order_item">ជ្រើសយកឈ្មោះផលិតផល</string>
-    <string name="quantity">ចំនួន</string>
-
-    <string name="yes">យល់ព្រម</string>
-    <string name="no">បដិសេធ</string>
-    <string name="booking_amount">ប្រាក់កក់</string>
     <string name="sale_order">សំណើរ</string>
     <string name="vehicle_condition">ស្ថានភាពយានយន្ដ</string>
 
-    <string name="ORDER_PAYMENT_VEHICLE_STATUS_NEW">ថ្នី</string>
-    <string name="ORDER_PAYMENT_VEHICLE_STATUS_USED">ក្រដាស់ពន្ធ</string>
-    <string name="ORDER_PAYMENT_VEHICLE_STATUS_SECONDHAND">មួយទឹក</string>
-
     <string name="paymentoption">របៀបទូទាត់ប្រាក់</string>
     <string name="agile_task">សំណើរទិញម៉ូតូ</string>
-    <string name="task_phonenumber">លេខទូរស័ព្ទ</string>
-    <string name="payment_option_full_payment">1. ទិញបង់ផ្ដាច់</string>
-    <string name="payment_option_installment">2. ទិញបង់រំលស់</string>
-    <string name="full_payment_desc">អតិថិជនបង់ប្រាក់ផ្ទាល់នៅហាងម៉ូតូភ្លាមៗ បន្ទាប់ពីចេញវិក័បត្រលក់។</string>
-    <string name="installment_payment_desc">អតិថិជនស្នើរសុំឥណទានពីធនាគាបង់រំលស់ប្រចាំខែ។</string>
-    <string name="add_new_agiletask">សំណើរទិញម៉ូតូ - អតិថិជនថ្មី</string>
     <string name="vehicle">យានយន្ដ</string>
-    <string name="more_description">បញ្ជូលព័ត៌មានលម្អិតបន្ថែម...</string>
-    <string name="document">ឯកសារ</string>
     <string name="latinname">ឈ្មោះ (ឡាតាំង)</string>
-    <string name="id">លេខសំគាល់</string>
 
     <string name="add_new_contact">បន្ថែមលេខទំនាក់ទំនងថ្មី</string>
 
     <string name="account_type">ប្រភេទគណនី</string>
-    <string name="chart_of_account">ប្លង់គណនី</string>
     <string name="contact_list">លេខទំនាក់ទំនង</string>
     <string name="item_list">បញ្ជីរឈ្មោះទំនិញ</string>
     <string name="account">គណនី</string>
     <string name="chart_of_accounts">ប្លង់គណនី</string>
     <string name="category">ប្រភេទទំនិញ</string>
 
-    <string name="CATEGORY_LIST_VIEW">ប្រភេទទំនិញ</string>
-    <string name="CATEGORY_ADD_NEW_VIEW">ប្រភេទទំនិញថ្មី</string>
-
-    <string name="ACCOUNT_TYPE_LIST_VIEW">ប្រភេទគណនី</string>
-    <string name="CONTACT_LIST_VIEW">លេខទំនាក់ទំនង</string>
-    <string name="ITEM_LIST_VIEW">បញ្ជីរឈ្មោះទំនិញ</string>
-    <string name="ACCOUNT_LIST_VIEW">ប្លង់គណនី</string>
-    <string name="INSTITUTE_LIST_VIEW">បញ្ជីរឈ្មោះស្ថាប័ណ្ណ</string>
-    <string name="INSTITUTE_NEW_VIEW">ស្ថាប័ណ្ណថ្នី</string>
-    <string name="ITEM_NEW_VIEW">មុខទំនិញថ្មី</string>
-    <string name="CONTACT_NEW_VIEW">លេខទំនាក់ទំនងថ្មី</string>
-    <string name="INVOICE_LIST_VIEW">វិក័យ្យបត្រលក់</string>
-    <string name="INVOICE_VIEW">វិក័យ្យបត្រលក់</string>
-    <string name="INVOICE_NEW_VIEW">វិក័យ្យបត្រលក់ថ្មី</string>
-
     <string name="invoice">វិក័យ្យបត្រលក់</string>
     <string name="contact">អតិថិជន</string>
-    <string name="machineNumber">លេខម៉ាស៊ីន</string>
-    <string name="chassisNumber">លេខតួរ</string>
+    <string name="machinenumber">លេខម៉ាស៊ីន</string>
+    <string name="chassisnumber">លេខតួរ</string>
     <string name="color">ព៌ណ</string>
-    <string name="year">ឆ្នាំផលិត</string>
-    <string name="gender">ភេទ</string>
-    <string name="nickname">ឈ្មោះហៅក្រៅ</string>
-    <string name="phonenumber">លេខទូរស័ព្ទ</string>
-    <string name="condition">ស្ថានភាពយានយន្ដ</string>
     <string name="plate_number">ផ្លាកលេខ</string>
     <string name="CASH_PAY">បង់ផ្ដាច់</string>
-    <string name="LOAN">បង់រំលស់</string>
     <string name="male">ប្រុស</string>
     <string name="female">ស្រី</string>
-    <string name="MAKE">ប្រុស</string>
-    <string name="FEMALE">ស្រី</string>
-    <string name="number">លេខសំគាល់</string>
+
 
 </resources>

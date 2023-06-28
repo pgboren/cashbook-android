@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,12 +24,12 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.adapter.PagingRecyclerViewAdapter;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
-import com.soleap.cashbook.common.global.EventHandler;
-import com.soleap.cashbook.restapi.APIClient;
+import com.soleap.cashbook.common.widget.recyclerview.DragDropItemTouchHelperCallback;
+import com.soleap.cashbook.common.widget.recyclerview.DragDropItemTouchRecyclerViewAdapter;
 import com.soleap.cashbook.restapi.APIInterface;
 import com.soleap.cashbook.view.DocumentInfo;
 
-public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
+public class DragDropDocListBottomSheetFragment extends BottomSheetDialogFragment {
     private final String message;
     private final boolean isExpanded;
 
@@ -39,8 +40,6 @@ public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
     private TextView tvTitle;
 
     private DocumentListBottomSheetFragmentEventListner eventListner;
-
-    private View contentView;
     private String title;
 
     public void setTitle(String title) {
@@ -55,7 +54,7 @@ public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
         this.eventListner = eventListner;
     }
 
-    public DocumentListBottomSheetFragment(boolean isExpanded, String message) {
+    public DragDropDocListBottomSheetFragment(boolean isExpanded, String message) {
         super();
         this.message = message;
         this.isExpanded = isExpanded;
@@ -81,7 +80,6 @@ public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
             BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
             bottomSheetDialog.setOnShowListener(dialog -> {
                 FrameLayout bottomSheet = ((BottomSheetDialog) dialog).findViewById(com.google.android.material.R.id.design_bottom_sheet);
-
                 if (bottomSheet != null) {
                     BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
                     behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
@@ -96,7 +94,6 @@ public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        contentView = view;
         ImageButton btnClose = view.findViewById(R.id.btn_close);
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +106,7 @@ public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
     }
 
     private RecyclerView recyclerView;
-    protected PagingRecyclerViewAdapter adapter;
+    protected DragDropItemTouchRecyclerViewAdapter adapter;
 
     protected void initRecyclerView(View view) {
         tvTitle = view.findViewById(R.id.tv_tititle);
@@ -122,13 +119,16 @@ public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+        DragDropItemTouchHelperCallback itemTouchHelperCallback = new DragDropItemTouchHelperCallback(adapter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchHelperCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
         initScrollListener();
         tvTitle.setText(title);
         startDataListening();
     }
 
     protected void initRecyclerViewAdapter() {
-        adapter = new PagingRecyclerViewAdapter(getContext(),  documentInfo.getName() , documentInfo.getDocListViewDef().getList_item_layout());
+        adapter = new DragDropItemTouchRecyclerViewAdapter(getContext(),  documentInfo.getName() , documentInfo.getDocListViewDef().getList_item_layout());
         adapter.setListner(new PagingRecyclerViewAdapter.PagingRecyclerViewAdaptaerEventListner() {
             @Override
             public void onItemClick(DocumentSnapshot doc, int position) {

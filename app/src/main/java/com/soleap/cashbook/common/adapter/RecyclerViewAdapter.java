@@ -17,6 +17,8 @@ import com.soleap.cashbook.common.document.ViewDocumentSnapshot;
 import com.soleap.cashbook.common.repository.DocumentRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
 import com.soleap.cashbook.document.DocumentName;
+import com.soleap.cashbook.restapi.APIClient;
+import com.soleap.cashbook.restapi.APIInterface;
 import com.soleap.cashbook.view.DocumentInfo;
 import com.soleap.cashbook.viewholder.DocListItemViewHolder;
 import com.soleap.cashbook.viewholder.ListItemViewHolderFactory;
@@ -24,12 +26,16 @@ import com.soleap.cashbook.viewholder.ListItemViewHolderFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 public abstract class RecyclerViewAdapter<TV extends DocListItemViewHolder> extends RecyclerView.Adapter<TV> {
 
     public static String TAG = "RecyclerViewAdapter";
     public final static int ADD_NEW_ENTITY_REQUEST_CODE = 2001;
+
+    protected APIInterface apiInterface;
 
     protected final Context context;
 
@@ -41,8 +47,6 @@ public abstract class RecyclerViewAdapter<TV extends DocListItemViewHolder> exte
     protected List<Document> dataSet = new ArrayList<Document>();
     protected int viewResource;
 
-    protected DocumentRepository repository;
-
     public void setDocumentInfo(DocumentInfo documentInfo) {
         this.documentInfo = documentInfo;
     }
@@ -51,25 +55,17 @@ public abstract class RecyclerViewAdapter<TV extends DocListItemViewHolder> exte
         this.documentName = documentName;
         this.context = context;
         this.viewResource = viewResource;
-        initRepository();
-    }
-
-    protected void initRepository() {
-        this.repository = RepositoryFactory.create().get(documentName);
+        apiInterface = APIClient.getClient().create(APIInterface.class);
     }
 
     public void startListening() {
     }
 
     public void onDocChanged(String id) {
-        repository.listItem(id, new DocumentRepository.DocumentEventListner() {
+        Call<ViewDocumentSnapshot> call = apiInterface.listItemViewData(documentName,id);
+        call.enqueue(new Callback<ViewDocumentSnapshot>() {
             @Override
-            public void onError(Throwable t) {
-                Log.e(TAG, t.getMessage(), t);
-            }
-
-            @Override
-            public void onResponse(Response response) {
+            public void onResponse(Call<ViewDocumentSnapshot> call, Response<ViewDocumentSnapshot> response) {
                 ViewDocumentSnapshot doc = (ViewDocumentSnapshot) response.body();
                 int position = getItemIndex(id);
                 if (position > -1) {
@@ -77,25 +73,32 @@ public abstract class RecyclerViewAdapter<TV extends DocListItemViewHolder> exte
                     notifyItemChanged(position);
                 }
             }
+            @Override
+            public void onFailure(Call<ViewDocumentSnapshot> call, Throwable t) {
+                Log.e(TAG, t.getMessage(), t);
+                call.cancel();
+            }
         });
-
 
     }
 
     public void onDocCreated(String id) {
-        repository.listItem(id, new DocumentRepository.DocumentEventListner() {
-            @Override
-            public void onError(Throwable t) {
-                Log.e(TAG, t.getMessage(), t);
-            }
 
+        Call<ViewDocumentSnapshot> call = apiInterface.listItemViewData(documentName,id);
+        call.enqueue(new Callback<ViewDocumentSnapshot>() {
             @Override
-            public void onResponse(Response response) {
+            public void onResponse(Call<ViewDocumentSnapshot> call, Response<ViewDocumentSnapshot> response) {
                 ViewDocumentSnapshot doc = (ViewDocumentSnapshot) response.body();
                 dataSet.add(doc);
                 notifyDataSetChanged();
             }
+            @Override
+            public void onFailure(Call<ViewDocumentSnapshot> call, Throwable t) {
+                Log.e(TAG, t.getMessage(), t);
+                call.cancel();
+            }
         });
+
     }
 
     private int getItemIndex(String id) {

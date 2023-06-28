@@ -5,22 +5,41 @@ import android.view.View;
 import java.util.Map;
 
 public class ViewData extends Document {
-
     public static String GROUP = "GROUP";
+    public static String DROP_DROP_LIST_BOTTOM_SHEET = "DROP_DROP_LIST_BOTTOM_SHEET";
     public static String DATA = "DATA";
     public static String PHOTO_VIEW = "PHOTO_VIEW";
     public static String PHOTO_UPLOAD = "PHOTO_UPLOAD";
-
     private String label;
     private Object value;
     private String type;
     private String dataType;
+
+    private String viewType;
     private String format;
     private String locale;
+
+    private boolean editTable = false;
     private int visible = View.VISIBLE;
     private Map<String, ViewData> childrent;
     private Action[] actions;
     private String action;
+
+    public String getViewType() {
+        return viewType;
+    }
+
+    public boolean isEditTable() {
+        return editTable;
+    }
+
+    public void setEditTable(boolean editTable) {
+        editTable = editTable;
+    }
+
+    public void setViewType(String viewType) {
+        this.viewType = viewType;
+    }
 
     public String getAction() {
         return action;
