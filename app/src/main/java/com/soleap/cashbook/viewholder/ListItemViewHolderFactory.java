@@ -24,6 +24,11 @@ public class ListItemViewHolderFactory {
             return new ItemListItemViewHolder(context, itemView);
         }
 
+        if (docName.equals(DocumentName.ITEM_SPECT)) {
+            return new ItemSpecListItemViewHolder(context, itemView);
+        }
+
+
         if (docName.equals(DocumentName.CATEGORY)) {
             return new NameListItemViewHolder(context, itemView);
         }
@@ -38,6 +43,10 @@ public class ListItemViewHolderFactory {
 
         if (docName.equals(DocumentName.COLOR)) {
             return new NameListItemViewHolder(context, itemView);
+        }
+
+        if (docName.equals(DocumentName.COLOR)) {
+            return new ItemSpecListItemViewHolder(context, itemView);
         }
 
         throw new RuntimeException("Incorrect document name");

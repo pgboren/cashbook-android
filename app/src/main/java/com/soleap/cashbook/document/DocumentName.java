@@ -13,6 +13,7 @@ public class DocumentName {
     public static final String ACCOUNT_TYPE = "accounttype" ;
     public static final String ACCOUNT = "account";
     public static final String INVOICE = "invoice";
+    public static final String ITEM_SPECT = "itemspecification";
 
     public static String CONTACT = "contact";
     public static String CATEGORY = "category";

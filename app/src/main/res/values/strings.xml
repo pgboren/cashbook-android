@@ -101,6 +101,10 @@
     <string name="CASH_PAY">បង់ផ្ដាច់</string>
     <string name="male">ប្រុស</string>
     <string name="female">ស្រី</string>
+    <string name="general">ព័ត៌មានទូទៅ</string>
+    <string name="specification">ព័ត៌មានបន្ថែម</string>
+    <string name="value">តំលៃ</string>
 
+    <string name="NEW_ITEM_SPECIFICATION">ព័ត៌មានបន្ថែម-ថ្មី</string>
 
 </resources>

@@ -9,6 +9,7 @@ import com.soleap.cashbook.document.Contact;
 import com.soleap.cashbook.document.Institute;
 import com.soleap.cashbook.document.Invoice;
 import com.soleap.cashbook.document.Item;
+import com.soleap.cashbook.document.ItemSpecification;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -69,6 +70,8 @@ public class DocumentInfo implements Serializable {
 
     public static DocumentInfo CONTACT = new DocumentInfo("contact" , Contact.class, ViewDefs.CONTACT_LIST_VIEW, ViewDefs.CONTACT_VIEW, ViewDefs.CONTACT_NEW_VIEW, ViewDefs.CONTACT_EDIT_VIEW);
     public static DocumentInfo ITEM = new DocumentInfo("item" , Item.class, ViewDefs.ITEM_LIST_VIEW, ViewDefs.ITEM_VIEW, ViewDefs.ITEM_NEW_VIEW, ViewDefs.ITEM_EDIT_VIEW);
+
+    public static DocumentInfo ITEM_SPEC = new DocumentInfo("itemspecification" , ItemSpecification.class, ViewDefs.ITEM_SPEC_LIST_VIEW, ViewDefs.ITEM_SPEC_VIEW, ViewDefs.ITEM_SPEC_NEW_VIEW, ViewDefs.ITEM_SPEC_EDIT_VIEW);
     public static DocumentInfo INSTITUTE = new DocumentInfo("institute" , Institute.class, ViewDefs.INSTITUTE_LIST_VIEW, ViewDefs.INSTITUTE_VIEW, ViewDefs.INSTITUTE_NEW_VIEW, ViewDefs.INSTITUTE_EDIT_VIEW);
     public static DocumentInfo INVOICE = new DocumentInfo("invoice" , Invoice.class, ViewDefs.INVOICE_LIST_VIEW, ViewDefs.INVOICE_VIEW, ViewDefs.INVOICE_NEW_VIEW, ViewDefs.INVOICE_EDIT_VIEW);
     public static DocumentInfo COLOR = new DocumentInfo("color" , Color.class, ViewDefs.COLOR_LIST_VIEW, ViewDefs.COLOR_VIEW, ViewDefs.COLOR_ADD_NEW_VIEW, ViewDefs.COLOR_EDIT_VIEW);

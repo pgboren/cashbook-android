@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:paddingBottom="30dp"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/toobar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:cardBackgroundColor="@color/primaryDarkColor"
+        app:cardBackgroundColor="@color/gray_dark"
         app:cardCornerRadius="0dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
                 android:src="@drawable/ic_close"/>
 
             <TextView
-                android:id="@+id/tv_tititle"
+                android:id="@+id/tv_title"
                 android:textColor="@color/white"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -45,40 +45,12 @@
                 android:text="Page Title"
                 android:textSize="16sp" />
 
-            <ImageButton
-                android:id="@+id/btn_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="8dp"
-                android:tint="@color/white"
-                android:src="@drawable/ic_add"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layoutAnimation="@anim/layout_animation"/>
-
-        <ProgressBar
-            android:id="@+id/progressLoading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/recyclerview"
-            android:layout_alignTop="@+id/recyclerview"
-            android:layout_centerHorizontal="true"
-            android:visibility="gone" />
-
-    </RelativeLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

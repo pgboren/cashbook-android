@@ -1,4 +1,4 @@
-package com.soleap.cashbook.common.widget.lookup;
+package com.soleap.cashbook.common.fragment;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -25,22 +25,16 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.adapter.PagingRecyclerViewAdapter;
-import com.soleap.cashbook.common.document.DocumentSnapshot;
-import com.soleap.cashbook.common.widget.dialog.FragmentSuportDialog;
+import com.soleap.cashbook.common.widget.lookup.DocumentListBottomSheetFragmentEventListner;
 import com.soleap.cashbook.common.widget.recyclerview.DragDropItemTouchRecyclerViewAdapter;
 import com.soleap.cashbook.common.widget.recyclerview.ItemMoveCallback;
 import com.soleap.cashbook.common.widget.recyclerview.StartDragListener;
 import com.soleap.cashbook.restapi.APIInterface;
 import com.soleap.cashbook.view.DocumentInfo;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import petrov.kristiyan.colorpicker.CustomDialog;
-
-public class DragDropDocListBottomSheetFragment extends BottomSheetDialogFragment {
-
-    private FragmentActivity activity;
+public class DragDropRecyclerViewItemFragment extends Fragment {
     private final String message;
     private final boolean isExpanded;
 
@@ -78,15 +72,10 @@ public class DragDropDocListBottomSheetFragment extends BottomSheetDialogFragmen
         this.eventListner = eventListner;
     }
 
-    public DragDropDocListBottomSheetFragment(boolean isExpanded, String message) {
+    public DragDropRecyclerViewItemFragment(boolean isExpanded, String message) {
         super();
         this.message = message;
         this.isExpanded = isExpanded;
-        setCancelable(false);
-    }
-
-    public void setActivity(FragmentActivity activity) {
-        this.activity = activity;
     }
 
     @Override
@@ -105,57 +94,32 @@ public class DragDropDocListBottomSheetFragment extends BottomSheetDialogFragmen
     @Override
     public void onStart() {
         super.onStart();
-        disableSwipeToDismiss();
     }
 
-    private void disableSwipeToDismiss() {
-        View bottomSheet = getDialog().findViewById(com.google.android.material.R.id.design_bottom_sheet);
-        BottomSheetBehavior<View> behavior = BottomSheetBehavior.from(bottomSheet);
-        behavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                if (newState == BottomSheetBehavior.STATE_DRAGGING) {
-                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                }
-            }
 
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                // No-op
-            }
-        });
-    }
 
-    @NonNull
-    @Override
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        if (isExpanded) {
-            BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
-            bottomSheetDialog.setCancelable(false);
-            bottomSheetDialog.setCanceledOnTouchOutside(false);
-            bottomSheetDialog.setOnShowListener(dialog -> {
-                FrameLayout bottomSheet = ((BottomSheetDialog) dialog).findViewById(com.google.android.material.R.id.design_bottom_sheet);
-                if (bottomSheet != null) {
-                    BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
-                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                }
-
-            });
-            return bottomSheetDialog;
-        }
-        return super.onCreateDialog(savedInstanceState);
-    }
+//    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+//        if (isExpanded) {
+//            BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
+//            bottomSheetDialog.setCancelable(false);
+//            bottomSheetDialog.setCanceledOnTouchOutside(false);
+//            bottomSheetDialog.setOnShowListener(dialog -> {
+//                FrameLayout bottomSheet = ((BottomSheetDialog) dialog).findViewById(com.google.android.material.R.id.design_bottom_sheet);
+//                if (bottomSheet != null) {
+//                    BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+//                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+//                }
+//
+//            });
+//            return bottomSheetDialog;
+//        }
+//        return super.onCreateDialog(savedInstanceState);
+//    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ImageButton btnClose = view.findViewById(R.id.btn_close);
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
         initRecyclerViewAdapter();
         initRecyclerView(view);
     }
@@ -179,9 +143,7 @@ public class DragDropDocListBottomSheetFragment extends BottomSheetDialogFragmen
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentSuportDialog customDialog = new FragmentSuportDialog(activity);
-                customDialog.setTitle("NEW_ITEM_SPECIFICATION");
-                customDialog.show(activity.getSupportFragmentManager(), "Expanded");
+
             }
         });
         startDataListening();

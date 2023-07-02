@@ -60,7 +60,9 @@ public abstract class DocListItemViewHolder extends RecyclerView.ViewHolder  imp
             viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_id).setString((id));
         }
         TextView txtIndex = itemView.findViewById(R.id.txt_index);
-        txtIndex.setText(String.valueOf(position + 1));
+        if (txtIndex != null) {
+            txtIndex.setText(String.valueOf(position + 1));
+        }
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

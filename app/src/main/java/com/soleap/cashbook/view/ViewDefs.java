@@ -60,4 +60,10 @@ public class ViewDefs {
     public static ViewDef COLOR_ADD_NEW_VIEW = new ViewDef("COLOR_ADD_NEW_VIEW", "color", BsDocAddNewActivity.class, R.layout.activity_form_bsdoc, BSDocFormFragment.class);
     public static ViewDef COLOR_EDIT_VIEW = new ViewDef("COLOR_EDIT_VIEW", "color", BsDocEditActivity.class, R.layout.activity_form_bsdoc, BSDocFormFragment.class);
 
+
+    public static ViewDef ITEM_SPEC_LIST_VIEW = new ViewDef("ITEM_SPEC_LIST_VIEW", "itemspecification", BsDocListActivity.class, R.layout.activity_list_bsdoc, R.layout.list_item_spec_view, R.layout.list_item_item_shimmer_view);
+    public static ViewDef ITEM_SPEC_VIEW = new ViewDef("ITEM_SPEC_VIEW", "itemspecification", BsDocViewActivity.class, R.layout.activity_view_doc, BSDocFormFragment.class, R.menu.doc_view_activity_option_menu);
+    public static ViewDef ITEM_SPEC_NEW_VIEW = new ViewDef("ITEM_SPEC_NEW_VIEW", "itemspecification", BsDocAddNewActivity.class, R.layout.activity_form_bsdoc, ItemFormFragment.class);
+    public static ViewDef ITEM_SPEC_EDIT_VIEW = new ViewDef("ITEM_SPEC_EDIT_VIEW", "itemspecification", BsDocEditActivity.class, R.layout.activity_form_bsdoc, BSDocFormFragment.class);
+
 }

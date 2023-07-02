@@ -29,6 +29,7 @@ import com.soleap.cashbook.common.widget.lookup.DragDropDocListBottomSheetFragme
 import com.soleap.cashbook.view.DocumentInfo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -63,7 +64,6 @@ public class ViewGroupFieldCreator extends FieldCreator {
         groupLayoutParam.setMargins(0,40,0,10);
         groupContainer.setLayoutParams(groupLayoutParam);
         LinearLayout groupLabelContainer = new LinearLayout(activity);
-//        groupLabelContainer.setGravity(Gravity.CENTER_VERTICAL);
         groupLabelContainer.setLayoutParams( new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 100));
         groupLabelContainer.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -84,10 +84,13 @@ public class ViewGroupFieldCreator extends FieldCreator {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     DragDropDocListBottomSheetFragment demoBottomsheet = new DragDropDocListBottomSheetFragment(true, "Expanded state");
                     demoBottomsheet.setTitle(ResourceUtil.getStringResourceByName(activity, groupData.getLabel()));
-                    demoBottomsheet.setDocumentInfo(DocumentInfo.ITEM);
+                    Map<String, Object> filter = new HashMap<>();
+                    filter.put(groupData.getDocName(), groupData.getDocId());
+                    demoBottomsheet.setFilter(filter);
+                    demoBottomsheet.setActivity(activity);
+                    demoBottomsheet.setDocumentInfo(DocumentInfo.ITEM_SPEC);
                     demoBottomsheet.setEventListner(new DocumentListBottomSheetFragmentEventListner() {
                         @Override
                         public void onItemSelected(DocumentSnapshot documentSnapshot) {

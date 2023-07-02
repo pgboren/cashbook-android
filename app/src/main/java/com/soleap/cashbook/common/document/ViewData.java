@@ -14,16 +14,34 @@ public class ViewData extends Document {
     private Object value;
     private String type;
     private String dataType;
-
     private String viewType;
     private String format;
     private String locale;
-
     private boolean editTable = false;
     private int visible = View.VISIBLE;
     private Map<String, ViewData> childrent;
     private Action[] actions;
     private String action;
+
+    private String docName;
+
+    private String docId;
+
+    public String getDocName() {
+        return docName;
+    }
+
+    public void setDocName(String docName) {
+        this.docName = docName;
+    }
+
+    public String getDocId() {
+        return docId;
+    }
+
+    public void setDocId(String docId) {
+        this.docId = docId;
+    }
 
     public String getViewType() {
         return viewType;

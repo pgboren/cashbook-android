@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.PagingRecyclerViewData;
-import com.soleap.cashbook.common.repository.DocumentRepository;
-import com.soleap.cashbook.common.repository.RepositoryFactory;
 import com.soleap.cashbook.viewholder.DocListItemViewHolder;
 import com.soleap.cashbook.viewholder.ListItemViewHolderFactory;
 
@@ -27,13 +25,20 @@ import retrofit2.Response;
 
 public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
 
+    private Map<String, Object> filter;
+
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
 
     private int currentPage = 1;
-    private int maxPage = -1;
+    protected int maxPage = -1;
 
     private boolean isFirstBind = true;
+    protected boolean isLoading = false;
+
+    protected Handler handler = new Handler();
+
+    protected Runnable runnable;
 
     private PagingRecyclerViewAdaptaerEventListner listner;
 
@@ -44,6 +49,15 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
     public PagingRecyclerViewAdapter(Context context, String documentName, int viewResource) {
         super(context, documentName, viewResource);
     }
+
+    public void setFilter(Map<String, Object> filter) {
+        this.filter = filter;
+    }
+
+    public Map<String, Object> getFilter() {
+        return filter;
+    }
+
 
     @NonNull
     @Override
@@ -81,10 +95,7 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
         return dataSet.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
     }
 
-    boolean isLoading = false;
-
     public void moveNextPage() {
-
         if (currentPage < maxPage && !isLoading ) {
             this.currentPage +=1;
             isLoading = true;
@@ -93,11 +104,6 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
             loadPage(this.currentPage);
         }
     }
-
-    private Handler handler = new Handler();
-
-    private Runnable runnable;
-
 
     public void loadPage(int page) {
 
@@ -116,8 +122,10 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
             @Override
             public void run() {
                 Map<String, Object> body = new HashMap<>();
-                Map<String, Object> order = new HashMap<>();
-                order.put("name", "asc");
+                Map<String, Object> orders = getOrders();
+                Map<String, Object> filter = getFilter();
+                body.put("filter", filter);
+                body.put("orders", orders);
                 Call<PagingRecyclerViewData> call = apiInterface.listViewData("LIST_VIEW", documentName,page, 10, body);
                 call.enqueue(new Callback<PagingRecyclerViewData>() {
                     @Override
@@ -127,9 +135,11 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
                             dataSet.remove(dataSet.size()-1);
                             notifyItemRemoved(dataSet.size());
                         }
-                        dataSet.addAll(pagingData.getData());
-                        maxPage = pagingData.getTotalPages();
-                        notifyDataSetChanged();
+                        if (pagingData != null) {
+                            dataSet.addAll(pagingData.getData());
+                            maxPage = pagingData.getTotalPages();
+                            notifyDataSetChanged();
+                        }
                         isLoading = false;
                     }
                     @Override
@@ -143,6 +153,10 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
         };
 
         new Handler().postDelayed(runnable, 2000);
+    }
+
+    protected Map<String, Object> getOrders() {
+        return  new HashMap<>();
     }
 
     @Override

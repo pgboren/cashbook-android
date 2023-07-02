@@ -10,13 +10,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.soleap.cashbook.common.activity.RecyclerActivity;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.ViewDocumentSnapshot;
-import com.soleap.cashbook.common.repository.DocumentRepository;
-import com.soleap.cashbook.common.repository.RepositoryFactory;
-import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 import com.soleap.cashbook.view.DocumentInfo;
