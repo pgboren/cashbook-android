@@ -67,14 +67,14 @@ dependencies {
     implementation 'info.androidhive:fontawesome:0.0.5'
     implementation 'petrov.kristiyan:colorpicker-library:1.1.10'
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
-    compile 'me.sudar:zxing-orient:2.1.1@aar'
-    compile 'com.github.markushi:circlebutton:1.1'
-    compile 'com.turki-alkhateeb:materialcolorpicker:1.0.7'
+    implementation 'me.sudar:zxing-orient:2.1.1@aar'
+    implementation 'com.github.markushi:circlebutton:1.1'
+    implementation 'com.turki-alkhateeb:materialcolorpicker:1.0.7'
     // define a BOM and its version
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.9.1"))
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
-    compile 'com.android.support:recyclerview-v7:23.2.1'
-    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    implementation 'com.android.support:recyclerview-v7:23.2.1'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     implementation 'petrov.kristiyan:colorpicker-library:1.1.10'
     // define any required OkHttp artifacts without version
     implementation 'com.github.tntkhang:full-screen-image-view-library:1.1.0'
@@ -88,6 +88,10 @@ dependencies {
     implementation 'com.github.zhukic:sectioned-recyclerview:1.2.3'
     implementation 'com.itextpdf:itextg:5.5.10'
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.1'
+    implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+
+
 }
 
 configurations.all {
