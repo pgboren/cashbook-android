@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.soleap.cashbook.R;
+import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.value.ViewSetterFactory;
 import com.soleap.cashbook.document.DocumentName;
@@ -18,10 +19,11 @@ public class AccountListItemViewHolder extends DocListItemViewHolder {
     }
 
     @Override
-    protected void bindViewContent(DocumentSnapshot doc) {
-        String name = doc.getDataValue("name").getValue().toString();
-        String type = doc.getDataValue("type").getValue().toString();
-        double amount = (Double) doc.getDataValue("amount").getValue();
+    protected void bindViewContent(Document doc) {
+        DocumentSnapshot documentSnapshot = (DocumentSnapshot) doc;
+        String name = documentSnapshot.getDataValue("name").getValue().toString();
+        String type = documentSnapshot.getDataValue("type").getValue().toString();
+        double amount = (Double) documentSnapshot.getDataValue("amount").getValue();
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
         viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_name).setString(name);
         viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_short_name).setString((name.substring(0, 1).toUpperCase()));

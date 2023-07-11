@@ -26,6 +26,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.adapter.PagingRecyclerViewAdapter;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
+import com.soleap.cashbook.common.widget.dialog.AddNewDocFragmentSuportDialog;
 import com.soleap.cashbook.common.widget.dialog.FragmentSuportDialog;
 import com.soleap.cashbook.common.widget.recyclerview.DragDropItemTouchRecyclerViewAdapter;
 import com.soleap.cashbook.common.widget.recyclerview.ItemMoveCallback;
@@ -64,7 +65,25 @@ public class DragDropDocListBottomSheetFragment extends BottomSheetDialogFragmen
 
     protected DragDropItemTouchRecyclerViewAdapter adapter;
 
-    private Map<String, Object> filter;
+    private String docName;
+
+    public String getDocName() {
+        return docName;
+    }
+
+    public void setDocName(String docName) {
+        this.docName = docName;
+    }
+
+    private String docId;
+
+    public String getDocId() {
+        return docId;
+    }
+
+    public void setDocId(String docId) {
+        this.docId = docId;
+    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -179,22 +198,31 @@ public class DragDropDocListBottomSheetFragment extends BottomSheetDialogFragmen
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentSuportDialog customDialog = new FragmentSuportDialog(activity);
+                AddNewDocFragmentSuportDialog customDialog = new AddNewDocFragmentSuportDialog(activity);
+                customDialog.setDocName(docName);
+                customDialog.setDocId(docId);
                 customDialog.setTitle("NEW_ITEM_SPECIFICATION");
                 customDialog.show(activity.getSupportFragmentManager(), "Expanded");
+                customDialog.setListner(new AddNewDocFragmentSuportDialog.AddNewDocFragmentSuportDialogListner() {
+                    @Override
+                    public void onDocAdded(String docId) {
+                        adapter.insert(docId);
+                    }
+                });
+
             }
         });
         startDataListening();
     }
-
     protected void initRecyclerViewAdapter() {
         adapter = new DragDropItemTouchRecyclerViewAdapter(getContext(), documentInfo.getName(), documentInfo.getDocListViewDef().getList_item_layout(), new StartDragListener() {
             @Override
             public void requestDrag(RecyclerView.ViewHolder viewHolder) {
                 touchHelper.startDrag(viewHolder);
             }
-
         });
+        Map<String, Object> filter = new HashMap<>();
+        filter.put(docName, docId);
         adapter.setFilter(filter);
         adapter.setDocumentInfo(documentInfo);
     }
@@ -226,7 +254,4 @@ public class DragDropDocListBottomSheetFragment extends BottomSheetDialogFragmen
         }, 500);
     }
 
-    public void setFilter(Map<String, Object> filter) {
-        this.filter = filter;
-    }
 }

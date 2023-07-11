@@ -10,11 +10,8 @@ import java.util.Map;
 public class Item extends BsDocument {
     private String description;
     private double price;
-
     private double cost;
-
     private String category;
-
     private String account;
 
     public String getAccount() {
@@ -67,6 +64,7 @@ public class Item extends BsDocument {
         data.put("cost", getCost());
         data.put("category", getCategory());
         data.put("enable", enable);
+
         return data;
     }
 

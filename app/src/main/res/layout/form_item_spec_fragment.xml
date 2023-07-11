@@ -9,8 +9,7 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="5dp"
-    android:orientation="vertical"
-    android:scrollbars="vertical">
+    android:orientation="vertical">
 
     <com.soleap.cashbook.common.widget.StringEditText
         android:id="@+id/txt_name"
@@ -27,5 +26,12 @@
         app:ev_errorEnabled="true"
         app:ev_helperText="@string/require"
         app:ev_hint="@string/value" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/sw_show_on_invoice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:checked="true"
+        android:text="@string/showOnInvoice"/>
 
 </LinearLayout>

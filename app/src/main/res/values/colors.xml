@@ -3,15 +3,15 @@
 
     <color name="primaryColor">#851718</color>
     <color name="primaryDarkColor">#851718</color>
-    <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#8B000000</color>
+    <color name="primaryTextColor">@android:color/black</color>
+    <color name="secondaryTextColor">@android:color/black</color>
 
     <color name="colorPrimary">#EB292929</color>
     <color name="colorPrimaryDark">#EB292929</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <color name="gray_light">#BDBDBD</color>
-    <color name="gray_dark">#808080</color>
+    <color name="gray_light">#BA959494</color>
+    <color name="gray_dark">#707070</color>
 
     <color name="label">#6C6C6C</color>
     <color name="title">#FFC0C0C0</color>

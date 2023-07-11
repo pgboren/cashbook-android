@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.soleap.cashbook.Global;
 import com.soleap.cashbook.R;
-import com.soleap.cashbook.common.document.DocumentSnapshot;
+import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.value.ViewSetterFactory;
 
 public abstract class DocListItemViewHolder extends RecyclerView.ViewHolder  implements ListItemViewHolder {
@@ -18,15 +18,17 @@ public abstract class DocListItemViewHolder extends RecyclerView.ViewHolder  imp
     private String viewName;
     private int resourceFileLayout;
 
-    private DocumentSnapshot doc;
+    protected int position;
 
-    private OnViewClickListner listener;
+    private Document doc;
 
-    public void setListener(OnViewClickListner listener) {
+    protected DocListItemViewHolderListner listener;
+
+    public void setListener(DocListItemViewHolderListner listener) {
         this.listener = listener;
     }
 
-    protected abstract void bindViewContent(DocumentSnapshot doc);
+    protected abstract void bindViewContent(Document doc);
 
     public DocListItemViewHolder(Context activity, View itemView, String viewName, String docName, int resourceFileLayout) {
         super(itemView);
@@ -51,7 +53,8 @@ public abstract class DocListItemViewHolder extends RecyclerView.ViewHolder  imp
         return resourceFileLayout;
     }
 
-    public void bind(int position, DocumentSnapshot doc) {
+    public void bind(int position, Document doc) {
+        this.position = position;
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
         String id = doc.getId();
         this.doc = doc;
@@ -67,15 +70,20 @@ public abstract class DocListItemViewHolder extends RecyclerView.ViewHolder  imp
             @Override
             public void onClick(View view) {
                 if (listener != null) {
-                    listener.onClick(doc, position);
+                    listener.onClick(DocListItemViewHolder.this.doc, position);
                 }
             }
         });
-        bindViewContent(doc);
+        bindViewContent(this.doc);
     }
 
-    public interface OnViewClickListner {
-        void onClick(DocumentSnapshot doc, int position);
+    public interface DocListItemViewHolderListner {
+        void onClick(Document doc, int position);
+
+        void onDelete(Document dcc, int position);
+
+        void onEdit(Document doc, int position);
+
     }
 
 }

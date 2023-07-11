@@ -73,34 +73,33 @@ public class ViewGroupFieldCreator extends FieldCreator {
         label.setTextColor(activity.getColor(R.color.blue_light));
         groupLabelContainer.addView(label);
 
-        if (groupData.isEditTable()) {
-            ImageView imageView = new ImageView(activity);
-            imageView.setImageResource(R.drawable.ic_angle_right);
-            imageView.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.1f ));
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
-            ColorStateList tintList = ColorStateList.valueOf(activity.getResources().getColor(R.color.blue_light));
-            imageView.setBackgroundTintList(tintList);
-            groupLabelContainer.addView(imageView);
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    DragDropDocListBottomSheetFragment demoBottomsheet = new DragDropDocListBottomSheetFragment(true, "Expanded state");
-                    demoBottomsheet.setTitle(ResourceUtil.getStringResourceByName(activity, groupData.getLabel()));
-                    Map<String, Object> filter = new HashMap<>();
-                    filter.put(groupData.getDocName(), groupData.getDocId());
-                    demoBottomsheet.setFilter(filter);
-                    demoBottomsheet.setActivity(activity);
-                    demoBottomsheet.setDocumentInfo(DocumentInfo.ITEM_SPEC);
-                    demoBottomsheet.setEventListner(new DocumentListBottomSheetFragmentEventListner() {
-                        @Override
-                        public void onItemSelected(DocumentSnapshot documentSnapshot) {
-
-                        }
-                    });
-                    demoBottomsheet.show(activity.getSupportFragmentManager(), "Expanded");
-                }
-            });
-        }
+//        if (groupData.isEditTable()) {
+//            ImageView imageView = new ImageView(activity);
+//            imageView.setImageResource(R.drawable.ic_angle_right);
+//            imageView.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.1f ));
+//            imageView.setScaleType(ImageView.ScaleType.CENTER);
+//            ColorStateList tintList = ColorStateList.valueOf(activity.getResources().getColor(R.color.blue_light));
+//            imageView.setBackgroundTintList(tintList);
+//            groupLabelContainer.addView(imageView);
+//            imageView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    DragDropDocListBottomSheetFragment demoBottomsheet = new DragDropDocListBottomSheetFragment(true, "Expanded state");
+//                    demoBottomsheet.setTitle(ResourceUtil.getStringResourceByName(activity, groupData.getLabel()));
+//                    demoBottomsheet.setDocName(groupData.getDocName());
+//                    demoBottomsheet.setDocId(groupData.getDocId());
+//                    demoBottomsheet.setActivity(activity);
+//                    demoBottomsheet.setDocumentInfo(DocumentInfo.ITEM_SPEC);
+//                    demoBottomsheet.setEventListner(new DocumentListBottomSheetFragmentEventListner() {
+//                        @Override
+//                        public void onItemSelected(DocumentSnapshot documentSnapshot) {
+//
+//                        }
+//                    });
+//                    demoBottomsheet.show(activity.getSupportFragmentManager(), "Expanded");
+//                }
+//            });
+//        }
 
         groupContainer.addView(groupLabelContainer);
         View view = new View(activity);

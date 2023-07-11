@@ -2,6 +2,7 @@ package com.soleap.cashbook.document;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.annotations.SerializedName;
 import com.soleap.cashbook.common.document.BsDocument;
 
 import java.util.HashMap;
@@ -11,7 +12,18 @@ public class ItemSpecification extends BsDocument {
     private String name;
     private String value;
     private String item;
+
     private int order;
+
+    public boolean showOnInvoice = false;
+
+    public boolean isShowOnInvoice() {
+        return showOnInvoice;
+    }
+
+    public void setShowOnInvoice(boolean showOnInvoice) {
+        this.showOnInvoice = showOnInvoice;
+    }
 
     @Override
     public String getName() {
@@ -53,6 +65,8 @@ public class ItemSpecification extends BsDocument {
         setName(jsonObject.get("name").getAsString());
         setValue(jsonObject.get("value").getAsString());
         setItem(jsonObject.get("item").getAsString());
+        setOrder(jsonObject.get("order").getAsInt());
+        setShowOnInvoice(jsonObject.get("showOnInvoice").getAsBoolean());
     }
 
     @Override
@@ -61,6 +75,7 @@ public class ItemSpecification extends BsDocument {
         data.put("name", getName());
         data.put("value", getValue());
         data.put("item", getItem());
+        data.put("showOnInvoice", isShowOnInvoice());
         return data;
     }
 }

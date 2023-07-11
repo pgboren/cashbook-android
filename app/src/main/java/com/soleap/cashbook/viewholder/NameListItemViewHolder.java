@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.soleap.cashbook.R;
+import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.value.ViewSetterFactory;
 import com.soleap.cashbook.document.DocumentName;
@@ -16,7 +17,8 @@ public class NameListItemViewHolder extends DocListItemViewHolder {
     }
 
     @Override
-    protected void bindViewContent(DocumentSnapshot doc) {
+    protected void bindViewContent(Document document) {
+        DocumentSnapshot doc = (DocumentSnapshot) document;
         String name = doc.getDataValue("name").getValue().toString();
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
         viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_name).setString(name);

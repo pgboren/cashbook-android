@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.soleap.cashbook.R;
+import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.ViewDocumentSnapshot;
 import com.soleap.cashbook.common.widget.BaseEditTextInputView;
@@ -80,8 +81,8 @@ public class DocumentLookupEditText extends BaseEditTextInputView<DocumentSnapsh
         demoBottomsheet.setDocumentInfo(this.documentInfo);
         demoBottomsheet.setEventListner(new DocumentListBottomSheetFragmentEventListner() {
             @Override
-            public void onItemSelected(DocumentSnapshot documentSnapshot) {
-                setValue(documentSnapshot);
+            public void onItemSelected(Document documentSnapshot) {
+                setValue((DocumentSnapshot) documentSnapshot);
                 if (valueChangedListner != null) {
                     valueChangedListner.onChanged(documentSnapshot, DocumentLookupEditText.this.getId());
                 }

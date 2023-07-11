@@ -3,6 +3,7 @@ package com.soleap.cashbook.common.widget.dialog;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -12,10 +13,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowInsets;
-import android.view.WindowInsetsController;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -33,17 +30,48 @@ import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.fragment.DocFormFragment;
 import com.soleap.cashbook.common.fragment.ItemSpecFormFragment;
 import com.soleap.cashbook.common.util.ResourceUtil;
+import com.soleap.cashbook.restapi.APIClient;
+import com.soleap.cashbook.restapi.APIInterface;
 
 public class FragmentSuportDialog extends DialogFragment {
 
-    private String title;
+    protected String title;
+
+    protected APIInterface apiInterface;
+
+    private String docName;
+
+    protected String docId;
+
+    protected DialogInterface.OnDismissListener listener;
+
+    public String getDocName() {
+        return docName;
+    }
+
+    public void setDocName(String docName) {
+        this.docName = docName;
+    }
+
+    public void setDocId(String docId) {
+        this.docId = docId;
+    }
+
+    public String getDocId() {
+        return docId;
+    }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
+    public void setListener(DialogInterface.OnDismissListener listener) {
+        this.listener = listener;
+    }
+
     public FragmentSuportDialog(@NonNull Context context) {
         super();
+        apiInterface = APIClient.getClient().create(APIInterface.class);
     }
 
     @Override
@@ -81,6 +109,12 @@ public class FragmentSuportDialog extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         Dialog bottomSheetDialog = (Dialog) super.onCreateDialog(savedInstanceState);
         bottomSheetDialog.setCancelable(false);
+        bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                listener.onDismiss(dialogInterface);
+            }
+        });
         bottomSheetDialog.setCanceledOnTouchOutside(false);
         return bottomSheetDialog;
     }

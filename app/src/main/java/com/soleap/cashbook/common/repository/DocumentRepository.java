@@ -65,7 +65,6 @@ public class DocumentRepository {
             }
         });
     }
-
     public void addNew(String documentName, Map<String, Object> data, DocumentEventListner callback) {
         Call<Map<String, Object>> call = apiInterface.post(documentName, data);
         call.enqueue(new Callback<Map<String, Object>>() {

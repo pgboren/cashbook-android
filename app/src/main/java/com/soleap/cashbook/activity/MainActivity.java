@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private View mLayout;
 
     private boolean fabExpanded = false;
+
     private FloatingActionButton fabSettings;
     private LinearLayout layoutFabContact;
     private LinearLayout layoutFabDeal;
@@ -85,15 +86,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fabExpanded = true;
     }
 
-
     //closes FAB submenus
     private void closeSubMenusFab(){
         layoutFabContact.setVisibility(View.INVISIBLE);
         layoutFabDeal.setVisibility(View.INVISIBLE);
         fabExpanded = false;
     }
-
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

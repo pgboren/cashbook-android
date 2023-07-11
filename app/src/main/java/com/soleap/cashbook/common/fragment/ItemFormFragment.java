@@ -16,6 +16,7 @@ import com.soleap.cashbook.common.widget.OnValueChangedListner;
 import com.soleap.cashbook.common.widget.StringEditText;
 import com.soleap.cashbook.common.widget.lookup.DocumentLookupEditText;
 import com.soleap.cashbook.document.Item;
+import com.soleap.cashbook.widget.ItemSpecificationRecyclerInputView;
 
 public class ItemFormFragment extends DocFormFragment<Item> {
     private DocumentLookupEditText lkCategory;
@@ -25,6 +26,8 @@ public class ItemFormFragment extends DocFormFragment<Item> {
     private CurrencyEditText txtPrice;
     private CurrencyEditText txtCost;
     protected SwitchMaterial swEnable;
+
+    protected ItemSpecificationRecyclerInputView otmSpecification;
 
     @Nullable
     @Override
@@ -43,6 +46,7 @@ public class ItemFormFragment extends DocFormFragment<Item> {
         txtPrice.setValueChangedListner(this);
         textDesc.setValueChangedListner(this);
         swEnable = (SwitchMaterial) view.findViewById(R.id.sw_enable);
+        otmSpecification = view.findViewById(R.id.otm_specification);
         swEnable.setSelected(true);
 
         lkCategory.setActivity((AppCompatActivity) getActivity());

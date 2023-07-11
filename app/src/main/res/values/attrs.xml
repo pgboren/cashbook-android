@@ -108,4 +108,9 @@
         <attr name="ev_doc_name" format="string"/>
     </declare-styleable>
 
+
+    <declare-styleable name="OneToManyDocRecyclerInputView">
+        <attr format="string" name="otmview_label"/>
+    </declare-styleable>
+
 </resources>

@@ -33,13 +33,16 @@ public class ItemSpecFormFragment extends DocFormFragment<ItemSpecification> {
     }
 
     @Override
-    public void readInputData(ItemSpecification item) {
-
+    public void readInputData(ItemSpecification itemSpec) {
+        itemSpec.setItem(getDocId());
+        itemSpec.setName(textName.getValue());
+        itemSpec.setValue(textValue.getValue());
     }
 
     @Override
-    public void assignValueToForm(ItemSpecification document) {
-
+    public void assignValueToForm(ItemSpecification itemSpec) {
+        textName.setValue(itemSpec.getName());
+        textValue.setValue(itemSpec.getValue());
     }
 
     @Override

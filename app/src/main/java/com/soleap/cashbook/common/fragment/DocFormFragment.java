@@ -14,6 +14,11 @@ public abstract class DocFormFragment<T extends Document> extends Fragment imple
     protected boolean isValid = false;
 
     protected View view;
+    private String docId;
+
+    public String getDocId() {
+        return docId;
+    }
 
     protected ValueChangeListner valueChangeListner;
 
@@ -47,12 +52,15 @@ public abstract class DocFormFragment<T extends Document> extends Fragment imple
 
     @Override
     public void afterTextChanged(Editable editable) {
-
     }
 
     @Override
     public void onChanged(Object value, int viewId) {
         onValueChanged();
+    }
+
+    public void setDocId(String docId) {
+        this.docId = docId;
     }
 
     public interface ValueChangeListner {

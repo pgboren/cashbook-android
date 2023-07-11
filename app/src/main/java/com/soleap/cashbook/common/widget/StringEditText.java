@@ -39,6 +39,7 @@ public class StringEditText extends BaseEditTextInputView<String> {
     protected void processAttributeSet(Context context, @Nullable AttributeSet attrs, TypedArray a) {
         super.processAttributeSet(context, attrs, a);
         TextInputEditText editText = findViewById(R.id.editText);
+        editText.setTextSize(15);
         if (editText.getLineCount() > 1) {
             editText.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         }

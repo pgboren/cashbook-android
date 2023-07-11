@@ -12,7 +12,6 @@ import com.soleap.cashbook.common.document.Document;
 import java.util.List;
 
 public abstract class SwipeToDeleteRecyclerViewAdapter<VH extends SwipeToDeleteRecyclerViewHolder> extends RecyclerView.Adapter<VH> {
-
     private List<Document> data;
 
     public SwipeToDeleteRecyclerViewAdapter(List<Document> data) {

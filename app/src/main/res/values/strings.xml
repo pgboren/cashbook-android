@@ -70,6 +70,7 @@
 
     <string name="model_year">ឆ្នាំផលិត</string>
     <string name="add_new">បង្កើតថ្មី</string>
+    <string name="add_more">ដាក់បន្ថែម</string>
 
     <string name="nav_new_deal">ដាក់ពាក្យបង់រំលស់</string>
     <string name="nav_item_price">តារាងតំលៃ</string>
@@ -106,5 +107,7 @@
     <string name="value">តំលៃ</string>
 
     <string name="NEW_ITEM_SPECIFICATION">ព័ត៌មានបន្ថែម-ថ្មី</string>
+    <string name="showOnInvoice">បង្ហាញលើវិក័យ្យបត្រ</string>
+    <string name="item_spec_promt">សូមចុចសញ្ញាលេខ(+) ដើម្បីបញ្ចូលព័ត៌មានបន្ថែម សំរាប់ព័ត៌មានដែលមិនក្នុងប្រអប់បញ្ចូលព័ត៌មានដែលមានស្រាប់ខាងលើ!</string>
 
 </resources>

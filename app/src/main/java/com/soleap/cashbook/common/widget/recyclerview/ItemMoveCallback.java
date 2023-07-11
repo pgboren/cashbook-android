@@ -4,8 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.soleap.cashbook.common.adapter.RecyclerViewAdapter;
-import com.soleap.cashbook.viewholder.DragDropListItemViewHolder;
+import com.soleap.cashbook.viewholder.OneToManyListItemViewHolder;
 
 public class ItemMoveCallback extends ItemTouchHelper.Callback {
 
@@ -22,20 +21,23 @@ public class ItemMoveCallback extends ItemTouchHelper.Callback {
 
     @Override
     public boolean isItemViewSwipeEnabled() {
-        return false;
+        return true;
     }
-
-
 
     @Override
-    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-
+    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+        switch (direction) {
+            case ItemTouchHelper.END:
+                break;
+            case ItemTouchHelper.START:
+                break;
+        }
     }
-
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-        int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-        return makeMovementFlags(dragFlags, 0);
+        int dragFlag = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+        int swipedFlag = ItemTouchHelper.END | ItemTouchHelper.START;
+        return makeMovementFlags(dragFlag, swipedFlag);
     }
 
     @Override
@@ -47,8 +49,8 @@ public class ItemMoveCallback extends ItemTouchHelper.Callback {
     @Override
     public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
-            if (viewHolder instanceof DragDropListItemViewHolder) {
-                DragDropListItemViewHolder myViewHolder=(DragDropListItemViewHolder) viewHolder;
+            if (viewHolder instanceof OneToManyListItemViewHolder) {
+                OneToManyListItemViewHolder myViewHolder=(OneToManyListItemViewHolder) viewHolder;
                 mAdapter.onRowSelected(myViewHolder);
             }
         }
@@ -57,8 +59,8 @@ public class ItemMoveCallback extends ItemTouchHelper.Callback {
     @Override
     public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         super.clearView(recyclerView, viewHolder);
-        if (viewHolder instanceof DragDropListItemViewHolder) {
-            DragDropListItemViewHolder myViewHolder = (DragDropListItemViewHolder) viewHolder;
+        if (viewHolder instanceof OneToManyListItemViewHolder) {
+            OneToManyListItemViewHolder myViewHolder = (OneToManyListItemViewHolder) viewHolder;
             mAdapter.onRowClear(myViewHolder);
         }
     }
@@ -66,8 +68,8 @@ public class ItemMoveCallback extends ItemTouchHelper.Callback {
     public interface ItemTouchHelperContract {
 
         void onRowMoved(int fromPosition, int toPosition);
-        void onRowSelected(DragDropListItemViewHolder myViewHolder);
-        void onRowClear(DragDropListItemViewHolder myViewHolder);
+        void onRowSelected(OneToManyListItemViewHolder myViewHolder);
+        void onRowClear(OneToManyListItemViewHolder myViewHolder);
 
     }
 

@@ -1,48 +1,32 @@
 package com.soleap.cashbook.common.widget.recyclerview;
 
-import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.MotionEventCompat;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.adapter.PagingRecyclerViewAdapter;
 import com.soleap.cashbook.common.document.Document;
-import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.PagingRecyclerViewData;
-import com.soleap.cashbook.common.document.ViewData;
-import com.soleap.cashbook.common.util.DimensionUtils;
-import com.soleap.cashbook.common.util.ResourceUtil;
-import com.soleap.cashbook.viewholder.DocListItemViewHolder;
-import com.soleap.cashbook.viewholder.DragDropListItemViewHolder;
+import com.soleap.cashbook.common.document.ViewDocumentSnapshot;
+import com.soleap.cashbook.viewholder.OneToManyListItemViewHolder;
 
 import android.content.Context;
-import android.widget.LinearLayout;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 public class DragDropItemTouchRecyclerViewAdapter extends PagingRecyclerViewAdapter implements ItemMoveCallback.ItemTouchHelperContract {
-
     private StartDragListener startDragListener;
-
     public DragDropItemTouchRecyclerViewAdapter(Context context, String documentName, int viewResource, StartDragListener startDragListener) {
         super(context, documentName, viewResource);
         this.startDragListener = startDragListener;
@@ -51,19 +35,25 @@ public class DragDropItemTouchRecyclerViewAdapter extends PagingRecyclerViewAdap
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
-        if (holder instanceof DragDropListItemViewHolder) {
-            DragDropListItemViewHolder dragDropListItemViewHolder = (DragDropListItemViewHolder) holder;
-            dragDropListItemViewHolder.imageView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    if (event.getAction() ==
-                            MotionEvent.ACTION_DOWN) {
-                        startDragListener.requestDrag(holder);
-                    }
-                    return false;
-                }
-            });
-        }
+
+    }
+
+    public void refresh() {
+        loadPage(1);
+    }
+    public void insert(String id) {
+        Call<ViewDocumentSnapshot> call = apiInterface.listItemViewData( documentName, id);
+        call.enqueue(new Callback<ViewDocumentSnapshot>() {
+            @Override
+            public void onResponse(Call<ViewDocumentSnapshot> call, Response<ViewDocumentSnapshot> response) {
+                dataSet.add(response.body());
+                notifyItemInserted(dataSet.size() - 1);
+            }
+
+            @Override
+            public void onFailure(Call<ViewDocumentSnapshot> call, Throwable t) {
+            }
+        });
     }
 
     @Override
@@ -87,7 +77,6 @@ public class DragDropItemTouchRecyclerViewAdapter extends PagingRecyclerViewAdap
                 Map<String, Object> filter = getFilter();
                 body.put("filter", filter);
                 body.put("orders", orders);
-
                 Call<PagingRecyclerViewData> call = apiInterface.listViewData("LIST_VIEW", documentName,page, 10, body);
                 call.enqueue(new Callback<PagingRecyclerViewData>() {
                     @Override
@@ -147,23 +136,21 @@ public class DragDropItemTouchRecyclerViewAdapter extends PagingRecyclerViewAdap
             apiInterface.patch(documentInfo.getName(), doc.getId(), itemAttributes).enqueue(new Callback<Map<String, Object>>() {
                 @Override
                 public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
-
                 }
                 @Override
                 public void onFailure(Call<Map<String, Object>> call, Throwable t) {
-
                 }
             });
         }
     }
 
     @Override
-    public void onRowSelected(DragDropListItemViewHolder myViewHolder) {
+    public void onRowSelected(OneToManyListItemViewHolder myViewHolder) {
         myViewHolder.rowView.setBackgroundColor(context.getColor(R.color.gray_light));
     }
 
     @Override
-    public void onRowClear(DragDropListItemViewHolder myViewHolder) {
+    public void onRowClear(OneToManyListItemViewHolder myViewHolder) {
         myViewHolder.rowView.setBackgroundColor(Color.WHITE);
     }
 

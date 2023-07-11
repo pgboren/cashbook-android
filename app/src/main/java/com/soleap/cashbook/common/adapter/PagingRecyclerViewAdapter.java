@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.PagingRecyclerViewData;
 import com.soleap.cashbook.viewholder.DocListItemViewHolder;
@@ -58,19 +59,28 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
         return filter;
     }
 
-
     @NonNull
     @Override
     public DocListItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(documentInfo.getDocListViewDef().getList_item_layout(), parent, false);
             this.viewHolder = ListItemViewHolderFactory.create(context, view, documentInfo.getName());
-            this.viewHolder.setListener(new DocListItemViewHolder.OnViewClickListner() {
+            this.viewHolder.setListener(new DocListItemViewHolder.DocListItemViewHolderListner() {
                 @Override
-                public void onClick(DocumentSnapshot doc, int position) {
+                public void onClick(Document doc, int position) {
                     if (listner != null) {
                         listner.onItemClick(doc, position);
                     }
+                }
+
+                @Override
+                public void onDelete(Document dcc, int position) {
+
+                }
+
+                @Override
+                public void onEdit(Document doc, int position) {
+
                 }
             });
             return this.viewHolder;
@@ -173,12 +183,12 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
         }
 
         @Override
-        protected void bindViewContent(DocumentSnapshot doc) {
+        protected void bindViewContent(Document doc) {
         }
     }
 
     public interface PagingRecyclerViewAdaptaerEventListner {
-        void onItemClick(DocumentSnapshot doc, int position);
+        void onItemClick(Document doc, int position);
     }
 
 }

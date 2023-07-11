@@ -19,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.adapter.PagingRecyclerViewAdapter;
 import com.soleap.cashbook.common.adapter.RecyclerViewAdapter;
+import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.global.DocChangedEventListner;
 import com.soleap.cashbook.common.global.EventHandler;
@@ -125,14 +126,14 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
         adapter = new PagingRecyclerViewAdapter(this,  documentInfo.getName() , documentInfo.getDocListViewDef().getList_item_layout());
         adapter.setListner(new PagingRecyclerViewAdapter.PagingRecyclerViewAdaptaerEventListner() {
             @Override
-            public void onItemClick(DocumentSnapshot doc, int position) {
+            public void onItemClick(Document doc, int position) {
                 onItemClicked(doc, position);
             }
         });
         adapter.setDocumentInfo(documentInfo);
     }
 
-    protected void onItemClicked(DocumentSnapshot doc, int position) {
+    protected void onItemClicked(Document doc, int position) {
         Intent intent = new Intent(RecyclerActivity.this, documentInfo.getDocViewViewDef().getActivityClass());
         intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, documentInfo);
         intent.putExtra(ModelViewActivity.KEY_MODEL_ID, doc.getId());
