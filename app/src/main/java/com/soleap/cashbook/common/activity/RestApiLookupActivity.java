@@ -22,7 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.adapter.RestApiRecyclerViewAdapter;
-import com.soleap.cashbook.widget.MyDividerItemDecoration;
+import com.soleap.cashbook.viewholder.widget.MyDividerItemDecoration;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 

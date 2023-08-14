@@ -3,7 +3,6 @@ package com.soleap.cashbook.common.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -15,7 +14,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.soleap.cashbook.R;
 
-public abstract class BaseEditTextInputView<T> extends LinearLayout {
+public abstract class BaseTextInputView<T> extends LinearLayout {
 
     protected boolean errorEnabled;
 
@@ -63,7 +62,7 @@ public abstract class BaseEditTextInputView<T> extends LinearLayout {
     protected void onValueSet(T value) {
         TextInputEditText editText = findViewById(R.id.editText);
         editText.removeTextChangedListener(textWatcher);
-        editText.setText(value.toString());
+        editText.setText( value == null ? "" : value.toString());
         editText.addTextChangedListener(textWatcher);
     }
 
@@ -91,7 +90,7 @@ public abstract class BaseEditTextInputView<T> extends LinearLayout {
         editText.setMaxLines(maxLines);
     }
 
-    public BaseEditTextInputView(Context context, @Nullable AttributeSet attrs) {
+    public BaseTextInputView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         setOrientation(VERTICAL);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EditTextInputView, 0, 0);

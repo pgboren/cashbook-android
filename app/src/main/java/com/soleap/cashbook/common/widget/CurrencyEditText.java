@@ -8,7 +8,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import com.google.android.material.textfield.TextInputEditText;
 import com.soleap.cashbook.R;
-public class CurrencyEditText extends BaseEditTextInputView<Double> {
+public class CurrencyEditText extends BaseTextInputView<Double> {
 
     private static String TAG = "CurrencyEditText";
 

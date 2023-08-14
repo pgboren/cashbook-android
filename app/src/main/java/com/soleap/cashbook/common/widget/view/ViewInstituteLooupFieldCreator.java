@@ -4,11 +4,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.soleap.cashbook.R;
-import com.soleap.cashbook.common.activity.BsDocLookUpActivity;
 import com.soleap.cashbook.common.activity.ViewDataActivity;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.ViewData;
-import com.soleap.cashbook.document.DocumentName;
 
 public class ViewInstituteLooupFieldCreator extends ViewDocumentLooupFieldCreator {
 
@@ -33,7 +31,7 @@ public class ViewInstituteLooupFieldCreator extends ViewDocumentLooupFieldCreato
     @Override
     protected void inflateLookupView(ViewGroup valueContainer) {
         super.inflateLookupView(valueContainer);
-        circleBox = valueContainer.findViewById(R.id.txt_short_name);
+        circleBox = valueContainer.findViewById(R.id.short_name_view);
     }
 
 }

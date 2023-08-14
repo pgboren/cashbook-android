@@ -95,6 +95,18 @@
         <attr format="string" name="cet_local"/>
     </declare-styleable>
 
+    <declare-styleable name="BaseLookUpInputView">
+        <attr format="string" name="lookup_view_hint"/>
+        <attr format="string" name="lookup_view_helperText"/>
+        <attr format="boolean" name="lookup_view_errorEnabled"/>
+        <attr name="lookup_view_minLines" format="integer" min="0" />
+        <attr name="lookup_view_lines" format="integer" min="0" />
+        <attr name="lookup_view_maxLines" format="integer" min="0" />
+        <attr name="lookup_view_default" format="float"/>
+        <attr format="reference" name="lookup_endIconDrawable"/>
+        <attr name="lookup_view_doc_name" format="string"/>
+    </declare-styleable>
+
     <declare-styleable name="EditTextInputView">
         <attr format="string" name="ev_hint"/>
         <attr format="string" name="ev_helperText"/>

@@ -1,4 +1,4 @@
-package com.soleap.cashbook.widget.recyclerview;
+package com.soleap.cashbook.viewholder.widget.recyclerview;
 
 import android.content.Context;
 import android.view.View;

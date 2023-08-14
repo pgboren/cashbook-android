@@ -15,7 +15,7 @@
  *
  */
 
-package com.soleap.cashbook.widget;
+package com.soleap.cashbook.viewholder.widget;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -27,8 +27,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
-
-import com.soleap.cashbook.R;
 
 import java.util.List;
 

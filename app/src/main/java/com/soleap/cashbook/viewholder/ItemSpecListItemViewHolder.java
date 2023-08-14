@@ -27,6 +27,6 @@ public class ItemSpecListItemViewHolder  extends OneToManyListItemViewHolder {
     }
 
     public ItemSpecListItemViewHolder(Context context, View itemView) {
-        super(context, itemView, ViewType.LIST_ITEM_VIEW, DocumentName.ITEM_SPECT, R.layout.list_item_spec_view);
+        super(context, itemView, ViewType.LIST_ITEM_VIEW, DocumentName.ITEM_SPECT, R.layout.vehicle_spec_list_item_view);
     }
 }

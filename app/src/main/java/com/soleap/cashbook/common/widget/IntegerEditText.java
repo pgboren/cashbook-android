@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import com.google.android.material.textfield.TextInputEditText;
 import com.soleap.cashbook.R;
 
-public class IntegerEditText extends BaseEditTextInputView<Integer> {
+public class IntegerEditText extends BaseTextInputView<Integer> {
 
     public IntegerEditText(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);

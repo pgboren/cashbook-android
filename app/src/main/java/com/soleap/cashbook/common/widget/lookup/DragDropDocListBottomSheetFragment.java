@@ -25,9 +25,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.adapter.PagingRecyclerViewAdapter;
-import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.widget.dialog.AddNewDocFragmentSuportDialog;
-import com.soleap.cashbook.common.widget.dialog.FragmentSuportDialog;
 import com.soleap.cashbook.common.widget.recyclerview.DragDropItemTouchRecyclerViewAdapter;
 import com.soleap.cashbook.common.widget.recyclerview.ItemMoveCallback;
 import com.soleap.cashbook.common.widget.recyclerview.StartDragListener;
@@ -36,8 +34,6 @@ import com.soleap.cashbook.view.DocumentInfo;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import petrov.kristiyan.colorpicker.CustomDialog;
 
 public class DragDropDocListBottomSheetFragment extends BottomSheetDialogFragment {
 
@@ -179,7 +175,7 @@ public class DragDropDocListBottomSheetFragment extends BottomSheetDialogFragmen
         initRecyclerView(view);
     }
     protected void initRecyclerView(View view) {
-        tvTitle = view.findViewById(R.id.tv_tititle);
+        tvTitle = view.findViewById(R.id.tv_title);
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerview);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());

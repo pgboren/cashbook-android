@@ -90,7 +90,7 @@ dependencies {
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.1'
     implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
-
+    implementation 'com.github.tntkhang:full-screen-image-view-library:1.1.0'
 
 }
 

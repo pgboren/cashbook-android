@@ -19,8 +19,8 @@ public class Invoice extends Document {
     @SerializedName("paymentType")
     private String paymentType;
 
-    @SerializedName("contact")
-    private String contact;
+    @SerializedName("customer")
+    private String customer;
 
     @SerializedName("institute")
     private String institute;
@@ -87,12 +87,12 @@ public class Invoice extends Document {
         this.paymentType = paymentType;
     }
 
-    public String getContact() {
-        return contact;
+    public String getCustomer() {
+        return customer;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setCustomer(String customer) {
+        this.customer = customer;
     }
 
     public String getInstitute() {
@@ -180,7 +180,7 @@ public class Invoice extends Document {
         Map<String, Object> map = new HashMap<>();
         map.put("date", date);
         map.put("paymentType", paymentType);
-        map.put("contact", contact);
+        map.put("customer", customer);
         map.put("institute", institute);
         map.put("item", item);
         map.put("machineNumber", machineNumber);
@@ -201,7 +201,7 @@ public class Invoice extends Document {
         setId(jsonObject.get("_id").getAsString());
         setDate(jsonObject.get("date").getAsLong());
         setPaymentType(jsonObject.get("paymentType").getAsString());
-        setContact(jsonObject.get("contact").getAsString());
+        setCustomer(jsonObject.get("customer").getAsString());
         setItem(jsonObject.get("item").getAsString());
         setMachineNumber(jsonObject.get("machineNumber").getAsString());
         setChassisNumber(jsonObject.get("chassisNumber").getAsString());

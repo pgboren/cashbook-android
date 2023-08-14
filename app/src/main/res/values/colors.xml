@@ -10,7 +10,8 @@
     <color name="colorPrimaryDark">#EB292929</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <color name="gray_light">#BA959494</color>
+    <color name="windows_bg">#BAF1F1F1</color>
+    <color name="gray_light">#BAB9B9B9</color>
     <color name="gray_dark">#707070</color>
 
     <color name="label">#6C6C6C</color>

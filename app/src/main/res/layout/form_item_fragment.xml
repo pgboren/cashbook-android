@@ -12,6 +12,20 @@
     android:orientation="vertical"
     android:scrollbars="vertical">
 
+    <TextView
+        android:text="@string/general"
+        android:textColor="@color/lite_blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.soleap.cashbook.common.widget.BarcodeStringEditText
+        android:id="@+id/txt_barcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ev_errorEnabled="true"
+        app:ev_helperText="@string/barcode"
+        app:ev_hint="@string/barcode" />
+
     <com.soleap.cashbook.common.widget.StringEditText
         android:id="@+id/txt_name"
         android:layout_width="match_parent"
@@ -30,6 +44,24 @@
         app:ev_errorEnabled="true"
         app:ev_helperText="@string/require"
         app:ev_hint="@string/category" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/sw_enable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:checked="true"
+        android:textSize="16sp"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/gray_dark"
+        android:text="@string/active"/>
+
+
+
+    <TextView
+        android:text="@string/general"
+        android:textColor="@color/lite_blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <com.soleap.cashbook.common.widget.lookup.DocumentLookupEditText
         android:id="@+id/txt_account"
@@ -57,34 +89,5 @@
         app:ev_helperText="@string/require"
         app:ev_errorEnabled="true"
         android:layout_height="wrap_content" />
-
-    <com.soleap.cashbook.common.widget.StringEditText
-        android:id="@+id/txt_desc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:ev_errorEnabled="false"
-        app:ev_lines="2"
-        app:ev_minLines="2"
-        app:ev_maxLines="2"
-        android:layout_marginBottom="15dp"
-        app:ev_hint="@string/description" />
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/sw_enable"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:checked="true"
-        android:textSize="16sp"
-        android:layout_marginBottom="15dp"
-        android:textColor="@color/gray_dark"
-        android:text="@string/active"/>
-
-    <com.soleap.cashbook.widget.ItemSpecificationRecyclerInputView
-        android:id="@+id/otm_specification"
-        app:otmview_label="@string/specification"
-        android:layout_marginBottom="15dp"
-        android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="wrap_content"/>
 
 </LinearLayout>

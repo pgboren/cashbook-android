@@ -72,6 +72,7 @@
     <string name="add_new">បង្កើតថ្មី</string>
     <string name="add_more">ដាក់បន្ថែម</string>
 
+    <string name="nav_loan_calculator">គណនាទឹកប្រាកបង់</string>
     <string name="nav_new_deal">ដាក់ពាក្យបង់រំលស់</string>
     <string name="nav_item_price">តារាងតំលៃ</string>
     <string name="user_profile">ព័ត៌មានអ្នកប្រើប្រាស់</string>
@@ -89,6 +90,7 @@
     <string name="account_type">ប្រភេទគណនី</string>
     <string name="contact_list">លេខទំនាក់ទំនង</string>
     <string name="item_list">បញ្ជីរឈ្មោះទំនិញ</string>
+
     <string name="account">គណនី</string>
     <string name="chart_of_accounts">ប្លង់គណនី</string>
     <string name="category">ប្រភេទទំនិញ</string>
@@ -97,7 +99,6 @@
     <string name="contact">អតិថិជន</string>
     <string name="machinenumber">លេខម៉ាស៊ីន</string>
     <string name="chassisnumber">លេខតួរ</string>
-    <string name="color">ព៌ណ</string>
     <string name="plate_number">ផ្លាកលេខ</string>
     <string name="CASH_PAY">បង់ផ្ដាច់</string>
     <string name="male">ប្រុស</string>
@@ -105,9 +106,34 @@
     <string name="general">ព័ត៌មានទូទៅ</string>
     <string name="specification">ព័ត៌មានបន្ថែម</string>
     <string name="value">តំលៃ</string>
-
+    <string name="nickname">ឈ្មោះហៅក្រៅ</string>
+    <string name="gender">ភេទ</string>
+    <string name="phonenumber">លេខទូរស័ព្ទ</string>
+    <string name="MAKE">ប្រុស</string>
+    <string name="FEMALE">ស្រី</string>
+    <string name="code">លេខសំគាល់</string>
+    <string name="barcode">បាកូដ</string>
+    <string name="itemtype">ប្រភេទទំនិញ</string>
     <string name="NEW_ITEM_SPECIFICATION">ព័ត៌មានបន្ថែម-ថ្មី</string>
     <string name="showOnInvoice">បង្ហាញលើវិក័យ្យបត្រ</string>
     <string name="item_spec_promt">សូមចុចសញ្ញាលេខ(+) ដើម្បីបញ្ចូលព័ត៌មានបន្ថែម សំរាប់ព័ត៌មានដែលមិនក្នុងប្រអប់បញ្ចូលព័ត៌មានដែលមានស្រាប់ខាងលើ!</string>
+    <string name="loan_installment_calculation">គណនាទឹកប្រាក់បង់រំលស់</string>
+    <string name="institutes">ស្ថាប័ណ្ណផ្ដល់ប្រាក់កម្ចី</string>
+    <string name="LOAN_CALCULATOR_VIEW">គណនាទឹកប្រាក់បង់រំលស់</string>
+    <string name="choose_an_institute">ជ្រើសយកឈ្មោះស្ថាប័ណ្ណ</string>
+    <string name="loan_amount">តំលៃម៉ូតូ</string>
+    <string name="VEHICLE_LIST_VIEW">បញ្ជីរឈ្មោះយានយន្ដ</string>
 
+    <string name="type">ប្រភេទ</string>
+    <string name="make">អ្នកផលិត</string>
+    <string name="model">ម៉ាក</string>
+    <string name="condition">ស្ថានភាព</string>
+    <string name="chassisno">លេខតូរ</string>
+    <string name="engineno">លេខម៉ាស៊ីន</string>
+    <string name="color">ពណ៌</string>
+    <string name="amount">តំលៃម៉ូតូ</string>
+    <string name="horsepower">កំលាំងម៉ាស៊ីន</string>
+    <string name="enable">សកម្ម</string>
+    <string name="production_year">ឆ្នាំផលិត</string>
+    <string name="photo">រូបភាព</string>
 </resources>

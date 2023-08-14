@@ -20,6 +20,10 @@ public class ListItemViewHolderFactory {
             return new NameListItemViewHolder(context, itemView);
         }
 
+        if (docName.equals(DocumentName.VEHICLE)) {
+            return new ItemListItemViewHolder(context, itemView);
+        }
+
         if (docName.equals(DocumentName.ITEM)) {
             return new ItemListItemViewHolder(context, itemView);
         }
@@ -27,7 +31,6 @@ public class ListItemViewHolderFactory {
         if (docName.equals(DocumentName.ITEM_SPECT)) {
             return new ItemSpecListItemViewHolder(context, itemView);
         }
-
 
         if (docName.equals(DocumentName.CATEGORY)) {
             return new NameListItemViewHolder(context, itemView);

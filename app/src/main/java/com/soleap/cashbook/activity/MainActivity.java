@@ -122,13 +122,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.ACCOUNT);
 //        }
 
-        if (id == R.id.nav_item_list) {
-            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.ITEM);
+        if (id == R.id.nav_vehicle_list) {
+            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.VEHICLE);
         }
 
-//        if (id == R.id.nav_category) {
-//            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.CATEGORY);
-//        }
+        if (id == R.id.nav_category) {
+            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.CATEGORY);
+        }
 
         if (id == R.id.nav_invoice) {
             intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.INVOICE);

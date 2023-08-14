@@ -21,7 +21,9 @@ public abstract class BackPressActivity extends AppCompatActivity {
 
     protected void configureActionBar() {
         toolbar = getSupportActionBar();
-        toolbar.setDisplayHomeAsUpEnabled(true);
+        if (toolbar != null) {
+            toolbar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     protected void onCreatingBegin() {

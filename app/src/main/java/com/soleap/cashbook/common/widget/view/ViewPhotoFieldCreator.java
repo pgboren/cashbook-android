@@ -65,18 +65,26 @@ public class ViewPhotoFieldCreator extends FieldCreator {
         valueContainer.setLayoutParams(params);
         valueContainer.setOrientation(LinearLayout.HORIZONTAL);
 
-        TextView textLabel = new TextView(activity);
-        textLabel.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f));
-        textLabel.setTextColor(activity.getColor(R.color.secondaryTextColor));
-        textLabel.setText(ResourceUtil.getStringResourceByName(activity, data.getLabel().toLowerCase()));
-        valueContainer.addView(textLabel);
+        if (data.isLableVisible()) {
+            TextView textLabel = new TextView(activity);
+            textLabel.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.4f));
+            textLabel.setTextColor(activity.getColor(R.color.secondaryTextColor));
+            textLabel.setText(ResourceUtil.getStringResourceByName(activity, data.getLabel().toLowerCase()));
+            valueContainer.addView(textLabel);
+        }
 
         int size = (int) activity.getResources().getDimension(R.dimen.view_photo_field_size);
         imageView = new ShapeableImageView(activity);
         ShapeAppearanceModel shapeAppearanceModel = imageView.getShapeAppearanceModel().toBuilder().setAllCornerSizes(size/2).build();
         imageView.setShapeAppearanceModel(shapeAppearanceModel);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        params =new LinearLayout.LayoutParams(size, size);
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        if (data.isLableVisible()) {
+            params =new LinearLayout.LayoutParams(size, size);
+        }
+        else {
+            params =new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 600);
+        }
+
         params.gravity = Gravity.START;
         imageView.setLayoutParams(params);
 

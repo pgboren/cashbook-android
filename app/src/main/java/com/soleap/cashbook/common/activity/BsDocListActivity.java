@@ -48,6 +48,8 @@ public class BsDocListActivity extends RecyclerActivity {
         initScrollListener();
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         boolean isReadOnly = getIntent().getExtras().getBoolean(READ_ONLY);
@@ -57,7 +59,7 @@ public class BsDocListActivity extends RecyclerActivity {
         return true;
     }
 
-    private void initScrollListener() {
+    protected void initScrollListener() {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {

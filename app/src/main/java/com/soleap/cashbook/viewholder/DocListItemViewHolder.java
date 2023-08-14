@@ -14,8 +14,11 @@ import com.soleap.cashbook.common.value.ViewSetterFactory;
 public abstract class DocListItemViewHolder extends RecyclerView.ViewHolder  implements ListItemViewHolder {
 
     protected Context context;
+
     private String docName;
+
     private String viewName;
+
     private int resourceFileLayout;
 
     protected int position;

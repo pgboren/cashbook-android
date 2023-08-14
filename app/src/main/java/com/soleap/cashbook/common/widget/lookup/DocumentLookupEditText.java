@@ -1,27 +1,21 @@
 package com.soleap.cashbook.common.widget.lookup;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.ViewDocumentSnapshot;
-import com.soleap.cashbook.common.widget.BaseEditTextInputView;
-import com.soleap.cashbook.common.widget.OnValueChangedListner;
+import com.soleap.cashbook.common.widget.BaseTextInputView;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 import com.soleap.cashbook.view.DocumentInfo;
@@ -30,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DocumentLookupEditText extends BaseEditTextInputView<DocumentSnapshot> {
+public class DocumentLookupEditText extends BaseTextInputView<DocumentSnapshot> {
 
     private static String TAG = "DocumentLookupEditText";
     private String docName;
@@ -53,8 +47,8 @@ public class DocumentLookupEditText extends BaseEditTextInputView<DocumentSnapsh
     @Override
     protected void processAttributeSet(Context context, @Nullable AttributeSet attrs, TypedArray a) {
         super.processAttributeSet(context, attrs, a);
-        docName = a.getString(R.styleable.EditTextInputView_ev_doc_name);
         fieldname = a.getString(R.styleable.EditTextInputView_ev_doc_field_name);
+        docName = a.getString(R.styleable.EditTextInputView_ev_doc_name);
         this.documentInfo = DocumentInfo.getDocumentInfo(docName);
         Drawable endIconDrawable = a.getDrawable(R.styleable.EditTextInputView_ev_endIconDrawable);
         if (endIconDrawable != null) {

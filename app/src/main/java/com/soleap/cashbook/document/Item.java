@@ -8,12 +8,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Item extends BsDocument {
+
+    private String barcode;
+
+    private String type;
+
     private String description;
     private double price;
     private double cost;
     private String category;
     private String account;
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
     public String getAccount() {
         return account;
     }
@@ -57,6 +77,7 @@ public class Item extends BsDocument {
     @Override
     public Map<String, Object> toMap() {
         Map<String, Object> data = new HashMap<>();
+        data.put("barcode", getBarcode());
         data.put("name", getName());
         data.put("account", getAccount());
         data.put("description", getDescription());
@@ -64,7 +85,6 @@ public class Item extends BsDocument {
         data.put("cost", getCost());
         data.put("category", getCategory());
         data.put("enable", enable);
-
         return data;
     }
 
@@ -72,8 +92,9 @@ public class Item extends BsDocument {
     public void fromJsonObject(JsonElement jsonElement) {
         super.fromJsonObject(jsonElement);
         JsonObject jsonObject = (JsonObject) jsonElement;
+        setBarcode(jsonObject.get("barcode").getAsString());
         setAccount(jsonObject.get("account").getAsString());
-        setDescription(jsonObject.get("description").getAsString());
+        setDescription(jsonObject.has("description") ? jsonObject.get("description").getAsString() : "");
         setPrice(jsonObject.get("price").getAsDouble());
         setCost(jsonObject.get("cost").getAsDouble());
         setCategory(jsonObject.get("category").getAsString());

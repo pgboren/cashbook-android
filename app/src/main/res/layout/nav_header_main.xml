@@ -9,7 +9,7 @@
     android:paddingBottom="10dp"
     android:paddingLeft="20dp">
 
-    <com.soleap.cashbook.widget.CircleImageView
+    <com.soleap.cashbook.viewholder.widget.CircleImageView
         android:id="@+id/img_user_profile"
         android:layout_width="60dp"
         android:layout_height="60dp"

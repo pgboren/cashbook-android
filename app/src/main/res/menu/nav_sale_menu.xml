@@ -5,6 +5,11 @@
 
     <item android:title="@string/add_new">
         <menu>
+            <item android:id="@+id/nav_cal_installment"
+                android:icon="@drawable/ic_calculator"
+                android:title="@string/nav_loan_calculator" />
+
+
             <item android:id="@+id/nav_add_new_deal"
                 android:icon="@drawable/ic_invoice"
                 android:title="@string/nav_new_deal" />
@@ -25,9 +30,10 @@
                 android:title="@string/invoice" />
 
             <item
-                android:id="@+id/nav_item_list"
-                android:icon="@drawable/ic_item"
-                android:title="@string/item_list" />
+                android:id="@+id/nav_vehicle_list"
+                android:icon="@drawable/ic_car_24"
+                android:title="@string/VEHICLE_LIST_VIEW" />
+
             <item
                 android:id="@+id/nav_contact_list"
                 android:icon="@drawable/ic_contact"
@@ -48,14 +54,15 @@
 <!--                android:icon="@drawable/ic_add"-->
 <!--                android:title="@string/account_type" />-->
 
-<!--            <item-->
-<!--                android:id="@+id/nav_category"-->
-<!--                android:icon="@drawable/ic_add"-->
-<!--                android:title="@string/category" />-->
-<!--            <item-->
-<!--                android:id="@+id/nav_color"-->
-<!--                android:icon="@drawable/ic_add"-->
-<!--                android:title="@string/color" />-->
+            <item
+                android:id="@+id/nav_category"
+                android:icon="@drawable/ic_add"
+                android:title="@string/category" />
+
+            <item
+                android:id="@+id/nav_color"
+                android:icon="@drawable/ic_add"
+                android:title="@string/color" />
 
             <item
                 android:id="@+id/nav_setting"

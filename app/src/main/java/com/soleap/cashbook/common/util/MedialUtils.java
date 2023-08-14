@@ -13,6 +13,12 @@ import java.io.File;
 public class MedialUtils {
 
 
+    public static void showImage(Context context) {
+//        StfalconImageViewer.Builder<Image>(context, images) { view, image ->
+//                Picasso.get().load(image.url).into(view)
+//        }.show()
+    }
+
     public static void loadImage(Context context, String path, ImageView imageView) {
         if (path != null) {
             Uri uri = Uri.parse(APIClient.STATIC_URL + path);

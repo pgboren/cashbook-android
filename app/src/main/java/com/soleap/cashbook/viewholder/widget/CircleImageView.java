@@ -1,4 +1,4 @@
-package com.soleap.cashbook.widget;
+package com.soleap.cashbook.viewholder.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

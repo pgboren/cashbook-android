@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.soleap.cashbook.R;
-import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.common.widget.BottomSheetMenuEditText;
 import com.soleap.cashbook.common.widget.CurrencyEditText;
@@ -88,7 +87,7 @@ public class InvoiceFormFragment extends DocFormFragment<Invoice> {
     public void readInputData(Invoice invoice) {
         DatePickerView datePickerView = view.findViewById(R.id.dtDate);
         invoice.setDate(datePickerView.getValue().getTimeInMillis());
-        invoice.setContact(lkCustomer.getValue().getId());
+        invoice.setCustomer(lkCustomer.getValue().getId());
         invoice.setInstitute(lkInstitute.getValue().getId());
         invoice.setItem(lkItem.getValue().getId());
         invoice.setColor(lkColor.getValue().getId());

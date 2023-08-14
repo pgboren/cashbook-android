@@ -23,7 +23,7 @@ public class ContactListItemViewHolder extends DocListItemViewHolder {
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
         viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_name).setString(name);
         viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_code).setString(documentSnapshot.getDataValue("code").getValue().toString());
-        viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_short_name).setString((name.substring(0, 1).toUpperCase()));
+        viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.short_name_view).setString((name.substring(0, 1).toUpperCase()));
         viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_phonenumber).setString(documentSnapshot.getDataValue("phoneNumber").getValue().toString());
     }
 

@@ -4,12 +4,8 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -19,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class DatePickerView extends BaseEditTextInputView<Calendar> {
+public class DatePickerView extends BaseTextInputView<Calendar> {
 
     public DatePickerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);

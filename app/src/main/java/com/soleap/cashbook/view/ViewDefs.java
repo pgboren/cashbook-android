@@ -10,7 +10,6 @@ import com.soleap.cashbook.common.fragment.ContactFormFragment;
 import com.soleap.cashbook.common.fragment.InstituteFormFragment;
 import com.soleap.cashbook.common.fragment.InvoiceFormFragment;
 import com.soleap.cashbook.common.fragment.ItemFormFragment;
-import com.soleap.cashbook.document.DocumentName;
 
 public class ViewDefs {
 
@@ -35,7 +34,7 @@ public class ViewDefs {
     public static ViewDef CONTACT_NEW_VIEW = new ViewDef("CONTACT_NEW_VIEW", "contact", BsDocAddNewActivity.class, R.layout.activity_form_bsdoc, ContactFormFragment.class);
     public static ViewDef CONTACT_EDIT_VIEW = new ViewDef("CONTACT_EDIT_VIEW", "contact", BsDocEditActivity.class, R.layout.activity_form_bsdoc, BSDocFormFragment.class);
 
-    public static ViewDef ITEM_LIST_VIEW = new ViewDef("ITEM_LIST_VIEW", "item", BsDocListActivity.class, R.layout.activity_list_bsdoc, R.layout.list_item_item_view, R.layout.list_item_item_shimmer_view);
+    public static ViewDef ITEM_LIST_VIEW = new ViewDef("ITEM_LIST_VIEW", "item", BsDocListActivity.class, R.layout.activity_list_bsdoc, R.layout.vehicle_list_item_view, R.layout.vehicle_list_itemshimmer_view);
     public static ViewDef ITEM_VIEW = new ViewDef("ITEM_VIEW", "item", BsDocViewActivity.class, R.layout.activity_view_doc, BSDocFormFragment.class, R.menu.doc_view_activity_option_menu);
     public static ViewDef ITEM_NEW_VIEW = new ViewDef("ITEM_NEW_VIEW", "item", BsDocAddNewActivity.class, R.layout.activity_form_bsdoc, ItemFormFragment.class);
     public static ViewDef ITEM_EDIT_VIEW = new ViewDef("ITEM_EDIT_VIEW", "item", BsDocEditActivity.class, R.layout.activity_form_bsdoc, BSDocFormFragment.class);
@@ -61,9 +60,14 @@ public class ViewDefs {
     public static ViewDef COLOR_EDIT_VIEW = new ViewDef("COLOR_EDIT_VIEW", "color", BsDocEditActivity.class, R.layout.activity_form_bsdoc, BSDocFormFragment.class);
 
 
-    public static ViewDef ITEM_SPEC_LIST_VIEW = new ViewDef("ITEM_SPEC_LIST_VIEW", "itemspecification", BsDocListActivity.class, R.layout.activity_list_bsdoc, R.layout.list_item_spec_view, R.layout.list_item_spec_shimmer_view);
+    public static ViewDef ITEM_SPEC_LIST_VIEW = new ViewDef("ITEM_SPEC_LIST_VIEW", "itemspecification", BsDocListActivity.class, R.layout.activity_list_bsdoc, R.layout.vehicle_spec_list_item_view, R.layout.vehicle_spec_list_item_shimmer_view);
     public static ViewDef ITEM_SPEC_VIEW = new ViewDef("ITEM_SPEC_VIEW", "itemspecification", BsDocViewActivity.class, R.layout.activity_view_doc, BSDocFormFragment.class, R.menu.doc_view_activity_option_menu);
     public static ViewDef ITEM_SPEC_NEW_VIEW = new ViewDef("ITEM_SPEC_NEW_VIEW", "itemspecification", BsDocAddNewActivity.class, R.layout.activity_form_bsdoc, ItemFormFragment.class);
     public static ViewDef ITEM_SPEC_EDIT_VIEW = new ViewDef("ITEM_SPEC_EDIT_VIEW", "itemspecification", BsDocEditActivity.class, R.layout.activity_form_bsdoc, BSDocFormFragment.class);
+
+    public static ViewDef VEHICLE_LIST_VIEW = new ViewDef("VEHICLE_LIST_VIEW", "item", BsDocListActivity.class, R.layout.activity_list_bsdoc, R.layout.vehicle_list_item_view, R.layout.vehicle_list_itemshimmer_view);
+    public static ViewDef VEHICLE_VIEW = new ViewDef("VEHICLE_VIEW", "item", BsDocViewActivity.class, R.layout.activity_view_doc, BSDocFormFragment.class, R.menu.doc_view_activity_option_menu);
+    public static ViewDef VEHICLE_NEW_VIEW = new ViewDef("VEHICLE_NEW_VIEW", "item", BsDocAddNewActivity.class, R.layout.activity_form_bsdoc, ItemFormFragment.class);
+    public static ViewDef VEHICLE_EDIT_VIEW = new ViewDef("VEHICLE_EDIT_VIEW", "item", BsDocEditActivity.class, R.layout.activity_form_bsdoc, BSDocFormFragment.class);
 
 }

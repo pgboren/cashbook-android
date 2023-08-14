@@ -10,9 +10,9 @@ import androidx.annotation.Nullable;
 import com.google.android.material.textfield.TextInputEditText;
 import com.soleap.cashbook.R;
 
-public class StringEditText extends BaseTextInputView<String> {
+public class BarcodeStringEditText extends BaseTextInputView<String> {
 
-    public StringEditText(Context context, @Nullable AttributeSet attrs) {
+    public BarcodeStringEditText(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -20,7 +20,7 @@ public class StringEditText extends BaseTextInputView<String> {
     protected void onTextChange(String text) {
         value = text;
         if (valueChangedListner != null) {
-            valueChangedListner.onChanged(value, StringEditText.this.getId());
+            valueChangedListner.onChanged(value, BarcodeStringEditText.this.getId());
         }
     }
 

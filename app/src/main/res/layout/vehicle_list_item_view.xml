@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:background="?attr/selectableItemBackground"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -14,13 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmerLayout"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
         <LinearLayout
+            android:background="?attr/selectableItemBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -28,18 +22,26 @@
             android:paddingBottom="4sp"
             android:paddingRight="4sp">
 
-            <TextView android:id="@+id/txt_index"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/bg_round_corner"
+            <TextView
+                android:id="@+id/txt_index"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
                 android:gravity="center"
-                android:textSize="@dimen/list_item_content"
+                android:text="C"
+                android:textSize="@dimen/list_item_index"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/primaryColor" />
+
+            <com.soleap.cashbook.viewholder.widget.CircleImageView
+                android:id="@+id/photo_view"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:src="@drawable/kk" />
 
             <TextView
-                android:id="@+id/txt_short_name"
+                android:id="@+id/short_name_view"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -51,51 +53,57 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
+                android:gravity="center"
                 android:layout_marginLeft="15dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txt_name"
                     android:layout_width="match_parent"
-                    android:layout_height="18dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_height="wrap_content"
                     android:textColor="@color/gray_dark"
-                    android:background="@drawable/bg_round_corner"
                     android:maxLines="1"
+                    android:text="Honda Dream 125cc - black - 2023"
                     android:textSize="@dimen/list_item_content"/>
 
                 <TextView
                     android:id="@+id/txt_price"
-                    android:layout_width="100dp"
-                    android:layout_height="14dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
                     android:maxLines="1"
-                    android:background="@drawable/bg_round_corner"
+                    android:text="$1500.00"
                     android:textColor="@color/red_light"
                     android:textSize="13sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txt_category"
-                        android:layout_width="40dp"
-                        android:layout_height="14dp"
-                        android:background="@drawable/bg_round_corner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/blue_light"
                         android:maxLines="1"
+                        android:text="type"
+                        android:textSize="13sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/blue_light"
+                        android:maxLines="1"
+                        android:text=" - "
                         android:textSize="13sp"/>
 
                     <TextView
                         android:id="@+id/txt_account"
-                        android:layout_width="80dp"
-                        android:layout_height="14dp"
-                        android:layout_marginLeft="8dp"
-                        android:background="@drawable/bg_round_corner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/blue_light"
                         android:maxLines="1"
+                        android:text="account"
                         android:textSize="13sp"/>
                 </LinearLayout>
 
@@ -103,8 +111,14 @@
 
         </LinearLayout>
 
-        </com.facebook.shimmer.ShimmerFrameLayout>
-
+        <TextView
+            android:id="@+id/txt_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_light"
+            android:visibility="gone"
+            android:textAlignment="textEnd"
+            android:textSize="9sp"/>
     </androidx.cardview.widget.CardView>
 
 </FrameLayout>

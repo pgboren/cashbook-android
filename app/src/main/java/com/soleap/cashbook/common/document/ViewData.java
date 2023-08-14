@@ -11,6 +11,17 @@ public class ViewData extends Document {
     public static String PHOTO_VIEW = "PHOTO_VIEW";
     public static String PHOTO_UPLOAD = "PHOTO_UPLOAD";
     private String label;
+
+    private boolean lableVisible = true;
+
+    public boolean isLableVisible() {
+        return lableVisible;
+    }
+
+    public void setLableVisible(boolean lableVisible) {
+        this.lableVisible = lableVisible;
+    }
+
     private Object value;
     private String type;
     private String dataType;

@@ -1,12 +1,10 @@
 package com.soleap.cashbook.common.fragment;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,9 +18,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.adapter.PagingRecyclerViewAdapter;
 import com.soleap.cashbook.common.widget.lookup.DocumentListBottomSheetFragmentEventListner;
@@ -124,7 +119,7 @@ public class DragDropRecyclerViewItemFragment extends Fragment {
         initRecyclerView(view);
     }
     protected void initRecyclerView(View view) {
-        tvTitle = view.findViewById(R.id.tv_tititle);
+        tvTitle = view.findViewById(R.id.tv_title);
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerview);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());

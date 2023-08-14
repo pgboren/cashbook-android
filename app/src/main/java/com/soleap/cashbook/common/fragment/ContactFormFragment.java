@@ -17,7 +17,7 @@ import com.soleap.cashbook.document.Gender;
 
 public class ContactFormFragment extends DocFormFragment<Contact> {
 
-    private View view;
+    private View inputFormView;
     private TextInputEditText txtName;
     private TextInputEditText txtLatinName;
     private TextInputEditText txtNickname;
@@ -36,25 +36,25 @@ public class ContactFormFragment extends DocFormFragment<Contact> {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.form_contact_fragment, container, false);
-        inputLayoutFirstName = view.findViewById(R.id.inputLayout_latin_name);
-        inputLayoutLastName = view.findViewById(R.id.inputLayout_name);
-        inputLayoutPhonenumber = view.findViewById(R.id.inputLayout_phoneNumber);
-        txtName = view.findViewById(R.id.txt_latin_name);
-        txtLatinName = view.findViewById(R.id.txt_name);
-        txtNickname = view.findViewById(R.id.txt_nick_name);
-        txtPhoneNumber = view.findViewById(R.id.txt_phoneNumber);
-        txtAddress = view.findViewById(R.id.txt_address);
-        txtFacebook = view.findViewById(R.id.txt_facebook);
-        txtTelegram = view.findViewById(R.id.txt_telegram);
-        rdGender = view.findViewById(R.id.rdGender);
+        inputFormView = inflater.inflate(R.layout.form_contact_fragment, container, false);
+        inputLayoutFirstName = inputFormView.findViewById(R.id.inputLayout_latin_name);
+        inputLayoutLastName = inputFormView.findViewById(R.id.inputLayout_name);
+        inputLayoutPhonenumber = inputFormView.findViewById(R.id.inputLayout_phoneNumber);
+        txtName = inputFormView.findViewById(R.id.txt_latin_name);
+        txtLatinName = inputFormView.findViewById(R.id.txt_name);
+        txtNickname = inputFormView.findViewById(R.id.txt_nick_name);
+        txtPhoneNumber = inputFormView.findViewById(R.id.txt_phoneNumber);
+        txtAddress = inputFormView.findViewById(R.id.txt_address);
+        txtFacebook = inputFormView.findViewById(R.id.txt_facebook);
+        txtTelegram = inputFormView.findViewById(R.id.txt_telegram);
+        rdGender = inputFormView.findViewById(R.id.rdGender);
         txtName.addTextChangedListener(this);
         txtLatinName.addTextChangedListener(this);
         txtNickname.addTextChangedListener(this);
         txtPhoneNumber.addTextChangedListener(this);
         txtFacebook.addTextChangedListener(this);
         txtTelegram.addTextChangedListener(this);
-        return  view;
+        return inputFormView;
     }
 
     @Override
@@ -88,12 +88,17 @@ public class ContactFormFragment extends DocFormFragment<Contact> {
         txtTelegram.setText(document.getTelegram());
         txtAddress.setText(document.getAddress());
 
-        if (document.getGender().equals(Gender.MALE)) {
-            rdGender.check(R.id.radiomale);
-        }
 
-        if (document.getGender().equals(Gender.FEMALE)) {
-            rdGender.check(R.id.radiofemale);
+        if (document.getType().equals("CUS")) {
+            if (document.getGender() != null && document.getGender().equals(Gender.MALE)) {
+                rdGender.check(R.id.radiomale);
+            }
+            if (document.getGender() != null && document.getGender().equals(Gender.FEMALE)) {
+                rdGender.check(R.id.radiofemale);
+            }
+        }
+        else {
+            inputFormView.findViewById(R.id.gender_container).setVisibility(View.GONE);
         }
 
     }

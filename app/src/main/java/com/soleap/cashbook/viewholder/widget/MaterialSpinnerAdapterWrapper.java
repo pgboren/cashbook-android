@@ -15,12 +15,10 @@
  *
  */
 
-package com.soleap.cashbook.widget;
+package com.soleap.cashbook.viewholder.widget;
 
 import android.content.Context;
 import android.widget.ListAdapter;
-
-import com.soleap.cashbook.widget.MaterialSpinnerBaseAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

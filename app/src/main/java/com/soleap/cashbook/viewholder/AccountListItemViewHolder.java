@@ -26,7 +26,7 @@ public class AccountListItemViewHolder extends DocListItemViewHolder {
         double amount = (Double) documentSnapshot.getDataValue("amount").getValue();
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
         viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_name).setString(name);
-        viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_short_name).setString((name.substring(0, 1).toUpperCase()));
+        viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.short_name_view).setString((name.substring(0, 1).toUpperCase()));
         viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_type).setString(type);
         viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_amount).setCurrency(amount, Locale.US);
     }

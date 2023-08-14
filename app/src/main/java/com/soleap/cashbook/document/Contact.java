@@ -12,6 +12,10 @@ public class Contact extends Document {
 
     @SerializedName("name")
     private String name;
+
+    @SerializedName("type")
+    private String type;
+
     @SerializedName("latinname")
     private String latinname;
     @SerializedName("gender")
@@ -28,6 +32,14 @@ public class Contact extends Document {
     private Media photo;
     @SerializedName("address")
     private String address;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getGender() {
         return gender;
@@ -119,15 +131,19 @@ public class Contact extends Document {
     @Override
     public void fromJsonObject(JsonElement jsonElement) {
         JsonObject jsonObject = (JsonObject) jsonElement;
-        setId(jsonObject.get("_id").getAsString());
-        setName(jsonObject.get("name").getAsString());
-        setLatinname(jsonObject.get("latinname").getAsString());
-        setGender(jsonObject.get("gender").getAsString());
-        setNickname(jsonObject.get("nickname").getAsString());
-        setPhoneNumber(jsonObject.get("phoneNumber").getAsString());
-        setFacebook(jsonObject.get("facebook").getAsString());
-        setTelegram(jsonObject.get("telegram").getAsString());
-//        setId(jsonObject.get("photo").getAsString());
-        setAddress(jsonObject.get("address").getAsString());
+        setType(jsonObject.get("type").isJsonNull() ? "" :  jsonObject.get("type").getAsString());
+        setId(jsonObject.get("_id").isJsonNull() ? "" :  jsonObject.get("_id").getAsString());
+        setName(jsonObject.get("name").isJsonNull() ? "" :  jsonObject.get("name").getAsString());
+        setLatinname(jsonObject.get("latinname").isJsonNull() ? "" :  jsonObject.get("latinname").getAsString());
+
+        if (jsonObject.get("type").getAsString().equals("CUS")) {
+            setGender(jsonObject.get("gender").isJsonNull() ? "" :  jsonObject.get("gender").getAsString());
+            setNickname(jsonObject.get("nickname").isJsonNull() ? "" :  jsonObject.get("nickname").getAsString());
+        }
+
+        setPhoneNumber(jsonObject.get("phoneNumber").isJsonNull() ? "" :  jsonObject.get("phoneNumber").getAsString());
+        setFacebook(jsonObject.get("facebook").isJsonNull() ? "" :  jsonObject.get("facebook").getAsString());
+        setTelegram(jsonObject.get("telegram").isJsonNull() ? "" :  jsonObject.get("telegram").getAsString());
+        setAddress(jsonObject.get("address").isJsonNull() ? "" :  jsonObject.get("address").getAsString());
     }
 }

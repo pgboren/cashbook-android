@@ -11,12 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.soleap.cashbook.R;
-import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.BottomSheetMenu;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.Menu;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.MenuItem;
 
-public class BottomSheetMenuEditText extends BaseEditTextInputView<String> implements BottomSheetMenu.BottomSheetMenuItemClickListener {
+public class BottomSheetMenuEditText extends BaseTextInputView<String> implements BottomSheetMenu.BottomSheetMenuItemClickListener {
     private AppCompatActivity activity;
 
     private Menu menu;

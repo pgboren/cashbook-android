@@ -6,7 +6,6 @@ import com.soleap.cashbook.common.document.BsDocument;
 import java.util.Map;
 
 public class Institute extends BsDocument {
-
     private String address;
 
     public String getAddress() {

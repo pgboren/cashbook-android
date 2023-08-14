@@ -23,9 +23,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.adapter.PagingRecyclerViewAdapter;
 import com.soleap.cashbook.common.document.Document;
-import com.soleap.cashbook.common.document.DocumentSnapshot;
-import com.soleap.cashbook.common.global.EventHandler;
-import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 import com.soleap.cashbook.view.DocumentInfo;
 
@@ -113,7 +110,7 @@ public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
     protected PagingRecyclerViewAdapter adapter;
 
     protected void initRecyclerView(View view) {
-        tvTitle = view.findViewById(R.id.tv_tititle);
+        tvTitle = view.findViewById(R.id.tv_title);
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerview);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -124,7 +121,7 @@ public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         initScrollListener();
-        tvTitle.setText(title);
+        tvTitle.setText(documentInfo.getDocListViewDef().getTitle());
         startDataListening();
     }
 

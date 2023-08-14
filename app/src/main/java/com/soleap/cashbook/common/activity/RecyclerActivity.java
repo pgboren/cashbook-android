@@ -40,7 +40,7 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
     protected RecyclerView recyclerView;
     protected PagingRecyclerViewAdapter adapter;
 
-    private DocumentInfo documentInfo;
+    protected DocumentInfo documentInfo;
 
     private DocChangedEventListner docChangedEventListner = new DocChangedEventListner() {
         @Override
@@ -76,7 +76,9 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
 
     protected void initFabButtonAction() {
         addFabButton = findViewById(R.id.fab);
-        addFabButton.setVisibility(View.GONE);
+        if (addFabButton != null) {
+            addFabButton.setVisibility(View.GONE);
+        }
     }
 
     @Override
