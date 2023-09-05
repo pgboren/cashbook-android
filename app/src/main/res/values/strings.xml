@@ -36,10 +36,11 @@
     <string name="nav_menu_contacts">លេខទំនាក់ទំនង</string>
     <string name="nav_menu_color">ពណ៌</string>
     <string name="nav_menu_branch">សាខា</string>
-    <string name="nav_menu_category">ប្រភេទទំនិញ</string>
+    <string name="nav_menu_category">បញ្ជីរឈ្មោះប្រភេទទំនិញ</string>
     <string name="nav_menu_institute">ស្ថាប័ណ្ណ</string>
     <string name="nav_group_system">ប្រព័ន្ធ</string>
     <string name="nav_menu_settings">ការកំណត់</string>
+    <string name="nav_maker">បញ្ជីរឈ្មោះអ្នកផលិត</string>
 
     <string name="nick_name">ឈ្មោះហៅក្រៅ</string>
 
@@ -86,15 +87,12 @@
     <string name="latinname">ឈ្មោះ (ឡាតាំង)</string>
 
     <string name="add_new_contact">បន្ថែមលេខទំនាក់ទំនងថ្មី</string>
-
     <string name="account_type">ប្រភេទគណនី</string>
     <string name="contact_list">លេខទំនាក់ទំនង</string>
     <string name="item_list">បញ្ជីរឈ្មោះទំនិញ</string>
-
     <string name="account">គណនី</string>
     <string name="chart_of_accounts">ប្លង់គណនី</string>
     <string name="category">ប្រភេទទំនិញ</string>
-
     <string name="invoice">វិក័យ្យបត្រលក់</string>
     <string name="contact">អតិថិជន</string>
     <string name="machinenumber">លេខម៉ាស៊ីន</string>
@@ -103,7 +101,6 @@
     <string name="CASH_PAY">បង់ផ្ដាច់</string>
     <string name="male">ប្រុស</string>
     <string name="female">ស្រី</string>
-    <string name="general">ព័ត៌មានទូទៅ</string>
     <string name="specification">ព័ត៌មានបន្ថែម</string>
     <string name="value">តំលៃ</string>
     <string name="nickname">ឈ្មោះហៅក្រៅ</string>
@@ -123,9 +120,10 @@
     <string name="choose_an_institute">ជ្រើសយកឈ្មោះស្ថាប័ណ្ណ</string>
     <string name="loan_amount">តំលៃម៉ូតូ</string>
     <string name="VEHICLE_LIST_VIEW">បញ្ជីរឈ្មោះយានយន្ដ</string>
+    <string name="MAKER_LIST_VIEW">អ្នកផលិត</string>
 
     <string name="type">ប្រភេទ</string>
-    <string name="make">អ្នកផលិត</string>
+    <string name="maker">អ្នកផលិត</string>
     <string name="model">ម៉ាក</string>
     <string name="condition">ស្ថានភាព</string>
     <string name="chassisno">លេខតូរ</string>
@@ -136,4 +134,21 @@
     <string name="enable">សកម្ម</string>
     <string name="production_year">ឆ្នាំផលិត</string>
     <string name="photo">រូបភាព</string>
+
+    <string name="general_info">ព័ត៌មានទូទៅ</string>
+    <string name="account_and_price_info">គណនី និង តំលៃ</string>
+    <string name="vehicle_info">ព័ត៌មានយានយន្ដ</string>
+    <string name="honda">ហុងដា</string>
+    <string name="yamaha">យ៉ាម៉ាហា</string>
+
+    <string name="SPORT">កីឡា</string>
+    <string name="OFF_ROAD">ផ្លូវរលាក់</string>
+    <string name="SCOOTER">ស្កូតធ័រ</string>
+    <string name="CUB">ចង្កឹះលេខ</string>
+    <string name="NEW">ថ្មី</string>
+    <string name="USED">ក្រដាស់ពន្ធ</string>
+    <string name="SECONDHAND">មួយទឹក</string>
+
+
+
 </resources>

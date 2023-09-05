@@ -13,10 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.document.Document;
-import com.soleap.cashbook.common.document.DocumentSnapshot;
-import com.soleap.cashbook.common.widget.lookup.DocumentListBottomSheetFragment;
-import com.soleap.cashbook.common.widget.lookup.DocumentListBottomSheetFragmentEventListner;
-import com.soleap.cashbook.common.widget.lookup.DocumentLookupEditText;
+import com.soleap.cashbook.common.widget.doclookup.DocumentListBottomSheetFragment;
+import com.soleap.cashbook.common.widget.doclookup.DocumentListBottomSheetFragmentEventListner;
 import com.soleap.cashbook.view.DocumentInfo;
 
 public abstract class BaseLookUpInputView<T> extends LinearLayout {

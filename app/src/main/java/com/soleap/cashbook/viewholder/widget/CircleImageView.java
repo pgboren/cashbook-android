@@ -34,9 +34,6 @@ import com.soleap.cashbook.R;
 
 public class CircleImageView extends AppCompatImageView
 {
-
-  private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
-
   private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
   private static final int COLORDRAWABLE_DIMENSION = 2;
 
@@ -106,7 +103,6 @@ public class CircleImageView extends AppCompatImageView
   }
 
   private void init() {
-    super.setScaleType(SCALE_TYPE);
     mReady = true;
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -118,19 +114,6 @@ public class CircleImageView extends AppCompatImageView
       mSetupPending = false;
     }
   }
-
-  @Override
-  public ScaleType getScaleType() {
-    return SCALE_TYPE;
-  }
-
-  @Override
-  public void setScaleType(ScaleType scaleType) {
-    if (scaleType != SCALE_TYPE) {
-      throw new IllegalArgumentException(String.format("ScaleType %s not supported.", scaleType));
-    }
-  }
-
   @Override
   public void setAdjustViewBounds(boolean adjustViewBounds) {
     if (adjustViewBounds) {

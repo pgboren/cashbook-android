@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.adapter.PagingRecyclerViewAdapter;
-import com.soleap.cashbook.common.widget.lookup.DocumentListBottomSheetFragmentEventListner;
+import com.soleap.cashbook.common.widget.doclookup.DocumentListBottomSheetFragmentEventListner;
 import com.soleap.cashbook.common.widget.recyclerview.DragDropItemTouchRecyclerViewAdapter;
 import com.soleap.cashbook.common.widget.recyclerview.ItemMoveCallback;
 import com.soleap.cashbook.common.widget.recyclerview.StartDragListener;

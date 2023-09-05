@@ -25,6 +25,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.shape.ShapeAppearanceModel;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.activity.ViewDataActivity;
+import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.ViewData;
 import com.soleap.cashbook.common.repository.DocumentRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
@@ -32,7 +33,6 @@ import com.soleap.cashbook.common.util.FileUploader;
 import com.soleap.cashbook.common.util.FileUploaderCallback;
 import com.soleap.cashbook.common.util.MedialUtils;
 import com.soleap.cashbook.common.util.ResourceUtil;
-import com.soleap.cashbook.document.Media;
 import com.soleap.cashbook.restapi.APIClient;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -61,7 +61,7 @@ public class ViewPhotoFieldCreator extends FieldCreator {
         LinearLayout valueContainer = new LinearLayout(activity);
         valueContainer.setGravity(Gravity.CENTER);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(5, 15,0,15);
+        params.setMargins(5, 60,0,60);
         valueContainer.setLayoutParams(params);
         valueContainer.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -98,19 +98,17 @@ public class ViewPhotoFieldCreator extends FieldCreator {
             MedialUtils.loadImage(activity, data.getValue().toString(), imageView);
         }
         else {
-            imageView.setImageDrawable(activity.getDrawable(R.drawable.ic_photo));
+            imageView.setImageDrawable(imageView.getContext().getDrawable(R.drawable.ic_photo_group));
         }
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (data.getAction().equals(ViewData.PHOTO_VIEW)) {
-                    viewPhoto(data.getValue().toString());
+                if (data.getValue() != null) {
+                    if (data.getAction().equals(ViewData.PHOTO_VIEW)) {
+                        viewPhoto(data.getValue().toString());
+                    }
                 }
-                else {
-                    pickImage();
-                }
-
             }
         });
 
@@ -134,6 +132,7 @@ public class ViewPhotoFieldCreator extends FieldCreator {
         Intent[] intentArray = { cameraIntent };
         chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray);
         activity.startActivityForResult(chooser, PICK_IMAGE_REQUEST_CODE);
+
     }
 
     public File getPhotoFileUri(String fileName) {
@@ -203,7 +202,7 @@ public class ViewPhotoFieldCreator extends FieldCreator {
             final Bitmap newDaa = resizeBitmap(itemImageData, 500);
             FileUploader.upload(activity.getApplicationContext(), activity.modelId + ".png", newDaa, new FileUploaderCallback() {
                 @Override
-                public void onSucess(Media media) {
+                public void onSucess(DocumentSnapshot.Media media) {
                     Map<String, Object> attributeVaules = new ArrayMap<>();
                     attributeVaules.put("photo", media.getId());
                     RepositoryFactory.create().get(activity.documentName).patch(activity.documentName, activity.modelId, attributeVaules, new DocumentRepository.DocumentEventListner() {

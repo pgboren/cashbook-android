@@ -13,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.document.Document;
-import com.soleap.cashbook.common.widget.lookup.DocumentListBottomSheetFragment;
-import com.soleap.cashbook.common.widget.lookup.DocumentListBottomSheetFragmentEventListner;
+import com.soleap.cashbook.common.widget.doclookup.DocumentListBottomSheetFragment;
+import com.soleap.cashbook.common.widget.doclookup.DocumentListBottomSheetFragmentEventListner;
 
 public abstract class BaseInputView<T> extends LinearLayout {
 

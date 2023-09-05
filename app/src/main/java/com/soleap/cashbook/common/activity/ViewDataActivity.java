@@ -240,6 +240,8 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
         for (String key : doc.getData().keySet()) {
             rootView.addView(ViewFieldCreatorFactory.getInstance(this).create(this, doc.getDataValue(key)).createView());
         }
+
+
     }
 
     @Override

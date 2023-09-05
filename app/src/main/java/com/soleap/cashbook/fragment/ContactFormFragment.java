@@ -1,4 +1,4 @@
-package com.soleap.cashbook.common.fragment;
+package com.soleap.cashbook.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.soleap.cashbook.R;
+import com.soleap.cashbook.common.fragment.DocFormFragment;
 import com.soleap.cashbook.document.Contact;
 import com.soleap.cashbook.document.Gender;
 

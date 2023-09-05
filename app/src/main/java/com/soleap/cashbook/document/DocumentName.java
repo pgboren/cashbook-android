@@ -14,9 +14,13 @@ public class DocumentName {
     public static final String ACCOUNT = "account";
     public static final String INVOICE = "invoice";
     public static final String ITEM_SPECT = "itemspecification";
+    public static final String TYPE = "type";
+    public static final String MODEL = "model";
+    public static final String CONDITION = "condition";
 
     public static String CONTACT = "contact";
     public static String CATEGORY = "category";
+    public static String MAKER = "maker";
     public static String BRANCH = "branch";
     public static String ITEM = "item";
     public static String COLOR = "color";

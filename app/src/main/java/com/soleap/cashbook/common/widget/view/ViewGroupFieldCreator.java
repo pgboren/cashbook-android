@@ -1,36 +1,19 @@
 package com.soleap.cashbook.common.widget.view;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.view.ContextThemeWrapper;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.activity.ViewDataActivity;
 import com.soleap.cashbook.common.document.Action;
-import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.ViewData;
 import com.soleap.cashbook.common.util.ResourceUtil;
-import com.soleap.cashbook.common.widget.lookup.DocumentListBottomSheetFragment;
-import com.soleap.cashbook.common.widget.lookup.DocumentListBottomSheetFragmentEventListner;
-import com.soleap.cashbook.common.widget.lookup.DocumentLookupEditText;
-import com.soleap.cashbook.common.widget.lookup.DragDropDocListBottomSheetFragment;
-import com.soleap.cashbook.view.DocumentInfo;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ViewGroupFieldCreator extends FieldCreator {

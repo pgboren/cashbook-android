@@ -68,6 +68,15 @@ public abstract class BaseTextInputView<T> extends LinearLayout {
 
     public abstract boolean validate();
 
+    protected int getInputLayout() {
+        return R.layout.input_edittext;
+    }
+
+    protected void inflatInputLayout(Context context) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(getInputLayout(), this, true);
+    }
+
     protected void processAttributeSet(Context context, @Nullable AttributeSet attrs, TypedArray a) {
         String hint = a.getString(R.styleable.EditTextInputView_ev_hint);
         errorEnabled = a.getBoolean(R.styleable.EditTextInputView_ev_errorEnabled, false);
@@ -75,8 +84,7 @@ public abstract class BaseTextInputView<T> extends LinearLayout {
         int lines = a.getInt(R.styleable.EditTextInputView_ev_lines, 1);
         int minLines = a.getInt(R.styleable.EditTextInputView_ev_minLines, 1);
         int maxLines = a.getInt(R.styleable.EditTextInputView_ev_maxLines, 1);
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.input_edittext, this, true);
+        inflatInputLayout(context);
 
         textInputLayout = findViewById(R.id.textInputLayout);
         textInputLayout.setHint(hint);

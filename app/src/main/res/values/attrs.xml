@@ -116,13 +116,34 @@
         <attr name="ev_maxLines" format="integer" min="0" />
         <attr name="ev_default" format="float"/>
         <attr format="reference" name="ev_endIconDrawable"/>
+        <attr format="reference" name="ev_startIconDrawable"/>
         <attr name="ev_doc_field_name" format="string"/>
         <attr name="ev_doc_name" format="string"/>
+        <attr name="ev_readonly" format="boolean"/>
+        <attr format="string" name="ev_error"/>
     </declare-styleable>
 
 
     <declare-styleable name="OneToManyDocRecyclerInputView">
         <attr format="string" name="otmview_label"/>
     </declare-styleable>
+
+
+<!--    <declare-styleable name="EditTextInputView">-->
+<!--        <attr format="string" name="ev_hint"/>-->
+<!--        <attr format="string" name="ev_helperText"/>-->
+<!--        <attr format="boolean" name="ev_errorEnabled"/>-->
+<!--        <attr format="string" name="ev_error"/>-->
+<!--        <attr name="ev_minLines" format="integer" min="0" />-->
+<!--        <attr name="ev_lines" format="integer" min="0" />-->
+<!--        <attr name="ev_maxLines" format="integer" min="0" />-->
+<!--        <attr name="ev_default" format="float"/>-->
+<!--        <attr name="ev_readonly" format="boolean"/>-->
+<!--        <attr format="reference" name="ev_endIconDrawable"/>-->
+<!--        <attr format="reference" name="ev_startIconDrawable"/>-->
+<!--        <attr name="ev_doc_field_name" format="string"/>-->
+<!--        <attr name="ev_doc_name" format="string"/>-->
+<!--    </declare-styleable>-->
+
 
 </resources>

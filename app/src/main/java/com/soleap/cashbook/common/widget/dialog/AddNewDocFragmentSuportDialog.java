@@ -1,6 +1,5 @@
 package com.soleap.cashbook.common.widget.dialog;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,14 +17,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.fragment.DocFormFragment;
-import com.soleap.cashbook.common.fragment.ItemSpecFormFragment;
-import com.soleap.cashbook.common.global.EventHandler;
-import com.soleap.cashbook.common.repository.DocumentRepository;
-import com.soleap.cashbook.common.repository.RepositoryFactory;
+import com.soleap.cashbook.fragment.ItemSpecFormFragment;
 import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.document.ItemSpecification;
-import com.soleap.cashbook.restapi.APIClient;
-import com.soleap.cashbook.restapi.APIInterface;
 
 import java.util.Map;
 

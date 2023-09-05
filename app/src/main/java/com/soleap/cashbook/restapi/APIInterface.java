@@ -4,11 +4,8 @@ import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.PagingRecyclerViewData;
 import com.soleap.cashbook.common.document.ViewDocumentSnapshot;
-import com.soleap.cashbook.document.Category;
-import com.soleap.cashbook.document.Media;
 import com.soleap.cashbook.document.User;
 
-import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -21,7 +18,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -33,7 +29,7 @@ public interface APIInterface {
 
     @Multipart
     @POST("media/upload")
-    Call<Media> mediaUpload(@Part MultipartBody.Part image, @Part("file") RequestBody name);
+    Call<DocumentSnapshot.Media> mediaUpload(@Part MultipartBody.Part image, @Part("file") RequestBody name);
 
     @Multipart
     @POST("files/upload/")
@@ -64,6 +60,9 @@ public interface APIInterface {
 
     @POST("crud/{doc}")
     Call<Map<String, Object>> post(@Path("doc") String doc, @Body Map<String, Object> data);
+
+    @POST("crud/file/{doc}")
+    Call<Map<String, Object>> postFile(@Path("doc") String doc, @Body Map<String, Object> data);
 
     @GET("crud/{entity}/{id}")
     Call<Document> get(@Path("entity") String entity, @Path("id") String id);

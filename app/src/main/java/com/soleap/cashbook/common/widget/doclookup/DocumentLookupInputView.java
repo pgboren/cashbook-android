@@ -1,4 +1,4 @@
-package com.soleap.cashbook.common.widget.lookup;
+package com.soleap.cashbook.common.widget.doclookup;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -24,11 +24,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DocumentLookupEditText extends BaseTextInputView<DocumentSnapshot> {
-
+public class DocumentLookupInputView extends BaseTextInputView<DocumentSnapshot> {
     private static String TAG = "DocumentLookupEditText";
     private String docName;
-
     private String fieldname;
 
     protected APIInterface apiInterface;
@@ -56,7 +54,7 @@ public class DocumentLookupEditText extends BaseTextInputView<DocumentSnapshot> 
         }
     }
 
-    public DocumentLookupEditText(Context context, @Nullable AttributeSet attrs) {
+    public DocumentLookupInputView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         editText.setTextIsSelectable(false);
         editText.setFocusable(false);
@@ -78,7 +76,7 @@ public class DocumentLookupEditText extends BaseTextInputView<DocumentSnapshot> 
             public void onItemSelected(Document documentSnapshot) {
                 setValue((DocumentSnapshot) documentSnapshot);
                 if (valueChangedListner != null) {
-                    valueChangedListner.onChanged(documentSnapshot, DocumentLookupEditText.this.getId());
+                    valueChangedListner.onChanged(documentSnapshot, DocumentLookupInputView.this.getId());
                 }
             }
         });
@@ -109,7 +107,7 @@ public class DocumentLookupEditText extends BaseTextInputView<DocumentSnapshot> 
                 DocumentSnapshot doc = response.body();
                 setValue(doc);
                 if (valueChangedListner != null) {
-                    valueChangedListner.onChanged(doc, DocumentLookupEditText.this.getId());
+                    valueChangedListner.onChanged(doc, DocumentLookupInputView.this.getId());
                 }
             }
             @Override

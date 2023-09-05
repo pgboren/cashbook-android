@@ -2,7 +2,6 @@ package com.soleap.cashbook.common.widget.dialog;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +17,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.fragment.DocFormFragment;
-import com.soleap.cashbook.common.fragment.ItemSpecFormFragment;
+import com.soleap.cashbook.fragment.ItemSpecFormFragment;
 import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.document.ItemSpecification;
-
-import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class OneToManyDocFragmentSuportDialog extends FragmentSuportDialog {
 

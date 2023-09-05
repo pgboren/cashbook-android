@@ -1,4 +1,4 @@
-package com.soleap.cashbook.common.fragment;
+package com.soleap.cashbook.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.soleap.cashbook.R;
+import com.soleap.cashbook.common.fragment.DocFormFragment;
 import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.common.widget.BottomSheetMenuEditText;
 import com.soleap.cashbook.common.widget.CurrencyEditText;
@@ -17,15 +18,15 @@ import com.soleap.cashbook.common.widget.DatePickerView;
 import com.soleap.cashbook.common.widget.IntegerEditText;
 import com.soleap.cashbook.common.widget.StringEditText;
 import com.soleap.cashbook.common.widget.bottomsheetmenu.Menu;
-import com.soleap.cashbook.common.widget.lookup.DocumentLookupEditText;
+import com.soleap.cashbook.common.widget.doclookup.DocumentLookupInputView;
 import com.soleap.cashbook.document.Invoice;
 
 public class InvoiceFormFragment extends DocFormFragment<Invoice> {
 
-    private DocumentLookupEditText lkCustomer;
-    private DocumentLookupEditText lkInstitute;
-    private DocumentLookupEditText lkItem;
-    private DocumentLookupEditText lkColor;
+    private DocumentLookupInputView lkCustomer;
+    private DocumentLookupInputView lkInstitute;
+    private DocumentLookupInputView lkItem;
+    private DocumentLookupInputView lkColor;
     private StringEditText txtChassisNumber;
     private StringEditText txtMachineNumber;
     private IntegerEditText txtYear;

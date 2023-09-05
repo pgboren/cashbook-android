@@ -60,6 +60,11 @@
                 android:title="@string/category" />
 
             <item
+                android:id="@+id/nav_maker"
+                android:icon="@drawable/ic_add"
+                android:title="@string/nav_maker" />
+
+            <item
                 android:id="@+id/nav_color"
                 android:icon="@drawable/ic_add"
                 android:title="@string/color" />

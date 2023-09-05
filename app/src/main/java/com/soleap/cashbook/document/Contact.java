@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 import com.soleap.cashbook.common.document.Document;
+import com.soleap.cashbook.common.document.DocumentSnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class Contact extends Document {
     @SerializedName("telegram")
     private String telegram;
     @SerializedName("photo")
-    private Media photo;
+    private DocumentSnapshot.Media photo;
     @SerializedName("address")
     private String address;
 
@@ -73,11 +74,11 @@ public class Contact extends Document {
         this.telegram = telegram;
     }
 
-    public Media getPhoto() {
+    public DocumentSnapshot.Media getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Media photo) {
+    public void setPhoto(DocumentSnapshot.Media photo) {
         this.photo = photo;
     }
 

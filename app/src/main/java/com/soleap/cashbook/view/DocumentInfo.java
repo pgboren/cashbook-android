@@ -1,19 +1,19 @@
 package com.soleap.cashbook.view;
 
-import android.content.ClipData;
-
-import com.soleap.cashbook.common.global.DocCreatedEventListner;
 import com.soleap.cashbook.document.Category;
 import com.soleap.cashbook.document.Color;
+import com.soleap.cashbook.document.Condition;
 import com.soleap.cashbook.document.Contact;
 import com.soleap.cashbook.document.Institute;
 import com.soleap.cashbook.document.Invoice;
 import com.soleap.cashbook.document.Item;
 import com.soleap.cashbook.document.ItemSpecification;
+import com.soleap.cashbook.document.Maker;
+import com.soleap.cashbook.document.Model;
+import com.soleap.cashbook.document.Type;
+import com.soleap.cashbook.document.Vehicle;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DocumentInfo implements Serializable {
 
@@ -64,6 +64,11 @@ public class DocumentInfo implements Serializable {
         this.docEditViewDef = docEditViewDef;
     }
 
+    public static DocumentInfo CONDITION = new DocumentInfo("condition", Condition.class, ViewDefs.TYPE_LIST_VIEW, ViewDefs.TYPE_VIEW, ViewDefs.TYPE_ADD_NEW_VIEW, ViewDefs.TYPE_EDIT_VIEW);
+
+    public static DocumentInfo TYPE = new DocumentInfo("type", Type.class, ViewDefs.TYPE_LIST_VIEW, ViewDefs.TYPE_VIEW, ViewDefs.TYPE_ADD_NEW_VIEW, ViewDefs.TYPE_EDIT_VIEW);
+    public static DocumentInfo MODE = new DocumentInfo("model", Model.class, ViewDefs.TYPE_LIST_VIEW, ViewDefs.TYPE_VIEW, ViewDefs.TYPE_ADD_NEW_VIEW, ViewDefs.TYPE_EDIT_VIEW);
+    public static DocumentInfo MAKER = new DocumentInfo("maker", Maker.class, ViewDefs.MAKER_LIST_VIEW, ViewDefs.MAKER_VIEW, ViewDefs.MAKER_ADD_NEW_VIEW, ViewDefs.MAKER_EDIT_VIEW);
     public static DocumentInfo CATEGORY = new DocumentInfo("category", Category.class, ViewDefs.CATEGORY_LIST_VIEW, ViewDefs.CATEGORY_VIEW, ViewDefs.CATEGORY_ADD_NEW_VIEW, ViewDefs.CATEGORY_EDIT_VIEW);
     public static DocumentInfo ACCOUNTTYPE = new DocumentInfo("accounttype", null, ViewDefs.ACCOUNT_TYPE_LIST_VIEW, ViewDefs.ACCOUNT_TYPE_VIEW, ViewDefs.ACCOUNT_TYPE_NEW_VIEW, ViewDefs.ACCOUNT_TYPE_EDIT_VIEW);
     public static DocumentInfo ACCOUNT = new DocumentInfo("account", null, ViewDefs.ACCOUNT_LIST_VIEW, ViewDefs.ACCOUNT_VIEW, ViewDefs.ACCOUNT_NEW_VIEW, ViewDefs.ACCOUNT_EDIT_VIEW);
@@ -77,6 +82,23 @@ public class DocumentInfo implements Serializable {
     public static DocumentInfo INVOICE = new DocumentInfo("invoice" , Invoice.class, ViewDefs.INVOICE_LIST_VIEW, ViewDefs.INVOICE_VIEW, ViewDefs.INVOICE_NEW_VIEW, ViewDefs.INVOICE_EDIT_VIEW);
     public static DocumentInfo COLOR = new DocumentInfo("color" , Color.class, ViewDefs.COLOR_LIST_VIEW, ViewDefs.COLOR_VIEW, ViewDefs.COLOR_ADD_NEW_VIEW, ViewDefs.COLOR_EDIT_VIEW);
     public static DocumentInfo getDocumentInfo(String name) {
+
+
+        if (name.equals("maker")) {
+            return MAKER;
+        }
+
+        if (name.equals("type")) {
+            return TYPE;
+        }
+
+        if (name.equals("condition")) {
+            return CONDITION;
+        }
+
+        if (name.equals("model")) {
+            return MODE;
+        }
 
         if (name.equals("category")) {
             return CATEGORY;
@@ -133,6 +155,10 @@ public class DocumentInfo implements Serializable {
 
         if (name.equals("contact")) {
             return Contact.class;
+        }
+
+        if (name.equals("vehicle")) {
+            return Vehicle.class;
         }
 
         if (name.equals("item")) {

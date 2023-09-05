@@ -1,13 +1,10 @@
 package com.soleap.cashbook.common.value.pdf;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
-import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -15,7 +12,6 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.soleap.cashbook.R;
 
@@ -24,7 +20,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 
 public class InvoicePDFGenerator {
 
@@ -36,7 +31,7 @@ public class InvoicePDFGenerator {
         FontFactory.register("res/font/khmerosmoul.ttf");
             PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
-            Drawable drawable = context.getResources().getDrawable(R.drawable.logo);
+            Drawable drawable = context.getResources().getDrawable(R.drawable.logo_color);
             Image image = Image.getInstance(drawableToBytes(drawable));
 
             InputStream stream = context.getAssets().open("khmeros_sys.ttf");

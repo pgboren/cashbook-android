@@ -130,6 +130,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.CATEGORY);
         }
 
+        if (id == R.id.nav_maker) {
+            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.MAKER);
+        }
+
         if (id == R.id.nav_invoice) {
             intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.INVOICE);
         }

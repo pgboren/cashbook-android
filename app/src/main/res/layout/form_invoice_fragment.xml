@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/inputLayout_order"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:theme="@style/NoActionBar"
     android:orientation="vertical"
     android:padding="10dp"
-    android:scrollbars="vertical">
+    android:scrollbars="vertical"
+    android:theme="@style/NoActionBar">
 
     <com.soleap.cashbook.common.widget.DatePickerView
         android:id="@+id/dtDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:ev_hint="@string/date"
         app:ev_errorEnabled="true"
-        app:ev_helperText="@string/require" />
+        app:ev_helperText="@string/require"
+        app:ev_hint="@string/date" />
 
-    <com.soleap.cashbook.common.widget.lookup.DocumentLookupEditText
+    <com.soleap.cashbook.common.widget.doclookup.DocumentLookupInputView
         android:id="@+id/lk_contact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +29,7 @@
         app:ev_helperText="@string/require"
         app:ev_hint="@string/contact" />
 
-    <com.soleap.cashbook.common.widget.lookup.DocumentLookupEditText
+    <com.soleap.cashbook.common.widget.doclookup.DocumentLookupInputView
         android:id="@+id/lk_institute"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +40,7 @@
         app:ev_helperText="@string/require"
         app:ev_hint="@string/institute" />
 
-    <com.soleap.cashbook.common.widget.lookup.DocumentLookupEditText
+    <com.soleap.cashbook.common.widget.doclookup.DocumentLookupInputView
         android:id="@+id/lk_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -102,7 +101,7 @@
         app:ev_helperText="@string/require"
         app:ev_hint="@string/paymentoption" />
 
-    <com.soleap.cashbook.common.widget.lookup.DocumentLookupEditText
+    <com.soleap.cashbook.common.widget.doclookup.DocumentLookupInputView
         android:id="@+id/lk_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -115,9 +114,9 @@
 
     <com.soleap.cashbook.common.widget.CurrencyEditText
         android:id="@+id/txt_price"
-        android:layout_width="match_parent"
-        app:ev_helperText="@string/require"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:ev_errorEnabled="true"
-        android:layout_height="wrap_content" />
+        app:ev_helperText="@string/require" />
 
 </LinearLayout>

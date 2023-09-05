@@ -1,4 +1,4 @@
-package com.soleap.cashbook.common.fragment;
+package com.soleap.cashbook.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,14 +7,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.soleap.cashbook.R;
-import com.soleap.cashbook.common.widget.CurrencyEditText;
+import com.soleap.cashbook.common.fragment.DocFormFragment;
 import com.soleap.cashbook.common.widget.StringEditText;
-import com.soleap.cashbook.common.widget.lookup.DocumentLookupEditText;
-import com.soleap.cashbook.document.Item;
 import com.soleap.cashbook.document.ItemSpecification;
 
 public class ItemSpecFormFragment extends DocFormFragment<ItemSpecification> {

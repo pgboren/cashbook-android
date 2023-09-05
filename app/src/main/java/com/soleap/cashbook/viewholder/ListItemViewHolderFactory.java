@@ -8,6 +8,7 @@ import com.soleap.cashbook.document.DocumentName;
 public class ListItemViewHolderFactory {
 
     public  static DocListItemViewHolder create(Context context, View itemView, String docName) {
+
         if (docName.equals(DocumentName.CONTACT)) {
             return new ContactListItemViewHolder(context, itemView);
         }
@@ -25,7 +26,7 @@ public class ListItemViewHolderFactory {
         }
 
         if (docName.equals(DocumentName.ITEM)) {
-            return new ItemListItemViewHolder(context, itemView);
+            return new NameListItemViewHolder(context, itemView);
         }
 
         if (docName.equals(DocumentName.ITEM_SPECT)) {
@@ -35,6 +36,27 @@ public class ListItemViewHolderFactory {
         if (docName.equals(DocumentName.CATEGORY)) {
             return new NameListItemViewHolder(context, itemView);
         }
+
+        if (docName.equals(DocumentName.MAKER)) {
+            return new NameListItemViewHolder(context, itemView);
+        }
+
+        if (docName.equals(DocumentName.TYPE)) {
+            return new NameListItemViewHolder(context, itemView);
+        }
+
+        if (docName.equals(DocumentName.MODEL)) {
+            return new NameListItemViewHolder(context, itemView);
+        }
+
+        if (docName.equals(DocumentName.CONDITION)) {
+            return new NameListItemViewHolder(context, itemView);
+        }
+
+        if (docName.equals(DocumentName.COLOR)) {
+            return new NameListItemViewHolder(context, itemView);
+        }
+
 
         if (docName.equals(DocumentName.INSTITUE)) {
             return new InstituteListItemViewHolder(context, itemView);
@@ -46,10 +68,6 @@ public class ListItemViewHolderFactory {
 
         if (docName.equals(DocumentName.COLOR)) {
             return new NameListItemViewHolder(context, itemView);
-        }
-
-        if (docName.equals(DocumentName.COLOR)) {
-            return new ItemSpecListItemViewHolder(context, itemView);
         }
 
         throw new RuntimeException("Incorrect document name");
