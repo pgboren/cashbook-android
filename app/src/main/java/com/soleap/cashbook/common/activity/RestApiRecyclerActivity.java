@@ -96,7 +96,7 @@ public abstract class RestApiRecyclerActivity<T extends Document> extends BackPr
             boolean isModified = data.getExtras().getBoolean(ModelViewActivity.KEY_MODIFIED_FLAG);
             int position = data.getExtras().getInt(ModelViewActivity.KEY_SELECTED_POSITION);
             if (isModified) {
-                T model = (T)data.getExtras().getSerializable(ModelViewActivity.KEY_MODEL);
+                T model = (T)data.getExtras().getSerializable(ActivityDataResult.DOC_KEY);
 //                adapter.set(position, model);
             }
             boolean isDeleted = data.getExtras().getBoolean(ModelViewActivity.KEY_DELETED_FLAG);
@@ -122,9 +122,9 @@ public abstract class RestApiRecyclerActivity<T extends Document> extends BackPr
     @Override
     public void onItemSelected(int position, Document selModel) {
         Intent intent = new Intent(this, getViewActivityClass());
-        intent.putExtra(ModelViewActivity.KEY_MODEL, selModel);
-        intent.putExtra(ModelViewActivity.KEY_MODEL_ID, selModel.getId());
-        intent.putExtra(ModelViewActivity.KEY_SELECTED_POSITION, position);
+        intent.putExtra(ActivityDataResult.DOC_KEY, selModel);
+        intent.putExtra(ActivityDataResult.DOC_ID_KEY, selModel.getId());
+        intent.putExtra(ActivityDataResult.DOC_POSITION_KEY, position);
         startActivityForResult(intent, VIEW_ENTITY_REQUEST_CODE);
     }
 

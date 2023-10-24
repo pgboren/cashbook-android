@@ -1,6 +1,7 @@
 package com.soleap.cashbook.common.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -22,6 +24,7 @@ import com.soleap.cashbook.common.adapter.RecyclerViewAdapter;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.global.DocChangedEventListner;
+import com.soleap.cashbook.common.global.DocRemovedEventListner;
 import com.soleap.cashbook.common.global.EventHandler;
 import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.restapi.APIClient;
@@ -39,8 +42,18 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
     protected APIInterface apiInterface;
     protected RecyclerView recyclerView;
     protected PagingRecyclerViewAdapter adapter;
-
     protected DocumentInfo documentInfo;
+
+    private DocRemovedEventListner docRemoveEventListner = new DocRemovedEventListner() {
+        @Override
+        public void onRemove(String docId, int position) {
+            adapter.remove(position);
+        }
+
+        @Override
+        public void onError(Throwable t) {
+        }
+    };
 
     private DocChangedEventListner docChangedEventListner = new DocChangedEventListner() {
         @Override
@@ -67,10 +80,16 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
     };
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     protected void onCreatingBegin() {
         documentInfo = (DocumentInfo) getIntent().getSerializableExtra(DocumentInfo.DOCUMENT_INFO_KEY);
         EventHandler.getInstance().addDocCreatedEventListner(documentInfo.getName(), docCreatedEventListner);
         EventHandler.getInstance().addDocChangedEventListner(documentInfo.getName(), docChangedEventListner);
+        EventHandler.getInstance().addDocRemovedEventListner(documentInfo.getName(), docRemoveEventListner);
         apiInterface = APIClient.getClient().create(APIInterface.class);
     }
 
@@ -137,8 +156,9 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
 
     protected void onItemClicked(Document doc, int position) {
         Intent intent = new Intent(RecyclerActivity.this, documentInfo.getDocViewViewDef().getActivityClass());
-        intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, documentInfo);
-        intent.putExtra(ModelViewActivity.KEY_MODEL_ID, doc.getId());
+        intent.putExtra(ActivityDataResult.DOCUMENT_INFO_KEY, documentInfo);
+        intent.putExtra(ActivityDataResult.DOC_ID_KEY, doc.getId());
+        intent.putExtra(ActivityDataResult.DOC_POSITION_KEY, position);
         startActivity(intent);
     }
 
@@ -174,6 +194,8 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
     public void finish() {
         this.adapter.notifyActivityFinish();
         EventHandler.getInstance().removeDocCreatedEventListner(documentInfo.getName(), docCreatedEventListner);
+        EventHandler.getInstance().removeDocChangedEventListner (documentInfo.getName(), docChangedEventListner);
+        EventHandler.getInstance().removeDocRemovedEventListner(documentInfo.getName(), docRemoveEventListner);
         super.finish();
     }
 

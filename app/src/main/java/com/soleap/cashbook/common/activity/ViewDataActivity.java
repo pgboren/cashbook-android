@@ -10,18 +10,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
+import com.soleap.cashbook.common.document.ViewData;
 import com.soleap.cashbook.common.document.ViewDocumentSnapshot;
 import com.soleap.cashbook.common.global.DocChangedEventListner;
 import com.soleap.cashbook.common.global.EventHandler;
@@ -29,15 +27,10 @@ import com.soleap.cashbook.common.repository.DocumentRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
 import com.soleap.cashbook.common.util.PDFUtil;
 import com.soleap.cashbook.common.util.ResourceUtil;
-import com.soleap.cashbook.common.widget.view.ActivityEventListner;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 import com.soleap.cashbook.common.widget.view.ViewFieldCreatorFactory;
-import com.soleap.cashbook.common.widget.bottomsheetmenu.BottomSheetMenu;
 import com.soleap.cashbook.view.DocumentInfo;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,7 +47,9 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     public static final String KEY_MODIFIED_FLAG = "key_modofied_flag";
     public static final String KEY_DELETED_FLAG = "key_deleted_flag";
 
-    public final static int EDIT_ACTIVITY_REQUEST_CODE = 103;
+    public final static int VIEW_ACTIVITY_REQUEST_CODE = 103;
+
+    public final static int VIEW_ACTIVITY_RESULT_CODE = 104;
 
     private String photoFileName = "new_capture_product_image.jpg";
 
@@ -63,9 +58,11 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     protected boolean isModelEdited = false;
     protected boolean isModelDeleted = false;
     protected View loadingScreen;
-    public String modelId = null;
+    public String docId = null;
 
     protected DocumentInfo documentInfo;
+
+    private int listPosition;
     protected ViewDocumentSnapshot viewDoc;
 
     protected APIInterface apiInterface;
@@ -83,8 +80,9 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
 
         }
     };
+
     protected Call<ViewDocumentSnapshot> createGetApi() {
-        return apiInterface.viewData(documentInfo.getName().toString().toLowerCase(), modelId);
+        return apiInterface.viewData(documentInfo.getName().toString().toLowerCase(), docId);
     }
 
     protected String getViewTitle() {
@@ -105,12 +103,12 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
 
     protected String getDeleteAlertDialogTitle() {
         String deleteMessageFormat = getString(R.string.delete_alert_dialog_title);
-        return String.format(deleteMessageFormat, getStringResourceByName(this.documentName));
+        return String.format(deleteMessageFormat, getStringResourceByName(this.documentInfo.getName()));
     }
 
     protected String getDeleteAlertDialogMessage() {
         String deleteMessageFormat = getString(R.string.delete_alert_dialog_message);
-        return String.format(deleteMessageFormat, getStringResourceByName(this.documentName));
+        return String.format(deleteMessageFormat, getStringResourceByName(this.documentInfo.getName()));
     }
 
     protected void loadDataFromServer() {
@@ -138,11 +136,14 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.documentInfo = (DocumentInfo) getIntent().getExtras().getSerializable(DocumentInfo.DOCUMENT_INFO_KEY);
+        Bundle extraBundle = getIntent().getExtras();
+        this.documentInfo = (DocumentInfo)extraBundle.getSerializable(ActivityDataResult.DOCUMENT_INFO_KEY);
+        this.listPosition = extraBundle.getInt(ActivityDataResult.DOC_POSITION_KEY);
+        documentName = documentInfo.getName();
         apiInterface = APIClient.getClient().create(APIInterface.class);
         setViewContent();
-        modelId = getIntent().getExtras().getString(KEY_MODEL_ID);
-        if (modelId == null) {
+        docId = getIntent().getExtras().getString(ActivityDataResult.DOC_ID_KEY);
+        if (docId == null) {
             Log.e(TAG, "Must pass extra " + KEY_MODEL);
             throw new IllegalArgumentException("Must pass extra " + KEY_MODEL);
         }
@@ -196,7 +197,7 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     }
 
     protected void delete() {
-        RepositoryFactory.create().get(documentName).remove(documentName, viewDoc.getId(), new DocumentRepository.DocumentEventListner() {
+        RepositoryFactory.create().get(documentInfo.getName()).remove(documentInfo.getName(), viewDoc.getId(), new DocumentRepository.DocumentEventListner() {
             @Override
             public void onError(Throwable t) {
                 finish();
@@ -204,6 +205,7 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
 
             @Override
             public void onResponse(Response response) {
+                isModelDeleted = true;
                 finish();
             }
         });
@@ -211,13 +213,16 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
 
     @Override
     public void finish() {
-        Intent returnIntent = new Intent();
-        returnIntent.putExtra(KEY_MODIFIED_FLAG, isModelEdited);
-        returnIntent.putExtra(KEY_DELETED_FLAG, isModelDeleted);
-        if (!isModelDeleted) {
-            returnIntent.putExtra(KEY_MODEL, viewDoc);
+        if (isModelDeleted) {
+            EventHandler.getInstance().notifyDocumentRemoved(documentInfo.getName(), docId, listPosition);
         }
-        setResult(Activity.RESULT_OK, returnIntent);
+        else {
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra(KEY_MODIFIED_FLAG, isModelEdited);
+            returnIntent.putExtra(KEY_DELETED_FLAG, isModelDeleted);
+            setResult(ActivityDataResult.ACTION_EDITED_CODE, returnIntent );
+        }
+
         super.finish();
     }
 
@@ -230,7 +235,8 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     }
 
     protected void assignValueToControls(ViewDocumentSnapshot doc) {
-        setTitle(ResourceUtil.getStringResourceByName(this, documentInfo.getDocViewViewDef().getTitle()));
+        setTitle(doc.getTitle());
+//        setTitle(ResourceUtil.getStringResourceByName(this, documentInfo.getDocViewViewDef().getTitle()));
         renderViewData(doc);
     }
 
@@ -238,10 +244,11 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
         LinearLayout rootView = findViewById(R.id.content_container);
         rootView.removeAllViews();
         for (String key : doc.getData().keySet()) {
-            rootView.addView(ViewFieldCreatorFactory.getInstance(this).create(this, doc.getDataValue(key)).createView());
+            ViewData viewData = doc.getDataValue(key);
+            if (viewData.getVisible() == View.VISIBLE) {
+                rootView.addView(ViewFieldCreatorFactory.getInstance(this).create(this, viewData).createView());
+            }
         }
-
-
     }
 
     @Override
@@ -258,9 +265,19 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
             PDFUtil.downloadAndOpenPDF(this, url, viewDoc.getId() + ".pdf");
         }
 
+        if (id == R.id.menu_view_qrcode) {
+            String url  = APIClient.API_URL + "view/vehiclelable/" + viewDoc.getId();
+            PDFUtil.downloadAndOpenPDF(this, url, viewDoc.getId() + ".pdf");
+        }
+
         if (id == R.id.menu_edit) {
             onEditMenuClick();
         }
+
+        if (id == R.id.menu_delete) {
+            onDeleteOptionMenuClick();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

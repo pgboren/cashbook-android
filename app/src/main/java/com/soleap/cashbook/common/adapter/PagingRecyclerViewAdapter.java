@@ -174,6 +174,11 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
         return null;
     }
 
+    public void remove(int position) {
+        this.dataSet.remove(position);
+        notifyItemRemoved(position);
+    }
+
     private class ShimmerListItemLoadingViewHolder extends DocListItemViewHolder {
 
         private ProgressBar progressBar;

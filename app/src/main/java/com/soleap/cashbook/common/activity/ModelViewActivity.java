@@ -47,9 +47,9 @@ import retrofit2.Response;
 public abstract class ModelViewActivity<T extends Document> extends AppCompatActivity {
 
     private static final String TAG = "ModelViewActivity";
-    public static final String KEY_MODEL = "key_model";
-    public static final String KEY_DOC = "key_doc";
-    public static final String KEY_MODEL_ID = "key_model_id";
+
+
+
     public static final String KEY_SELECTED_POSITION = "key_selected_position";
     public static final String KEY_MODIFIED_FLAG = "key_modofied_flag";
     public static final String KEY_DELETED_FLAG = "key_deleted_flag";
@@ -128,13 +128,13 @@ public abstract class ModelViewActivity<T extends Document> extends AppCompatAct
         super.onCreate(savedInstanceState);
         apiInterface = APIClient.getClient().create(APIInterface.class);
         setViewContent();
-
-        modelId = getIntent().getExtras().getString(KEY_MODEL_ID);
+        modelId = getIntent().getExtras().getString(ActivityDataResult.DOC_ID_KEY);
         if (modelId == null) {
-            Log.e(TAG, "Must pass extra " + KEY_MODEL);
-            throw new IllegalArgumentException("Must pass extra " + KEY_MODEL);
+            Log.e(TAG, "Must pass extra " + ActivityDataResult.DOC_KEY);
+            throw new IllegalArgumentException("Must pass extra " + ActivityDataResult.DOC_KEY);
         }
-        position = getIntent().getExtras().getInt(KEY_SELECTED_POSITION);
+
+        position = getIntent().getExtras().getInt(ActivityDataResult.DOC_POSITION_KEY);
         this.toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_close);
 
@@ -235,7 +235,7 @@ public abstract class ModelViewActivity<T extends Document> extends AppCompatAct
         returnIntent.putExtra(KEY_DELETED_FLAG, isModelDeleted);
 
         if (!isModelDeleted) {
-            returnIntent.putExtra(KEY_MODEL, model);
+            returnIntent.putExtra(ActivityDataResult.DOC_KEY, model);
         }
 
         setResult(Activity.RESULT_OK, returnIntent);

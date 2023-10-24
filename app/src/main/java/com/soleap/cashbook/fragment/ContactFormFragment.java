@@ -41,8 +41,8 @@ public class ContactFormFragment extends DocFormFragment<Contact> {
         inputLayoutFirstName = inputFormView.findViewById(R.id.inputLayout_latin_name);
         inputLayoutLastName = inputFormView.findViewById(R.id.inputLayout_name);
         inputLayoutPhonenumber = inputFormView.findViewById(R.id.inputLayout_phoneNumber);
-        txtName = inputFormView.findViewById(R.id.txt_latin_name);
-        txtLatinName = inputFormView.findViewById(R.id.txt_name);
+        txtName = inputFormView.findViewById(R.id.txt_name);
+        txtLatinName = inputFormView.findViewById(R.id.txt_latin_name);
         txtNickname = inputFormView.findViewById(R.id.txt_nick_name);
         txtPhoneNumber = inputFormView.findViewById(R.id.txt_phoneNumber);
         txtAddress = inputFormView.findViewById(R.id.txt_address);
@@ -61,6 +61,7 @@ public class ContactFormFragment extends DocFormFragment<Contact> {
     @Override
     public void readInputData(Contact document) {
         Contact contact = (Contact) document;
+        contact.setType("CUS");
         contact.setName(txtName.getText().toString());
         contact.setLatinname(txtLatinName.getText().toString());
         contact.setNickname(txtNickname.getText().toString());
@@ -88,8 +89,6 @@ public class ContactFormFragment extends DocFormFragment<Contact> {
         txtFacebook.setText(document.getFacebook());
         txtTelegram.setText(document.getTelegram());
         txtAddress.setText(document.getAddress());
-
-
         if (document.getType().equals("CUS")) {
             if (document.getGender() != null && document.getGender().equals(Gender.MALE)) {
                 rdGender.check(R.id.radiomale);

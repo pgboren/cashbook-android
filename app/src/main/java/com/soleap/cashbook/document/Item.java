@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class Item extends BsDocument {
 
-    private String barcode;
     private String category;
 
     private String account;
@@ -37,13 +36,6 @@ public class Item extends BsDocument {
         this.type = type;
     }
 
-    public String getBarcode() {
-        return barcode;
-    }
-
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
-    }
     public String getAccount() {
         return account;
     }
@@ -151,7 +143,6 @@ public class Item extends BsDocument {
     @Override
     public Map<String, Object> toMap() {
         Map<String, Object> data = new HashMap<>();
-        data.put("barcode", getBarcode());
         data.put("name", getName());
         data.put("category", getCategory());
         data.put("account", getAccount());
@@ -176,7 +167,6 @@ public class Item extends BsDocument {
     public void fromJsonObject(JsonElement jsonElement) {
         super.fromJsonObject(jsonElement);
         JsonObject jsonObject = (JsonObject) jsonElement;
-        setBarcode(jsonObject.get("barcode").getAsString());
         setName(jsonObject.get("name").getAsString());
         setCategory(jsonObject.get("category").getAsString());
         setDescription(jsonObject.has("description") ? jsonObject.get("description").getAsString() : "");

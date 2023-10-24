@@ -28,7 +28,11 @@ public class InstituteListItemViewHolder extends DocListItemViewHolder {
         viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_name).setString(name);
         viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_latin_name).setString(latinName);
         ImageView imgLogo = itemView.findViewById(R.id.img_logo);
-        MedialUtils.loadImage(context, doc.getDataValue("logo").getValue().toString(), imgLogo);
+
+        if (doc.getDataValue("logo").getValue() != null) {
+            MedialUtils.loadImage(context, doc.getDataValue("logo").getValue().toString(), imgLogo);
+        }
+
     }
 
 }

@@ -6,17 +6,162 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="10dp"
+    android:background="@color/primaryDarkColor"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
-    <include layout="@layout/dashboard_item_price_view"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"/>
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_tran_white_round_corner"
+        android:padding="5dp"
+        android:orientation="vertical">
 
-    <include layout="@layout/dashboard_add_new_contact_view"
-        android:layout_marginTop="10dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_margin="5dp"
+            android:layout_height="140dp"
+            android:gravity="center_vertical"
+            android:padding="15dp"
+            android:background="@drawable/bg_white_round_corner"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="vertical">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_contact_add"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="17sp"
+                android:text="@string/contact"
+                android:textColor="@color/black_de" />
+        </LinearLayout>
+
+            <LinearLayout
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+                android:layout_height="140dp"
+            android:gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:padding="15dp"
+            android:background="@drawable/bg_white_round_corner"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_car_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="17sp"
+            android:text="@string/vehicle"
+            android:textColor="@color/black_de" />
+    </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"/>
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/btn_qr_scan"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/bg_white_round_corner"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:onClick="scanQRCodeButtonClicked"
+                android:padding="15dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_qr_code"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/scan_qr"
+                    android:textColor="@color/black_de"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_add_invoice"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:gravity="center_vertical"
+                android:padding="15dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_white_round_corner"
+                android:clickable="true"
+                android:onClick="addNewInvoiceButtonClicked"
+                android:foreground="?attr/selectableItemBackground"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_invoice_dollar_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="17sp"
+                    android:text="@string/invoice"
+                    android:textColor="@color/black_de" />
+            </LinearLayout>
+
+    </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

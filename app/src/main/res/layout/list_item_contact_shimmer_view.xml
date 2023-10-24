@@ -32,7 +32,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_margin="10dp"
-                android:background="@drawable/bg_round_corner"
+                android:background="@drawable/bg_white_round_corner"
                 android:gravity="center"
                 android:textSize="@dimen/list_item_content"
                 android:layout_gravity="center_horizontal|center_vertical"
@@ -61,7 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:textColor="@color/gray_dark"
-                    android:background="@drawable/bg_round_corner"
+                    android:background="@drawable/bg_white_round_corner"
                     android:layout_marginBottom="10dp"
                     android:maxLines="1"
                     android:textSize="@dimen/list_item_content"/>
@@ -74,7 +74,7 @@
                     android:textColor="@color/blue_light"
                     android:maxLines="1"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/bg_round_corner"
+                    android:background="@drawable/bg_white_round_corner"
                     android:textSize="12sp"/>
 
                 <TextView
@@ -83,7 +83,7 @@
                     android:layout_height="15dp"
                     android:textColor="@color/blue_light"
                     android:maxLines="1"
-                    android:background="@drawable/bg_round_corner"
+                    android:background="@drawable/bg_white_round_corner"
                     android:textSize="12sp"/>
 
             </LinearLayout>

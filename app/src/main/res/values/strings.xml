@@ -40,7 +40,6 @@
     <string name="nav_menu_institute">ស្ថាប័ណ្ណ</string>
     <string name="nav_group_system">ប្រព័ន្ធ</string>
     <string name="nav_menu_settings">ការកំណត់</string>
-    <string name="nav_maker">បញ្ជីរឈ្មោះអ្នកផលិត</string>
 
     <string name="nick_name">ឈ្មោះហៅក្រៅ</string>
 
@@ -51,7 +50,6 @@
     <string name="price">តំលៃ ($)</string>
 
     <string name="namekh">ឈ្មោះ (ខ្មែរ)</string>
-    <string name="description">បរិយាយ</string>
     <string name="cost">ថ្លៃដើម</string>
 
     <string name="name">ឈ្មេាះ</string>
@@ -60,7 +58,6 @@
 
     <string name="contact_number">លេខទំនាក់ទំនង</string>
 
-    <string name="institute">ស្ថាប័ណ្ណ</string>
     <string name="enter_username">ឈ្មោះគណនី</string>
     <string name="enter_password">លេខសំងាត់</string>
     <string name="remember_me">ចងចាំលេខសំងាត់</string>
@@ -69,27 +66,21 @@
 
     <string name="date">កាលបរិច្ឆេទ</string>
 
-    <string name="model_year">ឆ្នាំផលិត</string>
     <string name="add_new">បង្កើតថ្មី</string>
     <string name="add_more">ដាក់បន្ថែម</string>
 
-    <string name="nav_loan_calculator">គណនាទឹកប្រាកបង់</string>
-    <string name="nav_new_deal">ដាក់ពាក្យបង់រំលស់</string>
-    <string name="nav_item_price">តារាងតំលៃ</string>
     <string name="user_profile">ព័ត៌មានអ្នកប្រើប្រាស់</string>
 
     <string name="sale_order">សំណើរ</string>
-    <string name="vehicle_condition">ស្ថានភាពយានយន្ដ</string>
 
     <string name="paymentoption">របៀបទូទាត់ប្រាក់</string>
     <string name="agile_task">សំណើរទិញម៉ូតូ</string>
     <string name="vehicle">យានយន្ដ</string>
     <string name="latinname">ឈ្មោះ (ឡាតាំង)</string>
 
-    <string name="add_new_contact">បន្ថែមលេខទំនាក់ទំនងថ្មី</string>
+    <string name="add_new_contact">បង្កើតអតិថិជនថ្មី</string>
     <string name="account_type">ប្រភេទគណនី</string>
-    <string name="contact_list">លេខទំនាក់ទំនង</string>
-    <string name="item_list">បញ្ជីរឈ្មោះទំនិញ</string>
+    <string name="contact_list">បញ្ជីរឈ្មោះអតិថិជន</string>
     <string name="account">គណនី</string>
     <string name="chart_of_accounts">ប្លង់គណនី</string>
     <string name="category">ប្រភេទទំនិញ</string>
@@ -97,41 +88,24 @@
     <string name="contact">អតិថិជន</string>
     <string name="machinenumber">លេខម៉ាស៊ីន</string>
     <string name="chassisnumber">លេខតួរ</string>
-    <string name="plate_number">ផ្លាកលេខ</string>
     <string name="CASH_PAY">បង់ផ្ដាច់</string>
     <string name="male">ប្រុស</string>
     <string name="female">ស្រី</string>
-    <string name="specification">ព័ត៌មានបន្ថែម</string>
     <string name="value">តំលៃ</string>
-    <string name="nickname">ឈ្មោះហៅក្រៅ</string>
-    <string name="gender">ភេទ</string>
-    <string name="phonenumber">លេខទូរស័ព្ទ</string>
-    <string name="MAKE">ប្រុស</string>
-    <string name="FEMALE">ស្រី</string>
-    <string name="code">លេខសំគាល់</string>
-    <string name="barcode">បាកូដ</string>
-    <string name="itemtype">ប្រភេទទំនិញ</string>
-    <string name="NEW_ITEM_SPECIFICATION">ព័ត៌មានបន្ថែម-ថ្មី</string>
     <string name="showOnInvoice">បង្ហាញលើវិក័យ្យបត្រ</string>
     <string name="item_spec_promt">សូមចុចសញ្ញាលេខ(+) ដើម្បីបញ្ចូលព័ត៌មានបន្ថែម សំរាប់ព័ត៌មានដែលមិនក្នុងប្រអប់បញ្ចូលព័ត៌មានដែលមានស្រាប់ខាងលើ!</string>
-    <string name="loan_installment_calculation">គណនាទឹកប្រាក់បង់រំលស់</string>
     <string name="institutes">ស្ថាប័ណ្ណផ្ដល់ប្រាក់កម្ចី</string>
-    <string name="LOAN_CALCULATOR_VIEW">គណនាទឹកប្រាក់បង់រំលស់</string>
     <string name="choose_an_institute">ជ្រើសយកឈ្មោះស្ថាប័ណ្ណ</string>
     <string name="loan_amount">តំលៃម៉ូតូ</string>
     <string name="VEHICLE_LIST_VIEW">បញ្ជីរឈ្មោះយានយន្ដ</string>
-    <string name="MAKER_LIST_VIEW">អ្នកផលិត</string>
 
     <string name="type">ប្រភេទ</string>
     <string name="maker">អ្នកផលិត</string>
     <string name="model">ម៉ាក</string>
     <string name="condition">ស្ថានភាព</string>
-    <string name="chassisno">លេខតូរ</string>
-    <string name="engineno">លេខម៉ាស៊ីន</string>
     <string name="color">ពណ៌</string>
     <string name="amount">តំលៃម៉ូតូ</string>
     <string name="horsepower">កំលាំងម៉ាស៊ីន</string>
-    <string name="enable">សកម្ម</string>
     <string name="production_year">ឆ្នាំផលិត</string>
     <string name="photo">រូបភាព</string>
 
@@ -140,15 +114,39 @@
     <string name="vehicle_info">ព័ត៌មានយានយន្ដ</string>
     <string name="honda">ហុងដា</string>
     <string name="yamaha">យ៉ាម៉ាហា</string>
-
-    <string name="SPORT">កីឡា</string>
-    <string name="OFF_ROAD">ផ្លូវរលាក់</string>
-    <string name="SCOOTER">ស្កូតធ័រ</string>
-    <string name="CUB">ចង្កឹះលេខ</string>
+    <string name="SPORT">កីឡា - Sport</string>
+    <string name="OFF_ROAD">ផ្លូវរលាក់ - (Off-Road)</string>
+    <string name="SCOOTER">ស្កូតធ័រ - Scooter</string>
     <string name="NEW">ថ្មី</string>
     <string name="USED">ក្រដាស់ពន្ធ</string>
     <string name="SECONDHAND">មួយទឹក</string>
+    <string name="delete">លុប</string>
 
+    <string name="scan_qr">ស្គែន QR</string>
+    <string name="qrcode_scanner">ស្គែន QR</string>
+
+    <string name="msg_default_status">ដាក់ QR អោយស្ថិតនៅក្នុងអេក្រង់កាម៉េរា ដើម្បីស្គែន</string>
+    <string name="scan_qr_result">លទ្ធផល QR ស្គេន</string>
+    <string name="invoice_number">លេខវិក័យបត្រ</string>
+    <string name="invoice_to">ចេញជូនអតិថិជន</string>
+    <string name="invoice_items">ផលិតផល</string>
+    <string name="zero_invoice_items">មិនមានផលិតផលក្នុងបញ្ជីរ</string>
+    <string name="add_new_item">ផលិតផលថ្មី</string>
+    <string name="subtotal">តំលៃសរុបបឋម</string>
+    <string name="discount">បញ្ចុះតំលៃ</string>
+    <string name="commision">កំរ៉ៃជើងសារ</string>
+    <string name="gift_expenses">ចំណាយកាដូរ</string>
+    <string name="grand_total">សរុបចុងក្រោយ</string>
+    <string name="deposite_amount">ប្រាក់កក់</string>
+    <string name="label">label</string>
+
+    <string name="LOAN_REQUEST">បង់រំលស់</string>
+    <string name="OWN_PAYMENT">ទិញដាច់</string>
+
+    <string-array name="invoice_payment_options">
+        <item>LOAN_REQUEST</item>
+        <item>OWN_PAYMENT</item>
+    </string-array>
 
 
 </resources>

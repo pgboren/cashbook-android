@@ -5,9 +5,9 @@
     <color name="primaryDarkColor">#851718</color>
     <color name="primaryTextColor">@android:color/black</color>
     <color name="secondaryTextColor">@android:color/black</color>
+    <color name="windowBackground">#BAA1A1A1</color>
 
     <color name="colorPrimary">#EB292929</color>
-    <color name="colorPrimaryDark">#EB292929</color>
     <color name="colorAccent">#03DAC5</color>
 
     <color name="windows_bg">#BAF1F1F1</color>

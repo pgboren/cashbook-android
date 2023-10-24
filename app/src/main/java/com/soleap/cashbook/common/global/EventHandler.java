@@ -17,8 +17,26 @@ public class EventHandler {
     }
 
     private Map<String, List<DocCreatedEventListner>> docCreatedEventListnersMap = new HashMap<>();
-
+    private Map<String, List<DocRemovedEventListner>> docRemovedEventListnersMap = new HashMap<>();
     private Map<String, List<DocChangedEventListner>> docChangedEventListnersMap = new HashMap<>();
+
+    public void addDocRemovedEventListner(String key, DocRemovedEventListner listner) {
+        if (!docRemovedEventListnersMap.containsKey(key)) {
+            docRemovedEventListnersMap.put(key, new ArrayList<DocRemovedEventListner>());
+        }
+        List<DocRemovedEventListner> listners = docRemovedEventListnersMap.get(key);
+        listners.add(listner);
+    }
+
+    public void removeDocRemovedEventListner(String key, DocRemovedEventListner listner) {
+        if (docRemovedEventListnersMap.containsKey(key)) {
+            List<DocRemovedEventListner> listners = docRemovedEventListnersMap.get(key);
+            if (listners.contains(listner)) {
+                listners.remove(listner);
+            }
+        }
+    }
+
 
     public void addDocChangedEventListner(String key, DocChangedEventListner listner) {
         if (!docChangedEventListnersMap.containsKey(key)) {
@@ -27,6 +45,7 @@ public class EventHandler {
         List<DocChangedEventListner> listners = docChangedEventListnersMap.get(key);
         listners.add(listner);
     }
+
 
     public void removeDocChangedEventListner(String key, DocChangedEventListner listner) {
         if (docChangedEventListnersMap.containsKey(key)) {
@@ -50,6 +69,15 @@ public class EventHandler {
             List<DocCreatedEventListner> listners = docCreatedEventListnersMap.get(key);
             if (listners.contains(listner)) {
                 listners.remove(listner);
+            }
+        }
+    }
+
+    public void notifyDocumentRemoved(String key, String docId, int position) {
+        if (docRemovedEventListnersMap.containsKey(key)) {
+            List<DocRemovedEventListner> listners = docRemovedEventListnersMap.get(key);
+            for (DocRemovedEventListner listner : listners) {
+                listner.onRemove(docId, position);
             }
         }
     }

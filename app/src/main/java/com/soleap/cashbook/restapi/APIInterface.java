@@ -2,6 +2,7 @@ package com.soleap.cashbook.restapi;
 
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
+import com.soleap.cashbook.common.document.Media;
 import com.soleap.cashbook.common.document.PagingRecyclerViewData;
 import com.soleap.cashbook.common.document.ViewDocumentSnapshot;
 import com.soleap.cashbook.document.User;
@@ -29,7 +30,7 @@ public interface APIInterface {
 
     @Multipart
     @POST("media/upload")
-    Call<DocumentSnapshot.Media> mediaUpload(@Part MultipartBody.Part image, @Part("file") RequestBody name);
+    Call<Media> mediaUpload(@Part MultipartBody.Part image, @Part("file") RequestBody name);
 
     @Multipart
     @POST("files/upload/")
@@ -66,6 +67,9 @@ public interface APIInterface {
 
     @GET("crud/{entity}/{id}")
     Call<Document> get(@Path("entity") String entity, @Path("id") String id);
+
+    @GET("view/nextcounter/{id}")
+    Call<Map<String, String>> getDocumentCounter(@Path("id") String id);
 
 }
 

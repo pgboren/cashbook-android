@@ -25,11 +25,9 @@ public class DocListIInvoiceViewHolder extends DocListItemViewHolder {
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_number).setString(doc.getDataValue("number").getValue().toString());
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_date).setString(doc.getDataValue("date").getValue().toString());
-//        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_short_name).setString((numberFormat.substring(0, 1).toUpperCase()));
-        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_item).setString(doc.getDataValue("item").getValue().toString());
+        viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_item).setString(doc.getDataValue("vehicle").getValue().toString());
         viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_customer).setString(doc.getDataValue("customer").getValue().toString());
-        
-        if (doc.getDataValue("paymentoption").getValue().toString().equals("LOAN")) {
+        if (doc.getDataValue("paymentoption").getValue() != null && doc.getDataValue("paymentoption").getValue().toString().equals("LOAN")) {
             itemView.findViewById(R.id.institute_view_container).setVisibility(View.VISIBLE);
             viewSetterFactory.create(ViewType.TEXTVIEW, R.id.txt_institute).setString(ResourceUtil.getStringResourceByName(context, doc.getDataValue("institute").getValue().toString()));
         }

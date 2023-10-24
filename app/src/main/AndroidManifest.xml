@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.soleap.cashbook">
-
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.soleap.cashbook">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -16,14 +14,12 @@
         android:required="true" />
     <uses-feature
         android:name="android.hardware.camera.autofocus"
-        android:required="false" />
+        android:required="true" />
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
 
     <queries>
-
-        <!-- Camera -->
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
         </intent>
@@ -52,24 +48,21 @@
 
         <activity
             android:theme="@style/NoActionBar"
-            android:name=".common.activity.BsDocLookUpActivity">
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-
+            android:name=".common.activity.BsDocLookUpActivity"
+            android:exported="true">
+            <meta-data android:name="android.app.searchable" android:resource="@xml/searchable" />
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
 
-
         <activity
             android:theme="@style/NoActionBar"
-            android:name=".common.activity.BsDocListActivity">
+            android:name=".common.activity.BsDocListActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
-
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -78,33 +71,37 @@
         <activity
             android:name=".common.activity.BsDocEditActivity"
             android:theme="@style/NoActionBar"
+            android:exported="true"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".common.activity.PhotoViewActivity"
+            android:exported="true"
             android:theme="@style/NoActionBar"/>
 
 
         <activity
             android:name=".common.activity.BsDocViewActivity"
+            android:exported="true"
             android:theme="@style/NoActionBar"/>
 
         <activity
             android:name=".common.activity.BsDocAddNewActivity"
             android:theme="@style/NoActionBar"
+            android:exported="true"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".common.activity.PDFViewActivity"
             android:theme="@style/NoActionBar"
+            android:exported="true"
             android:windowSoftInputMode="adjustResize" />
 
 
         <activity
             android:name=".activity.SplashScreenActivity"
             android:label="@string/app_name"
-            android:theme="@style/NoActionBar"
-            android:configChanges="uiMode">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -115,31 +112,51 @@
             android:name=".activity.UserProfileActivity"
             android:theme="@style/NoActionBar"
             android:label="@string/user_profile"
+            android:exported="true"
             android:configChanges="uiMode"/>
 
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/app_name"
+            android:exported="true"
             android:theme="@style/NoActionBar"
             android:configChanges="uiMode"/>
 
         <activity
             android:name="com.github.tntkhang.fullscreenimageview.library.FullScreenImageViewActivity"
             android:label="@string/photo"
+            android:exported="true"
             android:configChanges="uiMode">
         </activity>
+
+        <activity
+            android:name=".common.activity.QrCodeScannerActivity"
+            android:theme="@style/NoActionBar"
+            android:exported="true"
+            android:label="@string/qrcode_scanner"
+            android:hardwareAccelerated="true"
+            android:configChanges="uiMode"/>
+
+        <activity
+            android:name=".common.activity.QrCodeScannerResultActivity"
+            android:theme="@style/NoActionBar"
+            android:exported="true"
+            android:label="@string/qrcode_scanner"
+            android:hardwareAccelerated="true"
+            android:configChanges="uiMode"/>
 
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/NoActionBar"
+            android:exported="true"
             android:configChanges="uiMode">
         </activity>
 
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:exported="true"
             android:theme="@style/Base.Theme.AppCompat" />
-
     </application>
 
 </manifest>

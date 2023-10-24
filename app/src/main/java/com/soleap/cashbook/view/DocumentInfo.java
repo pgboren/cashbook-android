@@ -83,6 +83,9 @@ public class DocumentInfo implements Serializable {
     public static DocumentInfo COLOR = new DocumentInfo("color" , Color.class, ViewDefs.COLOR_LIST_VIEW, ViewDefs.COLOR_VIEW, ViewDefs.COLOR_ADD_NEW_VIEW, ViewDefs.COLOR_EDIT_VIEW);
     public static DocumentInfo getDocumentInfo(String name) {
 
+        if (name.equals("VEHICLE")) {
+            return VEHICLE;
+        }
 
         if (name.equals("maker")) {
             return MAKER;

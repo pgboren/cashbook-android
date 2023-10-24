@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:background="@color/windowBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollable_container"
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:isScrollContainer="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:paddingTop="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.soleap.cashbook.widget.DocSeqNumberInputView
+                    android:id="@+id/input_invoice_no"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    app:biv_label="@string/invoice_number"
+                    app:biv_seq_id="invoice_code_seq"
+                    app:biv_seq_prefix="INV"
+                    app:biv_iconDrawable="@drawable/ic_hastag_24"
+                    android:layout_height="wrap_content"/>
+
+                <com.soleap.cashbook.widget.DatePickerInputView
+                    android:id="@+id/input_invoice_date"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    app:biv_label="@string/date"
+                    app:biv_arrow_right="false"
+                    app:biv_iconDrawable="@drawable/ic_calendar_day_24"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.soleap.cashbook.widget.StringArrayMenuInputView
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    app:biv_label="@string/paymentoption"
+                    app:biv_default="LOAN_REQUEST"
+                    app:biv_iconDrawable="@drawable/ic_options"
+                    app:biv_strings_array="@array/invoice_payment_options"
+                    android:layout_height="wrap_content"/>
+
+                <com.soleap.cashbook.widget.DocLookupInputView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    app:biv_iconDrawable="@drawable/ic_customer"
+                    app:div_doc_name="contact"
+                    app:div_doc_field_name="name"
+                    app:biv_label="@string/invoice_to" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <com.soleap.cashbook.widget.DocLookupInputView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    app:biv_iconDrawable="@drawable/ic_bank"
+                    app:biv_label="@string/institutes"
+                    app:div_doc_field_name="name"
+                    app:div_doc_name="institute" />
+
+                <com.soleap.cashbook.widget.NumberInputView
+                    android:id="@+id/input_invoice_deposite_amount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    app:biv_iconDrawable="@drawable/ic_payment_down"
+                    app:biv_format="$#,##0.00"
+                    app:biv_label="@string/deposite_amount" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryColor"
+                    android:paddingTop="5dp"
+                    android:textSize="@dimen/form_label_text_size"
+                    android:paddingBottom="5dp"
+                    android:text="@string/invoice_items"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_dark"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/zero_invoice_items"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_add"
+                    android:text="@string/add_new_item"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray_dark" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_dark"
+                        android:text="@string/subtotal"/>
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black_de"
+                        android:textAlignment="textEnd"
+                        android:paddingRight="25dp"
+                        android:text="$0.00"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray_dark"/>
+
+                <LinearLayout
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_dark"
+                        android:text="@string/discount"/>
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black_de"
+                        android:textAlignment="textEnd"
+                        android:text="$0.00"/>
+
+                    <ImageButton
+                        android:layout_width="25dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_arrow_forward"
+                        android:background="@drawable/transparent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray_dark"/>
+
+                <LinearLayout
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_dark"
+                        android:text="@string/commision"/>
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black_de"
+                        android:textAlignment="textEnd"
+                        android:text="$0.00"/>
+
+                    <ImageButton
+                        android:layout_width="25dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_arrow_forward"
+                        android:background="@drawable/transparent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray_dark"/>
+
+
+                <LinearLayout
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_dark"
+                        android:text="@string/gift_expenses"/>
+
+
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black_de"
+                        android:textAlignment="textEnd"
+                        android:text="$0.00"/>
+
+                    <ImageButton
+                        android:layout_width="25dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_arrow_forward"
+                        android:background="@drawable/transparent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray_dark"/>
+
+                <LinearLayout
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primaryColor"
+                        android:textStyle="bold"
+                        android:text="@string/grand_total"/>
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primaryColor"
+                        android:textAlignment="textEnd"
+                        android:textStyle="bold"
+                        android:paddingRight="25dp"
+                        android:text="$0.00"/>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray_dark"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

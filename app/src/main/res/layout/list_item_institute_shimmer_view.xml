@@ -55,7 +55,7 @@
               android:layout_height="30dp"
               android:textColor="@color/black_de"
               android:maxLines="1"
-              android:background="@drawable/bg_round_corner"
+              android:background="@drawable/bg_white_round_corner"
               android:textSize="16sp"/>
           <TextView
               android:id="@+id/txt_latin_name"
@@ -64,7 +64,7 @@
               android:layout_height="20dp"
               android:textColor="@color/gray_dark"
               android:maxLines="1"
-              android:background="@drawable/bg_round_corner"
+              android:background="@drawable/bg_white_round_corner"
               android:textSize="12sp"/>
         </LinearLayout>
 

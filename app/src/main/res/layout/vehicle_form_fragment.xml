@@ -19,14 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <com.soleap.cashbook.common.widget.BarcodeStringEditText
-        android:id="@+id/txt_barcode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:ev_errorEnabled="true"
-        app:ev_helperText="@string/barcode"
-        app:ev_hint="@string/barcode" />
-
     <com.soleap.cashbook.common.widget.StringEditText
         android:id="@+id/txt_name"
         android:layout_width="match_parent"

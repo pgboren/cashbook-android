@@ -1,24 +1,41 @@
 package com.soleap.cashbook.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.provider.Telephony;
+import android.util.JsonReader;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.zxing.client.android.Intents;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 import com.soleap.cashbook.BuildConfig;
 import com.soleap.cashbook.Global;
 import com.soleap.cashbook.R;
+import com.soleap.cashbook.common.activity.ActivityDataResult;
 import com.soleap.cashbook.common.activity.BsDocListActivity;
+import com.soleap.cashbook.common.activity.QrCodeScannerActivity;
+import com.soleap.cashbook.common.activity.QrCodeScannerResultActivity;
+import com.soleap.cashbook.common.activity.RecyclerActivity;
 import com.soleap.cashbook.content.AppPrefrences;
 import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.view.DocumentInfo;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +46,28 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.appcompat.widget.Toolbar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ActivityCompat.OnRequestPermissionsResultCallback {
+
+    private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
+        result -> {
+            if(result.getContents() == null) {
+                Intent originalIntent = result.getOriginalIntent();
+                if (originalIntent == null) {
+                    Log.d("MainActivity", "Cancelled scan");
+                    Toast.makeText(MainActivity.this, "Cancelled", Toast.LENGTH_LONG).show();
+                } else if(originalIntent.hasExtra(Intents.Scan.MISSING_CAMERA_PERMISSION)) {
+                    Log.d("MainActivity", "Cancelled scan due to missing camera permission");
+                    Toast.makeText(MainActivity.this, "Cancelled due to missing camera permission", Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Log.d("MainActivity", "Scanned");
+                handleQrCodeResult(result.getContents());
+            }
+        }
+    );
 
     private AppBarConfiguration mAppBarConfiguration;
     private static final int PERMISSION_REQUEST_CAMERA = 0;
@@ -41,6 +79,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private LinearLayout layoutFabContact;
     private LinearLayout layoutFabDeal;
     private NavigationView navigationView;
+
+    private ActivityResultLauncher<Intent> activityResultLauncher;
+
+    private void handleQrCodeResult(String qrCodeString) {
+        try {
+            JSONObject jsonObject = new JSONObject(qrCodeString);
+            String docName = jsonObject.get("doc").toString();
+            String value = jsonObject.get("value").toString();
+            DocumentInfo documentInfo = DocumentInfo.getDocumentInfo(docName);
+            Intent intent = new Intent(MainActivity.this, QrCodeScannerResultActivity.class);
+            intent.putExtra(ActivityDataResult.DOCUMENT_INFO_KEY, documentInfo);
+            intent.putExtra(ActivityDataResult.DOC_ID_KEY, value);
+            startActivity(intent);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +118,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Global.context = getApplicationContext();
 //        initFabView();
         initUserProfileView();
+
+        activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            String data = result.getData().getStringExtra("SCAN_RESULT");
+                        }
+                    }
+                }
+        );
+
+    }
+
+    public void addNewInvoiceButtonClicked(View view) {
+        Intent intent = new Intent(MainActivity.this, DocumentInfo.INVOICE.getDocAddNewDef().getActivityClass());
+        intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.INVOICE);
+        startActivity(intent);
+    }
+
+    public void scanQRCodeButtonClicked(View view) {
+        ScanOptions options = new ScanOptions().setOrientationLocked(false).setCaptureActivity(QrCodeScannerActivity.class);
+        barcodeLauncher.launch(options);
     }
 
     private void initUserProfileView() {
@@ -107,40 +186,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         }
 
+        if (id == R.id.nav_add_contact) {
+             DocumentInfo documentInfo = DocumentInfo.CONTACT;
+            intent = new Intent(this, documentInfo.getDocAddNewDef().getActivityClass());
+            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, documentInfo);
+            startActivity(intent);
+            return true;
+        }
+
         intent = new Intent(this, BsDocListActivity.class);
 
         if (id == R.id.nav_contact_list) {
             intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.CONTACT);
         }
 
-//        if (id == R.id.nav_account_type) {
-//            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.ACCOUNTTYPE);
-//            intent.putExtra(BsDocListActivity.READ_ONLY, true);
-//        }
-
-//        if (id == R.id.nav_chart_of_account) {
-//            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.ACCOUNT);
-//        }
-
         if (id == R.id.nav_vehicle_list) {
             intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.VEHICLE);
-        }
-
-        if (id == R.id.nav_category) {
-            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.CATEGORY);
-        }
-
-        if (id == R.id.nav_maker) {
-            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.MAKER);
         }
 
         if (id == R.id.nav_invoice) {
             intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.INVOICE);
         }
-
-//        if (id == R.id.nav_color) {
-//            intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.COLOR);
-//        }
 
         startActivity(intent);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);

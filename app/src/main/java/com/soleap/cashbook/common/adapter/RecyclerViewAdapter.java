@@ -47,6 +47,7 @@ public abstract class RecyclerViewAdapter<TV extends DocListItemViewHolder> exte
         this.documentInfo = documentInfo;
     }
 
+
     public RecyclerViewAdapter(Context context, String documentName, int viewResource) {
         this.documentName = documentName;
         this.context = context;

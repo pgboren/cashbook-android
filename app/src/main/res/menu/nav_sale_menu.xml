@@ -5,15 +5,10 @@
 
     <item android:title="@string/add_new">
         <menu>
-            <item android:id="@+id/nav_cal_installment"
-                android:icon="@drawable/ic_calculator"
-                android:title="@string/nav_loan_calculator" />
-
-
-            <item android:id="@+id/nav_add_new_deal"
-                android:icon="@drawable/ic_invoice"
-                android:title="@string/nav_new_deal" />
-
+            <item
+                android:id="@+id/nav_add_invoice"
+                android:icon="@drawable/ic_invoice_dollar_24"
+                android:title="@string/add_new_contact" />
             <item
                 android:id="@+id/nav_add_contact"
                 android:icon="@drawable/ic_contact_add"
@@ -23,10 +18,9 @@
 
     <item android:title="@string/nav_list">
         <menu>
-
             <item
                 android:id="@+id/nav_invoice"
-                android:icon="@drawable/ic_invoice"
+                android:icon="@drawable/ic_invoice_dollar_24"
                 android:title="@string/invoice" />
 
             <item
@@ -43,31 +37,26 @@
 
     <item android:title="@string/nav_group_system">
         <menu>
-
 <!--            <item-->
 <!--                android:id="@+id/nav_chart_of_account"-->
 <!--                android:icon="@drawable/ic_add"-->
 <!--                android:title="@string/chart_of_account" />-->
-
 <!--            <item-->
 <!--                android:id="@+id/nav_account_type"-->
 <!--                android:icon="@drawable/ic_add"-->
 <!--                android:title="@string/account_type" />-->
-
-            <item
-                android:id="@+id/nav_category"
-                android:icon="@drawable/ic_add"
-                android:title="@string/category" />
-
-            <item
-                android:id="@+id/nav_maker"
-                android:icon="@drawable/ic_add"
-                android:title="@string/nav_maker" />
-
-            <item
-                android:id="@+id/nav_color"
-                android:icon="@drawable/ic_add"
-                android:title="@string/color" />
+<!--            <item-->
+<!--                android:id="@+id/nav_category"-->
+<!--                android:icon="@drawable/ic_add"-->
+<!--                android:title="@string/category" />-->
+<!--            <item-->
+<!--                android:id="@+id/nav_maker"-->
+<!--                android:icon="@drawable/ic_add"-->
+<!--                android:title="@string/nav_maker" />-->
+<!--            <item-->
+<!--                android:id="@+id/nav_color"-->
+<!--                android:icon="@drawable/ic_add"-->
+<!--                android:title="@string/color" />-->
 
             <item
                 android:id="@+id/nav_setting"

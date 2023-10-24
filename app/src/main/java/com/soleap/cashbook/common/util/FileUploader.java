@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
+import com.soleap.cashbook.common.document.Media;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 
@@ -67,10 +68,10 @@ public class FileUploader {
             RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "file");
 
             APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
-            Call<DocumentSnapshot.Media> req = apiInterface.mediaUpload(body, name);
-            req.enqueue(new Callback<DocumentSnapshot.Media>() {
+            Call<Media> req = apiInterface.mediaUpload(body, name);
+            req.enqueue(new Callback<Media>() {
                 @Override
-                public void onResponse(Call<DocumentSnapshot.Media> call, Response<DocumentSnapshot.Media> response) {
+                public void onResponse(Call<Media> call, Response<Media> response) {
                     if (response.code() == 201) {
                         if (callback != null) {
                             callback.onSucess(response.body());
@@ -79,7 +80,7 @@ public class FileUploader {
                 }
 
                 @Override
-                public void onFailure(Call<DocumentSnapshot.Media> call, Throwable t) {
+                public void onFailure(Call<Media> call, Throwable t) {
                     if (callback != null) {
                         callback.onFailure(t);
                     }

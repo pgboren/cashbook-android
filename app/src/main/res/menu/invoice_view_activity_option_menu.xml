@@ -11,4 +11,20 @@ tools:context="your activity context here">
         android:iconTint="@color/white"
         app:showAsAction="collapseActionView|ifRoom" />
 
+    <item
+        android:id="@+id/menu_edit"
+        android:title="@string/more"
+        android:orderInCategory="2"
+        android:icon="@drawable/ic_edit"
+        android:iconTint="@color/white"
+        app:showAsAction="collapseActionView|ifRoom" />
+
+    <item
+        android:id="@+id/menu_delete"
+        android:title="@string/delete"
+        android:orderInCategory="2"
+        android:icon="@drawable/ic_trash"
+        android:iconTint="@color/white"
+        app:showAsAction="collapseActionView|ifRoom" />
+
 </menu>

@@ -67,7 +67,7 @@ dependencies {
     implementation 'info.androidhive:fontawesome:0.0.5'
     implementation 'petrov.kristiyan:colorpicker-library:1.1.10'
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
-    implementation 'me.sudar:zxing-orient:2.1.1@aar'
+//    implementation 'me.sudar:zxing-orient:2.1.1@aar'
     implementation 'com.github.markushi:circlebutton:1.1'
     implementation 'com.turki-alkhateeb:materialcolorpicker:1.0.7'
     // define a BOM and its version
@@ -92,6 +92,7 @@ dependencies {
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
     implementation 'com.github.tntkhang:full-screen-image-view-library:1.1.0'
     implementation 'com.caverock:androidsvg-aar:1.4'
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 
 
 }

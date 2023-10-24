@@ -36,8 +36,7 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:scaleType="centerInside"
-                app:tint="@android:color/holo_green_light"
-                android:background="@color/transparent"/>
+                app:tint="@android:color/holo_green_light"/>
 
             <ImageButton
                 android:id="@+id/btn_remove"
@@ -45,8 +44,7 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:scaleType="centerInside"
-                app:tint="@android:color/holo_red_dark"
-                android:background="@color/transparent"/>
+                app:tint="@android:color/holo_red_dark"/>
 
         </LinearLayout>
 
@@ -73,8 +71,7 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:scaleType="centerInside"
-                app:tint="@color/gray_dark"
-                android:background="@color/transparent"/>
+                app:tint="@color/gray_dark"/>
 
             <TextView
                 android:id="@+id/txt_name"

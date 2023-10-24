@@ -76,6 +76,7 @@ public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
     }
 
     private RecyclerView recyclerView;
+
     protected RecyclerView.Adapter adapter;
 
     protected void initRecyclerView(View view) {

@@ -5,18 +5,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 import com.soleap.cashbook.common.document.Document;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
+import com.soleap.cashbook.common.document.Media;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Contact extends Document {
-
-    @SerializedName("name")
-    private String name;
-
     @SerializedName("type")
     private String type;
-
+    @SerializedName("name")
+    private String name;
     @SerializedName("latinname")
     private String latinname;
     @SerializedName("gender")
@@ -25,14 +23,14 @@ public class Contact extends Document {
     private String nickname;
     @SerializedName("phoneNumber")
     private String phoneNumber;
+    @SerializedName("address")
+    private String address;
     @SerializedName("facebook")
     private String facebook;
     @SerializedName("telegram")
     private String telegram;
     @SerializedName("photo")
-    private DocumentSnapshot.Media photo;
-    @SerializedName("address")
-    private String address;
+    private Media photo;
 
     public String getType() {
         return type;
@@ -74,11 +72,11 @@ public class Contact extends Document {
         this.telegram = telegram;
     }
 
-    public DocumentSnapshot.Media getPhoto() {
+    public Media getPhoto() {
         return photo;
     }
 
-    public void setPhoto(DocumentSnapshot.Media photo) {
+    public void setPhoto(Media photo) {
         this.photo = photo;
     }
 
@@ -118,6 +116,7 @@ public class Contact extends Document {
     public Map<String, Object> toMap() {
         Map<String, Object> data = new HashMap<>();
         data.put("name", getName());
+        data.put("type", getType());
         data.put("latinname", getLatinname());
         data.put("gender" , getGender());
         data.put("nickname", getNickname());
@@ -136,12 +135,10 @@ public class Contact extends Document {
         setId(jsonObject.get("_id").isJsonNull() ? "" :  jsonObject.get("_id").getAsString());
         setName(jsonObject.get("name").isJsonNull() ? "" :  jsonObject.get("name").getAsString());
         setLatinname(jsonObject.get("latinname").isJsonNull() ? "" :  jsonObject.get("latinname").getAsString());
-
         if (jsonObject.get("type").getAsString().equals("CUS")) {
             setGender(jsonObject.get("gender").isJsonNull() ? "" :  jsonObject.get("gender").getAsString());
             setNickname(jsonObject.get("nickname").isJsonNull() ? "" :  jsonObject.get("nickname").getAsString());
         }
-
         setPhoneNumber(jsonObject.get("phoneNumber").isJsonNull() ? "" :  jsonObject.get("phoneNumber").getAsString());
         setFacebook(jsonObject.get("facebook").isJsonNull() ? "" :  jsonObject.get("facebook").getAsString());
         setTelegram(jsonObject.get("telegram").isJsonNull() ? "" :  jsonObject.get("telegram").getAsString());

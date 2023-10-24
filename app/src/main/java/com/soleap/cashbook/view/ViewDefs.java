@@ -70,7 +70,7 @@ public class ViewDefs {
     public static ViewDef ITEM_SPEC_EDIT_VIEW = new ViewDef("ITEM_SPEC_EDIT_VIEW", "itemspecification", BsDocEditActivity.class, R.layout.activity_form_bsdoc, BSDocFormFragment.class);
 
     public static ViewDef VEHICLE_LIST_VIEW = new ViewDef("VEHICLE_LIST_VIEW", "item", BsDocListActivity.class, R.layout.activity_list_bsdoc, R.layout.vehicle_list_item_view, R.layout.vehicle_list_itemshimmer_view);
-    public static ViewDef VEHICLE_VIEW = new ViewDef("VEHICLE_VIEW", "item", BsDocViewActivity.class, R.layout.activity_view_doc, BSDocFormFragment.class, R.menu.doc_view_activity_option_menu);
+    public static ViewDef VEHICLE_VIEW = new ViewDef("VEHICLE_VIEW", "item", BsDocViewActivity.class, R.layout.activity_view_doc, BSDocFormFragment.class, R.menu.vehicle_view_activity_option_menu);
     public static ViewDef VEHICLE_NEW_VIEW = new ViewDef("VEHICLE_NEW_VIEW", "item", BsDocAddNewActivity.class, R.layout.activity_form_bsdoc, ItemFormFragment.class);
     public static ViewDef VEHICLE_EDIT_VIEW = new ViewDef("VEHICLE_EDIT_VIEW", "item", BsDocEditActivity.class, R.layout.activity_form_bsdoc, BSDocFormFragment.class);
 

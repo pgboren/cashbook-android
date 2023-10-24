@@ -23,8 +23,6 @@ import com.soleap.cashbook.document.Item;
 import com.soleap.cashbook.document.Vehicle;
 
 public class ItemFormFragment extends DocFormFragment<Vehicle> {
-
-    private BarcodeStringEditText txtBarcode;
     private DocumentLookupInputView lkCategory;
 
     private DocumentLookupInputView lkColor;
@@ -52,7 +50,6 @@ public class ItemFormFragment extends DocFormFragment<Vehicle> {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.vehicle_form_fragment, container, false);
 
-        txtBarcode = view.findViewById(R.id.txt_barcode);
         textName = view.findViewById(R.id.txt_name);
         lkCategory = view.findViewById(R.id.txt_category);
         lkAccount = view.findViewById(R.id.txt_account);
@@ -98,7 +95,6 @@ public class ItemFormFragment extends DocFormFragment<Vehicle> {
 
     @Override
     public void readInputData(Vehicle item) {
-        item.setBarcode(txtBarcode.getValue());
         item.setName(textName.getValue());
         item.setCategory(lkCategory.getValue().getId());
 
@@ -121,7 +117,6 @@ public class ItemFormFragment extends DocFormFragment<Vehicle> {
 
     @Override
     public void assignValueToForm(Vehicle document) {
-        txtBarcode.setValue(document.getBarcode());
         textName.setValue(document.getName());
         lkCategory.setvalueId(document.getCategory());
 
@@ -149,7 +144,7 @@ public class ItemFormFragment extends DocFormFragment<Vehicle> {
 
     @Override
     public boolean validation() {
-        isValid = txtBarcode.validate() && textName.validate() && lkAccount.validate() && lkCategory.validate() && txtPrice.validate() && txtCost.validate()
+        isValid = textName.validate() && lkAccount.validate() && lkCategory.validate() && txtPrice.validate() && txtCost.validate()
                    && lkMaker.validate() && lkType.validate() && lkCondition.validate() && lkColor.validate() && lkModel.validate() && txtChassisNumber.validate() && txtEnginNumber.validate() && txtYear.validate() ;
         return isValid;
     }
