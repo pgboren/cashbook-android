@@ -57,7 +57,7 @@ public class DatePickerInputView extends BaseButtomSheetInputView<Calendar> {
 
     private void showDatePickerDialog() {
         final Calendar cal = Calendar.getInstance();
-        DatePickerDialog.OnDateSetListener date =new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 cal.set(Calendar.YEAR, year);

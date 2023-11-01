@@ -10,7 +10,7 @@
         android:id="@+id/toobar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:cardBackgroundColor="@color/gray_dark"
+        app:cardBackgroundColor="@color/gray_light"
         app:cardCornerRadius="0dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,12 +30,12 @@
                 android:layout_gravity="center"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="8dp"
-                android:tint="@color/white"
+                android:tint="@color/label"
                 android:src="@drawable/ic_close"/>
 
             <TextView
                 android:id="@+id/tv_title"
-                android:textColor="@color/white"
+                android:textColor="@color/label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

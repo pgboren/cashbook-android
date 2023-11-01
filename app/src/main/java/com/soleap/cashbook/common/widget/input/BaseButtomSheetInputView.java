@@ -27,6 +27,8 @@ public abstract class BaseButtomSheetInputView<T> extends LinearLayout {
 
     protected TextView txtValue;
 
+    protected String label;
+
     @Override
     public View getRootView() {
         return rootView;
@@ -56,10 +58,9 @@ public abstract class BaseButtomSheetInputView<T> extends LinearLayout {
     }
 
     protected void processAttributeSet(Context context, @Nullable AttributeSet attrs, TypedArray a) {
-        String label = a.getString(R.styleable.BaseButtomSheetInputView_biv_label);
+        this.label = a.getString(R.styleable.BaseButtomSheetInputView_biv_label);
         Drawable icon = a.getDrawable(R.styleable.BaseButtomSheetInputView_biv_iconDrawable);
         boolean arrow_right = a.getBoolean(R.styleable.BaseButtomSheetInputView_biv_arrow_right, false);
-
         this.rootView = inflatInputLayout(context);
         TextView txtLable = rootView.findViewById(R.id.txt_label);
         ImageButton imvIcon = rootView.findViewById(R.id.img_icon);

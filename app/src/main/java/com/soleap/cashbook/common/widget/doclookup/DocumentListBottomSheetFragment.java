@@ -65,9 +65,7 @@ public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View lookupView = inflater.inflate(R.layout.bottom_sheet_lookup_view, container, false);
         return lookupView;
     }
@@ -79,7 +77,6 @@ public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
             BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
             bottomSheetDialog.setOnShowListener(dialog -> {
                 FrameLayout bottomSheet = ((BottomSheetDialog) dialog).findViewById(com.google.android.material.R.id.design_bottom_sheet);
-
                 if (bottomSheet != null) {
                     BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
                     behavior.setState(BottomSheetBehavior.STATE_EXPANDED);

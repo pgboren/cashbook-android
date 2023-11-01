@@ -34,12 +34,9 @@ public class InvoiceFormFragment extends DocFormFragment<Invoice> {
 
         View input_invoice_no = view.findViewById(R.id.input_invoice_no);
         View input_invoice_date = view.findViewById(R.id.input_invoice_date);
-
-
         input_invoice_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
             }
         });
 

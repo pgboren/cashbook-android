@@ -142,6 +142,7 @@
 
     <string name="LOAN_REQUEST">បង់រំលស់</string>
     <string name="OWN_PAYMENT">ទិញដាច់</string>
+    <string name="input_hint">Input Hint</string>
 
     <string-array name="invoice_payment_options">
         <item>LOAN_REQUEST</item>

@@ -136,7 +136,7 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
                 Map<String, Object> filter = getFilter();
                 body.put("filter", filter);
                 body.put("orders", orders);
-                Call<PagingRecyclerViewData> call = apiInterface.listViewData("LIST_VIEW", documentName,page, 10, body);
+                Call<PagingRecyclerViewData> call = apiInterface.listViewData("LIST_VIEW", documentName, page, 10, body);
                 call.enqueue(new Callback<PagingRecyclerViewData>() {
                     @Override
                     public void onResponse(Call<PagingRecyclerViewData> call, Response<PagingRecyclerViewData> response) {
