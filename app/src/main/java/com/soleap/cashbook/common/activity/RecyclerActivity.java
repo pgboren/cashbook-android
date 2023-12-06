@@ -157,7 +157,7 @@ public abstract class RecyclerActivity extends BackPressActivity implements Recy
     protected void onItemClicked(Document doc, int position) {
         Intent intent = new Intent(RecyclerActivity.this, documentInfo.getDocViewViewDef().getActivityClass());
         intent.putExtra(ActivityDataResult.DOCUMENT_INFO_KEY, documentInfo);
-        intent.putExtra(ActivityDataResult.DOC_ID_KEY, doc.getId());
+        intent.putExtra(ActivityDataResult.DOC_ID_KEY, doc.get_id());
         intent.putExtra(ActivityDataResult.DOC_POSITION_KEY, position);
         startActivity(intent);
     }

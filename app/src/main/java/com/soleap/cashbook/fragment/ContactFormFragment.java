@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
@@ -20,41 +22,39 @@ public class ContactFormFragment extends DocFormFragment<Contact> {
 
     private View inputFormView;
     private TextInputEditText txtName;
-    private TextInputEditText txtLatinName;
-    private TextInputEditText txtNickname;
-    private TextInputEditText txtPhoneNumber;
+    private TextInputEditText txtPrimaryNumber;
+
+    private TextInputEditText txtSecondaryNumber;
     private TextInputEditText txtFacebook;
     private TextInputEditText txtTelegram;
 
     private TextInputEditText txtAddress;
 
     private RadioGroup rdGender;
-
     private TextInputLayout inputLayoutFirstName;
-    private TextInputLayout inputLayoutLastName;
     private TextInputLayout inputLayoutPhonenumber;
+    private TextInputEditText txtFirstRelativeType;
+    private AutoCompleteTextView secondRelativeType;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         inputFormView = inflater.inflate(R.layout.form_contact_fragment, container, false);
-        inputLayoutFirstName = inputFormView.findViewById(R.id.inputLayout_latin_name);
-        inputLayoutLastName = inputFormView.findViewById(R.id.inputLayout_name);
-        inputLayoutPhonenumber = inputFormView.findViewById(R.id.inputLayout_phoneNumber);
+
+        inputLayoutFirstName = inputFormView.findViewById(R.id.inputLayout_name);
+        inputLayoutPhonenumber = inputFormView.findViewById(R.id.inputLayout_phonenumber_first);
         txtName = inputFormView.findViewById(R.id.txt_name);
-        txtLatinName = inputFormView.findViewById(R.id.txt_latin_name);
-        txtNickname = inputFormView.findViewById(R.id.txt_nick_name);
-        txtPhoneNumber = inputFormView.findViewById(R.id.txt_phoneNumber);
+
+        txtPrimaryNumber = inputFormView.findViewById(R.id.txt_phonenumber_first);
+        txtSecondaryNumber = inputFormView.findViewById(R.id.txt_phoneNumber_second);
         txtAddress = inputFormView.findViewById(R.id.txt_address);
         txtFacebook = inputFormView.findViewById(R.id.txt_facebook);
         txtTelegram = inputFormView.findViewById(R.id.txt_telegram);
-        rdGender = inputFormView.findViewById(R.id.rdGender);
         txtName.addTextChangedListener(this);
-        txtLatinName.addTextChangedListener(this);
-        txtNickname.addTextChangedListener(this);
-        txtPhoneNumber.addTextChangedListener(this);
+        txtPrimaryNumber.addTextChangedListener(this);
         txtFacebook.addTextChangedListener(this);
         txtTelegram.addTextChangedListener(this);
+
         return inputFormView;
     }
 
@@ -63,44 +63,22 @@ public class ContactFormFragment extends DocFormFragment<Contact> {
         Contact contact = (Contact) document;
         contact.setType("CUS");
         contact.setName(txtName.getText().toString());
-        contact.setLatinname(txtLatinName.getText().toString());
-        contact.setNickname(txtNickname.getText().toString());
-        contact.setPhoneNumber(txtPhoneNumber.getText().toString());
+        contact.setPrimaryNumber(txtPrimaryNumber.getText().toString());
+        contact.setSecondaryNumber(txtSecondaryNumber.getText().toString());
         contact.setFacebook(txtFacebook.getText().toString());
         contact.setTelegram(txtTelegram.getText().toString());
         contact.setAddress(txtAddress.getText().toString());
-
-        if (rdGender.getCheckedRadioButtonId() == R.id.radiomale) {
-            contact.setGender(Gender.MALE);
-        }
-
-        if (rdGender.getCheckedRadioButtonId() == R.id.radiofemale) {
-            contact.setGender(Gender.FEMALE);
-        }
 
     }
 
     @Override
     public void assignValueToForm(Contact document) {
         txtName.setText(document.getName());
-        txtLatinName.setText(document.getLatinname());
-        txtNickname.setText(document.getNickname());
-        txtPhoneNumber.setText(document.getPhoneNumber());
+        txtPrimaryNumber.setText(document.getPrimaryNumber());
+        txtSecondaryNumber.setText(document.getSecondaryNumber());
         txtFacebook.setText(document.getFacebook());
         txtTelegram.setText(document.getTelegram());
         txtAddress.setText(document.getAddress());
-        if (document.getType().equals("CUS")) {
-            if (document.getGender() != null && document.getGender().equals(Gender.MALE)) {
-                rdGender.check(R.id.radiomale);
-            }
-            if (document.getGender() != null && document.getGender().equals(Gender.FEMALE)) {
-                rdGender.check(R.id.radiofemale);
-            }
-        }
-        else {
-            inputFormView.findViewById(R.id.gender_container).setVisibility(View.GONE);
-        }
-
     }
 
     @Override
@@ -120,15 +98,7 @@ public class ContactFormFragment extends DocFormFragment<Contact> {
             isValid = true;
         }
 
-        if (txtLatinName.getText().toString().isEmpty()) {
-            inputLayoutLastName.setHelperText(getString(R.string.require));
-            isValid = false;
-        } else {
-            inputLayoutLastName.setHelperText("");
-            isValid = true;
-        }
-
-        if (txtPhoneNumber.getText().toString().isEmpty()) {
+        if (txtPrimaryNumber.getText().toString().isEmpty()) {
             inputLayoutPhonenumber.setHelperText(getString(R.string.require));
             isValid = false;
         } else {

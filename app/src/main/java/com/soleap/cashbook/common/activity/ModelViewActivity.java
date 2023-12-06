@@ -119,7 +119,7 @@ public abstract class ModelViewActivity<T extends Document> extends AppCompatAct
 
     protected void startEditActivity() {
         Intent intent = new Intent(this, editActivityClass());
-        intent.putExtra(EditRestApiActivity.KEY_DOC_ID, this.model.getId());
+        intent.putExtra(EditRestApiActivity.KEY_DOC_ID, this.model.get_id());
         this.startActivityForResult(intent, EDIT_ACTIVITY_REQUEST_CODE);
     }
 
@@ -194,7 +194,7 @@ public abstract class ModelViewActivity<T extends Document> extends AppCompatAct
     }
 
     protected void delete() {
-        Call<Void> call = apiInterface.delete(entityClass().getSimpleName().toLowerCase(), model.id);
+        Call<Void> call = apiInterface.delete(entityClass().getSimpleName().toLowerCase(), model._id);
         showLoadingScreen();
         call.enqueue(new Callback<Void>() {
             @Override

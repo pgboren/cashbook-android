@@ -11,6 +11,7 @@ import com.soleap.cashbook.view.DocumentInfo;
 import java.lang.reflect.Type;
 
 public class DocumentDeserializer implements JsonDeserializer<Document> {
+
     @Override
     public Document deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         try {

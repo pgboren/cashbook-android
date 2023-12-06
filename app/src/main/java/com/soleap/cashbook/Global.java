@@ -3,6 +3,7 @@ package com.soleap.cashbook;
 import android.content.Context;
 
 import com.soleap.cashbook.common.document.TextEnumValueDocument;
+import com.soleap.cashbook.room.AppDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public final class Global {
     public static final String agile_stage = "641065cb7a8514141033c121";
     public static final String build_type = "release";
 
+    public static AppDatabase db;
 
     public static List<TextEnumValueDocument> getTextEnumDoc(Context context, String key) {
 

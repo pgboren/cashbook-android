@@ -10,7 +10,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             app:navigationIcon="@drawable/ic_back"
-            app:title="test"
+            android:background="@color/white"
+            app:title="Title"
             android:theme="@style/toolbar"
             android:layout_height="?attr/actionBarSize" />
 

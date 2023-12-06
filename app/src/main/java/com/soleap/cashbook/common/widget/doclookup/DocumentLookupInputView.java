@@ -20,11 +20,13 @@ import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 import com.soleap.cashbook.view.DocumentInfo;
 
+import java.lang.reflect.Field;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DocumentLookupInputView extends BaseTextInputView<DocumentSnapshot> {
+public class DocumentLookupInputView extends BaseTextInputView<Document> {
     private static String TAG = "DocumentLookupEditText";
     private String docName;
     private String fieldname;
@@ -74,7 +76,7 @@ public class DocumentLookupInputView extends BaseTextInputView<DocumentSnapshot>
         demoBottomsheet.setEventListner(new DocumentListBottomSheetFragmentEventListner() {
             @Override
             public void onItemSelected(Document documentSnapshot) {
-                setValue((DocumentSnapshot) documentSnapshot);
+                setValue(documentSnapshot);
                 if (valueChangedListner != null) {
                     valueChangedListner.onChanged(documentSnapshot, DocumentLookupInputView.this.getId());
                 }
@@ -84,11 +86,18 @@ public class DocumentLookupInputView extends BaseTextInputView<DocumentSnapshot>
     }
 
     @Override
-    protected void onValueSet(DocumentSnapshot value) {
-        TextInputEditText editText = findViewById(R.id.editText);
-        editText.removeTextChangedListener(textWatcher);
-        editText.setText(value.getDataValue(fieldname).getValue().toString());
-        editText.addTextChangedListener(textWatcher);
+    protected void onValueSet(Document value) {
+        try {
+            TextInputEditText editText = findViewById(R.id.editText);
+            editText.removeTextChangedListener(textWatcher);
+            Field privateField = value.getClass().getField(fieldname);
+            privateField.setAccessible(true);
+            String text = privateField.get(value).toString();
+            editText.setText(text);
+            editText.addTextChangedListener(textWatcher);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

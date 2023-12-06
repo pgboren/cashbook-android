@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:layout_margin="10dp"
-        android:background="@drawable/bg_tran_white_round_corner"
+        android:background="@drawable/bg_transparent_white_round_corner"
         android:padding="5dp"
         android:orientation="vertical">
 
@@ -34,6 +34,7 @@
             android:padding="15dp"
             android:background="@drawable/bg_white_round_corner"
             android:clickable="true"
+            android:onClick="addNewContact"
             android:foreground="?attr/selectableItemBackground"
             android:orientation="vertical">
 
@@ -52,28 +53,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textSize="17sp"
-                android:text="@string/contact"
+                android:text="@string/CONTACT_ADD_NEW"
                 android:textColor="@color/black_de" />
         </LinearLayout>
 
             <LinearLayout
             android:layout_weight="0.5"
             android:layout_width="0dp"
-                android:layout_height="140dp"
+            android:layout_height="140dp"
             android:gravity="center_vertical"
             android:layout_margin="5dp"
             android:padding="15dp"
             android:background="@drawable/bg_white_round_corner"
             android:clickable="true"
+            android:onClick="addNewVehicle"
             android:foreground="?attr/selectableItemBackground"
             android:orientation="vertical">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_car_24"
+            android:src="@drawable/motorcycle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>

@@ -9,15 +9,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.soleap.cashbook.R;
-import com.soleap.cashbook.common.document.BsDocument;
 import com.soleap.cashbook.common.document.Document;
-import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.fragment.DocFormFragment;
 import com.soleap.cashbook.common.global.EventHandler;
-import com.soleap.cashbook.common.repository.DocumentRepository;
-import com.soleap.cashbook.common.repository.RepositoryFactory;
 import com.soleap.cashbook.common.util.ResourceUtil;
-import com.soleap.cashbook.document.Category;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -111,7 +106,7 @@ public class EditRestApiActivity<T extends Document> extends RestApiModelFormAct
             if (validation()) {
                 showLoadingScreen();
                 readInputData(model);
-                Call<Map<String, Object>> call = apiInterface.patch(documentInfo.getName(), model.getId(), model.toMap());
+                Call<Map<String, Object>> call = apiInterface.patch(documentInfo.getName(), model.get_id(), model.toMap());
                 call.enqueue(new Callback<Map<String, Object>>() {
                     @Override
                     public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {

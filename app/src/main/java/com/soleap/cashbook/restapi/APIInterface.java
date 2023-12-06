@@ -1,10 +1,11 @@
 package com.soleap.cashbook.restapi;
 
 import com.soleap.cashbook.common.document.Document;
-import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.document.Media;
 import com.soleap.cashbook.common.document.PagingRecyclerViewData;
 import com.soleap.cashbook.common.document.ViewDocumentSnapshot;
+import com.soleap.cashbook.datasync.RefData;
+import com.soleap.cashbook.document.PagingListingModel;
 import com.soleap.cashbook.document.User;
 
 import java.util.Map;
@@ -50,9 +51,6 @@ public interface APIInterface {
     @GET("view/{docname}")
     Call<Document> list(@Query("page") int page, @Query("limit") String limit);
 
-    @POST("view/{view_name}/{docname}")
-    Call<PagingRecyclerViewData> listViewData(@Path("view_name") String viewName, @Path("docname") String document, @Query("page") int page, @Query("limit") int limit, @Body Map<String, Object> data);
-
     @POST("view/LIST_ITEM_VIEW/{docname}")
     Call<ViewDocumentSnapshot> listItemViewData(@Path("docname") String document, @Query("id") String id);
 
@@ -70,6 +68,16 @@ public interface APIInterface {
 
     @GET("view/nextcounter/{id}")
     Call<Map<String, String>> getDocumentCounter(@Path("id") String id);
+
+    @POST("view/lookup/{docname}")
+    Call<PagingListingModel> lookupData(@Path("docname") String document, @Query("page") int page, @Query("limit") int limit, @Body Map<String, Object> data);
+
+//    @POST("view/{view_name}/{docname}")
+//    Call<PagingRecyclerViewData> listViewData(@Path("view_name") String viewName, @Path("docname") String document, @Query("page") int page, @Query("limit") int limit, @Body Map<String, Object> data);
+
+    @GET("refdata/syncdata")
+    Call<RefData> getRefData();
+
 
 }
 

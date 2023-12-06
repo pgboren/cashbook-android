@@ -41,7 +41,7 @@ public class ViewDataModel extends Document {
     }
 
     public void onCreated(String id) {
-        this.setId(id);
+        this.set_id(id);
     }
 
     public void onUpdated() {

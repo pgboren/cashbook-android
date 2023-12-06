@@ -1,7 +1,9 @@
 package com.soleap.cashbook.document;
 
-import com.soleap.cashbook.common.document.BsDocument;
+import androidx.room.Entity;
 
-public class Maker extends BsDocument {
+import com.soleap.cashbook.common.document.RefDocument;
 
+@Entity
+public class Maker extends RefDocument {
 }

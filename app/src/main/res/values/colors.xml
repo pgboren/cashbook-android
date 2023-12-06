@@ -10,19 +10,28 @@
     <color name="colorPrimary">#EB292929</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <color name="windows_bg">#BAF1F1F1</color>
+    <color name="codeArray">@android:color/black</color>
+
     <color name="gray_light">#BAB9B9B9</color>
     <color name="gray_dark">#707070</color>
     <color name="green">#2cad1d</color>
 
-    <color name="label">#6C6C6C</color>
+    <color name="window_title_bg">#ffffff</color>
+    <color name="window_title_label">#23272a</color>
+    <color name="window_title_check">#2cad1d</color>
+    <color name="window_title_border">#A1CFCFCF</color>
+    <color name="shimmer_bg">#ED8F8F8F</color>
+
+    <color name="windows_bg">#ffffff</color>
+
+    <color name="label">#23272a</color>
     <color name="title">#FFC0C0C0</color>
 
-    <color name="item_devider">#252424</color>
+    <color name="item_devider">#D8D7D7</color>
     <color name="devider">#BAB1B1B1</color>
 
     <color name="view_comm_field_color">#75a7ff</color>
-    <color name="blue_light">#75a7ff</color>
+    <color name="blue_light">#03A9F4</color>
     <color name="red_light">#E57373</color>
 
 </resources>

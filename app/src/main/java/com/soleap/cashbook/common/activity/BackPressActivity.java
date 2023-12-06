@@ -11,6 +11,10 @@ public abstract class BackPressActivity extends AppCompatActivity {
 
     protected ActionBar toolbar;
 
+    protected void setTitle() {
+        toolbar.setTitle(getTitle());
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +27,7 @@ public abstract class BackPressActivity extends AppCompatActivity {
         toolbar = getSupportActionBar();
         if (toolbar != null) {
             toolbar.setDisplayHomeAsUpEnabled(true);
+            setTitle();
         }
     }
 

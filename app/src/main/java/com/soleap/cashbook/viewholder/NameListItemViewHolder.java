@@ -10,6 +10,8 @@ import com.soleap.cashbook.common.value.ViewSetterFactory;
 import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.view.ViewType;
 
+import java.lang.reflect.Field;
+
 public class NameListItemViewHolder extends DocListItemViewHolder {
 
     public NameListItemViewHolder(Context context, View itemView) {
@@ -18,11 +20,18 @@ public class NameListItemViewHolder extends DocListItemViewHolder {
 
     @Override
     protected void bindViewContent(Document document) {
-        DocumentSnapshot doc = (DocumentSnapshot) document;
-        String name = doc.getDataValue("name").getValue().toString();
-        ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
-        viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_name).setString(name);
-        viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.short_name_view).setString((name.substring(0, 1).toUpperCase()));
+        try {
+            Field privateField = document.getClass().getField("name");
+            privateField.setAccessible(true);
+            String name = privateField.get(document).toString();
+            ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
+            viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_name).setString(name);
+            viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.short_name_view).setString((name.substring(0, 1).toUpperCase()));
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
 }

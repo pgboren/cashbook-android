@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 
     <uses-feature
         android:name="android.hardware.camera.any"
@@ -47,7 +49,7 @@
         </provider>
 
         <activity
-            android:theme="@style/NoActionBar"
+            android:theme="@style/WhiteActionBar"
             android:name=".common.activity.BsDocLookUpActivity"
             android:exported="true">
             <meta-data android:name="android.app.searchable" android:resource="@xml/searchable" />
@@ -57,7 +59,7 @@
         </activity>
 
         <activity
-            android:theme="@style/NoActionBar"
+            android:theme="@style/WhiteActionBar"
             android:name=".common.activity.BsDocListActivity"
             android:exported="true">
             <meta-data
@@ -70,7 +72,7 @@
 
         <activity
             android:name=".common.activity.BsDocEditActivity"
-            android:theme="@style/NoActionBar"
+            android:theme="@style/WhiteActionBar"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
 
@@ -83,17 +85,17 @@
         <activity
             android:name=".common.activity.BsDocViewActivity"
             android:exported="true"
-            android:theme="@style/NoActionBar"/>
+            android:theme="@style/WhiteActionBar"/>
 
         <activity
             android:name=".common.activity.BsDocAddNewActivity"
-            android:theme="@style/NoActionBar"
+            android:theme="@style/WhiteActionBar"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".common.activity.PDFViewActivity"
-            android:theme="@style/NoActionBar"
+            android:theme="@style/WhiteActionBar"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
 
@@ -110,7 +112,7 @@
 
         <activity
             android:name=".activity.UserProfileActivity"
-            android:theme="@style/NoActionBar"
+            android:theme="@style/WhiteActionBar"
             android:label="@string/user_profile"
             android:exported="true"
             android:configChanges="uiMode"/>
@@ -131,7 +133,7 @@
 
         <activity
             android:name=".common.activity.QrCodeScannerActivity"
-            android:theme="@style/NoActionBar"
+            android:theme="@style/WhiteActionBar"
             android:exported="true"
             android:label="@string/qrcode_scanner"
             android:hardwareAccelerated="true"
@@ -139,7 +141,7 @@
 
         <activity
             android:name=".common.activity.QrCodeScannerResultActivity"
-            android:theme="@style/NoActionBar"
+            android:theme="@style/WhiteActionBar"
             android:exported="true"
             android:label="@string/qrcode_scanner"
             android:hardwareAccelerated="true"

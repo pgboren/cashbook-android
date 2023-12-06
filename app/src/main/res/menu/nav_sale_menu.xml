@@ -8,11 +8,11 @@
             <item
                 android:id="@+id/nav_add_invoice"
                 android:icon="@drawable/ic_invoice_dollar_24"
-                android:title="@string/add_new_contact" />
+                android:title="@string/INVOICE_ADD_NEW" />
             <item
                 android:id="@+id/nav_add_contact"
                 android:icon="@drawable/ic_contact_add"
-                android:title="@string/add_new_contact" />
+                android:title="@string/CONTACT_ADD_NEW" />
         </menu>
     </item>
 
@@ -31,7 +31,7 @@
             <item
                 android:id="@+id/nav_contact_list"
                 android:icon="@drawable/ic_contact"
-                android:title="@string/contact_list" />
+                android:title="@string/CONTACT_LIST_VIEW" />
         </menu>
     </item>
 

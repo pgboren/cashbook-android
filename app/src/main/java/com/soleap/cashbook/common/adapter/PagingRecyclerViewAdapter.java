@@ -12,8 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.soleap.cashbook.common.document.Document;
-import com.soleap.cashbook.common.document.DocumentSnapshot;
-import com.soleap.cashbook.common.document.PagingRecyclerViewData;
+import com.soleap.cashbook.document.PagingListingModel;
 import com.soleap.cashbook.viewholder.DocListItemViewHolder;
 import com.soleap.cashbook.viewholder.ListItemViewHolderFactory;
 
@@ -93,10 +92,10 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        final DocumentSnapshot documentSnapshot = (DocumentSnapshot) dataSet.get(position);
-        if (documentSnapshot != null) {
+        final Document doc = (Document) dataSet.get(position);
+        if (doc != null) {
             DocListItemViewHolder viewHolder = (DocListItemViewHolder) holder;
-            viewHolder.bind(position, documentSnapshot);
+            viewHolder.bind(position, doc);
         }
     }
 
@@ -136,11 +135,12 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
                 Map<String, Object> filter = getFilter();
                 body.put("filter", filter);
                 body.put("orders", orders);
-                Call<PagingRecyclerViewData> call = apiInterface.listViewData("LIST_VIEW", documentName, page, 10, body);
-                call.enqueue(new Callback<PagingRecyclerViewData>() {
+
+                Call<PagingListingModel> call = apiInterface.lookupData( documentName, page, 10, body);
+                call.enqueue(new Callback<PagingListingModel>() {
                     @Override
-                    public void onResponse(Call<PagingRecyclerViewData> call, Response<PagingRecyclerViewData> response) {
-                        PagingRecyclerViewData pagingData = (PagingRecyclerViewData) response.body();
+                    public void onResponse(Call<PagingListingModel> call, Response<PagingListingModel> response) {
+                        PagingListingModel pagingData = (PagingListingModel) response.body();
                         if (dataSet.size() > 0) {
                             dataSet.remove(dataSet.size()-1);
                             notifyItemRemoved(dataSet.size());
@@ -153,7 +153,7 @@ public class PagingRecyclerViewAdapter extends RecyclerViewAdapter {
                         isLoading = false;
                     }
                     @Override
-                    public void onFailure(Call<PagingRecyclerViewData> call, Throwable t) {
+                    public void onFailure(Call<PagingListingModel> call, Throwable t) {
                         Log.e("ERROR", t.getMessage(), t);
                         call.cancel();
                     }

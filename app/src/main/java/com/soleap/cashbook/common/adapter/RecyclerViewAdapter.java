@@ -1,7 +1,6 @@
 package com.soleap.cashbook.common.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,7 +99,7 @@ public abstract class RecyclerViewAdapter<TV extends DocListItemViewHolder> exte
 
     private int getItemIndex(String id) {
         for (int i = 0; i < dataSet.size(); i++) {
-            if (dataSet.get(i).getId().equals(id)) {
+            if (dataSet.get(i).get_id().equals(id)) {
                 return i;
             }
         }

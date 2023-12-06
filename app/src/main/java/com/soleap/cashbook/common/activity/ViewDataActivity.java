@@ -1,6 +1,5 @@
 package com.soleap.cashbook.common.activity;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +25,6 @@ import com.soleap.cashbook.common.global.EventHandler;
 import com.soleap.cashbook.common.repository.DocumentRepository;
 import com.soleap.cashbook.common.repository.RepositoryFactory;
 import com.soleap.cashbook.common.util.PDFUtil;
-import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.restapi.APIClient;
 import com.soleap.cashbook.restapi.APIInterface;
 import com.soleap.cashbook.common.widget.view.ViewFieldCreatorFactory;
@@ -197,7 +195,7 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     }
 
     protected void delete() {
-        RepositoryFactory.create().get(documentInfo.getName()).remove(documentInfo.getName(), viewDoc.getId(), new DocumentRepository.DocumentEventListner() {
+        RepositoryFactory.create().get(documentInfo.getName()).remove(documentInfo.getName(), viewDoc.get_id(), new DocumentRepository.DocumentEventListner() {
             @Override
             public void onError(Throwable t) {
                 finish();
@@ -261,13 +259,13 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_view_pdf) {
-            String url  = APIClient.API_URL + "view/pdfInvoice/" + viewDoc.getId();
-            PDFUtil.downloadAndOpenPDF(this, url, viewDoc.getId() + ".pdf");
+            String url  = APIClient.API_URL + "view/pdfInvoice/" + viewDoc.get_id();
+            PDFUtil.downloadAndOpenPDF(this, url, viewDoc.get_id() + ".pdf");
         }
 
         if (id == R.id.menu_view_qrcode) {
-            String url  = APIClient.API_URL + "view/vehiclelable/" + viewDoc.getId();
-            PDFUtil.downloadAndOpenPDF(this, url, viewDoc.getId() + ".pdf");
+            String url  = APIClient.API_URL + "view/vehiclelable/" + viewDoc.get_id();
+            PDFUtil.downloadAndOpenPDF(this, url, viewDoc.get_id() + ".pdf");
         }
 
         if (id == R.id.menu_edit) {
@@ -284,7 +282,7 @@ public abstract class ViewDataActivity<T extends DocumentSnapshot> extends AppCo
     private void onEditMenuClick() {
         Intent intent = new Intent(this, documentInfo.getDocEditViewDef().getActivityClass());
         intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, documentInfo);
-        intent.putExtra(EditRestApiActivity.KEY_DOC_ID, viewDoc.getId());
+        intent.putExtra(EditRestApiActivity.KEY_DOC_ID, viewDoc.get_id());
         startActivity(intent);
     }
 

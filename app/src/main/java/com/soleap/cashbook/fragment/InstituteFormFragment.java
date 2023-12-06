@@ -48,7 +48,7 @@ public class InstituteFormFragment extends DocFormFragment<Institute> {
     public void readInputData(Institute document) {
         document.setName(txtName.getValue());
         document.setAddress(txtAddress.getValue());
-        document.setEnable(swEnable.isChecked());
+//        document.setEnable(swEnable.isChecked());
     }
 
     @Override

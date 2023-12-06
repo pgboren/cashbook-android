@@ -11,6 +11,7 @@ import com.soleap.cashbook.common.document.DocumentSnapshot;
 import com.soleap.cashbook.common.util.MedialUtils;
 import com.soleap.cashbook.common.value.ViewSetterFactory;
 import com.soleap.cashbook.document.DocumentName;
+import com.soleap.cashbook.document.Institute;
 import com.soleap.cashbook.view.ViewType;
 
 public class InstituteListItemViewHolder extends DocListItemViewHolder {
@@ -21,16 +22,13 @@ public class InstituteListItemViewHolder extends DocListItemViewHolder {
 
     @Override
     protected void bindViewContent(Document document) {
-        DocumentSnapshot doc = (DocumentSnapshot) document;
-        String name = doc.getDataValue("name").getValue().toString();
-        String latinName = doc.getDataValue("latinname").getValue().toString();
+        Institute doc = (Institute) document;
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
-        viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_name).setString(name);
-        viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_latin_name).setString(latinName);
+        viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_name).setString(doc.getName());
+        viewSetterFactory.create(com.soleap.cashbook.common.value.ViewType.TEXTVIEW, R.id.txt_latin_name).setString(doc.getLatinname());
         ImageView imgLogo = itemView.findViewById(R.id.img_logo);
-
-        if (doc.getDataValue("logo").getValue() != null) {
-            MedialUtils.loadImage(context, doc.getDataValue("logo").getValue().toString(), imgLogo);
+        if (doc.getLogoMedia() != null) {
+            MedialUtils.loadImage(context, doc.getLogoMedia().getPath(), imgLogo);
         }
 
     }

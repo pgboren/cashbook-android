@@ -12,8 +12,10 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:theme="@style/toolbar"
+            app:title="@string/institutes"
             android:layout_height="?attr/actionBarSize" />
     </com.google.android.material.appbar.AppBarLayout>
+
     <include layout="@layout/dashboard_content_main" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -4,10 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.soleap.cashbook.activity.LoginActivity;
 import com.soleap.cashbook.document.User;
-
-import java.util.prefs.PreferenceChangeListener;
 
 public class AppPrefrences {
 
@@ -23,7 +20,7 @@ public class AppPrefrences {
     }
 
     public static void signIn(Context context, User user) {
-        setUserId(context, user.getId());
+        setUserId(context, user.get_id());
         setUserName(context, user.getUsername());
         setUserAccessToken(context, user.getAccessToken());
         setUserEmail(context, user.getEmail());
@@ -88,7 +85,7 @@ public class AppPrefrences {
         mPrefsEditor.putString("accessToken", id);
         mPrefsEditor.commit();
     }
-
+F
     public static String getUserAccessToken(Context ctx) {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         return mPrefs.getString("accessToken", "");

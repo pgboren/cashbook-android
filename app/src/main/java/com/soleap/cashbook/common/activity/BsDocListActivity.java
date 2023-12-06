@@ -15,6 +15,7 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.adapter.PagingRecyclerViewAdapter;
 import com.soleap.cashbook.common.document.DocumentSnapshot;
+import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.document.DocumentName;
 import com.soleap.cashbook.viewholder.DocListItemViewHolder;
 
@@ -48,8 +49,6 @@ public class BsDocListActivity extends RecyclerActivity {
         initScrollListener();
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         boolean isReadOnly = getIntent().getExtras().getBoolean(READ_ONLY);
@@ -74,5 +73,10 @@ public class BsDocListActivity extends RecyclerActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void setTitle() {
+        toolbar.setTitle(ResourceUtil.getStringResourceByName(getApplicationContext(), documentInfo.getDocListViewDef().getTitle()));
     }
 }

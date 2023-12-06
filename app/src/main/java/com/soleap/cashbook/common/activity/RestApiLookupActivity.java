@@ -138,7 +138,7 @@ public abstract class RestApiLookupActivity<T extends Document> extends BackPres
         }
         else {
             Intent returnIntent = new Intent();
-            returnIntent.putExtra(LOOK_UP_ACTIVITY, selModel.getId());
+            returnIntent.putExtra(LOOK_UP_ACTIVITY, selModel.get_id());
             setResult(Activity.RESULT_OK,returnIntent);
             finish();
         }

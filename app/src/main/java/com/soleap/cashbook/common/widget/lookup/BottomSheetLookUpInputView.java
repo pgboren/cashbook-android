@@ -29,7 +29,6 @@ public abstract class BottomSheetLookUpInputView<T> extends BaseTextInputView<T>
                 bottomsheet.dismiss();
             }
         });
-
         bottomsheet = new DocumentListBottomSheetFragment(adapter);
         AppCompatActivity activity = (AppCompatActivity) getContext();
         bottomsheet.show(activity.getSupportFragmentManager(), "Expanded");

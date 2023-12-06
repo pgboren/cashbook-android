@@ -3,6 +3,7 @@ package com.soleap.cashbook.document;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.soleap.cashbook.common.document.BsDocument;
+import com.soleap.cashbook.common.document.RefDocument;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,8 +11,6 @@ import java.util.Map;
 public class Item extends BsDocument {
 
     private String category;
-
-    private String account;
     private double price;
     private double cost;
 
@@ -36,13 +35,13 @@ public class Item extends BsDocument {
         this.type = type;
     }
 
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
+//    public String getAccount() {
+//        return account;
+//    }
+//
+//    public void setAccount(String account) {
+//        this.account = account;
+//    }
 
     public String getDescription() {
         return description;
@@ -145,7 +144,6 @@ public class Item extends BsDocument {
         Map<String, Object> data = new HashMap<>();
         data.put("name", getName());
         data.put("category", getCategory());
-        data.put("account", getAccount());
         data.put("description", getDescription());
         data.put("price",getPrice());
         data.put("cost", getCost());
@@ -168,13 +166,10 @@ public class Item extends BsDocument {
         super.fromJsonObject(jsonElement);
         JsonObject jsonObject = (JsonObject) jsonElement;
         setName(jsonObject.get("name").getAsString());
-        setCategory(jsonObject.get("category").getAsString());
+        JsonObject categoryObject = jsonObject.get("category").getAsJsonObject();
         setDescription(jsonObject.has("description") ? jsonObject.get("description").getAsString() : "");
-
-        setAccount(jsonObject.get("account").getAsString());
         setPrice(jsonObject.get("price").getAsDouble());
         setCost(jsonObject.get("cost").getAsDouble());
-
         setMaker(jsonObject.get("maker").getAsString());
         setType(jsonObject.get("type").getAsString());
         setCondition(jsonObject.get("condition").getAsString());

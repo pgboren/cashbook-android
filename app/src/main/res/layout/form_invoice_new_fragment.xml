@@ -82,7 +82,7 @@
                 android:background="@color/white"
                 android:orientation="horizontal">
 
-                <com.soleap.cashbook.widget.DocLookupInputView
+                <com.soleap.cashbook.widget.InstituteLookupInputView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
@@ -264,8 +264,6 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/gray_dark"
                         android:text="@string/gift_expenses"/>
-
-
 
                     <TextView
                         android:layout_width="80dp"

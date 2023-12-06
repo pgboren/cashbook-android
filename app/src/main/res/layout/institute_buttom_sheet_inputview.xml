@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/touch_handler_container"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:background="@color/white"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/img_icon"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/transparent"/>
+
+            <TextView
+                android:id="@+id/txt_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_dark"
+                android:paddingTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textSize="@dimen/form_label_text_size"
+                android:paddingBottom="5dp"
+                android:text="@string/label"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.soleap.cashbook.viewholder.widget.CircleImageView
+                android:id="@+id/img_logo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/kk"/>
+
+            <TextView
+                android:id="@+id/txt_value"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="8dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_de"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+            <ImageButton
+                android:id="@+id/btn_arrow_right"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/transparent"
+                android:src="@drawable/ic_arrow_forward" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_dark"/>
+
+    </LinearLayout>
+
+</merge>

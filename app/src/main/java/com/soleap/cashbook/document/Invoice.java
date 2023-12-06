@@ -113,7 +113,7 @@ public class Invoice extends Document {
     @Override
     public void fromJsonObject(JsonElement jsonElement) {
         JsonObject jsonObject = (JsonObject) jsonElement;
-        setId(jsonObject.get("_id").getAsString());
+        set_id(jsonObject.get("_id").getAsString());
         setDate(jsonObject.get("date").getAsLong());
         setPaymentoption(jsonObject.get("paymentoption").getAsString());
         setCustomer(jsonObject.get("customer").getAsString());

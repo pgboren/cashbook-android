@@ -1,5 +1,8 @@
 package com.soleap.cashbook.common.document;
 
+import androidx.annotation.NonNull;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.JsonAdapter;
@@ -15,14 +18,16 @@ import java.util.Map;
 public abstract class Document implements Serializable {
 
     @SerializedName("_id")
-    public String id;
+    @PrimaryKey
+    @NonNull
+    public String _id;
 
-    public String getId() {
-        return id;
+    public String get_id() {
+        return _id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public Map<String, Object> toMap() {
@@ -35,6 +40,6 @@ public abstract class Document implements Serializable {
     }
     public void fromJsonObject(JsonElement jsonElement) {
         JsonObject jsonObject = (JsonObject) jsonElement;
-        setId(jsonObject.get("_id").getAsString());
+        set_id(jsonObject.get("_id").getAsString());
     }
 }

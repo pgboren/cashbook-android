@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,8 +22,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.soleap.cashbook.R;
+import com.soleap.cashbook.common.adapter.PagingLookupViewAdapter;
 import com.soleap.cashbook.common.adapter.PagingRecyclerViewAdapter;
 import com.soleap.cashbook.common.document.Document;
+import com.soleap.cashbook.common.util.ResourceUtil;
 import com.soleap.cashbook.restapi.APIInterface;
 import com.soleap.cashbook.view.DocumentInfo;
 
@@ -104,7 +107,8 @@ public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
     }
 
     private RecyclerView recyclerView;
-    protected PagingRecyclerViewAdapter adapter;
+
+    protected PagingLookupViewAdapter adapter;
 
     protected void initRecyclerView(View view) {
         tvTitle = view.findViewById(R.id.tv_title);
@@ -113,18 +117,22 @@ public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
+
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
+        dividerItemDecoration.setDrawable(getContext().getDrawable(R.drawable.line_divider));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         initScrollListener();
-        tvTitle.setText(documentInfo.getDocListViewDef().getTitle());
+
+
+        tvTitle.setText(ResourceUtil.getStringResourceByName(getContext(), documentInfo.getDocListViewDef().getTitle()));
         startDataListening();
     }
 
     protected void initRecyclerViewAdapter() {
-        adapter = new PagingRecyclerViewAdapter(getContext(),  documentInfo.getName() , documentInfo.getDocListViewDef().getList_item_layout());
-        adapter.setListner(new PagingRecyclerViewAdapter.PagingRecyclerViewAdaptaerEventListner() {
+        adapter = new PagingLookupViewAdapter(getContext(),  documentInfo.getName() , documentInfo.getDocListViewDef().getList_item_layout());
+        adapter.setListner(new PagingLookupViewAdapter.PagingRecyclerViewAdaptaerEventListner() {
             @Override
             public void onItemClick(Document doc, int position) {
                 eventListner.onItemSelected(doc);
@@ -145,7 +153,7 @@ public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == adapter.getItemCount() - 1) {
-                    ((PagingRecyclerViewAdapter)adapter).moveNextPage();
+                    ((PagingLookupViewAdapter)adapter).moveNextPage();
                 }
             }
         });
@@ -155,7 +163,7 @@ public class DocumentListBottomSheetFragment extends BottomSheetDialogFragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                PagingRecyclerViewAdapter pagingRecyclerViewAdapter = (PagingRecyclerViewAdapter)adapter;
+                PagingLookupViewAdapter pagingRecyclerViewAdapter = (PagingLookupViewAdapter)adapter;
                 pagingRecyclerViewAdapter.loadPage(1);
             }
         }, 500);

@@ -123,7 +123,7 @@ public abstract class RestApiRecyclerActivity<T extends Document> extends BackPr
     public void onItemSelected(int position, Document selModel) {
         Intent intent = new Intent(this, getViewActivityClass());
         intent.putExtra(ActivityDataResult.DOC_KEY, selModel);
-        intent.putExtra(ActivityDataResult.DOC_ID_KEY, selModel.getId());
+        intent.putExtra(ActivityDataResult.DOC_ID_KEY, selModel.get_id());
         intent.putExtra(ActivityDataResult.DOC_POSITION_KEY, position);
         startActivityForResult(intent, VIEW_ENTITY_REQUEST_CODE);
     }

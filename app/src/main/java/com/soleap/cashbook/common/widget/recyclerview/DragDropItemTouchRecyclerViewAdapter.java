@@ -3,8 +3,6 @@ package com.soleap.cashbook.common.widget.recyclerview;
 import android.graphics.Color;
 import android.os.Handler;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -77,28 +75,28 @@ public class DragDropItemTouchRecyclerViewAdapter extends PagingRecyclerViewAdap
                 Map<String, Object> filter = getFilter();
                 body.put("filter", filter);
                 body.put("orders", orders);
-                Call<PagingRecyclerViewData> call = apiInterface.listViewData("LIST_VIEW", documentName,page, 10, body);
-                call.enqueue(new Callback<PagingRecyclerViewData>() {
-                    @Override
-                    public void onResponse(Call<PagingRecyclerViewData> call, Response<PagingRecyclerViewData> response) {
-                        PagingRecyclerViewData pagingData = (PagingRecyclerViewData) response.body();
-                        if (dataSet.size() > 0) {
-                            dataSet.remove(dataSet.size()-1);
-                            notifyItemRemoved(dataSet.size());
-                        }
-                        if (pagingData != null) {
-                            dataSet.addAll(pagingData.getData());
-                            maxPage = pagingData.getTotalPages();
-                            notifyDataSetChanged();
-                        }
-                        isLoading = false;
-                    }
-                    @Override
-                    public void onFailure(Call<PagingRecyclerViewData> call, Throwable t) {
-                        Log.e("ERROR", t.getMessage(), t);
-                        call.cancel();
-                    }
-                });
+//                Call<PagingRecyclerViewData> call = apiInterface.listViewData("LIST_VIEW", documentName,page, 10, body);
+//                call.enqueue(new Callback<PagingRecyclerViewData>() {
+//                    @Override
+//                    public void onResponse(Call<PagingRecyclerViewData> call, Response<PagingRecyclerViewData> response) {
+//                        PagingRecyclerViewData pagingData = (PagingRecyclerViewData) response.body();
+//                        if (dataSet.size() > 0) {
+//                            dataSet.remove(dataSet.size()-1);
+//                            notifyItemRemoved(dataSet.size());
+//                        }
+//                        if (pagingData != null) {
+//                            dataSet.addAll(pagingData.getData());
+//                            maxPage = pagingData.getTotalPages();
+//                            notifyDataSetChanged();
+//                        }
+//                        isLoading = false;
+//                    }
+//                    @Override
+//                    public void onFailure(Call<PagingRecyclerViewData> call, Throwable t) {
+//                        Log.e("ERROR", t.getMessage(), t);
+//                        call.cancel();
+//                    }
+//                });
 
             }
         };
@@ -133,7 +131,7 @@ public class DragDropItemTouchRecyclerViewAdapter extends PagingRecyclerViewAdap
             Document doc = (Document) dataSet.get(i);
             Map<String, Object> itemAttributes = new HashMap<>();
             itemAttributes.put("order", i);
-            apiInterface.patch(documentInfo.getName(), doc.getId(), itemAttributes).enqueue(new Callback<Map<String, Object>>() {
+            apiInterface.patch(documentInfo.getName(), doc.get_id(), itemAttributes).enqueue(new Callback<Map<String, Object>>() {
                 @Override
                 public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
                 }
@@ -146,7 +144,7 @@ public class DragDropItemTouchRecyclerViewAdapter extends PagingRecyclerViewAdap
 
     @Override
     public void onRowSelected(OneToManyListItemViewHolder myViewHolder) {
-        myViewHolder.rowView.setBackgroundColor(context.getColor(R.color.gray_light));
+//        myViewHolder.rowView.setBackgroundColor(context.getColor(R.color.gray_light));
     }
 
     @Override

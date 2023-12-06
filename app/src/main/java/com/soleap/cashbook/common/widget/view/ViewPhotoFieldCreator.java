@@ -200,7 +200,7 @@ public class ViewPhotoFieldCreator extends FieldCreator {
                 @Override
                 public void onSucess(Media media) {
                     Map<String, Object> attributeVaules = new ArrayMap<>();
-                    attributeVaules.put("photo", media.getId());
+                    attributeVaules.put("photo", media.get_id());
                     RepositoryFactory.create().get(activity.documentName).patch(activity.documentName, activity.docId, attributeVaules, new DocumentRepository.DocumentEventListner() {
                         @Override
                         public void onError(Throwable t) {

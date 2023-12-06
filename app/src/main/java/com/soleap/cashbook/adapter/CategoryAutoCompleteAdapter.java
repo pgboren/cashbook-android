@@ -28,10 +28,9 @@ public class CategoryAutoCompleteAdapter extends ListAdapter<Category, CategoryA
     public static final DiffUtil.ItemCallback<Category> DIFF_CALLBACK =
             new DiffUtil.ItemCallback<Category>() {
                 @Override
-                public boolean areItemsTheSame(
-                        @NonNull Category oldUser, @NonNull Category newUser) {
+                public boolean areItemsTheSame(@NonNull Category oldUser, @NonNull Category newUser) {
                     // User properties may have changed if reloaded from the DB, but ID is fixed
-                    return oldUser.getId() == newUser.getId();
+                    return oldUser.getName().equals(newUser.getName());
                 }
                 @Override
                 public boolean areContentsTheSame(

@@ -5,8 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.provider.Telephony;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,20 +14,23 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.zxing.client.android.Intents;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
-import com.soleap.cashbook.BuildConfig;
 import com.soleap.cashbook.Global;
 import com.soleap.cashbook.R;
 import com.soleap.cashbook.common.activity.ActivityDataResult;
 import com.soleap.cashbook.common.activity.BsDocListActivity;
 import com.soleap.cashbook.common.activity.QrCodeScannerActivity;
 import com.soleap.cashbook.common.activity.QrCodeScannerResultActivity;
-import com.soleap.cashbook.common.activity.RecyclerActivity;
+import com.soleap.cashbook.common.util.NetworkUtils;
 import com.soleap.cashbook.content.AppPrefrences;
+import com.soleap.cashbook.datasync.RefData;
+import com.soleap.cashbook.datasync.RefDataSyncTask;
 import com.soleap.cashbook.document.DocumentName;
+import com.soleap.cashbook.restapi.APIClient;
+import com.soleap.cashbook.restapi.APIInterface;
+import com.soleap.cashbook.room.AppDatabase;
 import com.soleap.cashbook.view.DocumentInfo;
 
 import androidx.activity.result.ActivityResult;
@@ -40,17 +41,22 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.appcompat.widget.Toolbar;
+import androidx.room.Room;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ActivityCompat.OnRequestPermissionsResultCallback {
 
+    private final APIInterface apiInterface = APIClient.getClient().create(APIInterface.class);
     private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
         result -> {
             if(result.getContents() == null) {
@@ -116,9 +122,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.bringToFront();
         requestCameraPermission();
         Global.context = getApplicationContext();
-//        initFabView();
         initUserProfileView();
-
+        synRefData();
         activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -130,12 +135,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 }
         );
-
     }
 
+    private void synRefData() {
+        if (NetworkUtils.getInstance(this).isNetworkAvailable()) {
+            AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "cashbook") .fallbackToDestructiveMigration().build();
+            Global.db = db;
+            apiInterface.getRefData().enqueue(new Callback<RefData>() {
+                @Override
+                public void onResponse(Call<RefData> call, Response<RefData> response) {
+                    RefData data = response.body();
+                    new RefDataSyncTask(getApplicationContext(), db, data).execute();
+                }
+
+                @Override
+                public void onFailure(Call<RefData> call, Throwable t) {
+                    Log.e("Error", t.getMessage());
+                }
+            });
+
+        }
+    }
     public void addNewInvoiceButtonClicked(View view) {
         Intent intent = new Intent(MainActivity.this, DocumentInfo.INVOICE.getDocAddNewDef().getActivityClass());
         intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.INVOICE);
+        startActivity(intent);
+    }
+
+    public void addNewContact(View view) {
+        Intent intent = new Intent(MainActivity.this, DocumentInfo.CONTACT.getDocAddNewDef().getActivityClass());
+        intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.CONTACT);
+        startActivity(intent);
+    }
+
+    public void addNewVehicle(View view) {
+        Intent intent = new Intent(MainActivity.this, DocumentInfo.VEHICLE.getDocAddNewDef().getActivityClass());
+        intent.putExtra(DocumentInfo.DOCUMENT_INFO_KEY, DocumentInfo.VEHICLE);
         startActivity(intent);
     }
 
@@ -267,5 +302,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         }
     }
+
+
 
 }

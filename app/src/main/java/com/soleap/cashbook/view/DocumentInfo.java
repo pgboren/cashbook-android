@@ -65,7 +65,6 @@ public class DocumentInfo implements Serializable {
     }
 
     public static DocumentInfo CONDITION = new DocumentInfo("condition", Condition.class, ViewDefs.TYPE_LIST_VIEW, ViewDefs.TYPE_VIEW, ViewDefs.TYPE_ADD_NEW_VIEW, ViewDefs.TYPE_EDIT_VIEW);
-
     public static DocumentInfo TYPE = new DocumentInfo("type", Type.class, ViewDefs.TYPE_LIST_VIEW, ViewDefs.TYPE_VIEW, ViewDefs.TYPE_ADD_NEW_VIEW, ViewDefs.TYPE_EDIT_VIEW);
     public static DocumentInfo MODE = new DocumentInfo("model", Model.class, ViewDefs.TYPE_LIST_VIEW, ViewDefs.TYPE_VIEW, ViewDefs.TYPE_ADD_NEW_VIEW, ViewDefs.TYPE_EDIT_VIEW);
     public static DocumentInfo MAKER = new DocumentInfo("maker", Maker.class, ViewDefs.MAKER_LIST_VIEW, ViewDefs.MAKER_VIEW, ViewDefs.MAKER_ADD_NEW_VIEW, ViewDefs.MAKER_EDIT_VIEW);
@@ -76,7 +75,7 @@ public class DocumentInfo implements Serializable {
     public static DocumentInfo CONTACT = new DocumentInfo("contact" , Contact.class, ViewDefs.CONTACT_LIST_VIEW, ViewDefs.CONTACT_VIEW, ViewDefs.CONTACT_NEW_VIEW, ViewDefs.CONTACT_EDIT_VIEW);
     public static DocumentInfo ITEM = new DocumentInfo("item" , Item.class, ViewDefs.ITEM_LIST_VIEW, ViewDefs.ITEM_VIEW, ViewDefs.ITEM_NEW_VIEW, ViewDefs.ITEM_EDIT_VIEW);
 
-    public static DocumentInfo VEHICLE = new DocumentInfo("vehicle" , Item.class, ViewDefs.VEHICLE_LIST_VIEW, ViewDefs.VEHICLE_VIEW, ViewDefs.VEHICLE_NEW_VIEW, ViewDefs.VEHICLE_EDIT_VIEW);
+    public static DocumentInfo VEHICLE = new DocumentInfo("vehicle" , Vehicle.class, ViewDefs.VEHICLE_LIST_VIEW, ViewDefs.VEHICLE_VIEW, ViewDefs.VEHICLE_NEW_VIEW, ViewDefs.VEHICLE_EDIT_VIEW);
     public static DocumentInfo ITEM_SPEC = new DocumentInfo("itemspecification" , ItemSpecification.class, ViewDefs.ITEM_SPEC_LIST_VIEW, ViewDefs.ITEM_SPEC_VIEW, ViewDefs.ITEM_SPEC_NEW_VIEW, ViewDefs.ITEM_SPEC_EDIT_VIEW);
     public static DocumentInfo INSTITUTE = new DocumentInfo("institute" , Institute.class, ViewDefs.INSTITUTE_LIST_VIEW, ViewDefs.INSTITUTE_VIEW, ViewDefs.INSTITUTE_NEW_VIEW, ViewDefs.INSTITUTE_EDIT_VIEW);
     public static DocumentInfo INVOICE = new DocumentInfo("invoice" , Invoice.class, ViewDefs.INVOICE_LIST_VIEW, ViewDefs.INVOICE_VIEW, ViewDefs.INVOICE_NEW_VIEW, ViewDefs.INVOICE_EDIT_VIEW);

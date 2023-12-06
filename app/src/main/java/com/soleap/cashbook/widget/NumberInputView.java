@@ -66,4 +66,9 @@ public class NumberInputView extends BaseButtomSheetInputView<Double> implements
         setValue(value);
         isShowDialog = false;
     }
+
+    @Override
+    protected int getInputLayout() {
+        return R.layout.number_inputview;
+    }
 }

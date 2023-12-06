@@ -59,7 +59,7 @@ public abstract class DocListItemViewHolder extends RecyclerView.ViewHolder  imp
     public void bind(int position, Document doc) {
         this.position = position;
         ViewSetterFactory viewSetterFactory = ViewSetterFactory.getInstance(itemView);
-        String id = doc.getId();
+        String id = doc.get_id();
         this.doc = doc;
         if (Global.build_type.equals("debug")) {
             itemView.findViewById(R.id.txt_id).setVisibility(View.VISIBLE);

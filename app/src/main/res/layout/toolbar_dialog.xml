@@ -6,7 +6,7 @@
     android:id="@+id/toobar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    app:cardBackgroundColor="@color/gray_light"
+    app:cardBackgroundColor="@color/window_title_bg"
     app:cardCornerRadius="0dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -26,11 +26,11 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:padding="8dp"
                     android:src="@drawable/ic_close"
-                    app:tint="@color/label" />
+                    app:tint="@color/window_title_label" />
 
                 <TextView
                     android:id="@+id/tv_title"
-                    android:textColor="@color/label"
+                    android:textColor="@color/window_title_label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -50,7 +50,6 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:padding="8dp"
                     android:src="@drawable/ic_check"
-                    app:tint="@color/green" />
-
+                    app:tint="@color/window_title_check" />
         </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -42,21 +42,15 @@
     <string name="nav_menu_settings">ការកំណត់</string>
 
     <string name="nick_name">ឈ្មោះហៅក្រៅ</string>
-
     <string name="primarynumber">លេខទូរស័ព្ទផ្ទាល់ខ្លន</string>
     <string name="facebook">Facebook</string>
     <string name="telegram">Telegram</string>
-
     <string name="price">តំលៃ ($)</string>
-
-    <string name="namekh">ឈ្មោះ (ខ្មែរ)</string>
+    <string name="namekh">ឈ្មោះ</string>
     <string name="cost">ថ្លៃដើម</string>
-
     <string name="name">ឈ្មេាះ</string>
     <string name="address">អាស័យដ្ឋាន</string>
     <string name="active">សកម្ម</string>
-
-    <string name="contact_number">លេខទំនាក់ទំនង</string>
 
     <string name="enter_username">ឈ្មោះគណនី</string>
     <string name="enter_password">លេខសំងាត់</string>
@@ -70,22 +64,18 @@
     <string name="add_more">ដាក់បន្ថែម</string>
 
     <string name="user_profile">ព័ត៌មានអ្នកប្រើប្រាស់</string>
-
     <string name="sale_order">សំណើរ</string>
-
     <string name="paymentoption">របៀបទូទាត់ប្រាក់</string>
     <string name="agile_task">សំណើរទិញម៉ូតូ</string>
-    <string name="vehicle">យានយន្ដ</string>
+    <string name="vehicle">ម៉ូតូ</string>
     <string name="latinname">ឈ្មោះ (ឡាតាំង)</string>
 
-    <string name="add_new_contact">បង្កើតអតិថិជនថ្មី</string>
     <string name="account_type">ប្រភេទគណនី</string>
-    <string name="contact_list">បញ្ជីរឈ្មោះអតិថិជន</string>
     <string name="account">គណនី</string>
     <string name="chart_of_accounts">ប្លង់គណនី</string>
     <string name="category">ប្រភេទទំនិញ</string>
     <string name="invoice">វិក័យ្យបត្រលក់</string>
-    <string name="contact">អតិថិជន</string>
+
     <string name="machinenumber">លេខម៉ាស៊ីន</string>
     <string name="chassisnumber">លេខតួរ</string>
     <string name="CASH_PAY">បង់ផ្ដាច់</string>
@@ -110,7 +100,7 @@
     <string name="photo">រូបភាព</string>
 
     <string name="general_info">ព័ត៌មានទូទៅ</string>
-    <string name="account_and_price_info">គណនី និង តំលៃ</string>
+    <string name="account_and_price_info">តំលៃ</string>
     <string name="vehicle_info">ព័ត៌មានយានយន្ដ</string>
     <string name="honda">ហុងដា</string>
     <string name="yamaha">យ៉ាម៉ាហា</string>
@@ -128,7 +118,7 @@
     <string name="msg_default_status">ដាក់ QR អោយស្ថិតនៅក្នុងអេក្រង់កាម៉េរា ដើម្បីស្គែន</string>
     <string name="scan_qr_result">លទ្ធផល QR ស្គេន</string>
     <string name="invoice_number">លេខវិក័យបត្រ</string>
-    <string name="invoice_to">ចេញជូនអតិថិជន</string>
+    <string name="invoice_to">ចេញជូនលេខទំនាក់ទំនង</string>
     <string name="invoice_items">ផលិតផល</string>
     <string name="zero_invoice_items">មិនមានផលិតផលក្នុងបញ្ជីរ</string>
     <string name="add_new_item">ផលិតផលថ្មី</string>
@@ -143,6 +133,26 @@
     <string name="LOAN_REQUEST">បង់រំលស់</string>
     <string name="OWN_PAYMENT">ទិញដាច់</string>
     <string name="input_hint">Input Hint</string>
+    <string name="phone_number_1">លេខទូរស័ព្ទ (1)</string>
+    <string name="phone_number_2">លេខទូរស័ព្ទ (2)</string>
+
+    <string name="INVOICE_NEW_VIEW">វិក័យ្យបត្រថ្មី</string>
+    <string name="INSTITUTE_LIST_VIEW">ស្ថាប័ណ្ណ</string>
+    <string name="CONTACT_LIST_VIEW">បញ្ជីរលេខទូរស័ព្ទ</string>
+    <string name="CONTACT_NEW_VIEW">លេខទូរស័ព្ទ</string>
+    <string name="CONTACT_ADD_NEW">បន្ថែមលេខទូរស័ព្ទថ្មី</string>
+    <string name="CONTACT_EDIT_NEW">កែរលេខទូរស័ព្ទ</string>
+    <string name="INVOICE_ADD_NEW">បន្ថែមវិក័យបត្រថ្មី</string>
+    <string name="VEHICLE_NEW_VIEW">ថែមម៉ូតូថ្មី</string>
+    <string name="relative">ទំនាក់ទំនងសាច់ញាតិ</string>
+    <string name="relative_type">ត្រូវជា</string>
+    <string name="province">ខេត្ត</string>
+    <string name="district_khan">ស្រុក (ខណ្ឌ)</string>
+    <string name="province_capital_city">ខេត្ត (រាជធានី)</string>
+    <string name="commune">ឃុំ (សង្កាត់)</string>
+    <string name="village">ភូមិ</string>
+    <string name="house_no">លេខផ្ទះ</string>
+    <string name="street_no">លេខផ្លូវ</string>
 
     <string-array name="invoice_payment_options">
         <item>LOAN_REQUEST</item>
