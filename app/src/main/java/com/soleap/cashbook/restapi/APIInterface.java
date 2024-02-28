@@ -78,6 +78,5 @@ public interface APIInterface {
     @GET("refdata/syncdata")
     Call<RefData> getRefData();
 
-
 }
 

@@ -85,7 +85,7 @@ public class AppPrefrences {
         mPrefsEditor.putString("accessToken", id);
         mPrefsEditor.commit();
     }
-F
+
     public static String getUserAccessToken(Context ctx) {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         return mPrefs.getString("accessToken", "");
